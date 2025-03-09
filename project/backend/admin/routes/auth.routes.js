@@ -3,7 +3,7 @@ const { register } = require('../controller/auth.controller.js');
 const { validateUser } = require('../middleware/auth.middleware.js');
 const router = express.Router();
 
-// registration route
+// Registration route
 router.post("/register", validateUser, register);
 
 module.exports = router;

@@ -22,7 +22,7 @@ app.use(express.json());
 
 //Put your routes here using app.use
 /** User Routes */
-app.use('api/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 
 
 

@@ -1,30 +1,33 @@
 const User = require('../model/userModel.js');
-const bcrypt = require('bcryptjs');
 const { hashPassword } = require('../utils/passwordUtils.js');
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
 
-    // check if the user already exists
-    const isUserexists = await User.findOne(req.body.email);
-    if (isUserexist) {
-        return res.status(400).json({ error: `User already exists...` })
+    // Check if the user already exists
+    const isUserexists = await User.findOne({ email: req.body.email });
+    if (isUserexists) {
+        return res.status(400).json({ error: `User already exists...` });
     }
 
-    // check if the user is first user in the database and if it is update the role as admin
+    // Check if the user is the first user in the database and if it is, update the role to admin
     const isFirstAccount = (await User.countDocuments()) == 0;
-    let userType = req.body.role; // store the user type
+    let userType = req.body.role; // Store the user type
 
     req.body.role = isFirstAccount ? 'admin' : userType;
 
-    // hash the password
-    const hashedPassword = hashPassword(req.body.password);
-    req.body.password = hashedPassword; // set the password as hashed password
+    // Hash the password
+    const hashedPassword = await hashPassword(req.body.password);
+    req.body.password = hashedPassword; // Set the password as hashed password
 
-    // create new user
+    // Create new user
     const user = await User.create(req.body);
 
     res.status(201).json({
         msg: `User registered successfully`,
         data: user
     });
-}
+};
+
+module.exports = {
+    register
+};
