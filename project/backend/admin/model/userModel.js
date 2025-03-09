@@ -26,6 +26,10 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    image: {
+        type: String,
+        default: "https://example.com/default-profile.png"
+    },
     role: {
         type: String,
         required: true,
