@@ -20,7 +20,20 @@ const cropSchema = new mongoose.Schema(
 
     image: {
       type: String,
-      required: false,
+      default: "https://demofree.sirv.com/nope-not-here.jpg",
+      required: true,
+    },
+
+    categoryID: {
+      type: String,
+      default: "0",
+      required: true,
+    },
+
+    fieldID: {
+      type: String,
+      default: "0",
+      required: true,
     },
   },
   {
@@ -28,6 +41,6 @@ const cropSchema = new mongoose.Schema(
   }
 );
 
-const Job = mongoose.model("Job", jobSchema);
+const crops = mongoose.model("CropModel", cropSchema);
 
-module.exports = Job;
+module.exports = crops;
