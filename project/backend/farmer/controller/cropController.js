@@ -19,6 +19,23 @@ const allCrops = async (req, res) => {
   }
 };
 
+//get crop accoding to the parameters
+
+const cropsByParams = async (req, res) => {
+  try {
+    const crops = await CROP.find(req.body);
+
+    if (crops.length <= 0) {
+      res.status(404).json({ msg: "Not found!" });
+      return;
+    }
+
+    res.status(200).json({ msg: "Success", data: crops });
+  } catch (e) {
+    res.status(500).json({ msg: "Server error", error: e.message });
+  }
+};
+
 //Get a single crop
 
 const findbyId = async (req, res) => {
@@ -91,4 +108,11 @@ const deleteCrop = async (req, res) => {
   }
 };
 
-module.exports = { allCrops, findbyId, insertCrop, updateCrop, deleteCrop };
+module.exports = {
+  allCrops,
+  findbyId,
+  insertCrop,
+  updateCrop,
+  deleteCrop,
+  cropsByParams,
+};
