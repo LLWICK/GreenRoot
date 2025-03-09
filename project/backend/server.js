@@ -9,6 +9,7 @@ const app = express();
 //Import your routes using require , here
 
 const stockManage = require("./farmer/routes/stockRoute");
+const cropManage = require("./farmer/routes/cropRoute");
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -22,6 +23,7 @@ app.use(express.json());
 //Put your routes here using app.use
 
 app.use("/api/v1/stock", stockManage);
+app.use("/api/v1/crops", cropManage);
 
 mongoose
   .connect(mongoURL)
