@@ -8,6 +8,9 @@ const app = express();
 
 //Import your routes using require , here
 
+// Auth routes
+const authRoutes = require("./admin/routes/auth.routes.js");
+
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
 
@@ -18,6 +21,10 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 
 //Put your routes here using app.use
+/** User Routes */
+app.use('api/auth', authRoutes);
+
+
 
 mongoose
   .connect(mongoURL)

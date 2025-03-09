@@ -2,7 +2,14 @@ const User = require('../model/userModel.js');
 const bcrypt = require('bcryptjs');
 const { hashPassword } = require('../utils/passwordUtils.js');
 
-const register = async (req, res) => {
+export const register = async (req, res) => {
+
+    // check if the user already exists
+    const isUserexists = await User.findOne(req.body.email);
+    if (isUserexist) {
+        return res.status(400).json({ error: `User already exists...` })
+    }
+
     // check if the user is first user in the database and if it is update the role as admin
     const isFirstAccount = (await User.countDocuments()) == 0;
     let userType = req.body.role; // store the user type
