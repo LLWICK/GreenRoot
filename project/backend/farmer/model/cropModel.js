@@ -35,6 +35,11 @@ const cropSchema = new mongoose.Schema(
       default: "0",
       required: true,
     },
+    price: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
   },
   {
     timestamps: true,
