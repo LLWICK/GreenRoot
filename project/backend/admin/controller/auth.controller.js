@@ -1,5 +1,6 @@
 const User = require('../model/userModel.js');
-const { hashPassword } = require('../utils/passwordUtils.js');
+const { hashPassword, comparePassword } = require('../utils/passwordUtils.js');
+const { createJWToken } = require('../utils/tokenUtils.js');
 
 const register = async (req, res) => {
 
@@ -40,8 +41,50 @@ const register = async (req, res) => {
 
 };
 
+const login = async (req, res) => {
+    const { email, password } = req.body;
 
+    try {
+        if (!email || !password) {
+            res.status(400).json({ err: `Email and password are required!` });
+        }
+
+        // check if user exists
+        const user = await User.findOne({ email });
+        if (!user) {
+            res.status(404).json({ err: `User not found!` });
+        }
+
+        // check if the password is match
+        const isPasswordMatch = comparePassword(password, user.password);
+        if (!isPasswordMatch) {
+            res.status(400).json({ err: `Invalid Password!` });
+        }
+
+        // create a jwt token
+        const token = createJWToken(user._id, user.role);
+
+
+        // set the token into a cookie
+        res.cookie("authToken", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 24 * 60 * 60 * 1000
+        });
+
+        res.status(200).json({
+            msg: `Login successful!`,
+            data: { id: user._id, role: user.role }
+        });
+
+
+    } catch (error) {
+        res.status(500).json({ err: `something went wrong, please try again...` });
+    }
+
+}
 
 module.exports = {
-    register
+    register,
+    login
 };
