@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import Sidebar from "./Common/Sidebar";
 
 {
   /* Farmer Pages imports */
@@ -19,6 +20,9 @@ import {
 function App() {
   return (
     <Routes>
+
+      <Route path="/test" element={<Sidebar />} />
+
       {/* Farmer Router */}
 
       <Route path="/farmer/dashboard" element={<FarmerHome />} />
@@ -29,6 +33,7 @@ function App() {
       <Route path="/farmer/crop/addCrop" element={<AddCropPage />} />
       <Route path="/farmer/orders" element={<OrdersPage />} />
       <Route path="/farmer/schedule" element={<Schedule />} />
+
     </Routes>
   );
 }

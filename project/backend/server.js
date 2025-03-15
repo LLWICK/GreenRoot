@@ -8,6 +8,9 @@ const app = express();
 
 //Import your routes using require , here
 
+// Auth routes
+const authRoutes = require("./admin/routes/auth.routes.js");
+
 const stockManage = require("./farmer/routes/stockRoute");
 const cropManage = require("./farmer/routes/cropRoute");
 
@@ -21,6 +24,8 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 
 //Put your routes here using app.use
+/** User Routes */
+app.use("/api/auth", authRoutes);
 
 app.use("/api/v1/stock", stockManage);
 app.use("/api/v1/crops", cropManage);
