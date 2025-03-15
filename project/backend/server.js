@@ -11,8 +11,10 @@ const app = express();
 // Auth routes
 const authRoutes = require("./admin/routes/auth.routes.js");
 
+//Farmer routes import
 const stockManage = require("./farmer/routes/stockRoute");
 const cropManage = require("./farmer/routes/cropRoute");
+const categoryManage = require("./farmer/routes/categoryRoute.js");
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -27,8 +29,10 @@ app.use(express.json());
 /** User Routes */
 app.use("/api/auth", authRoutes);
 
+//Use farmer routes
 app.use("/api/v1/stock", stockManage);
 app.use("/api/v1/crops", cropManage);
+app.use("/api/v1/category", categoryManage);
 
 mongoose
   .connect(mongoURL)
