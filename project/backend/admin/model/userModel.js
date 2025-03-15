@@ -35,6 +35,10 @@ const userSchema = new Schema({
         required: true,
         enum: ['admin', 'farmer', 'researcher', 'seller', 'customer']
     },
+    status: {
+        type: String,
+        default: "active"
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model("User", userSchema);
