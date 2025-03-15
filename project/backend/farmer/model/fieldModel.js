@@ -5,13 +5,11 @@ const fieldSchema = new mongoose.Schema(
     xcordinate: {
       type: Number,
       required: true,
-      default: 0,
     },
 
     ycordinate: {
       type: Number,
       required: true,
-      default: 0,
     },
 
     city: {
