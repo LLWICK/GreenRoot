@@ -3,8 +3,13 @@ dotenv.config();
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const cookieParser = require("cookie-parser"); // cookie-parser
 
 const app = express();
+
+// cookie-parser middleware
+app.use(cookieParser());
+
 
 //Import your routes using require , here
 
