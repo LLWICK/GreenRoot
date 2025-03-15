@@ -12,6 +12,7 @@ const app = express();
 const authRoutes = require("./admin/routes/auth.routes.js");
 
 const stockManage = require("./farmer/routes/stockRoute");
+const cropManage = require("./farmer/routes/cropRoute");
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -27,6 +28,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 
 app.use("/api/v1/stock", stockManage);
+app.use("/api/v1/crops", cropManage);
 
 mongoose
   .connect(mongoURL)
