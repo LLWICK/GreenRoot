@@ -9,7 +9,7 @@ export default function HomeResearcher() {
       <SidebarResearcher />
 
       {/* Logo Container */}
-      <div className="absolute top-4 left-64 mt-4"> {/* Adjust left-64 based on sidebar width */}
+      <div className="absolute top-4 left-64 -mt-10"> {/* Adjust left-64 based on sidebar width */}
         <img src={Logo} alt="Logo" className="h-40" />
       </div>
     </div>
