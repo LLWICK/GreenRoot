@@ -20,11 +20,11 @@ function LandingBanner() {
       })
       .then((res) => {
         if (res.status === 200) {
-          alert("welcome");
+          navigate("/farmer/:uid/dashboard");
         }
       })
       .catch((e) => {
-        console.log("Incorrect");
+        alert("Incorrect");
       });
   };
   return (
