@@ -30,15 +30,28 @@ const cropSchema = new mongoose.Schema(
       required: true,
     },
 
+    farmerID: {
+      type: String,
+      default: "0",
+      required: true,
+    },
+
     fieldID: {
       type: String,
       default: "0",
       required: true,
     },
-    price: {
-      type: Number,
-      required: true,
-      min: 0,
+
+    overview: {
+      type: String,
+      default: "None",
+      required: false,
+    },
+
+    status: {
+      type: String,
+      default: "onfield",
+      required: false,
     },
   },
   {
