@@ -39,3 +39,5 @@ export const expenses = [
     expense: 3120,
   },
 ];
+
+export const tempUID = "67d61777badc1ba1639ca218";

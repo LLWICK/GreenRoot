@@ -10,7 +10,9 @@ const app = express();
 
 // cookie-parser middleware
 app.use(cookieParser());
+
 app.use(cors());
+
 
 //Import your routes using require , here
 
@@ -18,9 +20,15 @@ app.use(cors());
 const authRoutes = require("./admin/routes/auth.routes.js");
 const adminRoutes = require("./admin/routes/admin.routes.js"); // admin routes
 
+//Farmer routes import
 const stockManage = require("./farmer/routes/stockRoute");
 const cropManage = require("./farmer/routes/cropRoute");
+
 const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
+
+const categoryManage = require("./farmer/routes/categoryRoute");
+const fieldManage = require("./farmer/routes/fieldRoute");
+
 
 const orderManage = require("./customer/routes/orderRoute");
 
@@ -38,9 +46,13 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", authenticateUser, adminRoutes);
 
+//Use farmer routes
 app.use("/api/v1/stock", stockManage);
 app.use("/api/v1/crops", cropManage);
+app.use("/api/v1/category", categoryManage);
+app.use("/api/v1/field", fieldManage);
 
+//customer Routes
 app.use("/api/v1/orders", orderManage);
 
 mongoose
