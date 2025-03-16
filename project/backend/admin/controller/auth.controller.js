@@ -1,3 +1,4 @@
+
 const User = require('../model/userModel.js');
 const { hashPassword, comparePassword } = require('../utils/passwordUtils.js');
 const { createJWToken } = require('../utils/tokenUtils.js');
@@ -107,3 +108,4 @@ module.exports = {
     login,
     logout
 };
+
