@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema //This creates a shortcut to use the Schema class from Mongoose
 
-const howToGrowSchema = new Schema ({
+const postsSchema = new Schema ({
 
 
     title: {
@@ -37,7 +37,11 @@ const howToGrowSchema = new Schema ({
     },
     file: {
         type: String
+    },
+    user_id: {
+        type: String,
+        required: true
     }
 }, {timestamps: true})
 
-module.exports = mongoose.model('How_To_Grow', howToGrowSchema)
+module.exports = mongoose.model('How_To_Grow', postsSchema)

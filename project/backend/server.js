@@ -35,6 +35,9 @@ const fieldManage = require("./farmer/routes/fieldRoute");
 
 const orderManage = require("./customer/routes/orderRoute");
 
+//Researcher routes import
+const postRoutes = require('./researcher/routes/postRoutes.js')
+
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
 
@@ -57,6 +60,9 @@ app.use("/api/v1/field", fieldManage);
 
 //customer Routes
 app.use("/api/v1/orders", orderManage);
+
+//Researcher Routes
+app.use('/api/researcher/posts', postRoutes)
 
 mongoose
   .connect(mongoURL)
