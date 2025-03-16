@@ -19,6 +19,7 @@ const adminRoutes = require("./admin/routes/admin.routes.js"); // admin routes
 
 const stockManage = require("./farmer/routes/stockRoute");
 const cropManage = require("./farmer/routes/cropRoute");
+const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -32,7 +33,7 @@ app.use(express.json());
 //Put your routes here using app.use
 /** User Routes */
 app.use("/api/auth", authRoutes);
-app.use("/api/admin", adminRoutes);
+app.use("/api/admin", authenticateUser, adminRoutes);
 
 app.use("/api/v1/stock", stockManage);
 app.use("/api/v1/crops", cropManage);

@@ -3,6 +3,6 @@ const { authenticateUser, authorizePermissions } = require("../middleware/auth.m
 
 const router = express.Router();
 
-router.get("/dashboard", authenticateUser, authorizePermissions("admin"));
+router.get("/dashboard", authorizePermissions("admin"));
 
 module.exports = router;
