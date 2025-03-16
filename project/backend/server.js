@@ -11,8 +11,12 @@ const app = express();
 // cookie-parser middleware
 app.use(cookieParser());
 
-app.use(cors());
-
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Explicitly allow frontend origin
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  })
+);
 
 //Import your routes using require , here
 
@@ -24,13 +28,10 @@ const adminRoutes = require("./admin/routes/admin.routes.js"); // admin routes
 const stockManage = require("./farmer/routes/stockRoute");
 const cropManage = require("./farmer/routes/cropRoute");
 
-
 const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
-
 
 const categoryManage = require("./farmer/routes/categoryRoute");
 const fieldManage = require("./farmer/routes/fieldRoute");
-
 
 const orderManage = require("./customer/routes/orderRoute");
 
