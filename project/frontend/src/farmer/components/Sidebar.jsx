@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { tempUID } from "../../assets/tempData";
 
 function Sidebar() {
   return (
@@ -77,7 +76,7 @@ function Sidebar() {
                 </div>
                 <div id="menu" class="flex flex-col space-y-2">
                   <Link
-                    to={`/farmer/${tempUID}/dashboard`}
+                    to={"/farmer/dashboard"}
                     class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out"
                   >
                     <svg
@@ -91,7 +90,7 @@ function Sidebar() {
                     <span class="">Dashboard</span>
                   </Link>
                   <Link
-                    to={`/farmer/${tempUID}/cropProducts`}
+                    to={"/farmer/cropProducts"}
                     class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
                   >
                     <svg
