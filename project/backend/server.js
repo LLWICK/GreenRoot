@@ -1,6 +1,7 @@
 const dotenv = require("dotenv");
 dotenv.config();
 const express = require("express");
+const cors = require("cors");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser"); // cookie-parser
@@ -9,7 +10,7 @@ const app = express();
 
 // cookie-parser middleware
 app.use(cookieParser());
-
+app.use(cors());
 
 //Import your routes using require , here
 
@@ -22,8 +23,6 @@ const cropManage = require("./farmer/routes/cropRoute");
 const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
 
 const orderManage = require("./customer/routes/orderRoute");
-
-
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -43,9 +42,6 @@ app.use("/api/v1/stock", stockManage);
 app.use("/api/v1/crops", cropManage);
 
 app.use("/api/v1/orders", orderManage);
-
-
-
 
 mongoose
   .connect(mongoURL)
