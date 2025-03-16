@@ -48,6 +48,12 @@ const cropSchema = new mongoose.Schema(
       required: false,
     },
 
+    price: {
+      type: Number,
+      default: 0,
+      required: true,
+    },
+
     status: {
       type: String,
       default: "onfield",
