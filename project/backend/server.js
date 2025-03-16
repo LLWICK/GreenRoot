@@ -10,7 +10,6 @@ const app = express();
 // cookie-parser middleware
 app.use(cookieParser());
 
-
 //Import your routes using require , here
 
 // Auth routes
@@ -23,8 +22,6 @@ const categoryManage = require("./farmer/routes/categoryRoute");
 const fieldManage = require("./farmer/routes/fieldRoute");
 
 const orderManage = require("./customer/routes/orderRoute");
-
-
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -45,10 +42,8 @@ app.use("/api/v1/crops", cropManage);
 app.use("/api/v1/category", categoryManage);
 app.use("/api/v1/field", fieldManage);
 
+//customer Routes
 app.use("/api/v1/orders", orderManage);
-
-
-
 
 mongoose
   .connect(mongoURL)

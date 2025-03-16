@@ -47,6 +47,12 @@ const cropSchema = new mongoose.Schema(
       default: "None",
       required: false,
     },
+
+    status: {
+      type: String,
+      default: "onfield",
+      required: false,
+    },
   },
   {
     timestamps: true,
