@@ -82,9 +82,25 @@ const login = async (req, res) => {
         res.status(500).json({ err: `something went wrong, please try again...` });
     }
 
+};
+
+const logout = (req, res) => {
+    try {
+        // clear the cookie
+        res.clearCookie("authToken", {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+        });
+
+        res.status(200).json({ msg: `Logout successful!` });
+
+    } catch (error) {
+        res.status(500).json({ err: `Something went wrong. Please try again` });
+    }
 }
 
 module.exports = {
     register,
-    login
+    login,
+    logout
 };
