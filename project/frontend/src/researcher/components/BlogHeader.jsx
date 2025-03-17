@@ -19,8 +19,8 @@ export default function BlogHeader() {
           <a href="/" className="text-gray-700 hover:bg-amber-500 transition-colors font-bold  py-2 px-4 rounded ">
             Home
           </a>
-          <a href="/blog" className="text-gray-700 hover:bg-amber-500 transition-colors font-bold  py-2 px-4 rounded">
-            Blog
+          <a href="/news" className="text-gray-700 hover:bg-amber-500 transition-colors font-bold  py-2 px-4 rounded">
+            News
           </a>
           <a href="/how-to-grow" className="text-gray-700 hover:bg-amber-500 transition-colors font-bold  py-2 px-4 rounded">
             How to Grow

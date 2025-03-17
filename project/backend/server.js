@@ -37,6 +37,8 @@ const orderManage = require("./customer/routes/orderRoute");
 
 //Researcher routes import
 const postRoutes = require('./researcher/routes/postRoutes.js')
+const newsRoutes = require('./researcher/routes/newsRoutes.js')
+const pndRoutes = require('./researcher/routes/pndRoutes.js')
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -63,6 +65,8 @@ app.use("/api/v1/orders", orderManage);
 
 //Researcher Routes
 app.use('/api/researcher/posts', postRoutes)
+app.use('/api/researcher/news', newsRoutes)
+app.use('/api/researcher/pnd', pndRoutes)
 
 mongoose
   .connect(mongoURL)

@@ -24,7 +24,7 @@ const getUserPosts = async (req, res) => {
     }
 };
 /* Routes
-router.get("/posts", getAllPosts); Fetch all posts
+router.get("/posts", getPosts); Fetch all posts
 router.get("/my-posts", authenticateUser, getUserPosts); Fetch posts for the authenticated user */
 
 

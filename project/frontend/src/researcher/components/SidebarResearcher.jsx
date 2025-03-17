@@ -108,7 +108,7 @@ export default function SidebarResearcher() {
                         clipRule="evenodd"
                       ></path>
                     </svg>
-                    <span className="ml-2">Blog Posts</span>
+                    <span className="ml-2">Updates</span>
                   </Link>
 
                   {/* Grow */}
