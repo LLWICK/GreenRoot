@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Sidebar from "./Common/Sidebar";
-import HomeResearcher from "./researcher/pages/HomeResearcher";
+
 
 {
   /* Farmer Pages imports */
@@ -18,6 +18,10 @@ import {
   Schedule,
 } from "./farmer/pages";
 import LandingPage from "./farmer/pages/LandingPage";
+
+/*Import Researcher's pages */
+import HomeResearcher from "./researcher/pages/HomeResearcher";
+import Blog from "./researcher/pages/Blog";
 
 function App() {
   return (
@@ -38,6 +42,8 @@ function App() {
 
       {/* Researcher Routes */}
       <Route path="/researcher/home" element={<HomeResearcher/>}/>
+      <Route path="/blog" element={<Blog/>}/>
+
 
     </Routes>
   );

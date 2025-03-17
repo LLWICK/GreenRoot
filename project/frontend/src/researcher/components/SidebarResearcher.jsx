@@ -108,7 +108,7 @@ export default function SidebarResearcher() {
                         clipRule="evenodd"
                       ></path>
                     </svg>
-                    <span className="ml-2">Blog</span>
+                    <span className="ml-2">Blog Posts</span>
                   </Link>
 
                   {/* Grow */}
@@ -193,7 +193,7 @@ export default function SidebarResearcher() {
 
                   {/* View */}
                   <Link
-                    to="/view"
+                    to="/blog"
                     className="text-sm font-medium text-gray-300 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
                   >
                     <svg
@@ -209,7 +209,7 @@ export default function SidebarResearcher() {
                       />
                       <path d="M18.75 6.75h1.875c.621 0 1.125.504 1.125 1.125V18a1.5 1.5 0 0 1-3 0V6.75Z" />
                     </svg>
-                    <span className="ml-2">View</span>
+                    <span className="ml-2">View Blog</span>
                   </Link>
                 </div>
               </div>
