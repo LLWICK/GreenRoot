@@ -8,7 +8,7 @@ const register = async (req, res) => {
 
         // check if the password is match
         if (password !== confirmPassword) {
-            res.status(400).json({ msg: `Password is not match...` });
+            return res.status(400).json({ msg: `Password is not match...` });
         }
 
         // check if the user already exists

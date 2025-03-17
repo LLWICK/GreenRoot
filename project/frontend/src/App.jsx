@@ -18,7 +18,10 @@ import {
 } from "./farmer/pages";
 
 /* Admin pages */
-import { LoginPage } from "./admin/pages";
+import {
+  LoginPage,
+  AdminDashbord
+} from "./admin/pages";
 
 function App() {
   return (
@@ -27,9 +30,9 @@ function App() {
 
       {/* Farmer Router */}
 
-      <Route path="/farmer/:uid/dashboard" element={<FarmerHome />} />
+      {/* <Route path="/farmer/:uid/dashboard" element={<FarmerHome />} /> */}
       <Route path="/farmer/:uid/cropProducts" element={<CropsHome />} />
-      {/* <Route path="/farmer" element={<LandingPage />} /> */}
+      <Route path="/farmer" element={<LandingPage />} />
       <Route path="/farmer/viewCrop" element={<ViewCrop />} />
       <Route path="/error" element={<ErrorPage />} />
       <Route path="/farmer/crop/edit" element={<CropEdit />} />
@@ -39,6 +42,10 @@ function App() {
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
+
+      {/* Admin Routers */}
+      <Route path="/admin/dashboard" element={<AdminDashbord />} />
+
     </Routes>
   );
 }

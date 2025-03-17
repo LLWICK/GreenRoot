@@ -25,10 +25,10 @@ const Login = () => {
                     const payload = JSON.parse(atob(token.split(".")[1])); // Decode JWT payload
                     switch (payload.role) {
                         case "admin":
-                            navigate("/");
+                            navigate("/admin/dashboard");
                             break;
                         case "farmer":
-                            navigate("/farmer");
+                            navigate("/farmer/:uid/dashboard");
                             break;
                         case "seller":
                             navigate("/seller");
