@@ -30,9 +30,9 @@ function App() {
 
       {/* Farmer Router */}
 
-      {/* <Route path="/farmer/:uid/dashboard" element={<FarmerHome />} /> */}
+      <Route path="/farmer/:uid/dashboard" element={<FarmerHome />} />
       <Route path="/farmer/:uid/cropProducts" element={<CropsHome />} />
-      <Route path="/farmer" element={<LandingPage />} />
+      {/* <Route path="/farmer" element={<LandingPage />} /> */}
       <Route path="/farmer/viewCrop" element={<ViewCrop />} />
       <Route path="/error" element={<ErrorPage />} />
       <Route path="/farmer/crop/edit" element={<CropEdit />} />

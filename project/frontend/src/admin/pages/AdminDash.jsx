@@ -1,8 +1,14 @@
 import React from 'react'
+import Sidebar from '../../Common/Sidebar';
+// import AdminSideBar from '../components/AdminSideBar';
 
 function AdminDash() {
     return (
-        <div>AdminDash</div>
+        <>
+            <Sidebar />
+            {/* <AdminSideBar /> */}
+            <div>AdminDash</div>
+        </>
     )
 }
 
