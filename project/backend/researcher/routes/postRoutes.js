@@ -13,7 +13,7 @@ const {
 
 
 // Import middleware
-const { authenticateUser} = require('../../admin/middleware/auth.middleware')
+//const { authenticateUser} = require('../../admin/middleware/auth.middleware')
 
 //multer
 const multer = require('multer');
@@ -24,18 +24,18 @@ const uploadMiddleware = multer({ dest: 'researcher/uploads/' });
 router.get('/', getPosts)
 
 //Get user posts
-router.get('/my-posts', authenticateUser, getUserPosts)
+router.get('/my-posts', getUserPosts)
 
 //Get a single post
 router.get('/:id', getAPost)
 
 //Create new post
-router.post('/', authenticateUser, uploadMiddleware.single('file'), createPost)
+router.post('/', uploadMiddleware.single('file'), createPost)
 
 //Update a post
-router.patch('/:id', authenticateUser, updatePost)
+router.patch('/:id', updatePost)
 
 //Delete a post
-router.delete('/:id', authenticateUser, deletePost)
+router.delete('/:id', deletePost)
 
 module.exports = router

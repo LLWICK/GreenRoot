@@ -64,8 +64,8 @@ const createPost = async (req, res) => {
     const {title, binominalName, description, sunRequirement, growingDays, sowingMethod, spread, rowSpacing, height } = req.body
 
     try {
-        const user_id = req.user.userId
-        const createPost = await posts.create({title, binominalName, description, sunRequirement, growingDays, sowingMethod, spread, rowSpacing, height, file: newPath, user_id})
+        //const user_id = req.user.userId  add user_id down there(next to file)
+        const createPost = await posts.create({title, binominalName, description, sunRequirement, growingDays, sowingMethod, spread, rowSpacing, height, file: newPath})
         res.status(200).json(createPost)
     } catch (error) {
         res.status(400).json({error: error.message})
