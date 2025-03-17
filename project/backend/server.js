@@ -23,6 +23,8 @@ app.use(
 // Auth routes
 const authRoutes = require("./admin/routes/auth.routes.js");
 const adminRoutes = require("./admin/routes/admin.routes.js"); // admin routes
+// user management routes (Admin)
+const userManagement = require("./admin/routes/user.routes.js");
 
 //Farmer routes import
 const stockManage = require("./farmer/routes/stockRoute");
@@ -45,9 +47,10 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 
 //Put your routes here using app.use
-/** User Routes */
+/** User Routes (Admin) */
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/user", userManagement);
 
 //Use farmer routes
 app.use("/api/v1/stock", stockManage);

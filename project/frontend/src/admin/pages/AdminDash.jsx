@@ -1,5 +1,5 @@
 import React from 'react'
-import Sidebar from '../../Common/Sidebar';
+import Sidebar from '../components/Sidebar';
 // import AdminSideBar from '../components/AdminSideBar';
 
 function AdminDash() {
