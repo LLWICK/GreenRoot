@@ -29,6 +29,7 @@ const userManagement = require("./admin/routes/user.routes.js");
 //Farmer routes import
 const stockManage = require("./farmer/routes/stockRoute");
 const cropManage = require("./farmer/routes/cropRoute");
+const ticketManage = require("./farmer/routes/ticketRoute.js");
 
 const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
 
@@ -57,6 +58,7 @@ app.use("/api/v1/stock", stockManage);
 app.use("/api/v1/crops", cropManage);
 app.use("/api/v1/category", categoryManage);
 app.use("/api/v1/field", fieldManage);
+app.use("/api/v1/ticket", ticketManage);
 
 //customer Routes
 app.use("/api/v1/orders", orderManage);
