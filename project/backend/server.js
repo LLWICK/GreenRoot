@@ -1,21 +1,42 @@
 const dotenv = require("dotenv");
 dotenv.config();
 const express = require("express");
+const cors = require("cors");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const cookieParser = require("cookie-parser"); // cookie-parser
 
 const app = express();
+
+// cookie-parser middleware
+app.use(cookieParser());
+
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Explicitly allow frontend origin
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  })
+);
 
 //Import your routes using require , here
 
 // Auth routes
 const authRoutes = require("./admin/routes/auth.routes.js");
+const adminRoutes = require("./admin/routes/admin.routes.js"); // admin routes
+// user management routes (Admin)
+const userManagement = require("./admin/routes/user.routes.js");
 
+//Farmer routes import
 const stockManage = require("./farmer/routes/stockRoute");
+const cropManage = require("./farmer/routes/cropRoute");
+const ticketManage = require("./farmer/routes/ticketRoute.js");
+
+const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
+
+const categoryManage = require("./farmer/routes/categoryRoute");
+const fieldManage = require("./farmer/routes/fieldRoute");
 
 const orderManage = require("./customer/routes/orderRoute");
-
-
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -27,15 +48,20 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 
 //Put your routes here using app.use
-/** User Routes */
+/** User Routes (Admin) */
 app.use("/api/auth", authRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/user", userManagement);
 
+//Use farmer routes
 app.use("/api/v1/stock", stockManage);
+app.use("/api/v1/crops", cropManage);
+app.use("/api/v1/category", categoryManage);
+app.use("/api/v1/field", fieldManage);
+app.use("/api/v1/ticket", ticketManage);
 
+//customer Routes
 app.use("/api/v1/orders", orderManage);
-
-
-
 
 mongoose
   .connect(mongoURL)
