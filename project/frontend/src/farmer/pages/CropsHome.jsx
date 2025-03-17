@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import CropChart from "../components/CropChart";
 import CropTable from "../components/CropTable";
+import { useNavigate } from "react-router-dom";
+import { getUserIdFromToken } from "../utills/authUtils";
 
 function CropsHome() {
+  const navigate = useNavigate();
+  const [userID, setUserID] = useState(null);
+
+  useEffect(() => {
+    const userId = getUserIdFromToken();
+
+    if (userId) {
+      setUserID(userId);
+    } else {
+      navigate(`/farmer`);
+    }
+  }, []);
   return (
     <div>
-      <Sidebar />
+      <Sidebar uid={userID} />
       <div style={{ float: "left", marginLeft: "10%" }}>
         <CropChart />
         <CropTable />
