@@ -12,15 +12,15 @@ function LandingBanner() {
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
 
-    console.log(data);
-
     axios
       .post("http://localhost:3000/api/auth/login", data, {
         withCredentials: true,
       })
       .then((res) => {
         if (res.status === 200) {
-          navigate("/farmer/:uid/dashboard");
+          //navigate(`/farmer/${res.data.data.id}/dashboard`);
+          const token = Cookies.get("authToken"); // Replace "jwt" with the actual cookie name
+          console.log("JWT TOKEN: ", token);
         }
       })
       .catch((e) => {
