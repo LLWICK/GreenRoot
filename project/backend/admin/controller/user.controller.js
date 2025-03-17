@@ -48,10 +48,18 @@ const createUser = async (req, res) => {
 // update user
 const updateUser = async (req, res) => {
     try {
-        const { firstName, lastName, address, phone, email, password, role } = req.body;
+        const { firstName, lastName, address, phone, email, password, role, image, status } = req.body;
 
         if (!firstName || !lastName || !address || !phone || !email || !password || !role) {
             return res.status(400).json({ message: `All fields are required...` });
+        }
+
+        if (!image) {
+            req.body.image = "../extras/avetar.png";
+        }
+
+        if (!status) {
+            req.body.status = "active";
         }
 
         // hash the password
@@ -71,11 +79,29 @@ const updateUser = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error });
     }
-}
+};
+
+// delete user
+const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedUser = await User.findByIdAndDelete(id);
+
+        if (!deletedUser) {
+            return res.status(400).json({ message: `User not found...` });
+        }
+
+        res.status(200).json({ message: `User deleted Successfully!` });
+
+    } catch (error) {
+        res.status(500).json({ message: `Something went wrong `, error });
+    }
+};
 
 
 module.exports = {
     getUsersByRole,
     createUser,
-    updateUser
+    updateUser,
+    deleteUser
 }

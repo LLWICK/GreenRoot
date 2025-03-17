@@ -1,5 +1,10 @@
 const express = require("express");
-const { getUsersByRole, createUser, updateUser } = require("../controller/user.controller");
+const {
+    getUsersByRole,
+    createUser,
+    updateUser,
+    deleteUser
+} = require("../controller/user.controller");
 const router = express.Router();
 
 
@@ -11,5 +16,7 @@ router.get("/farmers", (req, res) => getUsersByRole(req, res, "farmer"));
 router.post("/create", createUser);
 // update user
 router.put("/update/:id", updateUser);
+// delete user
+router.delete("/delete/:id", deleteUser);
 
 module.exports = router;
