@@ -8,10 +8,16 @@ const cookieParser = require("cookie-parser"); // cookie-parser
 
 const app = express();
 
+
 // cookie-parser middleware
 app.use(cookieParser());
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Allow frontend URL
+    credentials: true, // Allow cookies & auth headers
+  })
+);
 
 
 //Import your routes using require , here
@@ -25,7 +31,7 @@ const stockManage = require("./farmer/routes/stockRoute");
 const cropManage = require("./farmer/routes/cropRoute");
 
 
-const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
+// const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
 
 
 const categoryManage = require("./farmer/routes/categoryRoute");

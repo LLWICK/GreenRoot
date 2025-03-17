@@ -18,6 +18,13 @@ import {
 } from "./farmer/pages";
 import LandingPage from "./farmer/pages/LandingPage";
 
+
+/* Admin pages */
+import { LoginPage } from "./admin/pages";
+
+
+
+
 function App() {
   return (
     <Routes>
@@ -34,6 +41,10 @@ function App() {
       <Route path="/farmer/crop/addCrop" element={<AddCropPage />} />
       <Route path="/farmer/orders" element={<OrdersPage />} />
       <Route path="/farmer/schedule" element={<Schedule />} />
+
+      {/* Auth Router */}
+      <Route path="/auth/login" element={<LoginPage />} />
+
     </Routes>
   );
 }

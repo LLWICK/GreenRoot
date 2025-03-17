@@ -73,6 +73,7 @@ const login = async (req, res) => {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             maxAge: 24 * 60 * 60 * 1000,
+            sameSite: 'None'
         });
 
         // success message with the user data
@@ -80,6 +81,8 @@ const login = async (req, res) => {
             msg: "login successful!",
             data: { id: user._id, role: user.role }
         });
+
+        console.log("Cookie set: ", res.getHeader('Set-Cookie'));
 
     } catch (error) {
         console.error("Login Error:", error);
@@ -91,7 +94,7 @@ const logout = (req, res) => {
     try {
         // clear the cookie
         res.clearCookie("authToken", {
-            httpOnly: true,
+            httpOnly: false,
             secure: process.env.NODE_ENV === "production",
         });
 

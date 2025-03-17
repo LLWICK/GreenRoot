@@ -25,7 +25,7 @@ const authenticateUser = (req, res, next) => {
     const payload = verifyJWT(authToken);
 
     if (!payload) {
-        return res.status(400).json({ err: `Authentication invalid!` });
+        return res.status(401).json({ err: `Authentication invalid!` });
     }
 
     req.user = { userId: payload.userId, role: payload.role };
