@@ -3,7 +3,8 @@ const {
     getUsersByRole,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    getSingleUser
 } = require("../controller/user.controller");
 const router = express.Router();
 
@@ -12,6 +13,8 @@ const router = express.Router();
 router.get("/admins", (req, res) => getUsersByRole(req, res, "admin"));
 // get all farmers
 router.get("/farmers", (req, res) => getUsersByRole(req, res, "farmer"));
+// get single user
+router.get("/:id", getSingleUser);
 // create a user
 router.post("/create", createUser);
 // update user
