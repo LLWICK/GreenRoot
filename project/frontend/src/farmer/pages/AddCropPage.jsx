@@ -20,8 +20,8 @@ function AddCropPage() {
   }, []);
   return (
     <div>
-      <Sidebar uid={userID} />
-      <AddCrop />
+      <Sidebar />
+      <AddCrop fid={userID} />
     </div>
   );
 }
