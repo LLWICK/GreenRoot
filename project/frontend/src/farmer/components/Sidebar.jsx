@@ -1,7 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-function Sidebar(props) {
+import { useNavigate } from "react-router-dom";
+import { getUserIdFromToken } from "../utills/authUtils";
+
+function Sidebar() {
+  const navigate = useNavigate();
+  const [userID, setUserID] = useState(null);
+
+  useEffect(() => {
+    const userId = getUserIdFromToken();
+
+    if (userId) {
+      setUserID(userId);
+    } else {
+      navigate(`/farmer`);
+    }
+  }, []);
+
   return (
     <div>
       <div style={{ float: "left" }}>
@@ -76,7 +92,7 @@ function Sidebar(props) {
                 </div>
                 <div id="menu" class="flex flex-col space-y-2">
                   <Link
-                    to={`/farmer/${props.uid}/dashboard`}
+                    to={`/farmer/${userID}/dashboard`}
                     class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out"
                   >
                     <svg
@@ -90,7 +106,7 @@ function Sidebar(props) {
                     <span class="">Dashboard</span>
                   </Link>
                   <Link
-                    to={`/farmer/${props.uid}/cropProducts`}
+                    to={`/farmer/${userID}/cropProducts`}
                     class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
                   >
                     <svg

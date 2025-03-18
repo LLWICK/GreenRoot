@@ -18,13 +18,22 @@ function LandingBanner() {
       })
       .then((res) => {
         if (res.status === 200) {
-          //navigate(`/farmer/${res.data.data.id}/dashboard`);
           const token = Cookies.get("authToken"); // Replace "jwt" with the actual cookie name
-          console.log("JWT TOKEN: ", token);
+          if (token) {
+            const payload = JSON.parse(atob(token.split(".")[1]));
+
+            if (payload.role == "farmer") {
+              navigate(`/farmer/${payload.userId}/dashboard`);
+            } else {
+              alert("Wrong user portal");
+            }
+          } else {
+            alert("No token present");
+          }
         }
       })
       .catch((e) => {
-        alert("Incorrect");
+        alert("Incorrect username or password!");
       });
   };
   return (
