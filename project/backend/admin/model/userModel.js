@@ -31,6 +31,14 @@ const userSchema = new Schema({
         required: true,
         enum: ['admin', 'farmer', 'researcher', 'seller', 'customer', 'deliveryPerson']
     },
+    image: {
+        type: String,
+        default: '../extras/avetar.png'
+    },
+    status: {
+        type: String,
+        default: 'active'
+    },
 }, { timestamps: true });
 
 module.exports = mongoose.model("User", userSchema);

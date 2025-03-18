@@ -23,6 +23,8 @@ app.use(
 // Auth routes
 const authRoutes = require("./admin/routes/auth.routes.js");
 const adminRoutes = require("./admin/routes/admin.routes.js"); // admin routes
+// user management routes (Admin)
+const userManagement = require("./admin/routes/user.routes.js");
 
 //Farmer routes import
 const stockManage = require("./farmer/routes/stockRoute");
@@ -36,6 +38,11 @@ const fieldManage = require("./farmer/routes/fieldRoute");
 
 const orderManage = require("./customer/routes/orderRoute");
 
+//retail seller route imports
+const getCropRoutesRS = require("./seller/routes/cropRoutes(rs)")
+const cartRoutes = require("./seller/routes/cartRoutes")
+const productRoutes = require("./seller/routes/productRoutes.js")
+
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
 
@@ -46,9 +53,10 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 
 //Put your routes here using app.use
-/** User Routes */
+/** User Routes (Admin) */
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/user", userManagement);
 
 //Use farmer routes
 app.use("/api/v1/stock", stockManage);
@@ -59,6 +67,12 @@ app.use("/api/v1/ticket", ticketManage);
 
 //customer Routes
 app.use("/api/v1/orders", orderManage);
+
+//retail seller
+app.use("/api/RetailSeller/cart", cartRoutes);
+app.use("/api/RetailSeller/crops", getCropRoutesRS);
+app.use("/api/RetailSeller/products", productRoutes);
+
 
 mongoose
   .connect(mongoURL)
