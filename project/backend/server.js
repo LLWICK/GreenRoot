@@ -11,6 +11,10 @@ const app = express();
 // cookie-parser middleware
 app.use(cookieParser());
 
+//researcher middleware
+const path = require('path');
+app.use('/researcher/uploads', express.static(path.join(__dirname, 'researcher/uploads')));
+
 app.use(
   cors({
     origin: "http://localhost:5173", // Explicitly allow frontend origin
@@ -76,6 +80,7 @@ app.use("/api/v1/orders", orderManage);
 app.use('/api/researcher/posts', postRoutes)
 app.use('/api/researcher/news', newsRoutes)
 app.use('/api/researcher/pnd', pndRoutes)
+
 //retail seller
 app.use("/api/RetailSeller/cart", cartRoutes);
 app.use("/api/RetailSeller/crops", getCropRoutesRS);

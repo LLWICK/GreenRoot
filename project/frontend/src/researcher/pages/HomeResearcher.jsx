@@ -13,7 +13,7 @@ export default function HomeResearcher() {
       <SidebarResearcher />
 
       {/* Main Content */}
-      <div className="flex-1 p-8 max-w-7xl mx-auto pr-72"> {/* Add padding-right to account for the right sidebar */}
+      <div className="flex-1 p-8 max-w-7xl mx-auto pr-72 ml-64"> {/* Add padding-right to account for the right sidebar */}
         {/* Welcome Text */}
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">Welcome Back!</h1>

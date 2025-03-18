@@ -18,11 +18,12 @@ import {
   Schedule,
   LandingPage,
 } from "./farmer/pages";
-import LandingPage from "./farmer/pages/LandingPage";
+//import LandingPage from "./farmer/pages/LandingPage";
 
 /*Import Researcher's pages */
 import HomeResearcher from "./researcher/pages/HomeResearcher";
 import Blog from "./researcher/pages/Blog";
+import MyNews from "./researcher/pages/MyNews";
 
 /* Admin pages */
 import {
@@ -61,8 +62,9 @@ function App() {
         element={<FarmerManagement />}
       />
       {/* Researcher Routes */}
-      <Route path="/researcher/home" element={<HomeResearcher/>}/>
+      <Route path="/researcher" element={<HomeResearcher/>}/>
       <Route path="/blog" element={<Blog/>}/>
+      <Route path="/researcher/my-news" element={<MyNews/>}/>
     </Routes>
   );
 }
