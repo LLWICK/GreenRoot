@@ -45,6 +45,10 @@ function App() {
       <Route path="/farmer/crop/addCrop" element={<AddCropPage />} />
       <Route path="/farmer/orders" element={<OrdersPage />} />
       <Route path="/farmer/schedule" element={<Schedule />} />
+
+      {/* Researcher Routes */}
+      <Route path="/researcher/home" element={<HomeResearcher/>}/>
+      <Route path="/blog" element={<Blog/>}/>
     </Routes>
   );
 }

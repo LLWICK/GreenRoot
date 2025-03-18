@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Logo from '../extras/Greenroots-logo-color.png'; // Make sure the path to your logo is correct
 
 export default function SidebarResearcher() {
   return (
@@ -10,7 +10,7 @@ export default function SidebarResearcher() {
           <div
             style={{ width: "fit-content" }}
             id="view"
-            className="bg-gray-900 h-full flex flex-row"
+            className="bg-white h-full flex flex-row"
           >
             <button className="p-2 border-2 bg-white rounded-md border-gray-200 shadow-lg text-gray-500 focus:bg-teal-500 focus:outline-none focus:text-white absolute top-0 left-0 sm:hidden">
               <svg
@@ -28,59 +28,26 @@ export default function SidebarResearcher() {
             </button>
             <div
               id="sidebar"
-              className="bg-gray-800 h-screen md:block shadow-xl px-3 w-30 md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out"
+              className="bg-white h-screen md:block shadow-xl px-3 w-30 md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out"
             >
               <div className="space-y-6 md:space-y-10 mt-10">
-                <h1 className="font-bold text-4xl text-center md:hidden text-white">
-                  G<span className="text-teal-600">.</span>
-                </h1>
-                <h1 className="hidden md:block font-bold text-sm md:text-xl text-center text-white">
-                  <span className="text-teal-600">Green Roots</span>
-                </h1>
-                <div id="profile" className="space-y-3">
+                {/* Logo */}
+                <div className="flex justify-center">
                   <img
-                    src="https://images.unsplash.com/photo-1628157588553-5eeea00af15c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                    alt="Avatar user"
-                    className="w-10 md:w-16 rounded-full mx-auto"
+                    src={Logo}
+                    alt="Greenroots Logo"
+                    className="w-40 h-40" // Adjust the size as needed
                   />
-                  <div>
-                    <h2 className="font-medium text-xs md:text-sm text-center text-teal-500">
-                      Admin User
-                    </h2>
-                    <p className="text-xs text-gray-400 text-center">
-                      Researcher
-                    </p>
-                  </div>
                 </div>
-                <div className="flex border-2 border-gray-700 rounded-md focus-within:ring-2 ring-teal-500">
-                  <input
-                    type="text"
-                    className="w-full rounded-tl-md rounded-bl-md px-2 py-3 text-sm text-gray-300 bg-gray-700 focus:outline-none placeholder-gray-400"
-                    placeholder="Search"
-                  />
-                  <button className="rounded-tr-md rounded-br-md px-2 py-3 hidden md:block">
-                    <svg
-                      className="w-4 h-4 fill-current  hover:text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                        clipRule="evenodd"
-                      ></path>
-                    </svg>
-                  </button>
-                </div>
+
                 <div id="menu" className="flex flex-col space-y-2">
                   {/* Dashboard */}
                   <Link
                     to="/dashboard"
-                    className="text-sm font-medium text-gray-300 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
+                    className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
                   >
                     <svg
-                      className="w-6 h-6 fill-current inline-block  hover:text-white"
+                      className="w-6 h-6 fill-current inline-block hover:text-white"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"
@@ -94,10 +61,10 @@ export default function SidebarResearcher() {
                   {/* Blog */}
                   <Link
                     to="/blog"
-                    className="text-sm font-medium text-gray-300 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
+                    className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
                   >
                     <svg
-                      className="w-6 h-6 fill-current inline-block  hover:text-white"
+                      className="w-6 h-6 fill-current inline-block hover:text-white"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"
@@ -108,16 +75,16 @@ export default function SidebarResearcher() {
                         clipRule="evenodd"
                       ></path>
                     </svg>
-                    <span className="ml-2">Updates</span>
+                    <span className="ml-2">News</span>
                   </Link>
 
                   {/* Grow */}
                   <Link
                     to="/grow"
-                    className="text-sm font-medium text-gray-300 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
+                    className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
                   >
                     <svg
-                      className="w-6 h-6 fill-current inline-block  hover:text-white"
+                      className="w-6 h-6 fill-current inline-block hover:text-white"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"
@@ -134,10 +101,10 @@ export default function SidebarResearcher() {
                   {/* Pest and Disease */}
                   <Link
                     to="/pest-and-disease"
-                    className="text-sm font-medium text-gray-300 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
+                    className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
                   >
                     <svg
-                      className="w-6 h-6 fill-current inline-block  hover:text-white"
+                      className="w-6 h-6 fill-current inline-block hover:text-white"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
@@ -154,10 +121,10 @@ export default function SidebarResearcher() {
                   {/* Stats */}
                   <Link
                     to="/stats"
-                    className="text-sm font-medium text-gray-300 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
+                    className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
                   >
                     <svg
-                      className="w-6 h-6 fill-current inline-block  hover:text-white"
+                      className="w-6 h-6 fill-current inline-block hover:text-white"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
@@ -174,10 +141,10 @@ export default function SidebarResearcher() {
                   {/* Q&A */}
                   <Link
                     to="/qna"
-                    className="text-sm font-medium text-gray-300 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
+                    className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
                   >
                     <svg
-                      className="w-6 h-6 fill-current inline-block  hover:text-white"
+                      className="w-6 h-6 fill-current inline-block hover:text-white"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"
@@ -194,10 +161,10 @@ export default function SidebarResearcher() {
                   {/* View */}
                   <Link
                     to="/blog"
-                    className="text-sm font-medium text-gray-300 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
+                    className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
                   >
                     <svg
-                      className="w-6 h-6 fill-current inline-block  hover:text-white"
+                      className="w-6 h-6 fill-current inline-block hover:text-white"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
