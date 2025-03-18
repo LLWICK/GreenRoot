@@ -38,6 +38,11 @@ const fieldManage = require("./farmer/routes/fieldRoute");
 
 const orderManage = require("./customer/routes/orderRoute");
 
+//retail seller route imports
+const getCropRoutesRS = require("./seller/routes/cropRoutes(rs)")
+const cartRoutes = require("./seller/routes/cartRoutes")
+const productRoutes = require("./seller/routes/productRoutes.js")
+
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
 
@@ -62,6 +67,12 @@ app.use("/api/v1/ticket", ticketManage);
 
 //customer Routes
 app.use("/api/v1/orders", orderManage);
+
+//retail seller
+app.use("/api/RetailSeller/cart", cartRoutes);
+app.use("/api/RetailSeller/crops", getCropRoutesRS);
+app.use("/api/RetailSeller/products", productRoutes);
+
 
 mongoose
   .connect(mongoURL)
