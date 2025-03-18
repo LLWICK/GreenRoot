@@ -42,6 +42,10 @@ const orderManage = require("./customer/routes/orderRoute");
 const postRoutes = require('./researcher/routes/postRoutes.js')
 const newsRoutes = require('./researcher/routes/newsRoutes.js')
 const pndRoutes = require('./researcher/routes/pndRoutes.js')
+//retail seller route imports
+const getCropRoutesRS = require("./seller/routes/cropRoutes(rs)")
+const cartRoutes = require("./seller/routes/cartRoutes")
+const productRoutes = require("./seller/routes/productRoutes.js")
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -72,6 +76,11 @@ app.use("/api/v1/orders", orderManage);
 app.use('/api/researcher/posts', postRoutes)
 app.use('/api/researcher/news', newsRoutes)
 app.use('/api/researcher/pnd', pndRoutes)
+//retail seller
+app.use("/api/RetailSeller/cart", cartRoutes);
+app.use("/api/RetailSeller/crops", getCropRoutesRS);
+app.use("/api/RetailSeller/products", productRoutes);
+
 
 mongoose
   .connect(mongoURL)
