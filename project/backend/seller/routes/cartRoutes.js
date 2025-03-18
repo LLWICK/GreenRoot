@@ -7,15 +7,15 @@ const {addToCart,
 //const authMiddleware = require('../middleware/authMiddleware'); // Assuming you have a middleware for authentication
 
 // Route to get the cart of the logged-in seller
-router.get('/', /*authMiddleware*/ getCart);
+router.get('/get/:sellerId', /*authMiddleware*/ getCart);
 
 // Route to add a crop to the cart
 router.post('/add', /*authMiddleware*/ addToCart);
 
 // Route to remove an item from the cart
-router.delete('/remove/:cropId', /*authMiddleware*/ removeFromCart);
+router.delete('/remove/:cropId/:sellerId', /*authMiddleware*/ removeFromCart);
 
 // Route to clear the entire cart
-router.delete('/clear', /*authMiddleware*/ clearCart);
+router.delete('/clear/:sellerId', /*authMiddleware*/ clearCart);
 
 module.exports = router;

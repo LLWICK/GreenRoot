@@ -9,6 +9,6 @@ const {
 
 // Route to get all crops filtered by category
 router.get('/', getAllcrops);
-router.get('/catagory',getCropsByCategory)
+router.get('/category/:cid',getCropsByCategory)
 
 module.exports = router;

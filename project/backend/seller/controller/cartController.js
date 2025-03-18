@@ -4,7 +4,7 @@ const Crop = require('../../farmer/model/cropModel');
 // Add crop to cart
 const addToCart = async (req, res) => {
   try {
-    const { cropId } = req.body; // Just cropId, no quantity
+    const { cropId ,sellerId } = req.body; // Just cropId, no quantity
     //const sellerId = req.user.id; // Assuming JWT middleware sets user ID
 
     // Check if crop exists
@@ -45,25 +45,29 @@ const addToCart = async (req, res) => {
   }
 };
 
-// Get seller's cart
+//get cart using seller id
 const getCart = async (req, res) => {
   try {
-    const sellerId = req.user.id;
+    const { sellerId } = req.params;
 
-    const cart = await Cart.findOne({ sellerId }).populate('items.cropId');
-    if (!cart) return res.status(404).json({ message: 'Cart not found' });
+    const cart = await Cart.findOne({ sellerId });
 
-    res.status(200).json(cart);
+    if (!cart) {
+      return res.status(404).json({ message: 'Cart not found' });
+    }
+
+    res.status(200).json(cart); 
   } catch (err) {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
 
+
 // Remove item from cart
 const removeFromCart = async (req, res) => {
   try {
-    const { cropId } = req.params;
-    const sellerId = req.user.id;
+    const { cropId ,sellerId } = req.params;
+    //const sellerId = req.user.id;
 
     const cart = await Cart.findOne({ sellerId });
     if (!cart) return res.status(404).json({ message: 'Cart not found' });
@@ -81,7 +85,7 @@ const removeFromCart = async (req, res) => {
 // Clear cart
 const clearCart = async (req, res) => {
   try {
-    const sellerId = req.user.id;
+    const sellerId = req.params.sellerId;
 
     const cart = await Cart.findOne({ sellerId });
     if (!cart) return res.status(404).json({ message: 'Cart not found' });

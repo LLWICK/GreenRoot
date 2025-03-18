@@ -5,7 +5,7 @@ const createProduct = async (req, res) => {
   try {
     const { name, quantity, fertilizer, image, category, supplier, sellerId } = req.body;
 
-    // Check if all required fields are provided
+  
     if (!name || !quantity || !category || !supplier || !sellerId) {
       return res.status(400).json({ message: 'Missing required fields' });
     }
