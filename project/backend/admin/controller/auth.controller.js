@@ -1,15 +1,14 @@
-const User = require('../model/userModel.js');
-const { hashPassword, comparePassword } = require('../utils/passwordUtils.js');
-const { createJWToken } = require('../utils/tokenUtils.js');
+const User = require("../model/userModel.js");
+const { hashPassword, comparePassword } = require("../utils/passwordUtils.js");
+const { createJWToken } = require("../utils/tokenUtils.js");
 
 const register = async (req, res) => {
-
     try {
         const { email, password, confirmPassword, role } = req.body;
 
         // check if the password is match
         if (password !== confirmPassword) {
-            res.status(400).json({ msg: `Password is not match...` });
+            return res.status(400).json({ msg: `Password is not match...` });
         }
 
         // check if the user already exists
@@ -20,68 +19,67 @@ const register = async (req, res) => {
 
         // Check if the user is the first user in the database and if it is, update the role to admin
         const isFirstAccount = (await User.countDocuments()) == 0;
-        req.body.role = isFirstAccount ? 'admin' : role;
+        req.body.role = isFirstAccount ? "admin" : role;
 
         // Hash the password
         const hashedPassword = await hashPassword(password);
         req.body.password = hashedPassword; // Set the password as hashed password
-
 
         // Create new user
         const user = await User.create(req.body);
 
         res.status(201).json({
             msg: `User registered successfully`,
-            data: user
+            data: user,
         });
-
     } catch (error) {
-        res.status(400).json({ err: 'Server error during Registration...' });
+        res.status(400).json({ err: "Server error during Registration..." });
     }
-
 };
 
 const login = async (req, res) => {
-    const { email, password } = req.body;
-
     try {
+        const { email, password } = req.body;
+
         if (!email || !password) {
-            res.status(400).json({ err: `Email and password are required!` });
+            return res.status(400).json({ err: `Email and password are required!` });
         }
 
-        // check if user exists
+        // find user
         const user = await User.findOne({ email });
         if (!user) {
-            res.status(404).json({ err: `User not found!` });
+            return res.status(404).json({ err: `User not found!` });
         }
 
-        // check if the password is match
-        const isPasswordMatch = comparePassword(password, user.password);
+        // match the password
+        const isPasswordMatch = await comparePassword(password, user.password);
         if (!isPasswordMatch) {
-            res.status(400).json({ err: `Invalid Password!` });
+            return res.status(400).json({ err: `Invalid password!` });
         }
 
-        // create a jwt token
+        // create a token with id and role
         const token = createJWToken(user._id, user.role);
 
+        if (!token) {
+            return res.status(500).json({ err: `Failed to generate token!` });
+        }
 
-        // set the token into a cookie
+        // set the token into a  cookie
         res.cookie("authToken", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            maxAge: 24 * 60 * 60 * 1000
+            httpOnly: false,
+            secure: process.env.NODE_ENV === "production",
+            maxAge: 24 * 60 * 60 * 1000,
         });
 
+        // success message with the user data
         res.status(200).json({
-            msg: `Login successful!`,
-            data: { id: user._id, role: user.role }
+            msg: "login successful!",
+            data: { id: user._id, role: user.role },
         });
-
-
     } catch (error) {
-        res.status(500).json({ err: `something went wrong, please try again...` });
+        console.error("Login Error:", error);
+        res.status(500).json({ err: "Something went wrong, please try again..." });
     }
-
 };
 
 const logout = (req, res) => {
@@ -93,14 +91,13 @@ const logout = (req, res) => {
         });
 
         res.status(200).json({ msg: `Logout successful!` });
-
     } catch (error) {
         res.status(500).json({ err: `Something went wrong. Please try again` });
     }
-}
+};
 
 module.exports = {
     register,
     login,
-    logout
+    logout,
 };

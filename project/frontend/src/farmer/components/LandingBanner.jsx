@@ -1,11 +1,40 @@
 import React, { useState } from "react";
 import "../extras/landing.css";
 import axios from "axios";
+import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
 function LandingBanner() {
-  const handleSubmit = () => {
-    alert("Form submitted!");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData);
+
+    axios
+      .post("http://localhost:3000/api/auth/login", data, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          const token = Cookies.get("authToken"); // Replace "jwt" with the actual cookie name
+          if (token) {
+            const payload = JSON.parse(atob(token.split(".")[1]));
+
+            if (payload.role == "farmer") {
+              navigate(`/farmer/${payload.userId}/dashboard`);
+            } else {
+              alert("Wrong user portal");
+            }
+          } else {
+            alert("No token present");
+          }
+        }
+      })
+      .catch((e) => {
+        alert("Incorrect username or password!");
+      });
   };
   return (
     <div>
@@ -14,22 +43,25 @@ function LandingBanner() {
           <div class="grid grid-rows-6 grid-flow-col min-h-screen items-center justify-items-start">
             <div class="row-span-4 row-start-2 text-4xl">
               Sign In
-              <div class="pt-10 pr-20">
-                <label class="text-sm font-sans font-medium">Email</label>
-                <input
-                  type="email"
-                  placeholder="Write your email"
-                  class="w-full bg-black py-3 px-12 border hover: border-gray-500 rounded shadow text-base font-sans"
-                  required
-                />
-              </div>
               <form onSubmit={handleSubmit}>
+                <div class="pt-10 pr-20">
+                  <label class="text-sm font-sans font-medium">Email</label>
+                  <input
+                    type="email"
+                    placeholder="Write your email"
+                    class="w-full bg-black py-3 px-12 border hover: border-gray-500 rounded shadow text-base font-sans"
+                    name="email"
+                    required
+                  />
+                </div>
+
                 <div class="pt-2 pr-20">
                   <label class="text-sm font-sans font-medium">Password</label>
                   <input
                     type="password"
                     placeholder="Write your password"
                     class=" w-full bg-black py-3 px-12 border hover: border-gray-500 rounded shadow text-base font-sans"
+                    name="password"
                     required
                   />
                   <a

@@ -34,7 +34,7 @@ const authenticateUser = (req, res, next) => {
 
 const authorizePermissions = (...roles) => {
     return (req, res, next) => {
-        if (!roles.includes(res.user.role)) {
+        if (!roles.includes(req.user.role)) {
             return res.status(400).json({ err: `unauthorized to access this route!` });
         }
         next();
