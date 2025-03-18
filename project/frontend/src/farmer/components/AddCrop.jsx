@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function AddCrop(prop) {
   const [cats, setCats] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Simulate fetching crop data from an API
@@ -23,8 +24,13 @@ function AddCrop(prop) {
   const handleForm = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData);
-    console.log(data);
+    let data = Object.fromEntries(formData);
+    data = { ...data, farmerID: prop.fid };
+    //console.log(data);
+
+    axios
+      .post("http://localhost:3000/api/v1/crops", data)
+      .then(navigate(`/farmer/${prop.fid}/cropProducts`));
   };
 
   return (
@@ -145,7 +151,7 @@ function AddCrop(prop) {
               </button>
 
               <Link
-                to={"/farmer/cropProducts"}
+                to={`/farmer/${prop.fid}/cropProducts`}
                 class="float-right focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
               >
                 Cancel
