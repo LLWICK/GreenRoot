@@ -20,10 +20,10 @@ function CropsHome() {
   }, []);
   return (
     <div>
-      <Sidebar uid={userID} />
+      <Sidebar />
       <div style={{ float: "left", marginLeft: "10%" }}>
-        <CropChart />
-        <CropTable />
+        <CropChart fid={userID} />
+        <CropTable fid={userID} />
       </div>
     </div>
   );

@@ -15,13 +15,17 @@ import {
   AddCropPage,
   OrdersPage,
   Schedule,
+  LandingPage,
 } from "./farmer/pages";
 
 /* Admin pages */
 import {
   LoginPage,
-  AdminDashbord
+  AdminDashbord,
+  FarmerManagement,
+  UserManagement,
 } from "./admin/pages";
+// import UserManagement from "./admin/pages/UserManagement";
 
 function App() {
   return (
@@ -32,10 +36,10 @@ function App() {
 
       <Route path="/farmer/:uid/dashboard" element={<FarmerHome />} />
       <Route path="/farmer/:uid/cropProducts" element={<CropsHome />} />
-      {/* <Route path="/farmer" element={<LandingPage />} /> */}
-      <Route path="/farmer/viewCrop" element={<ViewCrop />} />
+      <Route path="/farmer" element={<LandingPage />} />
+      <Route path="/farmer/viewCrop/:cid" element={<ViewCrop />} />
       <Route path="/error" element={<ErrorPage />} />
-      <Route path="/farmer/crop/edit" element={<CropEdit />} />
+      <Route path="/farmer/crop/edit/:cid" element={<CropEdit />} />
       <Route path="/farmer/crop/addCrop" element={<AddCropPage />} />
       <Route path="/farmer/orders" element={<OrdersPage />} />
       <Route path="/farmer/schedule" element={<Schedule />} />
@@ -45,7 +49,11 @@ function App() {
 
       {/* Admin Routers */}
       <Route path="/admin/dashboard" element={<AdminDashbord />} />
-
+      <Route path="/admin/user-management" element={<UserManagement />} />
+      <Route
+        path="/admin/user-management/farmer"
+        element={<FarmerManagement />}
+      />
     </Routes>
   );
 }
