@@ -12,6 +12,22 @@ const getUsersByRole = async (req, res, role) => {
     }
 };
 
+// get single user data
+const getSingleUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await User.findById(id);
+        if (!user) {
+            return res.status(400).json({ message: `User not found!` });
+        }
+
+        res.status(200).json({ data: user });
+
+    } catch (error) {
+        res.status(500).json({ message: `Something went wrong! `, err: error });
+    }
+}
+
 // create users
 const createUser = async (req, res) => {
     try {
@@ -101,6 +117,7 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
     getUsersByRole,
+    getSingleUser,
     createUser,
     updateUser,
     deleteUser

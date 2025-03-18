@@ -33,7 +33,7 @@ const userSchema = new Schema({
     },
     image: {
         type: String,
-        default: '../extras/avetar.png'
+        default: 'avatar.png'
     },
     status: {
         type: String,
