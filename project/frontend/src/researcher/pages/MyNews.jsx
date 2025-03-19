@@ -40,6 +40,10 @@ export default function MyNews() {
         {/* News Form */}
         <NewsForm />
 
+        <div className="flex-1 p-8 ">
+          <h1 className="text-2xl font-bold text-gray-800 -mb-16 mt-6">Your Published News</h1>
+        </div>
+
         {/* News List */}
         <div className='mt-16'>
           {newss.map((news) => (

@@ -22,39 +22,39 @@ export default function NewsCardR({ news }) {
   };
 
   return (
-    <tr className="bg-white border-b hover:bg-gray-50">
+     <tr className="bg-white border-b hover:bg-gray-200 transition duration-200">
       {/* Image Column */}
-      <td className="p-4 align-middle"> {/* Vertically centered */}
+      <td className="p-4 align-middle">
         <img
           src={`http://localhost:3000/${news.file}`}
           alt="news"
-          className="w-24 h-24 object-cover rounded-lg mx-auto"
+          className="w-24 h-24 object-cover rounded-lg mx-auto shadow-md hover:shadow-lg transition duration-200"
         />
       </td>
 
       {/* Title Column */}
-      <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap align-middle"> {/* Vertically centered */}
+      <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap align-middle">
         {news.title}
       </td>
 
       {/* Date Column */}
-      <td className="px-6 py-4 text-gray-500 align-middle"> {/* Vertically centered */}
+      <td className="px-6 py-4 text-gray-500 align-middle">
         {formatDistanceToNow(new Date(news.createdAt), { addSuffix: true })}
       </td>
 
       {/* Actions Column */}
-      <td className="px-6 py-4 align-middle"> {/* Vertically centered */}
+      <td className="px-6 py-4 align-middle">
         <div className="flex items-center justify-center space-x-4">
           {/* Update Button */}
           <Link to="/update" state={{ news }}>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200">
+            <button className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-blue-700 transition duration-200 shadow-md hover:shadow-lg">
               Update
             </button>
           </Link>
 
           {/* Delete Button */}
           <button
-            className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-200"
+            className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg hover:from-red-600 hover:to-red-700 transition duration-200 shadow-md hover:shadow-lg"
             onClick={handleClick}
           >
             Delete

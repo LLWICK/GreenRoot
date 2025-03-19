@@ -24,6 +24,8 @@ import {
 import HomeResearcher from "./researcher/pages/HomeResearcher";
 import Blog from "./researcher/pages/Blog";
 import MyNews from "./researcher/pages/MyNews";
+import BlogNews from "./researcher/pages/BlogNews";
+import SingleNewsPage from "./researcher/pages/SingleNewsPage";
 
 /* Admin pages */
 import {
@@ -65,6 +67,8 @@ function App() {
       <Route path="/researcher" element={<HomeResearcher/>}/>
       <Route path="/blog" element={<Blog/>}/>
       <Route path="/researcher/my-news" element={<MyNews/>}/>
+      <Route path="/blog/news" element={<BlogNews/>}/>
+      <Route path="/blog/news/:id" element={<SingleNewsPage/>}/>
     </Routes>
   );
 }

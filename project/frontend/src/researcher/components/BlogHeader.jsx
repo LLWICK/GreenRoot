@@ -1,5 +1,6 @@
-import React from 'react'
-import Logo from '../extras/Greenroots-logo-color.png'
+import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import Logo from '../extras/Greenroots-logo-color.png';
 
 export default function BlogHeader() {
   return (
@@ -16,23 +17,27 @@ export default function BlogHeader() {
 
         {/* Navigation Links */}
         <nav className="flex space-x-8 absolute left-1/2 transform -translate-x-1/2">
-          <a href="/" className="text-gray-700 hover:bg-amber-500 transition-colors font-bold  py-2 px-4 rounded ">
+          <Link to="/blog" className="text-gray-700 hover:bg-amber-500 transition-colors font-bold py-2 px-4 rounded">
             Home
-          </a>
-          <a href="/news" className="text-gray-700 hover:bg-amber-500 transition-colors font-bold  py-2 px-4 rounded">
+          </Link>
+
+          <Link to="/blog/news" className="text-gray-700 hover:bg-amber-500 transition-colors font-bold py-2 px-4 rounded">
             News
-          </a>
-          <a href="/how-to-grow" className="text-gray-700 hover:bg-amber-500 transition-colors font-bold  py-2 px-4 rounded">
-            How to Grow
-          </a>
-          <a href="/pest-and-disease" className="text-gray-700 hover:bg-amber-500 transition-colors font-bold  py-2 px-4 rounded ">
+          </Link>
+
+          <Link to="/blog/growing-guide" className="text-gray-700 hover:bg-amber-500 transition-colors font-bold py-2 px-4 rounded">
+            Growing Guide
+          </Link>
+
+          <Link to="/blog/pest-and-disease" className="text-gray-700 hover:bg-amber-500 transition-colors font-bold py-2 px-4 rounded">
             Pest and Disease
-          </a>
-          <a href="/qna" className="text-gray-700 hover:bg-amber-500 transition-colors font-bold  py-2 px-4 rounded ">
+          </Link>
+
+          <Link to="/qna" className="text-gray-700 hover:bg-amber-500 transition-colors font-bold py-2 px-4 rounded">
             Q&A
-          </a>
+          </Link>
         </nav>
       </div>
     </header>
-  )
+  );
 }
