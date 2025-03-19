@@ -5,6 +5,7 @@ import axios from "axios";
 
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useParams } from "react-router-dom";
+import Loader from "./Loader";
 
 function FieldMap() {
   const { uid } = useParams();
@@ -42,7 +43,9 @@ function FieldMap() {
           </Marker>
         </MapContainer>
       ) : (
-        <p>Loading map...</p>
+        <p>
+          <Loader />
+        </p>
       )}
     </div>
   );
