@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Table from '../components/Table';
+// import Swal from "sweetalert2"; // seet alert
 
 const FarmerManage = () => {
 
