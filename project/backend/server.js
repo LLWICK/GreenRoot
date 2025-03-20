@@ -46,6 +46,8 @@ const orderManage = require("./customer/routes/orderRoute");
 const postRoutes = require('./researcher/routes/postRoutes.js')
 const newsRoutes = require('./researcher/routes/newsRoutes.js')
 const pndRoutes = require('./researcher/routes/pndRoutes.js')
+const solutionRoutes = require('./researcher/routes/solutionRoutes.js')
+
 //retail seller route imports
 const getCropRoutesRS = require("./seller/routes/cropRoutes(rs)")
 const cartRoutes = require("./seller/routes/cartRoutes")
@@ -82,9 +84,10 @@ app.use('/api/researcher/news', newsRoutes)
 app.use('/api/researcher/pnd', pndRoutes)
 
 //retail seller
-app.use("/api/RetailSeller/cart", cartRoutes);
-app.use("/api/RetailSeller/crops", getCropRoutesRS);
-app.use("/api/RetailSeller/products", productRoutes);
+app.use("/api/RetailSeller/cart", cartRoutes)
+app.use("/api/RetailSeller/crops", getCropRoutesRS)
+app.use("/api/RetailSeller/products", productRoutes)
+app.use("/api/researcher/solutions", solutionRoutes)
 
 
 mongoose
