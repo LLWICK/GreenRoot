@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
 import Table from '../components/Table';
-// import Swal from "sweetalert2"; // seet alert
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const FarmerManage = () => {
 
+
+const AdminManagement = () => {
     const [user, setUser] = useState([]);
 
     useEffect(() => {
         axios
-            .get('http://localhost:3000/api/user/farmers')
+            .get('http://localhost:3000/api/user/admins')
             .then((res) => {
                 setUser(res.data.data);
 
@@ -36,9 +36,7 @@ const FarmerManage = () => {
                     </div>
                 </div>
 
-
-
-                <button className=' text-white'><Link to={`/admin/user-management/user/create`} className='p-2.5 block bg-green-600 hover:bg-green-700'>Create New Account</Link></button>
+                <button className=' text-white'><Link to={`/admin/user-management/admin/create`} className='p-2.5 block bg-green-600 hover:bg-green-700'>Create New Account</Link></button>
                 <div className='p-2.5'>
                     <Table user={user} />
                 </div>
@@ -48,4 +46,4 @@ const FarmerManage = () => {
     )
 }
 
-export default FarmerManage
+export default AdminManagement

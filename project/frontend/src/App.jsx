@@ -21,15 +21,22 @@ import {
 /* Admin pages */
 import {
   LoginPage,
+  RegisterPage,
   AdminDashbord,
   FarmerManagement,
   UserManagement,
   ViewUser,
   EditUser,
   DeleteUser,
+  CreateUser,
+  AdminManagament
 } from "./admin/pages";
+
+
+=======
 import TestPage from "./farmer/pages/TestPage";
 // import UserManagement from "./admin/pages/UserManagement";
+
 
 function App() {
   return (
@@ -51,6 +58,7 @@ function App() {
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
+      <Route path="/auth/register" element={<RegisterPage />} />
 
       {/* Admin Routers */}
       <Route path="/admin/:id/dashboard" element={<AdminDashbord />} />
@@ -60,6 +68,7 @@ function App() {
         path="/admin/user-management/farmer"
         element={<FarmerManagement />}
       />
+      < Route path="/admin/user-management/user/create" element={<CreateUser />} />
       <Route
         path="/admin/user-management/user/view/:id"
         element={<ViewUser />}
@@ -72,6 +81,8 @@ function App() {
         path="/admin/user-management/user/delete/:id"
         element={<DeleteUser />}
       />
+      <Route path="/admin/user-management/admins" element={<AdminManagament />} />
+
     </Routes>
   );
 }

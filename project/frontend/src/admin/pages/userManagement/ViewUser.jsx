@@ -23,6 +23,7 @@ const ViewUser = () => {
     return (
         <>
             <UserCard user={user} />
+
         </>
     )
 }
