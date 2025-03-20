@@ -7,3 +7,5 @@ export { default as FarmerManagement } from "./FarmerManage";
 export { default as DeleteUser } from "./userManagement/DeleteUser";
 export { default as EditUser } from "./userManagement/EditUser";
 export { default as ViewUser } from "./userManagement/ViewUser";
+
+export { default as AdminManagament } from "./AdminManagement";

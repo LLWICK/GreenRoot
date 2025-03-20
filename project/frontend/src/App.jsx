@@ -27,8 +27,9 @@ import {
   ViewUser,
   EditUser,
   DeleteUser,
+  AdminManagament
 } from "./admin/pages";
-// import UserManagement from "./admin/pages/UserManagement";
+
 
 function App() {
   return (
@@ -70,6 +71,8 @@ function App() {
         path="/admin/user-management/user/delete/:id"
         element={<DeleteUser />}
       />
+      <Route path="/admin/user-management/admins" element={<AdminManagament />} />
+
     </Routes>
   );
 }

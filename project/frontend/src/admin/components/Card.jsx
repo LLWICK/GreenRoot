@@ -9,15 +9,17 @@ const Card = () => {
                     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 p-2.5">
                         <SingleCard
                             image="https://th.bing.com/th/id/R.678f61a8e8110bfc31b78e65930b3df4?rik=HqhyZRZYgLJq5w&pid=ImgRaw&r=0"
-                            CardTitle="50+ Best creative website themes & templates"
+                            CardTitle="Manage Farmers"
                             titleHref="/admin/user-management/farmer"
                             btnHref="/admin/user-management/farmer"
                             CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
                             Button="View Details"
                         />
                         <SingleCard
-                            image="https://i.ibb.co/0nbbWM9/image-02-1.jpg"
-                            CardTitle="Creative Card Component designs graphic elements"
+                            image="https://topviecit.vn/blog/wp-content/uploads/2023/12/admin-website-5.jpg"
+                            CardTitle="Manage Admins"
+                            titleHref="/admin/user-management/admins"
+                            btnHref="/admin/user-management/admins"
                             CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
                             Button="View Details"
                         />
@@ -48,7 +50,10 @@ const SingleCard = ({
         <>
             {/*  */}
             <div className="mb-10 overflow-hidden rounded-lg bg-gray-100 shadow-1 duration-300 hover:shadow-3 dark:bg-dark-2 dark:shadow-card dark:hover:shadow-3">
-                <img src={image} alt="" className="w-full" />
+                <div className="h-68">
+                    <img src={image} alt="" className="w-full h-full bg-cover " />
+                </div>
+
                 <div className="p-8 text-center sm:p-9 md:p-7 xl:p-9">
                     <h3>
                         <div

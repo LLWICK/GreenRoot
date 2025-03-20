@@ -12,7 +12,8 @@ const DeleteUser = () => {
         axios
             .delete(`http://localhost:3000/api/user/delete/${id}`)
             .then(() => {
-                navigate('/admin/user-management/farmer');
+                // navigate('/admin/user-management/farmer');
+                navigate(-1);
                 // sweet alert
                 Swal.fire({
                     title: "User Deleted!",

@@ -61,7 +61,8 @@ const EditUser = () => {
     const handleSubmit = () => {
         axios.put(`http://localhost:3000/api/user/update/${id}`, formData)
             .then((res) => {
-                navigate('/admin/user-management/farmer');
+                // navigate('/admin/user-management/farmer');
+                navigate(-1);
                 // sweet alert
                 Swal.fire({
                     title: "User updated successfully!",
