@@ -26,9 +26,7 @@ import {
   UserManagement,
   ViewUser,
   EditUser,
-  DeleteUser
-
-
+  DeleteUser,
 } from "./admin/pages";
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -42,11 +40,7 @@ function App() {
       <Route path="/farmer/:uid/dashboard" element={<FarmerHome />} />
       <Route path="/farmer/:uid/cropProducts" element={<CropsHome />} />
       <Route path="/farmer" element={<LandingPage />} />
-
-      <Route path="/farmer/viewCrop" element={<ViewCrop />} />
-
       <Route path="/farmer/viewCrop/:cid" element={<ViewCrop />} />
-
       <Route path="/error" element={<ErrorPage />} />
       <Route path="/farmer/crop/edit/:cid" element={<CropEdit />} />
       <Route path="/farmer/crop/addCrop" element={<AddCropPage />} />
@@ -60,12 +54,22 @@ function App() {
       <Route path="/admin/:id/dashboard" element={<AdminDashbord />} />
       <Route path="/admin/user-management" element={<UserManagement />} />
 
-      <Route path="/admin/user-management/farmer" element={<FarmerManagement />} />
-      <Route path="/admin/user-management/user/view/:id" element={<ViewUser />} />
-      <Route path="/admin/user-management/user/edit/:id" element={<EditUser />} />
-      <Route path="/admin/user-management/user/delete/:id" element={<DeleteUser />} />
-
-
+      <Route
+        path="/admin/user-management/farmer"
+        element={<FarmerManagement />}
+      />
+      <Route
+        path="/admin/user-management/user/view/:id"
+        element={<ViewUser />}
+      />
+      <Route
+        path="/admin/user-management/user/edit/:id"
+        element={<EditUser />}
+      />
+      <Route
+        path="/admin/user-management/user/delete/:id"
+        element={<DeleteUser />}
+      />
     </Routes>
   );
 }
