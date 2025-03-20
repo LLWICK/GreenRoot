@@ -51,7 +51,7 @@ function App() {
       <Route path="/auth/login" element={<LoginPage />} />
 
       {/* Admin Routers */}
-      <Route path="/admin/dashboard" element={<AdminDashbord />} />
+      <Route path="/admin/:id/dashboard" element={<AdminDashbord />} />
       <Route path="/admin/user-management" element={<UserManagement />} />
 
       <Route
