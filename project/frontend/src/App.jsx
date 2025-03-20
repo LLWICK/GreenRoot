@@ -28,6 +28,7 @@ import {
   EditUser,
   DeleteUser,
 } from "./admin/pages";
+import TestPage from "./farmer/pages/TestPage";
 // import UserManagement from "./admin/pages/UserManagement";
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
       <Route path="/farmer/crop/addCrop" element={<AddCropPage />} />
       <Route path="/farmer/orders" element={<OrdersPage />} />
       <Route path="/farmer/schedule" element={<Schedule />} />
+      <Route path="/farmer/test" element={<TestPage />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />

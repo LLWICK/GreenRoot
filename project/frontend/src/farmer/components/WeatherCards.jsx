@@ -1,6 +1,52 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 function WeatherCards() {
+  const [det, setDet] = useState({
+    city: "Colombo",
+    temperature: 0,
+    weather: "Sunny",
+    wind: 0,
+    humidity: 0,
+    visibility: 10000,
+    lon: 79.8478,
+    lat: 6.9319,
+  });
+
+  const [cit, setCity] = useState("Colombo");
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${cit}&appid=e8345f31b1df93a3674bccd369e8c682&units=metric`
+      )
+      .then((res) => {
+        console.log(res);
+        setDet({
+          city: res.data.name,
+          temperature: res.data.main.temp,
+          weather: res.data.weather[0].main,
+          wind: res.data.wind.speed,
+          humidity: res.data.main.humidity,
+          visibility: res.data.visibility,
+          lon: res.data.coord.lon,
+          lat: res.data.coord.lat,
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+
+        setDet({
+          city: "Not found",
+          temperature: null,
+          weather: "",
+          wind: "",
+          humidity: "",
+          visibility: "",
+        });
+      });
+  }, []);
+
   return (
     <div>
       <div class="m-10 grid gap-5 sm:grid-cols-3  mx-auto max-w-screen-lg">
@@ -27,7 +73,7 @@ function WeatherCards() {
 
           <p class="mt-4 font-medium">Temperature</p>
           <p class="mt-2 text-xl font-medium">
-            23.4k
+            {det.temperature}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="inline h-4 w-4"
@@ -68,7 +114,7 @@ function WeatherCards() {
 
           <p class="mt-4 font-medium">Humidity</p>
           <p class="mt-2 text-xl font-medium">
-            23.4k
+            {det.humidity}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="inline h-4 w-4"
@@ -104,7 +150,7 @@ function WeatherCards() {
 
           <p class="mt-4 font-medium">Wind speed</p>
           <p class="mt-2 text-xl font-medium">
-            $23.4k
+            {det.wind}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="inline h-4 w-4"

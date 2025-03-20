@@ -188,7 +188,8 @@ function Sidebar() {
                       </svg>
                       <span class="">Table</span>
                     </a>
-                    <a
+                    <Link
+                      to={"/farmer/test"}
                       href=""
                       class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
                     >
@@ -200,8 +201,8 @@ function Sidebar() {
                       >
                         <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM14 11a1 1 0 011 1v1h1a1 1 0 110 2h-1v1a1 1 0 11-2 0v-1h-1a1 1 0 110-2h1v-1a1 1 0 011-1z"></path>
                       </svg>
-                      <span class="">UI Components</span>
-                    </a>
+                      <span class="">Test</span>
+                    </Link>
                     <a
                       href=""
                       class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
