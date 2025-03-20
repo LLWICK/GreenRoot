@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 function CropTable(prop) {
   const [crops, setCrop] = useState([]);
+  const [status, setStatus] = useState("on-field");
 
   useEffect(() => {
     const fetchCropData = async () => {
@@ -12,6 +13,7 @@ function CropTable(prop) {
           "http://localhost:3000/api/v1/crops/parameters",
           {
             farmerID: String(prop.fid),
+            status: status,
           }
         );
 
@@ -26,6 +28,24 @@ function CropTable(prop) {
       fetchCropData();
     }
   }, [prop.fid]);
+
+  const handleChange = async (e) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/v1/crops/parameters",
+        {
+          farmerID: String(prop.fid),
+          status: e,
+        }
+      );
+
+      setCrop(response.data.data);
+      console.log(response.data.data);
+    } catch (error) {
+      console.error("Error fetching crops:", error);
+    }
+  };
+
   return (
     <div>
       <div class=" mx-auto">
@@ -47,6 +67,16 @@ function CropTable(prop) {
                 <p class="text-slate-500">Review each crop before edit</p>
               </div>
               <div class="flex flex-col gap-2 shrink-0 sm:flex-row">
+                <select
+                  class="rounded border border-slate-300 py-2.5 px-3 text-center text-xs font-semibold text-slate-600 transition-all hover:opacity-75 focus:ring focus:ring-slate-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                  onChange={(e) => {
+                    handleChange(e.target.value);
+                  }}
+                >
+                  <option value="on-field">on-field</option>
+                  <option value="off-field">off-field</option>
+                  View All
+                </select>
                 <button
                   class="rounded border border-slate-300 py-2.5 px-3 text-center text-xs font-semibold text-slate-600 transition-all hover:opacity-75 focus:ring focus:ring-slate-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                   type="button"
