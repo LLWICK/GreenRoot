@@ -33,6 +33,9 @@ import {
   AdminDashbord,
   FarmerManagement,
   UserManagement,
+  ViewUser,
+  EditUser,
+  DeleteUser,
 } from "./admin/pages";
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -59,9 +62,22 @@ function App() {
       {/* Admin Routers */}
       <Route path="/admin/dashboard" element={<AdminDashbord />} />
       <Route path="/admin/user-management" element={<UserManagement />} />
+
       <Route
         path="/admin/user-management/farmer"
         element={<FarmerManagement />}
+      />
+      <Route
+        path="/admin/user-management/user/view/:id"
+        element={<ViewUser />}
+      />
+      <Route
+        path="/admin/user-management/user/edit/:id"
+        element={<EditUser />}
+      />
+      <Route
+        path="/admin/user-management/user/delete/:id"
+        element={<DeleteUser />}
       />
       {/* Researcher Routes */}
       <Route path="/researcher" element={<HomeResearcher/>}/>

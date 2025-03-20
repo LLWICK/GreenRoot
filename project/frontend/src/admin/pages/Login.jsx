@@ -18,7 +18,7 @@ const Login = () => {
             });
 
             if (response.status === 200) {
-                const token = Cookies.get("authToken"); // Ensure the correct cookie name is used
+                const token = Cookies.get("authToken");
                 console.log("JWT TOKEN:", token);
 
                 if (token) {
