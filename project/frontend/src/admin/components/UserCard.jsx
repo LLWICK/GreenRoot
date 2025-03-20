@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import backImg from "../extras/user_view_background.jpg";
+import { Link } from 'react-router-dom';
+
 
 const UserCard = ({ user }) => {
     useEffect(() => {
@@ -29,7 +31,7 @@ const UserCard = ({ user }) => {
                             </h1>
                             <p className="text-gray-600 dark:text-gray-300">{user.firstName} {user.lastName}</p>
                             <button className="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-300">
-                                Edit Profile
+                                <Link to={`/admin/user-management/user/edit/${user._id}`}>Edit Profile</Link>
                             </button>
                         </div>
 
