@@ -38,7 +38,7 @@ const FarmerManage = () => {
 
 
 
-                <button className=' text-white'><Link to={`/admin/user-management/farmer/create`} className='p-2.5 block bg-green-600 hover:bg-green-700'>Create New Account</Link></button>
+                <button className=' text-white'><Link to={`/admin/user-management/user/create`} className='p-2.5 block bg-green-600 hover:bg-green-700'>Create New Account</Link></button>
                 <div className='p-2.5'>
                     <Table user={user} />
                 </div>
