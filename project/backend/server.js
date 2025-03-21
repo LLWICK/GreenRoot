@@ -36,12 +36,16 @@ const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
 const categoryManage = require("./farmer/routes/categoryRoute");
 const fieldManage = require("./farmer/routes/fieldRoute");
 
+//Common routes
+
+const paymentManage = require("./common/routes/paymentRoute.js");
+
 const orderManage = require("./customer/routes/orderRoute");
 
 //retail seller route imports
-const getCropRoutesRS = require("./seller/routes/cropRoutes(rs)")
-const cartRoutes = require("./seller/routes/cartRoutes")
-const productRoutes = require("./seller/routes/productRoutes.js")
+const getCropRoutesRS = require("./seller/routes/cropRoutes(rs)");
+const cartRoutes = require("./seller/routes/cartRoutes");
+const productRoutes = require("./seller/routes/productRoutes.js");
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -64,6 +68,7 @@ app.use("/api/v1/crops", cropManage);
 app.use("/api/v1/category", categoryManage);
 app.use("/api/v1/field", fieldManage);
 app.use("/api/v1/ticket", ticketManage);
+app.use("/api/v1/payment", paymentManage);
 
 //customer Routes
 app.use("/api/v1/orders", orderManage);
@@ -72,7 +77,6 @@ app.use("/api/v1/orders", orderManage);
 app.use("/api/RetailSeller/cart", cartRoutes);
 app.use("/api/RetailSeller/crops", getCropRoutesRS);
 app.use("/api/RetailSeller/products", productRoutes);
-
 
 mongoose
   .connect(mongoURL)
