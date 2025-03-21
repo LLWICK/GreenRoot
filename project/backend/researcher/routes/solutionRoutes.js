@@ -3,6 +3,7 @@ const express = require('express')
 const router = express.Router()
 
 const {
+    allSolutions,
     solutionsByTicketId,
     createSolution,
     deleteSolution
@@ -15,6 +16,9 @@ const {
 //multer
 const multer = require('multer');
 const uploadMiddleware = multer({ dest: 'researcher/uploads/' });
+
+//Get all solutions
+router.get('/', allSolutions)
 
 // Get solutions by ticket ID
 router.get('/ticket/:ticketID', solutionsByTicketId)

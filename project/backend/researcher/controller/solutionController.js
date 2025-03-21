@@ -1,18 +1,18 @@
 const solution = require('../model/solutionModel')
 
-// Get all solutions
-// const allSolutions = async (req, res) => {
-//     try {
-//       const Solutions = await solution.find({});
-//       if (!Solutions) {
-//         res.status(400).json({ msg: "No solutions found!" });
-//         return;
-//       }
-//       res.status(200).json(Solutions);
-//     } catch (e) {
-//       res.status(400).json({ msg: "Server error", error: e.message });
-//     }
-//   };
+//Get all solutions
+const allSolutions = async (req, res) => {
+    try {
+      const Solutions = await solution.find({});
+      if (!Solutions) {
+        res.status(400).json({ msg: "No solutions found!" });
+        return;
+      }
+      res.status(200).json(Solutions);
+    } catch (e) {
+      res.status(400).json({ msg: "Server error", error: e.message });
+    }
+  };
 
 // Get solutions by ticket ID
 const solutionsByTicketId = async (req, res) => {
@@ -99,6 +99,7 @@ const deleteSolution = async (req, res) => {
   };
   
   module.exports = {
+    allSolutions,
     solutionsByTicketId,
     createSolution,
     deleteSolution

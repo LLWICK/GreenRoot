@@ -82,12 +82,13 @@ app.use("/api/v1/orders", orderManage);
 app.use('/api/researcher/posts', postRoutes)
 app.use('/api/researcher/news', newsRoutes)
 app.use('/api/researcher/pnd', pndRoutes)
+app.use("/api/researcher/solutions", solutionRoutes)
 
 //retail seller
 app.use("/api/RetailSeller/cart", cartRoutes)
 app.use("/api/RetailSeller/crops", getCropRoutesRS)
 app.use("/api/RetailSeller/products", productRoutes)
-app.use("/api/researcher/solutions", solutionRoutes)
+
 
 
 mongoose
