@@ -29,7 +29,6 @@ function CropChart(prop) {
         );
 
         setCrop(response.data.data);
-        console.log(response.data.data);
       } catch (error) {
         console.error("Error fetching crops:", error);
       }
