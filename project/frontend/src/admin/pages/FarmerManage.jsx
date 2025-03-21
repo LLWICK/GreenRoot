@@ -4,6 +4,9 @@ import { Link, useParams } from 'react-router-dom';
 import Table from '../components/Table';
 // import Swal from "sweetalert2"; // seet alert
 
+// back button
+import BackButton from '../components/BackButton';
+
 const FarmerManage = () => {
 
 
@@ -28,6 +31,10 @@ const FarmerManage = () => {
         <>
 
             <div className=' p-4 min-h-dvh' style={{ backgroundImage: `url('https://th.bing.com/th/id/OIP.kka96T6DXXAAIGxx0RoonAHaEK?rs=1&pid=ImgDetMain')` }}>
+
+                <div className='m-2 flex justify-start'>
+                    <BackButton /> {/* Add Back Button Here */}
+                </div>
 
                 <div className='m-2 flex justify-center items-center'>
                     <div className='inline-block pt-3 pb-3 pl-8 pr-8 bg-amber-500 hover:bg-emerald-600  ease-in-out transition-all duration-300'>
