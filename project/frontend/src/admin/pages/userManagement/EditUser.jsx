@@ -3,10 +3,10 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Swal from "sweetalert2";
+// back button
+import BackButton from '../../components/BackButton';
 
 const EditUser = () => {
-
-
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -91,6 +91,9 @@ const EditUser = () => {
 
     return (
         <>
+            <div className='m-2 flex justify-start'>
+                <BackButton /> {/* Add Back Button Here */}
+            </div>
             <div className="min-h-screen flex items-center justify-center bg-gray-50">
                 <div className="w-full max-w-lg bg-white shadow-lg rounded-lg p-8">
                     <div className="flex justify-between mb-8">
@@ -128,6 +131,14 @@ const EditUser = () => {
                                     <input type="password" name="password" placeholder="Password" onChange={handleChange} className="w-full border px-4 py-2 mb-4" />
                                     <input type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange} className="w-full border px-4 py-2 mb-4" />
                                     <input type="file" name="image" onChange={handleChange} className="w-full border px-4 py-2 mb-4" />
+
+                                    <select name="role" value={formData.role} onChange={handleChange} className="w-full border px-4 py-2 mb-2">
+                                        <option value="admin">admin</option>
+                                        <option value="farmer">farmer</option>
+                                        <option value="customer">customer</option>
+                                        <option value="seller">seller</option>
+                                    </select>
+
                                     <select name="status" value={formData.status} onChange={handleChange} className="w-full border px-4 py-2">
                                         <option value="active">Active</option>
                                         <option value="inactive">Inactive</option>

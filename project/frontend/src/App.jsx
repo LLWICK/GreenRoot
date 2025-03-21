@@ -29,7 +29,8 @@ import {
   EditUser,
   DeleteUser,
   CreateUser,
-  AdminManagament
+  AdminManagament,
+  CustomerManagement
 } from "./admin/pages";
 
 
@@ -67,6 +68,7 @@ function App() {
         path="/admin/user-management/farmer"
         element={<FarmerManagement />}
       />
+      <Route path="/admin/user-management/customers" element={<CustomerManagement />} />
       < Route path="/admin/user-management/user/create" element={<CreateUser />} />
       <Route
         path="/admin/user-management/user/view/:id"
