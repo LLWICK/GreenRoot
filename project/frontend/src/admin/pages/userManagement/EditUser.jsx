@@ -41,10 +41,18 @@ const EditUser = () => {
         }
     }, [id]);
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
 
+    const handleChange = (e) => {
+        if (e.target.name === "image" && e.target.files.length > 0) {
+            const file = e.target.files[0]; // Get the uploaded file
+            setFormData({ ...formData, [e.target.name]: file.name }); // Use only the file name
+        } else {
+            setFormData({ ...formData, [e.target.name]: e.target.value });
+        }
     };
+
+
+
 
     const nextStep = () => {
         if (currentStep < steps.length - 1) setCurrentStep(currentStep + 1);
@@ -119,7 +127,7 @@ const EditUser = () => {
                                     <h2 className="text-xl font-semibold mb-4">Step 2: Account Security</h2>
                                     <input type="password" name="password" placeholder="Password" onChange={handleChange} className="w-full border px-4 py-2 mb-4" />
                                     <input type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange} className="w-full border px-4 py-2 mb-4" />
-                                    <input type="text" name="image" placeholder="Image URL" value={formData.image} onChange={handleChange} className="w-full border px-4 py-2 mb-4" />
+                                    <input type="file" name="image" onChange={handleChange} className="w-full border px-4 py-2 mb-4" />
                                     <select name="status" value={formData.status} onChange={handleChange} className="w-full border px-4 py-2">
                                         <option value="active">Active</option>
                                         <option value="inactive">Inactive</option>
