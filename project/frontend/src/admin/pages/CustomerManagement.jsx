@@ -6,13 +6,11 @@ import axios from 'axios';
 // back button
 import BackButton from '../components/BackButton';
 
-
-const AdminManagement = () => {
+const CustomerManagement = () => {
     const [user, setUser] = useState([]);
-
     useEffect(() => {
         axios
-            .get('http://localhost:3000/api/user/admins')
+            .get('http://localhost:3000/api/user/customers')
             .then((res) => {
                 setUser(res.data.data);
 
@@ -27,7 +25,6 @@ const AdminManagement = () => {
 
     return (
         <>
-
             <div className=' p-4 min-h-dvh' style={{ backgroundImage: `url('https://th.bing.com/th/id/OIP.kka96T6DXXAAIGxx0RoonAHaEK?rs=1&pid=ImgDetMain')` }}>
 
                 <div className='m-2 flex justify-start'>
@@ -42,7 +39,7 @@ const AdminManagement = () => {
                     </div>
                 </div>
 
-                <button className=' text-white'><Link to={`/admin/user-management/user/create`} className='p-2.5 block bg-green-600 hover:bg-green-700'>Create New Account</Link></button>
+                <button className=' text-white'><Link to={`/admin/user-management/admin/create`} className='p-2.5 block bg-green-600 hover:bg-green-700'>Create New Account</Link></button>
                 <div className='p-2.5'>
                     <Table user={user} />
                 </div>
@@ -52,4 +49,4 @@ const AdminManagement = () => {
     )
 }
 
-export default AdminManagement
+export default CustomerManagement
