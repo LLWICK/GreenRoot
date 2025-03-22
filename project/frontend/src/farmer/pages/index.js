@@ -6,3 +6,5 @@ export { default as ViewCrop } from "./ViewCrop";
 export { default as ErrorPage } from "./ErrorPage";
 export { default as OrdersPage } from "./OrdersPage";
 export { default as Schedule } from "./Schedule";
+export { default as LandingPage } from "./LandingPage";
+export { default as TestPage } from "./TestPage";

@@ -15,7 +15,8 @@ const cropSchema = new mongoose.Schema(
 
     fertilizer: {
       type: String,
-      required: false,
+      required: true,
+      default: "None",
     },
 
     image: {
