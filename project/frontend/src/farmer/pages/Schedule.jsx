@@ -6,7 +6,9 @@ function Schedule() {
   return (
     <div>
       <Sidebar />
-      <ScheduleList />
+      <div style={{ float: "left", padding: "5%" }}>
+        <ScheduleList />
+      </div>
     </div>
   );
 }
