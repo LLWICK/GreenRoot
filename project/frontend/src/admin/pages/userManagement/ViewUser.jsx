@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import UserCard from '../../components/UserCard';
-
+import BackButton from '../../components/BackButton';
 
 const ViewUser = () => {
 
@@ -22,6 +22,7 @@ const ViewUser = () => {
 
     return (
         <>
+
             <UserCard user={user} />
 
         </>

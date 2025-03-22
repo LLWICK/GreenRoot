@@ -24,8 +24,10 @@ const Card = () => {
                             Button="View Details"
                         />
                         <SingleCard
-                            image="https://i.ibb.co/dL9fH7N/image-03-1.jpg"
-                            CardTitle="The ultimate UX and UI guide to card design"
+                            image="https://www.foodcircus.com/wp-content/uploads/2017/07/FreshFruit-768x508.jpg"
+                            CardTitle="Manage Customers"
+                            titleHref="/admin/user-management/customers"
+                            btnHref="/admin/user-management/customers"
                             CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
                             Button="View Details"
                         />
@@ -50,7 +52,7 @@ const SingleCard = ({
         <>
             {/*  */}
             <div className="mb-10 overflow-hidden rounded-lg bg-gray-100 shadow-1 duration-300 hover:shadow-3 dark:bg-dark-2 dark:shadow-card dark:hover:shadow-3">
-                <div className="h-68">
+                <div className="h-65">
                     <img src={image} alt="" className="w-full h-full bg-cover " />
                 </div>
 
