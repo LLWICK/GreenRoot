@@ -9,10 +9,10 @@ function ScheduleList() {
   const [fullList, setList] = useState([]);
 
   useEffect(() => {
-    const fetchCropData = async () => {
+    const fetchScheduleData = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/v1/crops/parameters",
+          "http://localhost:3000/api/v1/farmer/schedule/parameters",
           {
             farmerID: String(uid),
           }
@@ -27,7 +27,7 @@ function ScheduleList() {
     };
 
     if (uid) {
-      fetchCropData();
+      fetchScheduleData();
     }
   }, [uid]);
 
@@ -196,13 +196,13 @@ function ScheduleList() {
                       <td class="p-4 border-b border-slate-200">
                         <div class="flex items-center gap-3">
                           <img
-                            src={element.image}
+                            src="#"
                             alt="John Michael"
                             class="relative inline-block h-9 w-9 !rounded-full object-cover object-center"
                           />
                           <div class="flex flex-col">
                             <p class="text-sm font-semibold text-slate-700">
-                              {element.name}
+                              {element.description}
                             </p>
                             <p class="text-sm text-slate-500">
                               john@creative-tim.com
@@ -213,7 +213,7 @@ function ScheduleList() {
                       <td class="p-4 border-b border-slate-200">
                         <div class="flex flex-col">
                           <p class="text-sm font-semibold text-slate-700">
-                            {element.price}
+                            {element.dueDate}
                           </p>
                           <p class="text-sm text-slate-500">Organization</p>
                         </div>
