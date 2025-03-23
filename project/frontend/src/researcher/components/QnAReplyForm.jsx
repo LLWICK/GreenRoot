@@ -70,7 +70,7 @@ export default function QnAReplyForm({ ticketID }) {
             {isSubmitting ? 'Submitting...' : 'Send'}
           </button>
         </div>
-        {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
+        {error && <div className="text-red-500 text-sm ">{error}</div>}
       </form>
     </div>
   );

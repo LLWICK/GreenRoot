@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function NewsForm() {
 
@@ -9,6 +10,8 @@ export default function NewsForm() {
   const [author, setAuthor] = useState('');
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false); // Add loading state
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,13 +21,17 @@ export default function NewsForm() {
     //     return 
     //   }
 
+    setIsSubmitting(true); // Set loading state
+    setError(null); // Clear previous errors
+
     const data = new FormData();
     data.set('title', title);
     data.set('content', content);
     data.set('author', author);
     data.set('file', file[0]);
 
-    const response = await fetch('http://localhost:3000/api/researcher/news', {
+    try {
+      const response = await fetch('http://localhost:3000/api/researcher/news', {
       method: 'POST',
       body: data
     //   headers: {
@@ -45,6 +52,14 @@ export default function NewsForm() {
       setContent('');
       setAuthor('');
       console.log('News Added Successfully', json);
+    }
+
+      // Redirect to the same page to refresh data
+      navigate(0); // Reloads the current page
+    }  catch (error) {
+      setError(error.message); // Set error message
+    } finally {
+      setIsSubmitting(false); // Reset loading state
     }
   };
 
@@ -110,8 +125,9 @@ export default function NewsForm() {
         <button
           type="submit"
           className="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+          disabled={isSubmitting}
         >
-          Publish News
+          {isSubmitting ? 'Publishing...' : 'Publish'}
         </button>
 
         {/* Error Message */}

@@ -1,28 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 //import { useAuthContext } from '../hook/useAuthContext';
 
 export default function NewsCardR({ news }) {
   //const { user } = useAuthContext();
+  const [isSubmitting, setIsSubmitting] = useState(false); // Add loading state
+  const [error, setError] = useState(null); // Add error state
+  const navigate = useNavigate(); // Initialize useNavigate
 
-  const handleClick = async () => {
+  const handleDelete = async () => {
     // if (!user) {
     //   return;
     // }
 
-    const response = await fetch('http://localhost:3000/api/researcher/news/' + news._id, {
-      method: 'DELETE',
-      // headers: {
-      //   'Authorization': `Bearer ${user.token}`,
-      // },
-    });
+    setIsSubmitting(true); // Set loading state
+    setError(null); // Clear previous errors
 
-    const json = await response.json();
+    try {
+      const response = await fetch('http://localhost:3000/api/researcher/news/' + news._id, {
+        method: 'DELETE',
+        // headers: {
+        //   'Authorization': `Bearer ${user.token}`,
+        // },
+      });
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        throw new Error(json.error || 'Failed to delete news');
+      }
+
+      // Redirect to the same page to refresh data
+      navigate(0); // Reloads the current page
+    } catch (error) {
+      setError(error.message); // Set error message
+    } finally {
+      setIsSubmitting(false); // Reset loading state
+    }
   };
 
   return (
-     <tr className="bg-white border-b hover:bg-gray-200 transition duration-200">
+    <tr className="bg-white border-b hover:bg-gray-200 transition duration-200">
       {/* Image Column */}
       <td className="p-4 align-middle">
         <img
@@ -45,21 +64,47 @@ export default function NewsCardR({ news }) {
       {/* Actions Column */}
       <td className="px-6 py-4 align-middle">
         <div className="flex items-center justify-center space-x-4">
-          {/* Update Button */}
+          {/* Update Icon */}
           <Link to="/update" state={{ news }}>
-            <button className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-blue-700 transition duration-200 shadow-md hover:shadow-lg">
-              Update
-            </button>
+            <div className="p-2 rounded-lg hover:bg-gray-300 transition duration-200 cursor-pointer">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-6 h-6 text-blue-600 hover:text-blue-700"
+              >
+                <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32L19.513 8.2Z" />
+              </svg>
+            </div>
           </Link>
 
-          {/* Delete Button */}
-          <button
-            className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg hover:from-red-600 hover:to-red-700 transition duration-200 shadow-md hover:shadow-lg"
-            onClick={handleClick}
+          {/* Delete Icon */}
+          <div
+            className="p-2 rounded-lg hover:bg-gray-300 transition duration-200 cursor-pointer"
+            onClick={handleDelete}
+            disabled={isSubmitting}
           >
-            Delete
-          </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-6 h-6 text-red-600 hover:text-red-700"
+            >
+              <path
+                fillRule="evenodd"
+                d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
         </div>
+
+        {/* Error Message */}
+        {error && (
+          <div className="text-red-500 text-sm mt-2 text-center">
+            {error}
+          </div>
+        )}
       </td>
     </tr>
   );
