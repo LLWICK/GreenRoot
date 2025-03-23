@@ -27,6 +27,7 @@ import MyNews from "./researcher/pages/MyNews";
 import BlogNews from "./researcher/pages/BlogNews";
 import SingleNewsPage from "./researcher/pages/SingleNewsPage";
 import MyQnA from "./researcher/pages/MyQnA";
+import ReplyQnA from "./researcher/pages/ReplyQnA";
 
 /* Admin pages */
 import {
@@ -87,6 +88,7 @@ function App() {
       <Route path="/blog/news" element={<BlogNews/>}/>
       <Route path="/blog/news/:id" element={<SingleNewsPage/>}/>
       <Route path="/researcher/my-qna" element={<MyQnA/>}/>
+      <Route path="/researcher/my-qna/reply/:id" element={<ReplyQnA/>}/>
     </Routes>
   );
 }

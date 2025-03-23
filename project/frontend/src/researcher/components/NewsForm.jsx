@@ -61,7 +61,7 @@ export default function NewsForm() {
             type="text"
             onChange={(e) => setTitle(e.target.value)}
             value={title}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             placeholder="Enter news title"
           />
         </div>
@@ -74,7 +74,7 @@ export default function NewsForm() {
           <textarea
             onChange={(e) => setContent(e.target.value)}
             value={content}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             placeholder="Enter news content"
             rows="5"
           />
@@ -89,7 +89,7 @@ export default function NewsForm() {
             type="text"
             onChange={(e) => setAuthor(e.target.value)}
             value={author}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             placeholder="Enter author name"
           />
         </div>
@@ -102,14 +102,14 @@ export default function NewsForm() {
           <input
             type="file"
             onChange={(e) => setFile(e.target.files)}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
           />
         </div>
 
         {/* Submit Button */}
         <button
           type="submit"
-          className="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
         >
           Publish News
         </button>

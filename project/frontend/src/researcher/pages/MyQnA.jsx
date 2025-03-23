@@ -58,6 +58,13 @@ export default function MyQnA() {
     fetchTicketsAndSolutions();
   }, []);
 
+  // Handle Reply Button Click
+  const handleReply = (ticketId) => {
+    console.log('Replying to ticket:', ticketId);
+    // Navigate to a reply form or open a modal for submitting a solution
+    // Example: window.location.href = `/reply/${ticketId}`;
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-100 flex justify-center items-center">
@@ -67,28 +74,40 @@ export default function MyQnA() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className=" flex flex-col min-h-screen bg-gray-100">
       <SidebarResearcher />
-      <div className="ml-64 p-6"> {/* Adjust margin to match sidebar width */}
+      <div className="ml-64 p-6">
         {/* Tickets to Reply (No Solutions) */}
         <h1 className="text-2xl font-bold text-gray-800 mb-6">Tickets to Reply</h1>
-        {ticketsWithNoSolutions.length > 0 ? (
-          ticketsWithNoSolutions.map((ticket) => (
-            <MyQnACard key={ticket._id} ticket={ticket} />
-          ))
-        ) : (
-          <p className="text-gray-600">No tickets to reply.</p>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {ticketsWithNoSolutions.length > 0 ? (
+            ticketsWithNoSolutions.map((ticket) => (
+              <MyQnACard
+                key={ticket._id}
+                ticket={ticket}
+                onReply={handleReply} // Pass the handleReply function
+              />
+            ))
+          ) : (
+            <p className="text-gray-600">No tickets to reply.</p>
+          )}
+        </div>
 
         {/* All Tickets */}
         <h1 className="text-2xl font-bold text-gray-800 mt-10 mb-6">All Tickets</h1>
-        {tickets.length > 0 ? (
-          tickets.map((ticket) => (
-            <MyQnACard key={ticket._id} ticket={ticket} />
-          ))
-        ) : (
-          <p className="text-gray-600">No tickets found.</p>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {tickets.length > 0 ? (
+            tickets.map((ticket) => (
+              <MyQnACard
+                key={ticket._id}
+                ticket={ticket}
+                onReply={handleReply} // Pass the handleReply function
+              />
+            ))
+          ) : (
+            <p className="text-gray-600">No tickets found.</p>
+          )}
+        </div>
       </div>
     </div>
   );
