@@ -33,6 +33,12 @@ import {
   AdminManagament,
 } from "./admin/pages";
 
+
+/* retail seller page imports  */
+
+import SellerHome from "./seller/pages/sellerHP";
+
+
 // import UserManagement from "./admin/pages/UserManagement";
 
 function App() {
@@ -85,6 +91,13 @@ function App() {
         path="/admin/user-management/admins"
         element={<AdminManagament />}
       />
+
+
+
+    {/* Retail seller Router */}
+
+      <Route path='/seller/home' element={<SellerHome/>}/>
+
     </Routes>
   );
 }
