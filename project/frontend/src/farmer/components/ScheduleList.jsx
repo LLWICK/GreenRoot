@@ -109,7 +109,7 @@ function ScheduleList() {
                 <tr>
                   <th class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
                     <p class="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none text-slate-500">
-                      Crop name
+                      Task Description
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -129,7 +129,7 @@ function ScheduleList() {
                   </th>
                   <th class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
                     <p class="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none text-slate-500">
-                      Price
+                      Due Date
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
