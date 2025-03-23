@@ -31,6 +31,7 @@ import {
   DeleteUser,
   CreateUser,
   AdminManagament,
+  CustomerManagement,
 } from "./admin/pages";
 
 
@@ -56,7 +57,7 @@ function App() {
       <Route path="/farmer/crop/edit/:cid" element={<CropEdit />} />
       <Route path="/farmer/crop/addCrop" element={<AddCropPage />} />
       <Route path="/farmer/orders" element={<OrdersPage />} />
-      <Route path="/farmer/schedule" element={<Schedule />} />
+      <Route path="/farmer/:uid/schedule" element={<Schedule />} />
       <Route path="/farmer/test" element={<TestPage />} />
 
       {/* Auth Router */}
@@ -71,10 +72,21 @@ function App() {
         path="/admin/user-management/farmer"
         element={<FarmerManagement />}
       />
+
+      <Route
+        path="/admin/user-management/customers"
+        element={<CustomerManagement />}
+      />
       <Route
         path="/admin/user-management/user/create"
         element={<CreateUser />}
       />
+
+      <Route
+        path="/admin/user-management/user/create"
+        element={<CreateUser />}
+      />
+
       <Route
         path="/admin/user-management/user/view/:id"
         element={<ViewUser />}
