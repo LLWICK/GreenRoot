@@ -9,6 +9,8 @@ import ExpensesGraph from "../components/ExpensesGraph";
 import { useNavigate } from "react-router-dom";
 import { getUserIdFromToken } from "../utills/authUtils";
 import WeatherCards from "../components/WeatherCards";
+import Header from "../components/Header";
+import Sidebar2 from "../tests/Sidebar2";
 
 function FarmerHome() {
   const navigate = useNavigate();
