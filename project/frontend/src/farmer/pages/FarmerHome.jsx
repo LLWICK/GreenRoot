@@ -28,7 +28,8 @@ function FarmerHome() {
 
   return (
     <div>
-      <Sidebar uid={userID} />
+      {/* <Sidebar uid={userID} /> */}
+      <Sidebar2 />
 
       <div style={{ float: "left", padding: "2%" }}>
         <WeatherCards />
