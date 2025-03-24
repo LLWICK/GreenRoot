@@ -139,7 +139,10 @@ function Sidebar() {
                       </svg>
                       <span class="">Orders</span>
                     </Link>
-                    <Link class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out">
+                    <Link
+                      to={`/farmer/${userID}/experts`}
+                      class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
+                    >
                       <svg
                         class="w-6 h-6 fill-current inline-block"
                         fill="currentColor"
@@ -152,7 +155,7 @@ function Sidebar() {
                       <span class="">Chat</span>
                     </Link>
                     <Link
-                      to={"/farmer/schedule"}
+                      to={`/farmer/${userID}/schedule`}
                       href=""
                       class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
                     >

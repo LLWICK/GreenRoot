@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
-const CATEGORY = require("../model/categoryModel");
+const SCHEDULE = require("../model/scheduleModel");
 
 //Get all categories
 
-const allCategories = async (req, res) => {
+const allSCHEDULE = async (req, res) => {
   try {
-    const CAT = await CATEGORY.find({});
+    const CAT = await SCHEDULE.find({});
 
     if (!CAT) {
       res.status(404).json({ msg: "unsuccess" });
@@ -19,11 +19,11 @@ const allCategories = async (req, res) => {
   }
 };
 
-//get cat accoding to the parameters
+//get SCHEDULE accoding to the parameters
 
-const CATEGORYByParams = async (req, res) => {
+const SCHEDULEByParams = async (req, res) => {
   try {
-    const CAT = await CATEGORY.find(req.body);
+    const CAT = await SCHEDULE.find(req.body);
 
     if (CAT.length <= 0) {
       res.status(404).json({ msg: "Not found!" });
@@ -36,15 +36,15 @@ const CATEGORYByParams = async (req, res) => {
   }
 };
 
-//Get a single category
+//Get a single SCHEDULE
 
-const categoryById = async (req, res) => {
+const SCHEDULEById = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const CAT = await CATEGORY.findById(id);
+    const CAT = await SCHEDULE.findById(id);
     if (!CAT) {
-      res.status(404).json({ msg: "Category not found!" });
+      res.status(404).json({ msg: "SCHEDULE not found!" });
 
       return;
     }
@@ -55,13 +55,13 @@ const categoryById = async (req, res) => {
   }
 };
 
-//Insert a category
+//Insert a SCHEDULE
 
-const insertCategory = async (req, res) => {
+const insertSCHEDULE = async (req, res) => {
   try {
-    const CAT = await CATEGORY.create(req.body);
+    const CAT = await SCHEDULE.create(req.body);
     if (!CAT) {
-      res.status(404).json({ msg: "Category not created!" });
+      res.status(404).json({ msg: "SCHEDULE not created!" });
 
       return;
     }
@@ -72,14 +72,14 @@ const insertCategory = async (req, res) => {
   }
 };
 
-//Update category
+//Update SCHEDULE
 
-const updateCategory = async (req, res) => {
+const updateSCHEDULE = async (req, res) => {
   try {
     const { id } = req.params;
-    const CAT = await CATEGORY.findByIdAndUpdate(id, req.body, { new: true });
+    const CAT = await SCHEDULE.findByIdAndUpdate(id, req.body, { new: true });
     if (!CAT) {
-      res.status(404).json({ msg: "Category not Updated!" });
+      res.status(404).json({ msg: "SCHEDULE not Updated!" });
 
       return;
     }
@@ -90,14 +90,14 @@ const updateCategory = async (req, res) => {
   }
 };
 
-//delete category
+//delete SCHEDULE
 
-const deleteCategory = async (req, res) => {
+const deleteSCHEDULE = async (req, res) => {
   try {
     const { id } = req.params;
-    const CAT = await CATEGORY.findByIdAndDelete(id);
+    const CAT = await SCHEDULE.findByIdAndDelete(id);
     if (!CAT) {
-      res.status(404).json({ msg: "Category not Deleted!" });
+      res.status(404).json({ msg: "SCHEDULE not Deleted!" });
 
       return;
     }
@@ -109,10 +109,10 @@ const deleteCategory = async (req, res) => {
 };
 
 module.exports = {
-  allCategories,
-  categoryById,
-  CATEGORYByParams,
-  insertCategory,
-  deleteCategory,
-  updateCategory,
+  allSCHEDULE,
+  SCHEDULEById,
+  SCHEDULEByParams,
+  insertSCHEDULE,
+  deleteSCHEDULE,
+  updateSCHEDULE,
 };
