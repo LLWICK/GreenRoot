@@ -16,18 +16,26 @@ import {
   OrdersPage,
   Schedule,
   LandingPage,
+  TestPage,
 } from "./farmer/pages";
 
 /* Admin pages */
 import {
   LoginPage,
+  RegisterPage,
   AdminDashbord,
   FarmerManagement,
   UserManagement,
   ViewUser,
   EditUser,
   DeleteUser,
+  CreateUser,
+  AdminManagament,
+  CustomerManagement,
 } from "./admin/pages";
+import ExpertsPage from "./farmer/pages/ExpertsPage";
+import TaskCard from "./farmer/modals/TaskCard";
+
 // import UserManagement from "./admin/pages/UserManagement";
 
 function App() {
@@ -45,19 +53,38 @@ function App() {
       <Route path="/farmer/crop/edit/:cid" element={<CropEdit />} />
       <Route path="/farmer/crop/addCrop" element={<AddCropPage />} />
       <Route path="/farmer/orders" element={<OrdersPage />} />
-      <Route path="/farmer/schedule" element={<Schedule />} />
+      <Route path="/farmer/:uid/schedule" element={<Schedule />} />
+      <Route path="/farmer/test" element={<TestPage />} />
+      <Route path="/farmer/:uid/experts" element={<ExpertsPage />} />
+      <Route path="/farmer/:uid/addTask" element={<TaskCard />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
+      <Route path="/auth/register" element={<RegisterPage />} />
 
       {/* Admin Routers */}
-      <Route path="/admin/dashboard" element={<AdminDashbord />} />
+      <Route path="/admin/:id/dashboard" element={<AdminDashbord />} />
       <Route path="/admin/user-management" element={<UserManagement />} />
 
       <Route
         path="/admin/user-management/farmer"
         element={<FarmerManagement />}
       />
+
+      <Route
+        path="/admin/user-management/customers"
+        element={<CustomerManagement />}
+      />
+      <Route
+        path="/admin/user-management/user/create"
+        element={<CreateUser />}
+      />
+
+      <Route
+        path="/admin/user-management/user/create"
+        element={<CreateUser />}
+      />
+
       <Route
         path="/admin/user-management/user/view/:id"
         element={<ViewUser />}
@@ -69,6 +96,10 @@ function App() {
       <Route
         path="/admin/user-management/user/delete/:id"
         element={<DeleteUser />}
+      />
+      <Route
+        path="/admin/user-management/admins"
+        element={<AdminManagament />}
       />
     </Routes>
   );
