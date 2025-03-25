@@ -35,9 +35,13 @@ import {
   CreateUser,
   AdminManagament,
   CustomerManagement,
-  //AboutUs,
-  // HomePage,
+
+  AboutUs,
+  HomePage,
   LandingPageAd,
+  ContactUsPage,
+
+
 } from "./admin/pages";
 
 // import UserManagement from "./admin/pages/UserManagement";
@@ -109,6 +113,7 @@ function App() {
       {/*  <Route path="/aboutus" element={<AboutUs />} /> */}
       {/* <Route path="/home" element={<HomePage />} /> */}
       <Route path="/landingag" element={<LandingPageAd />} />
+      <Route path="/contact" element={<ContactUsPage />} />
     </Routes>
   );
 }
