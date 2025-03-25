@@ -1,13 +1,40 @@
 import React from "react";
+import axios from "axios";
+import { loadStripe } from "@stripe/stripe-js";
+
+// Initialize Stripe with your public key (replace with your actual key)
+const stripePromise = loadStripe('pk_test_51R5p9KRcl5jB0GtjMiCBdein9Z42OFBfKii799Im1fbePsSqe7AWHtmf9g1M8clDRJYcVmOMS7Nb4HPpu71GivEM00x05TrJZ1'); // Replace with your Stripe public key
 
 const Cart = ({ cart, onClose, onRemoveItem }) => {
-  // Ensure cart.items is being passed correctly
   const cartItems = cart ? cart.items : [];
-  const tot = cart.totalPrice;
+  const tot = cart.totalPrice; // The total price of the cart
 
   const handleRemove = (itemId) => {
-    // Call onRemoveItem function passed down from parent to remove item from cart
     onRemoveItem(itemId);
+  };
+
+  const handleCheckout = async () => {
+    try {
+      // Send cart items to backend to create Stripe Checkout session
+      const response = await axios.post('http://localhost:3000/api/RetailSeller/payment/stripe', {
+        cartItems: cartItems,
+        totalAmount: tot, // Use 'tot' here instead of 'totalAmount'
+      });
+
+      const { sessionId } = response.data;
+
+      // Ensure Stripe is loaded before redirecting
+      const stripe = await stripePromise;
+      const { error } = await stripe.redirectToCheckout({ sessionId });
+
+      if (error) {
+        console.error("Error redirecting to Stripe Checkout:", error);
+        alert("There was an error with your payment. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error creating checkout session:", error);
+      alert("Something went wrong while processing your payment.");
+    }
   };
 
   return (
@@ -22,14 +49,14 @@ const Cart = ({ cart, onClose, onRemoveItem }) => {
         </div>
 
         {/* Cart Items (Scrollable) */}
-        <div className="flex-grow overflow-y-auto mt-4 px-4"> {/* Added px-4 for left padding */}
+        <div className="flex-grow overflow-y-auto mt-4 px-4">
           <ul role="list" className="-my-6 divide-y divide-gray-200">
             {cartItems.length > 0 ? (
               cartItems.map((item, index) => (
                 <li key={index} className="flex py-6">
                   <div className="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
                     <img
-                      src={item.cropId.image} // ✅ Fix: Access image from cropId
+                      src={item.cropId.image}
                       alt={item.name}
                       className="size-full object-cover"
                     />
@@ -47,7 +74,7 @@ const Cart = ({ cart, onClose, onRemoveItem }) => {
                       <button
                         type="button"
                         className="font-medium text-teal-600 hover:text-indigo-500"
-                        onClick={() => handleRemove(item._id)} // Pass item._id to remove function
+                        onClick={() => handleRemove(item.cropId._id)}
                       >
                         Remove
                       </button>
@@ -66,10 +93,13 @@ const Cart = ({ cart, onClose, onRemoveItem }) => {
           <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
             <div className="flex justify-between text-base font-medium text-gray-900">
               <p>Subtotal</p>
-              <p>${tot.toFixed(2)}</p> {/* Format the total price to 2 decimal places */}
+              <p>${tot.toFixed(2)}</p>
             </div>
             <div className="mt-6">
-              <button className="flex items-center justify-center rounded-md bg-green-600 px-6 py-3 text-white font-medium shadow-xs hover:bg-green-700 w-full">
+              <button
+                className="flex items-center justify-center rounded-md bg-green-600 px-6 py-3 text-white font-medium shadow-xs hover:bg-green-700 w-full"
+                onClick={handleCheckout}
+              >
                 Checkout
               </button>
             </div>
