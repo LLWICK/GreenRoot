@@ -34,7 +34,8 @@ import {
   CustomerManagement,
   AboutUs,
   HomePage,
-  LandingPageAd
+  LandingPageAd,
+  ContactUsPage
 } from "./admin/pages";
 import ExpertsPage from "./farmer/pages/ExpertsPage";
 import TaskCard from "./farmer/modals/TaskCard";
@@ -107,6 +108,7 @@ function App() {
       <Route path="/aboutus" element={<AboutUs />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/landingag" element={<LandingPageAd />} />
+      <Route path="/contact" element={<ContactUsPage />} />
     </Routes>
   );
 }
