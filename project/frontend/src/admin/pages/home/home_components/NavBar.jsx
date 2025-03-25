@@ -120,7 +120,7 @@ const NavBar = () => {
                             </li>
                             <li>
                                 <a
-                                    href="#"
+                                    href="#aboutHome"
                                     className="block py-2 px-3 text-white rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0"
                                 >
                                     About
