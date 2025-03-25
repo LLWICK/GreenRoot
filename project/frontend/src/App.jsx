@@ -52,6 +52,7 @@ import SellerInventroy from "./seller/pages/sellerInventroy";
 //import customer routes
 import Home from "./customer/pages/Home";
 import DashboardPage from "./customer/pages/DashboardPage";
+import Cus_LandingBanner from "./customer/components/Cus_LandingBanner";
 
 
 
@@ -147,7 +148,7 @@ function App() {
 
 
         <Route path='/Customer' element={<Home />} />
-       
+        <Route path="/CusLanding" element={<Cus_LandingBanner/>}/>
         <Route path='/Customer/Dashboard' element={<DashboardPage />} />
 
 
