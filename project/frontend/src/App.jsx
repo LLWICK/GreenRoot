@@ -36,6 +36,14 @@ import {
 import ExpertsPage from "./farmer/pages/ExpertsPage";
 import TaskCard from "./farmer/modals/TaskCard";
 
+//import customer routes
+import Home from "./customer/pages/Home";
+
+
+
+
+
+
 // import UserManagement from "./admin/pages/UserManagement";
 
 function App() {
@@ -101,6 +109,20 @@ function App() {
         path="/admin/user-management/admins"
         element={<AdminManagament />}
       />
+
+      {/* Customer Routes */}
+
+
+        <Route path='/Customer' element={<Home />} />
+        {/* <Route path='/products-Category/:categoryName' element={<CategoryPage />} />
+        <Route path='/Home/Checkout' element={<CheckoutPage />} />
+        <Route path='/user/Dashboard' element={<DashboardPage />} /> */}
+
+
+
+
+
+
     </Routes>
   );
 }
