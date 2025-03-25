@@ -8,3 +8,6 @@ export { default as OrdersPage } from "./OrdersPage";
 export { default as Schedule } from "./Schedule";
 export { default as LandingPage } from "./LandingPage";
 export { default as TestPage } from "./TestPage";
+export { default as EditTasksModal } from "../modals/EditTasksModal";
+export { default as TaskCard } from "../modals/TaskCard";
+export { default as ExpertsPage } from "./ExpertsPage";

@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const JobsHome = (prop) => {
@@ -6,6 +7,30 @@ const JobsHome = (prop) => {
     { title: "Harrowing Season", location: "ABY Farm - Bay Land" },
     { title: "Harrowing Season", location: "YNS Farm - ARD Land" },
   ];
+
+  const [jobList, setList] = useState([]);
+
+  useEffect(() => {
+    const fetchScheduleData = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/api/v1/farmer/schedule/parameters",
+          {
+            farmerID: String(prop.fid),
+            status: "upcoming",
+          }
+        );
+
+        setList(response.data.data);
+      } catch (error) {
+        console.error("Error fetching crops:", error);
+      }
+    };
+
+    if (prop.fid) {
+      fetchScheduleData();
+    }
+  }, [prop.fid]);
 
   return (
     <div className="bg-white p-4 rounded-xl shadow-md w-full max-w-md mt-5">
@@ -19,7 +44,7 @@ const JobsHome = (prop) => {
         </Link>
       </div>
       <div className="mt-2 space-y-2">
-        {jobs.map((job, index) => (
+        {jobList.map((job, index) => (
           <div
             key={index}
             className="flex items-center bg-gray-50 p-3 rounded-lg shadow-sm"
@@ -28,8 +53,10 @@ const JobsHome = (prop) => {
               <span className="text-orange-500 text-lg font-bold">!</span>
             </div>
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-gray-900">{job.title}</h3>
-              <p className="text-xs text-gray-500">{job.location}</p>
+              <h3 className="text-sm font-medium text-gray-900">
+                {job.description}
+              </h3>
+              <p className="text-xs text-gray-500">{job.status}</p>
             </div>
           </div>
         ))}

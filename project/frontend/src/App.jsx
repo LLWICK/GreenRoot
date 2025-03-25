@@ -17,6 +17,9 @@ import {
   Schedule,
   LandingPage,
   TestPage,
+  TaskCard,
+  EditTasksModal,
+  ExpertsPage,
 } from "./farmer/pages";
 
 /* Admin pages */
@@ -36,8 +39,6 @@ import {
   // HomePage,
   LandingPageAd,
 } from "./admin/pages";
-import ExpertsPage from "./farmer/pages/ExpertsPage";
-import TaskCard from "./farmer/modals/TaskCard";
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -60,6 +61,7 @@ function App() {
       <Route path="/farmer/test" element={<TestPage />} />
       <Route path="/farmer/:uid/experts" element={<ExpertsPage />} />
       <Route path="/farmer/:uid/addTask" element={<TaskCard />} />
+      <Route path="/farmer/:uid/editTask/:tid" element={<EditTasksModal />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
