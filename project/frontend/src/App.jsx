@@ -35,13 +35,10 @@ import {
   CreateUser,
   AdminManagament,
   CustomerManagement,
-
   AboutUs,
   HomePage,
   LandingPageAd,
   ContactUsPage,
-
-
 } from "./admin/pages";
 
 // import UserManagement from "./admin/pages/UserManagement";
