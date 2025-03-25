@@ -20,6 +20,7 @@ import {
   TaskCard,
   EditTasksModal,
   ExpertsPage,
+  BlogPage,
 } from "./farmer/pages";
 
 /* Admin pages */
@@ -38,20 +39,19 @@ import {
   AboutUs,
   HomePage,
   ContactUsPage,
-
 } from "./admin/pages";
-
 
 /* retail seller page imports  */
 
 import SellerHome from "./seller/pages/sellerHP";
 import SellerInventroy from "./seller/pages/sellerInventroy";
 
-
 //import customer routes
 import Home from "./customer/pages/Home";
+
 import DashboardPage from "./customer/pages/DashboardPage";
 import Cus_LandingBanner from "./customer/components/Cus_LandingBanner";
+
 
 
 
@@ -79,6 +79,7 @@ function App() {
       <Route path="/farmer/:uid/experts" element={<ExpertsPage />} />
       <Route path="/farmer/:uid/addTask" element={<TaskCard />} />
       <Route path="/farmer/:uid/editTask/:tid" element={<EditTasksModal />} />
+      <Route path="/farmer/Blogs" element={<BlogPage />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
@@ -125,15 +126,16 @@ function App() {
       />
 
 
+
       {/* Home page components */}
+
 
       <Route path="/aboutus" element={<AboutUs />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/contact" element={<ContactUsPage />} />
 
-
-
       {/* Retail seller Router */}
+
 
       <Route path='/seller/home' element={<SellerHome />} />
       <Route path='/seller/Inventroy' element={<SellerInventroy />} />
@@ -141,12 +143,18 @@ function App() {
 
 
 
+
       {/* Customer Routes */}
+
+      {/* <Route path='/products-Category/:categoryName' element={<CategoryPage />} />
+        <Route path='/Home/Checkout' element={<CheckoutPage />} />
+        <Route path='/user/Dashboard' element={<DashboardPage />} /> */}
 
 
         <Route path='/Customer' element={<Home />} />
         <Route path="/CusLanding" element={<Cus_LandingBanner/>}/>
         <Route path='/Customer/Dashboard' element={<DashboardPage />} />
+
 
 
 
