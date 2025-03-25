@@ -2,6 +2,8 @@ import React from 'react'
 import Services from './home_components/Services';
 import AboutUs from './home_components/AboutUs';
 import Testimonial from './home_components/Testimonial';
+// footer
+import Footer from './home_components/Footer';
 
 // import the video 
 import backVD from "/bannerimg.mp4";
@@ -122,12 +124,8 @@ const HomePage = () => {
                 </div>
             </>
 
-
-            <div className='mt-6 mb-4'>
-                {<Testimonial />}
-            </div>
-
-            <div className='mt-4 mb-4'>
+            {/* how we work section */}
+            <div className='mt-4 mb-16'>
                 <div className="relative flex flex-col items-center mx-auto lg:flex-row-reverse lg:max-w-5xl lg:mt-12 xl:max-w-6xl">
                     {/* Image */}
                     <div className="w-full h-64 lg:w-1/2 lg:h-auto">
@@ -138,10 +136,10 @@ const HomePage = () => {
                         /> */}
 
                         {/* video */}
-                        <video src={backVD} width="600" height="300" controls autoplay loop muted />
+                        <video src={backVD} width="600" height="300" controls autoPlay loop muted />
                     </div>
 
-                    <div className="max-w-lg bg-white md:max-w-2xl md:z-10 md:shadow-lg md:absolute md:top-0 md:mt-48 lg:w-3/5 lg:left-0 lg:mt-20 lg:ml-20 xl:mt-24 xl:ml-12">
+                    <div className="max-w-lg bg-white md:max-w-2xl md:z-10 md:shadow-lg md:absolute md:top-0 md:mt-48 lg:w-3/5 lg:left-0 lg:mt-18 lg:ml-26 xl:mt-24 xl:ml-12">
 
                         <div className="flex flex-col p-12 md:px-16">
                             <h2 className="text-2xl font-medium uppercase text-green-800 lg:text-4xl">How We Work</h2>
@@ -164,6 +162,16 @@ const HomePage = () => {
                 </div>
 
             </div>
+
+            {/* testimonial */}
+            <div className='mt-20 mb-4'>
+                {<Testimonial />}
+            </div>
+
+            {/* footer */}
+            <>
+                {<Footer />}
+            </>
         </>
     )
 }
