@@ -29,7 +29,7 @@ export default function MyNews() {
   }, []); // Add `user` to the dependency array if you uncomment it
 
   return (
-    <div className="min-h-screen bg-gray-100 flex">
+    <div className="min-h-screen bg-gray-200 flex">
       {/* Sidebar */}
       <SidebarResearcher />
 
@@ -45,7 +45,7 @@ export default function MyNews() {
         </div>
 
         {/* News List */}
-        <div className='mt-16'>
+        <div className='mt-16 w-6xl'>
           {newss.map((news) => (
             <NewsCardR key={news._id} news={news} /> // Added return statement
           ))}

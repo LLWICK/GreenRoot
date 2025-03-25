@@ -8,7 +8,7 @@ const allCategories = async (req, res) => {
   try {
     const CAT = await CATEGORY.find({});
 
-    if (!CATEGORY) {
+    if (!CAT) {
       res.status(404).json({ msg: "unsuccess" });
       return;
     }
@@ -77,7 +77,7 @@ const insertCategory = async (req, res) => {
 const updateCategory = async (req, res) => {
   try {
     const { id } = req.params;
-    const CAT = await CROP.findByIdAndUpdate(id, req.body, { new: true });
+    const CAT = await CATEGORY.findByIdAndUpdate(id, req.body, { new: true });
     if (!CAT) {
       res.status(404).json({ msg: "Category not Updated!" });
 

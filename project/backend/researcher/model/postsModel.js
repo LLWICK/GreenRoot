@@ -20,11 +20,16 @@ const postsSchema = new Schema ({
         type: String,
         required: true
     },
-    growingDays: {
-        type: String
+    soilRequirements: {
+        type: String,
+        required: true
     },
     sowingMethod: {
         type: String
+    },
+    wateringNeeds: {
+        type: String,
+        required: true
     },
     spread: {
         type: String
@@ -45,4 +50,4 @@ const postsSchema = new Schema ({
     // }
 }, {timestamps: true})
 
-module.exports = mongoose.model('How_To_Grow', postsSchema)
+module.exports = mongoose.model('GrowingGuide', postsSchema)

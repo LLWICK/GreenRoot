@@ -8,7 +8,7 @@ import QuestionMarkIcon from '../extras/questionmark.png'; // Replace with your 
 
 export default function HomeResearcher() {
   return (
-    <div className="flex relative mt-0 min-h-screen bg-gray-100">
+    <div className="flex relative mt-0 min-h-screen bg-gray-200">
       {/* Sidebar */}
       <SidebarResearcher />
 

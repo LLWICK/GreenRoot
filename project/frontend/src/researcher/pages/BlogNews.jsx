@@ -27,7 +27,7 @@ export default function BlogNews() {
   }, []);
 
   return (
-    <div>
+    <div className='bg-gray-200'>
       {/* Blog Header */}
       <BlogHeader />
 

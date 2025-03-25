@@ -49,7 +49,7 @@ export default function SingleNewsPage() {
   }
 
   return (
-    <div>
+    <div className='bg-gray-200'>
       <BlogHeader />
       <div className="max-w-4xl mx-auto p-6">
         {/* Image */}

@@ -4,7 +4,7 @@ import Logo from '../extras/Greenroots-logo-color.png';
 
 export default function BlogHeader() {
   return (
-    <header className="bg-white h-20 flex items-center"> {/* Reduced header height */}
+    <header className="bg-gray-200 h-20 flex items-center"> {/* Reduced header height */}
       <div className="container mx-auto flex items-center justify-between p-4">
         {/* Logo (aligned to the left) */}
         <div className="flex items-center">

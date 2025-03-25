@@ -74,7 +74,7 @@ export default function MyQnA() {
   }
 
   return (
-    <div className=" flex flex-col min-h-screen bg-gray-100">
+    <div className=" flex flex-col min-h-screen bg-gray-200">
       <SidebarResearcher />
       <div className="ml-64 p-6">
         {/* Tickets to Reply (No Solutions) */}
