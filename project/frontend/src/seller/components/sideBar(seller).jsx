@@ -38,16 +38,16 @@ const SideBar = () => {
             </div>
             <div id="menu" className="flex flex-col space-y-2">
             <Link
-                to="#"
+                to="/seller/home"
                 className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white rounded-md transition duration-150 ease-in-out"
             >
                 Homepage
             </Link>
             <Link
-                to="#"
+                to="/seller/Inventroy"
                 className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white rounded-md transition duration-150 ease-in-out"
             >
-                c
+                Inventroy
             </Link>
             <Link
                 to="#"

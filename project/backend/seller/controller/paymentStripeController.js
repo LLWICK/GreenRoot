@@ -1,5 +1,5 @@
 // checkoutController.js
-const stripe = require('stripe')('sk_test_51R5p9KRcl5jB0GtjsUQIh8lgKo5OcvPZkAlQZMTDewiIkJ0KADoaR9zjZ5nJEAsT15o1EDFBmxCknfjubp3BJI3q00hrstzmdq');  // Make sure to load your Stripe secret key from an environment variable
+const stripe = require('stripe')('sk_test_51R5p89RvsikKtmlomY1q53IlqgUCIZkj7D0hK92D8eBwm8ohWxY5X5SKKE0C7ZG4FrvoPhP2eRS6wPqSsrNImP7v00VQk26fyY');  // Make sure to load your Stripe secret key from an environment variable
 
 // Example endpoint for handling checkout
 exports.createCheckoutSession = async (req, res) => {
@@ -31,8 +31,8 @@ exports.createCheckoutSession = async (req, res) => {
       payment_method_types: ['card'],
       line_items,
       mode: 'payment', // Can be 'payment' or 'subscription'
-      success_url: `${process.env.BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.BASE_URL}/cancel`,
+      success_url: "http://localhost:5173/seller/home",
+      cancel_url: "http://localhost:5173/seller/Inventroy",
     });
 
     // Send the session ID back to the client to complete the checkout

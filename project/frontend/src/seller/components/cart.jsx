@@ -3,7 +3,7 @@ import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js";
 
 // Initialize Stripe with your public key (replace with your actual key)
-const stripePromise = loadStripe('pk_test_51R5p9KRcl5jB0GtjMiCBdein9Z42OFBfKii799Im1fbePsSqe7AWHtmf9g1M8clDRJYcVmOMS7Nb4HPpu71GivEM00x05TrJZ1'); // Replace with your Stripe public key
+const stripePromise = loadStripe('pk_test_51R5p89RvsikKtmloiLC3Fvftp1daEyZtpOuFqXbCxbVCmIeI7V9fYRBnxK8zOi2y6xypm5KLsOlX7CAqLQNGlY3S00nJl1yKKt'); // Replace with your Stripe public key
 
 const Cart = ({ cart, onClose, onRemoveItem }) => {
   const cartItems = cart ? cart.items : [];
@@ -15,6 +15,7 @@ const Cart = ({ cart, onClose, onRemoveItem }) => {
 
   const handleCheckout = async () => {
     try {
+      console.log("Checkout Started: ", cartItems, tot); // Debugging log
       // Send cart items to backend to create Stripe Checkout session
       const response = await axios.post('http://localhost:3000/api/RetailSeller/payment/stripe', {
         cartItems: cartItems,
