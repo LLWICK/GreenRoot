@@ -1,3 +1,4 @@
+
 import React from 'react';
 // import BannerVid from "/bannerimg.mp4";
 import bannerVd from "./home_img/bannerimg.mp4"
@@ -41,4 +42,5 @@ const Landing = () => {
     )
 }
 
-export default Landing
+
+export default Landing;

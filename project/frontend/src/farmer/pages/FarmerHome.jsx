@@ -28,20 +28,17 @@ function FarmerHome() {
 
   return (
     <div>
-      {/* <Sidebar uid={userID} /> */}
-      <Sidebar2 />
+      <Sidebar uid={userID} />
 
       <div style={{ float: "left", padding: "2%" }}>
         <WeatherCards />
         <FieldMap />
-        <div>
-          <ExpensesGraph />
-        </div>
+        <div>{/* <ExpensesGraph /> */}</div>
       </div>
 
       <div style={{ float: "right", padding: "1.3%" }}>
         <StockchartFrame />
-        <JobsHome />
+        <JobsHome fid={userID} />
       </div>
     </div>
   );

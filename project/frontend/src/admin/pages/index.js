@@ -14,8 +14,8 @@ export { default as CreateUser } from "./userManagement/CreateUser";
 export { default as AdminManagament } from "./AdminManagement";
 
 // landing pages
-export { default as AboutUs } from "./home/AboutUs";
-export { default as HomePage } from "./home/HomePage";
+//export { default as AboutUs } from "./home/AboutUs";
+//export { default as HomePage } from "./home/HomePage";
 export { default as LandingPageAd } from "./home/Landing";
 
 // contact us page
