@@ -19,4 +19,6 @@ export { default as AdminManagament } from "./AdminManagement";
 export { default as LandingPageAd } from "./home/Landing";
 
 // contact us page
-export { default as ContactUsPage } from "./home/ContactUs"
+export { default as ContactUsPage } from "./home/ContactUs";
+export { default as AboutUs } from "./home/AboutUs";
+export { default as HomePage } from "./home/HomePage";
