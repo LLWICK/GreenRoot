@@ -37,7 +37,6 @@ import {
   CustomerManagement,
   AboutUs,
   HomePage,
-  LandingPageAd,
   ContactUsPage,
 
 } from "./admin/pages";
@@ -125,23 +124,21 @@ function App() {
       />
 
 
+      {/* Home page components */}
 
-      
       <Route path="/aboutus" element={<AboutUs />} />
-      <Route path="/home" element={<HomePage />} />
-      <Route path="/landingag" element={<LandingPageAd />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/contact" element={<ContactUsPage />} />
 
 
 
       {/* Retail seller Router */}
 
-      <Route path='/seller/home' element={<SellerHome/>}/>
-      <Route path='/seller/Inventroy' element={<SellerInventroy/>}/>
+      <Route path='/seller/home' element={<SellerHome />} />
+      <Route path='/seller/Inventroy' element={<SellerInventroy />} />
 
-      {/*  <Route path="/aboutus" element={<AboutUs />} /> */}
-      {/* <Route path="/home" element={<HomePage />} /> */}
 
-      <Route path="/contact" element={<ContactUsPage />} />
+
 
       {/* Customer Routes */}
 
