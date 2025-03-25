@@ -45,13 +45,13 @@ const Login = () => {
                             navigate("/farmer/:uid/dashboard");
                             break;
                         case "seller":
-                            navigate("/seller");
+                            navigate("/");
                             break;
                         case "researcher":
-                            navigate("/researcher");
+                            navigate("/");
                             break;
                         default:
-                            navigate("/home");
+                            navigate("/");
                     }
                 }
             }
