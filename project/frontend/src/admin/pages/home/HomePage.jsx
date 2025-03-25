@@ -98,7 +98,7 @@ const HomePage = () => {
             </>
 
             {/* how we work section */}
-            <div className='mt-4 mb-16'>
+            <div id='blogsHome' className='mt-4 mb-18 p-8'>
                 <div className="relative flex flex-col items-center mx-auto lg:flex-row-reverse lg:max-w-5xl lg:mt-12 xl:max-w-6xl">
                     {/* Image */}
                     <div className="w-full h-64 lg:w-1/2 lg:h-auto">
@@ -137,7 +137,7 @@ const HomePage = () => {
             </div>
 
             {/* testimonial */}
-            <div className='mt-20 mb-4'>
+            <div className='mt-26 mb-4'>
                 {<Testimonial />}
             </div>
 
