@@ -35,14 +35,19 @@ import {
   CreateUser,
   AdminManagament,
   CustomerManagement,
-
   AboutUs,
   HomePage,
   LandingPageAd,
   ContactUsPage,
 
-
 } from "./admin/pages";
+
+
+/* retail seller page imports  */
+
+import SellerHome from "./seller/pages/sellerHP";
+import SellerInventroy from "./seller/pages/sellerInventroy";
+
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -110,10 +115,25 @@ function App() {
         path="/admin/user-management/admins"
         element={<AdminManagament />}
       />
+
+
+      
+      <Route path="/aboutus" element={<AboutUs />} />
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/landingag" element={<LandingPageAd />} />
+
+
+
+      {/* Retail seller Router */}
+
+      <Route path='/seller/home' element={<SellerHome/>}/>
+      <Route path='/seller/Inventroy' element={<SellerInventroy/>}/>
+
       {/*  <Route path="/aboutus" element={<AboutUs />} /> */}
       {/* <Route path="/home" element={<HomePage />} /> */}
-      <Route path="/landingag" element={<LandingPageAd />} />
+
       <Route path="/contact" element={<ContactUsPage />} />
+
     </Routes>
   );
 }

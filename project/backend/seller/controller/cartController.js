@@ -50,7 +50,12 @@ const getCart = async (req, res) => {
   try {
     const { sellerId } = req.params;
 
-    const cart = await Cart.findOne({ sellerId });
+    //const cart = await Cart.findOne({ sellerId });
+    const cart = await Cart.findOne({ sellerId })
+    .populate({
+      path: "items.cropId",
+      select: "farmerID image", // Only fetch farmerId
+    })
 
     if (!cart) {
       return res.status(404).json({ message: 'Cart not found' });
