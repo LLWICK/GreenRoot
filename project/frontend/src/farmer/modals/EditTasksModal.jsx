@@ -19,17 +19,16 @@ const EditTaskModal = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    let data = Object.fromEntries(formData);
 
+    const data = { description, status, dueDate };
     console.log(data);
 
     axios
-      .patch(
-        `http://localhost:3000/api/v1/farmer/schedule/${taskInfo._id}`,
-        data
-      )
-      .then(navigate(`/farmer/${uid}/schedule`));
+      .patch(`http://localhost:3000/api/v1/farmer/schedule/${tid}`, data)
+      .then(navigate(`/farmer/${uid}/schedule`))
+      .catch((e) => {
+        console.log(e.message);
+      });
   };
 
   useEffect(() => {
