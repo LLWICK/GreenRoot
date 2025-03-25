@@ -32,9 +32,9 @@ import {
   CreateUser,
   AdminManagament,
   CustomerManagement,
-  AboutUs,
-  HomePage,
-  LandingPageAd
+  //AboutUs,
+  // HomePage,
+  LandingPageAd,
 } from "./admin/pages";
 import ExpertsPage from "./farmer/pages/ExpertsPage";
 import TaskCard from "./farmer/modals/TaskCard";
@@ -104,8 +104,8 @@ function App() {
         path="/admin/user-management/admins"
         element={<AdminManagament />}
       />
-      <Route path="/aboutus" element={<AboutUs />} />
-      <Route path="/home" element={<HomePage />} />
+      {/*  <Route path="/aboutus" element={<AboutUs />} /> */}
+      {/* <Route path="/home" element={<HomePage />} /> */}
       <Route path="/landingag" element={<LandingPageAd />} />
     </Routes>
   );
