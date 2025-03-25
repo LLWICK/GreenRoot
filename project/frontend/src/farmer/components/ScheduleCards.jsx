@@ -8,6 +8,8 @@ function ScheduleCards() {
   let fullList = [];
 
   const [upcoming, setUpcoming] = useState([]);
+  const [canceled, setCancel] = useState([]);
+  const [completed, setCompleted] = useState([]);
 
   useEffect(() => {
     const fetchScheduleData = async () => {
@@ -20,7 +22,21 @@ function ScheduleCards() {
         );
 
         fullList = response.data.data;
-        //setUpcoming(fullList.filter);
+        let up = fullList.filter((element) => {
+          return element.status == "upcoming";
+        });
+        setUpcoming(up);
+
+        let can = fullList.filter((element) => {
+          return element.status == "canceled";
+        });
+        setCancel(can);
+
+        let com = fullList.filter((element) => {
+          return element.status == "completed";
+        });
+        setCompleted(com);
+
         console.log(fullList);
       } catch (error) {
         console.error("Error fetching crops:", error);
@@ -39,11 +55,11 @@ function ScheduleCards() {
           <div class="p-6 bg-white shadow rounded-2xl dark:bg-gray-900">
             <dl class="space-y-2">
               <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
-                Unique views
+                Upcoming
               </dt>
 
               <dd class="text-5xl font-light md:text-6xl dark:text-white">
-                192.1k
+                {upcoming.length}
               </dd>
 
               <dd class="flex items-center space-x-1 text-sm font-medium text-green-500 dark:text-green-400">
@@ -77,11 +93,11 @@ function ScheduleCards() {
           <div class="p-6 bg-white shadow rounded-2xl dark:bg-gray-900">
             <dl class="space-y-2">
               <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
-                Bounce rate
+                Canceled
               </dt>
 
               <dd class="text-5xl font-light md:text-6xl dark:text-white">
-                21%
+                {canceled.length}
               </dd>
 
               <dd class="flex items-center space-x-1 text-sm font-medium text-red-500 dark:text-red-400">
@@ -115,11 +131,11 @@ function ScheduleCards() {
           <div class="p-6 bg-white shadow rounded-2xl dark:bg-gray-900">
             <dl class="space-y-2">
               <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
-                Average time on page
+                Completed
               </dt>
 
               <dd class="text-5xl font-light md:text-6xl dark:text-white">
-                03:12
+                {completed.length}
               </dd>
 
               <dd class="flex items-center space-x-1 text-sm font-medium text-green-500 dark:text-green-400">
