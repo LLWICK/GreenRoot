@@ -72,7 +72,6 @@ function ScheduleList() {
                   <option value="upcoming">upcoming</option>
                   <option value="completed">completed</option>
                   <option value="canceled">canceled</option>
-                  View All
                 </select>
                 <button
                   class="rounded border border-slate-300 py-2.5 px-3 text-center text-xs font-semibold text-slate-600 transition-all hover:opacity-75 focus:ring focus:ring-slate-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
