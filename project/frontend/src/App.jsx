@@ -17,6 +17,9 @@ import {
   Schedule,
   LandingPage,
   TestPage,
+  TaskCard,
+  EditTasksModal,
+  ExpertsPage,
 } from "./farmer/pages";
 
 /* Admin pages */
@@ -32,9 +35,19 @@ import {
   CreateUser,
   AdminManagament,
   CustomerManagement,
+  AboutUs,
+  HomePage,
+  LandingPageAd,
+  ContactUsPage,
+
 } from "./admin/pages";
-import ExpertsPage from "./farmer/pages/ExpertsPage";
-import TaskCard from "./farmer/modals/TaskCard";
+
+
+/* retail seller page imports  */
+
+import SellerHome from "./seller/pages/sellerHP";
+import SellerInventroy from "./seller/pages/sellerInventroy";
+
 
 //import customer routes
 import Home from "./customer/pages/Home";
@@ -65,6 +78,7 @@ function App() {
       <Route path="/farmer/test" element={<TestPage />} />
       <Route path="/farmer/:uid/experts" element={<ExpertsPage />} />
       <Route path="/farmer/:uid/addTask" element={<TaskCard />} />
+      <Route path="/farmer/:uid/editTask/:tid" element={<EditTasksModal />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
@@ -110,6 +124,25 @@ function App() {
         element={<AdminManagament />}
       />
 
+
+
+      
+      <Route path="/aboutus" element={<AboutUs />} />
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/landingag" element={<LandingPageAd />} />
+
+
+
+      {/* Retail seller Router */}
+
+      <Route path='/seller/home' element={<SellerHome/>}/>
+      <Route path='/seller/Inventroy' element={<SellerInventroy/>}/>
+
+      {/*  <Route path="/aboutus" element={<AboutUs />} /> */}
+      {/* <Route path="/home" element={<HomePage />} /> */}
+
+      <Route path="/contact" element={<ContactUsPage />} />
+
       {/* Customer Routes */}
 
 
@@ -117,6 +150,7 @@ function App() {
         {/* <Route path='/products-Category/:categoryName' element={<CategoryPage />} />
         <Route path='/Home/Checkout' element={<CheckoutPage />} />
         <Route path='/user/Dashboard' element={<DashboardPage />} /> */}
+
 
 
 
