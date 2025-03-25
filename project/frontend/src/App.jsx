@@ -38,7 +38,6 @@ import {
   CustomerManagement,
   AboutUs,
   HomePage,
-  LandingPageAd,
   ContactUsPage,
 } from "./admin/pages";
 
@@ -49,6 +48,14 @@ import SellerInventroy from "./seller/pages/sellerInventroy";
 
 //import customer routes
 import Home from "./customer/pages/Home";
+
+import DashboardPage from "./customer/pages/DashboardPage";
+import Cus_LandingBanner from "./customer/components/Cus_LandingBanner";
+
+
+
+
+
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -118,26 +125,43 @@ function App() {
         element={<AdminManagament />}
       />
 
+
+
+      {/* Home page components */}
+
+
       <Route path="/aboutus" element={<AboutUs />} />
-      <Route path="/home" element={<HomePage />} />
-      <Route path="/landingag" element={<LandingPageAd />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/contact" element={<ContactUsPage />} />
 
       {/* Retail seller Router */}
 
-      <Route path="/seller/home" element={<SellerHome />} />
-      <Route path="/seller/Inventroy" element={<SellerInventroy />} />
 
-      {/*  <Route path="/aboutus" element={<AboutUs />} /> */}
-      {/* <Route path="/home" element={<HomePage />} /> */}
+      <Route path='/seller/home' element={<SellerHome />} />
+      <Route path='/seller/Inventroy' element={<SellerInventroy />} />
 
-      <Route path="/contact" element={<ContactUsPage />} />
+
+
+
 
       {/* Customer Routes */}
 
-      <Route path="/Customer" element={<Home />} />
       {/* <Route path='/products-Category/:categoryName' element={<CategoryPage />} />
         <Route path='/Home/Checkout' element={<CheckoutPage />} />
         <Route path='/user/Dashboard' element={<DashboardPage />} /> */}
+
+
+        <Route path='/Customer' element={<Home />} />
+        <Route path="/CusLanding" element={<Cus_LandingBanner/>}/>
+        <Route path='/Customer/Dashboard' element={<DashboardPage />} />
+
+
+
+
+
+
+
+
     </Routes>
   );
 }

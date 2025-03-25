@@ -49,7 +49,7 @@ const Footer = () => {
                                 </div>
                                 <div>
                                     <h1 className='text-white text-4xl '>How can we help. Get In touch</h1>
-                                    <button className='mt-3.5 bg-amber-600 text-2xl text-white px-6 py-3'>Contact Us</button>
+                                    <button className='mt-3.5 bg-amber-600 text-2xl hover:bg-amber-500 text-white px-6 py-3'>Contact Us</button>
                                 </div>
                             </div>
 
