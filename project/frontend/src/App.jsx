@@ -124,6 +124,7 @@ function App() {
         element={<AdminManagament />}
       />
 
+<<<<<<< HEAD
       {/* Customer Routes */}
 
 
@@ -135,6 +136,8 @@ function App() {
 
 
 
+=======
+>>>>>>> bb6636bf43e2927f19f5ee443dcac6ccad1a40be
 
 
       
@@ -153,6 +156,23 @@ function App() {
       {/* <Route path="/home" element={<HomePage />} /> */}
 
       <Route path="/contact" element={<ContactUsPage />} />
+<<<<<<< HEAD
+=======
+
+      {/* Customer Routes */}
+
+
+        <Route path='/Customer' element={<Home />} />
+        {/* <Route path='/products-Category/:categoryName' element={<CategoryPage />} />
+        <Route path='/Home/Checkout' element={<CheckoutPage />} />
+        <Route path='/user/Dashboard' element={<DashboardPage />} /> */}
+
+
+
+
+
+
+>>>>>>> bb6636bf43e2927f19f5ee443dcac6ccad1a40be
 
     </Routes>
   );
