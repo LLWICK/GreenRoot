@@ -46,7 +46,10 @@ const HomePage = () => {
                 </div>
             </div>
 
-            {<Services />}
+            <div id='serviceHome'>
+                {<Services />}
+            </div>
+
             {<AboutUs />}
 
 

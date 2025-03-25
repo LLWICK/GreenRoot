@@ -9,7 +9,7 @@ const NavBar = () => {
 
     return (
         <>
-            <nav className="bg-green-600 border-b border-green-600 shadow-md rounded-3xl mx-2.5">
+            <nav className="bg-green-600 border-b border-green-600 shadow-md rounded-3xl mx-2.5 sticky top-0.5 z-50">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="#" className="flex items-center space-x-3">
                         <img
@@ -111,12 +111,12 @@ const NavBar = () => {
                     >
                         <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-green-500 rounded-lg bg-green-600 md:space-x-8 md:flex-row md:mt-0 md:border-0 md:bg-transparent">
                             <li>
-                                <a
-                                    href="#"
+                                <Link
+                                    to={`/`}
                                     className="block py-2 px-3 text-white bg-green-800 rounded-sm md:bg-transparent md:text-white md:p-0 md:hover:text-green-300"
                                 >
                                     Home
-                                </a>
+                                </Link>
                             </li>
                             <li>
                                 <a
@@ -128,7 +128,7 @@ const NavBar = () => {
                             </li>
                             <li>
                                 <a
-                                    href="#"
+                                    href="#serviceHome"
                                     className="block py-2 px-3 text-white rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0"
                                 >
                                     Services
@@ -139,16 +139,17 @@ const NavBar = () => {
                                     href="#"
                                     className="block py-2 px-3 text-white rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0"
                                 >
-                                    Pricing
+                                    Blogs
                                 </a>
                             </li>
                             <li>
-                                <a
+                                {/* <a
                                     href="#"
                                     className="block py-2 px-3 text-white rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0"
                                 >
                                     Contact
-                                </a>
+                                </a> */}
+                                <Link to={`/contact`} className="block py-2 px-3 text-white rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0">Contact</Link>
                             </li>
                             <li>
                                 {/* <a
