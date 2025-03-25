@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
+
 
 const NavBar = () => {
 
@@ -7,7 +9,7 @@ const NavBar = () => {
 
     return (
         <>
-            <nav className="bg-green-700 border-b border-green-400 shadow-md rounded-3xl m-2.5">
+            <nav className="bg-green-600 border-b border-green-600 shadow-md rounded-3xl mx-2.5">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="#" className="flex items-center space-x-3">
                         <img
@@ -36,7 +38,7 @@ const NavBar = () => {
 
                         {/* Dropdown Menu */}
                         {dropdownOpen && (
-                            <div className="absolute right-0 mt-2 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-lg dark:bg-gray-700">
+                            <div className="absolute right-0 mt-2 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-lg">
                                 <div className="px-4 py-3">
                                     <span className="block text-sm text-gray-900">Bonnie Green</span>
                                     <span className="block text-sm text-gray-500">name@greenroot.com</span>
@@ -147,6 +149,15 @@ const NavBar = () => {
                                 >
                                     Contact
                                 </a>
+                            </li>
+                            <li>
+                                {/* <a
+                                    href="#"
+                                    className="block py-2 px-3 text-white rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0"
+                                >
+                                    Contact
+                                </a> */}
+                                <Link to={`/auth/login`} className="block py-2 px-3 text-white rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0">Login</Link>
                             </li>
                         </ul>
                     </div>

@@ -25,11 +25,11 @@ const HomePage = () => {
 
     return (
         <>
-            <div className='sticky z-50 top-2 m-2.5'>
+            <div className='z-50 top-1.5 sticky w-full'>
                 <NavBar />
             </div>
 
-            <div>
+            <div className='top-0'>
                 <Landing />
             </div>
 

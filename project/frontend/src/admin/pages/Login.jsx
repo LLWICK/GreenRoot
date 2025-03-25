@@ -1,9 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
-
 import loginImg from "../extras/loginImage.svg";
 
 const Login = () => {
@@ -112,7 +111,7 @@ const Login = () => {
                                         </div>
                                     </div>
 
-                                    {/* Form starts here */}
+                                    {/* Form */}
                                     <form onSubmit={handleSubmit} className="mx-auto max-w-xs">
                                         <input
                                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
@@ -135,10 +134,13 @@ const Login = () => {
                                             <span>Sign In</span>
                                         </button>
                                     </form>
-                                    {/* Form ends here */}
+
+                                    <p className="text-center mt-1.5">
+                                        Still Don't have an account? <span className="text-blue-600 underline hover:text-blue-700"><Link to={`/auth/login`}>Sing Up</Link></span>
+                                    </p>
 
                                     <p className="mt-6 text-xs text-gray-600 text-center">
-                                        I agree to abide by Cartesian Kinetics{" "}
+                                        I agree to abide by GreenRoots{" "}
                                         <a href="#" className="border-b border-gray-500 border-dotted">
                                             Terms of Service
                                         </a>{" "}

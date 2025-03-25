@@ -15,13 +15,13 @@ const Landing = () => {
                         loop
                         muted
                     />
-                    <div className="absolute inset-0 bg-opacity-50"></div> {/* Dark overlay for better text visibility */}
+                    <div className="absolute inset-0 bg-opacity-50"></div>
                 </div>
 
                 {/* Content */}
                 <div className="z-10 space-y-2">
-                    <h1 className="font-light text-6xl">We Provide Landscaping</h1>
-                    <h3 className="font-light text-3xl">Long established fact that a reader will be distracted by the readable content of a page</h3>
+                    <h1 className="text-8xl font-extrabold">We Provide Landscaping</h1>
+                    <h3 className="text-3xl">Long established fact that a reader will be distracted by the readable content of a page</h3>
                     <div className="flex justify-center space-x-4">
                         <a
                             href="#"
