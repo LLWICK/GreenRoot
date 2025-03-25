@@ -25,7 +25,7 @@ const EditTaskModal = () => {
     console.log(data);
 
     axios
-      .post(
+      .patch(
         `http://localhost:3000/api/v1/farmer/schedule/${taskInfo._id}`,
         data
       )
