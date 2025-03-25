@@ -4,8 +4,10 @@ import AboutUs from './home_components/AboutUs';
 import Testimonial from './home_components/Testimonial';
 // nav bar
 import NavBar from './home_components/NavBar';
+import Landing from './Landing';
 // footer
 import Footer from './home_components/Footer';
+
 
 // import the video 
 import backVD from "/bannerimg.mp4";
@@ -23,33 +25,15 @@ const HomePage = () => {
 
     return (
         <>
-            <div className='sticky'>
+            <div className='sticky z-50 top-2 m-2.5'>
                 <NavBar />
             </div>
 
-
-            <div className="banner_section py-16 bg-gray-200">
-                <div className="container mx-auto text-center">
-                    <h1 className="text-4xl font-bold mb-4">We Provide Landscaping</h1>
-                    <p className="text-gray-600 mb-8">
-                        Long established fact that a reader will be distracted by the readable content of a page
-                    </p>
-                    <div className="flex justify-center space-x-4">
-                        <a
-                            href="#"
-                            className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
-                        >
-                            Read More
-                        </a>
-                        <a
-                            href="#"
-                            className="px-6 py-2 border border-green-500 text-green-500 rounded-lg hover:bg-green-500 hover:text-white transition"
-                        >
-                            Contact Us
-                        </a>
-                    </div>
-                </div>
+            <div>
+                <Landing />
             </div>
+
+
 
             <div className="year_section bg-white py-16">
                 <div className="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
