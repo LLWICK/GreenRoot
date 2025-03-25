@@ -109,6 +109,7 @@ function App() {
     {/* Retail seller Router */}
 
       <Route path='/seller/home' element={<SellerHome/>}/>
+      
 
     </Routes>
   );
