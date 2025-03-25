@@ -32,7 +32,12 @@ import {
   CreateUser,
   AdminManagament,
   CustomerManagement,
+  AboutUs,
+  HomePage,
+  LandingPageAd
 } from "./admin/pages";
+import ExpertsPage from "./farmer/pages/ExpertsPage";
+import TaskCard from "./farmer/modals/TaskCard";
 
 
 /* retail seller page imports  */
@@ -59,6 +64,8 @@ function App() {
       <Route path="/farmer/orders" element={<OrdersPage />} />
       <Route path="/farmer/:uid/schedule" element={<Schedule />} />
       <Route path="/farmer/test" element={<TestPage />} />
+      <Route path="/farmer/:uid/experts" element={<ExpertsPage />} />
+      <Route path="/farmer/:uid/addTask" element={<TaskCard />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
@@ -103,14 +110,15 @@ function App() {
         path="/admin/user-management/admins"
         element={<AdminManagament />}
       />
+      <Route path="/aboutus" element={<AboutUs />} />
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/landingag" element={<LandingPageAd />} />
 
 
 
-    {/* Retail seller Router */}
+      {/* Retail seller Router */}
 
       <Route path='/seller/home' element={<SellerHome/>}/>
-      
-
     </Routes>
   );
 }

@@ -8,7 +8,9 @@ function OrdersPage() {
   return (
     <div>
       <Sidebar />
-      <OrderTable />
+      <div className="bg-amber-300">
+        <OrderTable />
+      </div>
     </div>
   );
 }

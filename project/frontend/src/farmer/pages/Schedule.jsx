@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "../components/Sidebar";
 import ScheduleList from "../components/ScheduleList";
 import WorkGraph from "../components/WorkGraph";
+import ScheduleCards from "../components/ScheduleCards";
 
 function Schedule() {
   return (
@@ -12,7 +13,7 @@ function Schedule() {
       </div>
 
       <div style={{ float: "right" }}>
-        <WorkGraph />
+        <ScheduleCards />
       </div>
     </div>
   );
