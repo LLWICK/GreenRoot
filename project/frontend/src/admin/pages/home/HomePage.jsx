@@ -2,6 +2,8 @@ import React from 'react'
 import Services from './home_components/Services';
 import AboutUs from './home_components/AboutUs';
 import Testimonial from './home_components/Testimonial';
+// nav bar
+import NavBar from './home_components/NavBar';
 // footer
 import Footer from './home_components/Footer';
 
@@ -21,27 +23,11 @@ const HomePage = () => {
 
     return (
         <>
-            <nav className="navbar bg-gray-100 py-4 shadow-md">
-                <div className="container mx-auto flex items-center justify-between">
-                    <div className="logo">
-                        <a href="index.html">
-                            <img src="images/logo.png" alt="Green Scape Logo" />
-                        </a>
-                    </div>
-                    <ul className="flex space-x-4">
-                        {['Home', 'About', 'Service', 'Client', 'Blog', 'Contact Us'].map((item, index) => (
-                            <li key={index}>
-                                <a
-                                    href={`${item.toLowerCase()}.html`}
-                                    className="text-gray-700 hover:text-green-500 transition-colors"
-                                >
-                                    {item}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </nav>
+            <div className='sticky'>
+                <NavBar />
+            </div>
+
+
             <div className="banner_section py-16 bg-gray-200">
                 <div className="container mx-auto text-center">
                     <h1 className="text-4xl font-bold mb-4">We Provide Landscaping</h1>
