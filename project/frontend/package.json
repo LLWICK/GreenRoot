@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^6.1.0",
     "@tailwindcss/vite": "^4.0.12",
     "axios": "^1.8.3",
     "boxicons": "^2.1.4",

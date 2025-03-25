@@ -47,6 +47,7 @@ const orderManage = require("./customer/routes/orderRoute");
 const getCropRoutesRS = require("./seller/routes/cropRoutes(rs)");
 const cartRoutes = require("./seller/routes/cartRoutes");
 const productRoutes = require("./seller/routes/productRoutes.js");
+const paymentRoutes = require("./seller/routes/stripeRoute.js");
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -79,6 +80,7 @@ app.use("/api/v1/orders", orderManage);
 app.use("/api/RetailSeller/cart", cartRoutes);
 app.use("/api/RetailSeller/crops", getCropRoutesRS);
 app.use("/api/RetailSeller/products", productRoutes);
+app.use("/api/RetailSeller/payment/stripe", paymentRoutes);
 
 mongoose
   .connect(mongoURL)
