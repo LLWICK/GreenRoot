@@ -160,6 +160,9 @@ const NavBar = () => {
                                 </a> */}
                                 <Link to={`/auth/login`} className="block py-2 px-3 text-white rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0">Login</Link>
                             </li>
+                            <li>
+                                <Link to={`/auth/register`} className="block py-2 px-3 text-white rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0">Sign Up</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
