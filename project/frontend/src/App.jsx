@@ -51,7 +51,7 @@ import SellerInventroy from "./seller/pages/sellerInventroy";
 
 //import customer routes
 import Home from "./customer/pages/Home";
-
+import DashboardPage from "./customer/pages/DashboardPage";
 
 
 
@@ -147,9 +147,8 @@ function App() {
 
 
         <Route path='/Customer' element={<Home />} />
-        {/* <Route path='/products-Category/:categoryName' element={<CategoryPage />} />
-        <Route path='/Home/Checkout' element={<CheckoutPage />} />
-        <Route path='/user/Dashboard' element={<DashboardPage />} /> */}
+       
+        <Route path='/Customer/Dashboard' element={<DashboardPage />} />
 
 
 
