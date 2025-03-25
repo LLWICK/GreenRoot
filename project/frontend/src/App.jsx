@@ -48,6 +48,14 @@ import SellerHome from "./seller/pages/sellerHP";
 import SellerInventroy from "./seller/pages/sellerInventroy";
 
 
+//import customer routes
+import Home from "./customer/pages/Home";
+import DashboardPage from "./customer/pages/DashboardPage";
+
+
+
+
+
 // import UserManagement from "./admin/pages/UserManagement";
 
 function App() {
@@ -115,7 +123,9 @@ function App() {
         element={<AdminManagament />}
       />
 
+
       {/* Home page components */}
+
       <Route path="/aboutus" element={<AboutUs />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/contact" element={<ContactUsPage />} />
@@ -126,6 +136,19 @@ function App() {
 
       <Route path='/seller/home' element={<SellerHome />} />
       <Route path='/seller/Inventroy' element={<SellerInventroy />} />
+
+
+
+
+      {/* Customer Routes */}
+
+
+        <Route path='/Customer' element={<Home />} />
+       
+        <Route path='/Customer/Dashboard' element={<DashboardPage />} />
+
+
+
 
 
 
