@@ -1,137 +1,68 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-function JobsHome() {
+const JobsHome = (prop) => {
+  const jobs = [
+    { title: "Harrowing Season", location: "ABY Farm - Bay Land" },
+    { title: "Harrowing Season", location: "YNS Farm - ARD Land" },
+  ];
+
+  const [jobList, setList] = useState([]);
+
+  useEffect(() => {
+    const fetchScheduleData = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/api/v1/farmer/schedule/parameters",
+          {
+            farmerID: String(prop.fid),
+            status: "upcoming",
+          }
+        );
+
+        setList(response.data.data);
+      } catch (error) {
+        console.error("Error fetching crops:", error);
+      }
+    };
+
+    if (prop.fid) {
+      fetchScheduleData();
+    }
+  }, [prop.fid]);
+
   return (
-    <div style={{ marginTop: "5%" }}>
-      <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-        <div class="flex items-center justify-between mb-4">
-          <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">
-            Recent Due Jobs
-          </h5>
-          <a
-            href="#"
-            class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
+    <div className="bg-white p-4 rounded-xl shadow-md w-full max-w-md mt-5">
+      <div className="flex justify-between items-center">
+        <h2 className="text-lg font-semibold text-gray-800">Recent Due Jobs</h2>
+        <Link
+          to={`/farmer/${prop.fid}/schedule`}
+          className="text-green-500 text-sm font-medium"
+        >
+          See All
+        </Link>
+      </div>
+      <div className="mt-2 space-y-2">
+        {jobList.map((job, index) => (
+          <div
+            key={index}
+            className="flex items-center bg-gray-50 p-3 rounded-lg shadow-sm"
           >
-            View all
-          </a>
-        </div>
-        <div class="flow-root">
-          <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-            <li class="py-3 sm:py-4">
-              <div class="flex items-center">
-                <div class="shrink-0">
-                  <img
-                    class="w-8 h-8 rounded-full"
-                    src="/docs/images/people/profile-picture-1.jpg"
-                    alt="Neil image"
-                  />
-                </div>
-                <div class="flex-1 min-w-0 ms-4">
-                  <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                    Harvest season
-                  </p>
-                  <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                    12th Jan
-                  </p>
-                </div>
-                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                  Upcomming
-                </div>
-              </div>
-            </li>
-            <li class="py-3 sm:py-4">
-              <div class="flex items-center ">
-                <div class="shrink-0">
-                  <img
-                    class="w-8 h-8 rounded-full"
-                    src="/docs/images/people/profile-picture-3.jpg"
-                    alt="Bonnie image"
-                  />
-                </div>
-                <div class="flex-1 min-w-0 ms-4">
-                  <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                    Bonnie Green
-                  </p>
-                  <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                    email@windster.com
-                  </p>
-                </div>
-                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                  $3467
-                </div>
-              </div>
-            </li>
-            <li class="py-3 sm:py-4">
-              <div class="flex items-center">
-                <div class="shrink-0">
-                  <img
-                    class="w-8 h-8 rounded-full"
-                    src="/docs/images/people/profile-picture-2.jpg"
-                    alt="Michael image"
-                  />
-                </div>
-                <div class="flex-1 min-w-0 ms-4">
-                  <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                    Michael Gough
-                  </p>
-                  <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                    email@windster.com
-                  </p>
-                </div>
-                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                  $67
-                </div>
-              </div>
-            </li>
-            <li class="py-3 sm:py-4">
-              <div class="flex items-center ">
-                <div class="shrink-0">
-                  <img
-                    class="w-8 h-8 rounded-full"
-                    src="/docs/images/people/profile-picture-4.jpg"
-                    alt="Lana image"
-                  />
-                </div>
-                <div class="flex-1 min-w-0 ms-4">
-                  <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                    Lana Byrd
-                  </p>
-                  <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                    email@windster.com
-                  </p>
-                </div>
-                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                  $367
-                </div>
-              </div>
-            </li>
-            <li class="pt-3 pb-0 sm:pt-4">
-              <div class="flex items-center ">
-                <div class="shrink-0">
-                  <img
-                    class="w-8 h-8 rounded-full"
-                    src="/docs/images/people/profile-picture-5.jpg"
-                    alt="Thomas image"
-                  />
-                </div>
-                <div class="flex-1 min-w-0 ms-4">
-                  <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                    Thomes Lean
-                  </p>
-                  <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                    email@windster.com
-                  </p>
-                </div>
-                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                  $2367
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
+            <div className="w-10 h-10 flex items-center justify-center bg-orange-100 rounded-md">
+              <span className="text-orange-500 text-lg font-bold">!</span>
+            </div>
+            <div className="ml-3">
+              <h3 className="text-sm font-medium text-gray-900">
+                {job.description}
+              </h3>
+              <p className="text-xs text-gray-500">{job.status}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
-}
+};
 
 export default JobsHome;
