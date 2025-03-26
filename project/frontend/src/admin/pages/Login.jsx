@@ -4,6 +4,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 import loginImg from "../extras/loginImage.svg";
+import NavBar from "./home/home_components/NavBar";
+import Footer from "./home/home_components/Footer";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -43,13 +45,13 @@ const Login = () => {
                             navigate("/farmer/:uid/dashboard");
                             break;
                         case "seller":
-                            navigate("/seller");
+                            navigate("/");
                             break;
                         case "researcher":
-                            navigate("/researcher");
+                            navigate("/");
                             break;
                         default:
-                            navigate("/home");
+                            navigate("/");
                     }
                 }
             }
@@ -61,6 +63,8 @@ const Login = () => {
 
     return (
         <>
+            <NavBar />
+
             <>
                 <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
                     <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
@@ -164,7 +168,7 @@ const Login = () => {
                     </div>
                 </div>
             </>
-
+            <Footer />
         </>
 
     );
