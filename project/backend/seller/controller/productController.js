@@ -3,7 +3,7 @@ const Product = require('../model/productModel');  // Adjust the path according 
 // Create a new product
 const createProduct = async (req, res) => {
   try {
-    const { name, quantity, fertilizer, image, category, supplier, sellerId } = req.body;
+    const { name, quantity, fertilizer, image, category, supplier, sellerId ,price } = req.body;
 
   
     if (!name || !quantity || !category || !supplier || !sellerId) {
@@ -18,6 +18,7 @@ const createProduct = async (req, res) => {
       category,
       supplier,
       sellerId,
+      price,
     });
 
     await newProduct.save();
@@ -53,12 +54,12 @@ const getProductById = async (req, res) => {
 // Update a product by ID
 const updateProduct = async (req, res) => {
   try {
-    const { name, quantity, fertilizer, image, category, supplier } = req.body;
+    const { name, quantity, fertilizer, image, category, supplier ,price} = req.body;
 
     const { id } = req.params;
     const updatedProduct = await Product.findByIdAndUpdate(
       {_id:id},
-      { name, quantity, fertilizer, image, category, supplier },
+      { name, quantity, fertilizer, image, category, supplier ,price },
       { new: true }
     );
 

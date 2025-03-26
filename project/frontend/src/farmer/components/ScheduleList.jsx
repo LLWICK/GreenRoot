@@ -72,7 +72,6 @@ function ScheduleList() {
                   <option value="upcoming">upcoming</option>
                   <option value="completed">completed</option>
                   <option value="canceled">canceled</option>
-                  View All
                 </select>
                 <button
                   class="rounded border border-slate-300 py-2.5 px-3 text-center text-xs font-semibold text-slate-600 transition-all hover:opacity-75 focus:ring focus:ring-slate-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
@@ -262,7 +261,7 @@ function ScheduleList() {
                         <div class="w-max">
                           <Link
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                            to={`/farmer/viewCrop/${element._id}`}
+                            to={`/farmer/${uid}/editTask/${element._id}`}
                           >
                             View
                           </Link>

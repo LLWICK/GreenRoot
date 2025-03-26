@@ -1,11 +1,17 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-const TaskCard = () => {
-  const { uid } = useParams();
+const EditTaskModal = () => {
+  const { uid, tid } = useParams();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(true);
+  const [taskInfo, setTask] = useState([]);
+
+  const [description, setDes] = useState("");
+  const [status, setStatus] = useState("");
+  const [dueDate, setDate] = useState("");
+  const [createdAt, setCreatedAt] = useState("");
 
   const modalHandler = (val) => {
     setIsOpen(val);
@@ -13,29 +19,50 @@ const TaskCard = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    let data = Object.fromEntries(formData);
-    data = { ...data, farmerID: uid };
+
+    const data = { description, status, dueDate };
     console.log(data);
 
     axios
-      .post("http://localhost:3000/api/v1/farmer/schedule", data)
-      .then(navigate(`/farmer/${uid}/schedule`));
+      .patch(`http://localhost:3000/api/v1/farmer/schedule/${tid}`, data)
+      .then(navigate(`/farmer/${uid}/schedule`))
+      .catch((e) => {
+        console.log(e.message);
+      });
   };
+
+  useEffect(() => {
+    // Simulate fetching crop data from an API
+    const fetchTaskData = async () => {
+      try {
+        axios
+          .get(`http://localhost:3000/api/v1/farmer/schedule/${tid}`)
+          .then((res) => {
+            const data = res.data.data;
+            console.log(data);
+
+            setStatus(data.status);
+            setDate(data.dueDate);
+            setDes(data.description);
+            setCreatedAt(data.createdAt);
+          });
+      } catch (error) {
+        console.error("Error fetching Categories:", error);
+      }
+    };
+
+    fetchTaskData();
+  }, []);
 
   return (
     <div>
-      <div className="w-full flex justify-center py-12">
-        <button
-          className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm"
-          onClick={() => modalHandler(true)}
-        >
-          Open Modal
-        </button>
-      </div>
+      <div className="w-full flex justify-center py-12"></div>
 
       {isOpen && (
-        <div className="py-12 bg-gray-700 transition duration-150 ease-in-out z-10 fixed inset-0 flex items-center justify-center">
+        <div
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+          className="py-12  bg-black bg-opacity-50 transition duration-150 ease-in-out z-10 fixed inset-0 flex items-center justify-center"
+        >
           <div className="container mx-auto w-11/12 md:w-2/3 max-w-lg">
             <div className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
               <div className="w-full flex justify-start text-gray-600 mb-3">
@@ -64,6 +91,10 @@ const TaskCard = () => {
                   Task description
                 </label>
                 <input
+                  value={description}
+                  onChange={(e) => {
+                    setDes(e.target.value);
+                  }}
                   name="description"
                   className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                   placeholder="James"
@@ -74,6 +105,10 @@ const TaskCard = () => {
                 </label>
                 <div className="relative mb-5 mt-2">
                   <input
+                    value={dueDate}
+                    onChange={(e) => {
+                      setDate(e.target.value);
+                    }}
                     name="dueDate"
                     type="date"
                     className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
@@ -85,7 +120,10 @@ const TaskCard = () => {
                   Created Date
                 </label>
                 <input
-                  value={new Date()}
+                  value={createdAt}
+                  onChange={(e) => {
+                    setCreatedAt(e.target.value);
+                  }}
                   readOnly
                   className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                   placeholder="MM/YY"
@@ -96,6 +134,10 @@ const TaskCard = () => {
                 <select
                   className="mb-8 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                   placeholder="XXX"
+                  value={status}
+                  onChange={(e) => {
+                    setStatus(e.target.value);
+                  }}
                 >
                   <option value="upcoming">upcoming</option>
                   <option value="completed">completed</option>
@@ -148,4 +190,4 @@ const TaskCard = () => {
   );
 };
 
-export default TaskCard;
+export default EditTaskModal;

@@ -57,6 +57,7 @@ const solutionRoutes = require('./researcher/routes/solutionRoutes.js')
 const getCropRoutesRS = require("./seller/routes/cropRoutes(rs)");
 const cartRoutes = require("./seller/routes/cartRoutes");
 const productRoutes = require("./seller/routes/productRoutes.js");
+const paymentRoutes = require("./seller/routes/stripeRoute.js");
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -92,9 +93,11 @@ app.use('/api/researcher/pnd', pndRoutes)
 app.use("/api/researcher/solutions", solutionRoutes)
 
 //retail seller
-app.use("/api/RetailSeller/cart", cartRoutes)
-app.use("/api/RetailSeller/crops", getCropRoutesRS)
-app.use("/api/RetailSeller/products", productRoutes)
+
+app.use("/api/RetailSeller/cart", cartRoutes);
+app.use("/api/RetailSeller/crops", getCropRoutesRS);
+app.use("/api/RetailSeller/products", productRoutes);
+app.use("/api/RetailSeller/payment/stripe", paymentRoutes);
 
 
 mongoose

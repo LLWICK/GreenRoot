@@ -12,3 +12,10 @@ export { default as ViewUser } from "./userManagement/ViewUser";
 export { default as CreateUser } from "./userManagement/CreateUser";
 
 export { default as AdminManagament } from "./AdminManagement";
+
+
+// contact us page
+export { default as ContactUsPage } from "./home/ContactUs";
+export { default as AboutUs } from "./home/AboutUs";
+export { default as HomePage } from "./home/HomePage";
+
