@@ -1,5 +1,6 @@
 import React from 'react';
 import bannerVd from "./home_img/bannerimg.mp4"
+import { Link } from 'react-router-dom';
 
 const Landing = () => {
     return (
@@ -29,12 +30,12 @@ const Landing = () => {
                         >
                             Read More
                         </a>
-                        <a
-                            href="#"
+                        <Link
+                            to={`/contact`}
                             className="px-6 py-2 border border-green-500 text-green-500 rounded-lg hover:bg-green-500 hover:text-white transition"
                         >
                             Contact Us
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </section>

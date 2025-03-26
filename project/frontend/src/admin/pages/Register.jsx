@@ -9,6 +9,8 @@ import customerImg from "../extras/register_img/undraw_customer.svg";
 import researcherImg from "../extras/register_img/undraw_research.svg";
 import farmerImg from "../extras/register_img/undraw_farmer.svg";
 import delivaryPersonImg from "../extras/register_img/undraw_delivery.svg";
+import NavBar from './home/home_components/NavBar';
+import Footer from './home/home_components/Footer';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -83,6 +85,9 @@ const Register = () => {
 
     return (
         <>
+            <>
+                <NavBar />
+            </>
             <section className="bg-white">
                 <div className="flex justify-center min-h-screen">
                     {/* Form Image */}
@@ -226,6 +231,9 @@ const Register = () => {
                     </div>
                 </div>
             </section>
+            <>
+                <Footer />
+            </>
         </>
     )
 }
