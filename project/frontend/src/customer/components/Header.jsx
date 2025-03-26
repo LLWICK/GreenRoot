@@ -50,12 +50,20 @@ const Header = () => {
 
   useEffect(()=>{
      const fetchProducts = async()=>{
-      const response = await fetch('')//change
-      const json = await response.json()
 
-      if(response.ok){
-        setProducts(json)
+      try {
+      const response = await fetch('http://localhost:3000/api/RetailSeller/products/products')//change
+      // const json = await response.json()
+
+      if(!response.ok){
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+      const json = await response.json()
+      setProducts(json.products);
+            console.log(json.products); 
+          } catch (error) {
+            console.error("Error fetching products:", error);
+        }
   }
 
   fetchProducts()
