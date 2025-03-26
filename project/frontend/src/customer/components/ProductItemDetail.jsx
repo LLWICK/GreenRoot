@@ -16,6 +16,7 @@ const ProductItemDetail = ({ product }) => {
         setQuantity(newQuantity);
         const calculatedTotalPrice = newQuantity * productPrice;
         setTotalPrice(calculatedTotalPrice.toFixed(2));
+        //khkhjhjkh
     };
 
     
