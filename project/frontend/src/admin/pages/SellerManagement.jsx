@@ -1,29 +1,25 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Table from '../components/Table';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-
-// back button
 import BackButton from '../components/BackButton';
+import { Link } from 'react-router-dom';
 
 
-const AdminManagement = () => {
+const SellerManagement = () => {
+
     const [user, setUser] = useState([]);
-
     useEffect(() => {
         axios
-            .get('http://localhost:3000/api/user/admins')
+            .get('http://localhost:3000/api/user/sellers')
             .then((res) => {
                 setUser(res.data.data);
-
             })
-            .catch((error) => {
-                console.log(error);
-
+            .catch((err) => {
+                console.log(err);
             });
     }, []);
 
-
+    const totalUsers = user.length;
 
     return (
         <>
@@ -50,7 +46,9 @@ const AdminManagement = () => {
             </div>
 
         </>
+
+
     )
 }
 
-export default AdminManagement
+export default SellerManagement

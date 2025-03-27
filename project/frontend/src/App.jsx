@@ -35,6 +35,7 @@ import {
   CreateUser,
   AdminManagament,
   CustomerManagement,
+  SellerManagement,
   AboutUs,
   HomePage,
   ContactUsPage,
@@ -122,7 +123,7 @@ function App() {
         path="/admin/user-management/admins"
         element={<AdminManagament />}
       />
-
+      <Route path="/admin/user-management/sellers" element={<SellerManagement />} />
 
       {/* Home page components */}
 
@@ -143,9 +144,9 @@ function App() {
       {/* Customer Routes */}
 
 
-        <Route path='/Customer' element={<Home />} />
-       
-        <Route path='/Customer/Dashboard' element={<DashboardPage />} />
+      <Route path='/Customer' element={<Home />} />
+
+      <Route path='/Customer/Dashboard' element={<DashboardPage />} />
 
 
 
