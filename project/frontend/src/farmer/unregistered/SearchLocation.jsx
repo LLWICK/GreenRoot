@@ -1,9 +1,10 @@
 import React from "react";
 import SearchBar from "./components/SearchBar";
+import MapView from "./components/MapView";
 
 function SearchLocation() {
   const handleOnChange = (data) => {
-    console.log(data);
+    data.value;
   };
 
   return (
@@ -14,6 +15,7 @@ function SearchLocation() {
           Enter
         </button>
       </div>
+      <MapView />
     </div>
   );
 }
