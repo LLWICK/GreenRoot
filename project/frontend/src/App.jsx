@@ -51,6 +51,7 @@ import SellerInventroy from "./seller/pages/sellerInventroy";
 
 //import customer routes
 import Home from "./customer/pages/Home";
+import SellerBulkOrders from "./seller/pages/sellerBulkOrders";
 
 
 
@@ -137,6 +138,7 @@ function App() {
 
       <Route path='/seller/home' element={<SellerHome/>}/>
       <Route path='/seller/Inventroy' element={<SellerInventroy/>}/>
+      <Route path='/seller/bulkOrders' element={<SellerBulkOrders/>}/>
 
       {/*  <Route path="/aboutus" element={<AboutUs />} /> */}
       {/* <Route path="/home" element={<HomePage />} /> */}

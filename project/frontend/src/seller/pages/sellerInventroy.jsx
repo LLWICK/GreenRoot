@@ -59,9 +59,10 @@ const SellerInventroy = () => {
   // Function to delete a product by ID
   const deleteProduct = async (productId) => {
     try {
-      const response = await axios.delete(`http://localhost:3000/api/products/${productId}`);
+      const response = await axios.delete(`http://localhost:3000/api/RetailSeller/products/product/${productId}`);
       console.log('Product deleted successfully:', response.data);
       setProducts((prevProducts) => prevProducts.filter((product) => product._id !== productId));
+      window.alert('product deleted successfully')
     } catch (error) {
       console.error('Error deleting product:', error.response ? error.response.data : error.message);
     }
