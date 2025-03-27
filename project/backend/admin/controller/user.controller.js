@@ -114,11 +114,24 @@ const deleteUser = async (req, res) => {
     }
 };
 
+// get user count
+const getUserCounts = async (req, res) => {
+    try {
+        console.log("Request received");
+        const users = await User.find();
+        res.status(200).json({ data: users });
+
+    } catch (error) {
+        res.status(500).json({ message: `something went wrong`, error });
+    }
+};
+
 
 module.exports = {
     getUsersByRole,
     getSingleUser,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    getUserCounts
 }
