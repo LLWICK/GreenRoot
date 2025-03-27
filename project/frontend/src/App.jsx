@@ -78,7 +78,7 @@ function App() {
   return (
     <Routes>
       <Route path="/test" element={<Sidebar />} />
- 
+
       {/* Farmer Router */}
 
       <Route path="/farmer/:uid/dashboard" element={<FarmerHome />} />
@@ -104,66 +104,35 @@ function App() {
       {/* Admin Routers */}
       <Route path="/admin/:id/dashboard" element={<AdminDashbord />} />
       <Route path="/admin/user-management" element={<UserManagement />} />
-
-      <Route
-        path="/admin/user-management/farmer"
-        element={<FarmerManagement />}
-      />
-
-      <Route
-        path="/admin/user-management/customers"
-        element={<CustomerManagement />}
-      />
-      <Route
-        path="/admin/user-management/user/create"
-        element={<CreateUser />}
-      />
-
-      <Route
-        path="/admin/user-management/user/create"
-        element={<CreateUser />}
-      />
-
-      <Route
-        path="/admin/user-management/user/view/:id"
-        element={<ViewUser />}
-      />
-      <Route
-        path="/admin/user-management/user/edit/:id"
-        element={<EditUser />}
-      />
-      <Route
-        path="/admin/user-management/user/delete/:id"
-        element={<DeleteUser />}
-      />
-      <Route
-        path="/admin/user-management/admins"
-        element={<AdminManagament />}
-      />
+      <Route path="/admin/user-management/farmer" element={<FarmerManagement />} />
+      <Route path="/admin/user-management/customers" element={<CustomerManagement />} />
+      <Route path="/admin/user-management/user/create" element={<CreateUser />} />
+      <Route path="/admin/user-management/user/create" element={<CreateUser />} />
+      <Route path="/admin/user-management/user/view/:id" element={<ViewUser />} />
+      <Route path="/admin/user-management/user/edit/:id" element={<EditUser />} />
+      <Route path="/admin/user-management/user/delete/:id" element={<DeleteUser />} />
+      <Route path="/admin/user-management/admins" element={<AdminManagament />} />
       <Route path="/admin/user-management/sellers" element={<SellerManagement />} />
       <Route path="/admin/user-management/researchers" element={<ResearchersManagement />} />
-
-      {/* Researcher Routes */}
-      <Route path="/researcher" element={<HomeResearcher/>}/>
-      <Route path="/blog" element={<Blog/>}/>
-      <Route path="/researcher/my-news" element={<MyNews/>}/>
-      <Route path="/blog/news" element={<BlogNews/>}/>
-      <Route path="/blog/news/:id" element={<SingleNewsPage/>}/>
-      <Route path="/researcher/my-qna" element={<MyQnA/>}/>
-      <Route path="/researcher/my-qna/reply/:id" element={<ReplyQnA/>}/>
-      <Route path="/researcher/my-growing-guide" element={<MyGrowingGuide/>}/>
-      <Route path="/blog/growing-guide" element={<GrowingGuideBlog/>}/>
-      <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide/>}/>
-
-
-
-
 
       {/* Home page components */}
 
       <Route path="/aboutus" element={<AboutUs />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/contact" element={<ContactUsPage />} />
+
+      {/* Researcher Routes */}
+      <Route path="/researcher" element={<HomeResearcher />} />
+      <Route path="/blog" element={<Blog />} />
+      <Route path="/researcher/my-news" element={<MyNews />} />
+      <Route path="/blog/news" element={<BlogNews />} />
+      <Route path="/blog/news/:id" element={<SingleNewsPage />} />
+      <Route path="/researcher/my-qna" element={<MyQnA />} />
+      <Route path="/researcher/my-qna/reply/:id" element={<ReplyQnA />} />
+      <Route path="/researcher/my-growing-guide" element={<MyGrowingGuide />} />
+      <Route path="/blog/growing-guide" element={<GrowingGuideBlog />} />
+      <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide />} />
+
 
       {/* Retail seller Router */}
 
