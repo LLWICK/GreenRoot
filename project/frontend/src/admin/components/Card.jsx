@@ -32,10 +32,18 @@ const Card = () => {
                             Button="View Details"
                         />
                         <SingleCard
-                            image="https://www.foodcircus.com/wp-content/uploads/2017/07/FreshFruit-768x508.jpg"
+                            image="https://static.vecteezy.com/system/resources/thumbnails/011/728/524/small/woman-seller-of-fruit-at-the-market-near-the-counter-photo.jpg"
                             CardTitle="Manage Sellers"
                             titleHref="/admin/user-management/sellers"
                             btnHref="/admin/user-management/sellers"
+                            CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
+                            Button="View Details"
+                        />
+                        <SingleCard
+                            image="https://st.depositphotos.com/1194063/1568/i/450/depositphotos_15682751-stock-photo-working-at-the-laboratory.jpg"
+                            CardTitle="Manage Researchers"
+                            titleHref="/admin/user-management/researchers"
+                            btnHref="/admin/user-management/researchers"
                             CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
                             Button="View Details"
                         />

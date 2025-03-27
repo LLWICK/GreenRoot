@@ -36,6 +36,7 @@ import {
   AdminManagament,
   CustomerManagement,
   SellerManagement,
+  ResearchersManagement,
   AboutUs,
   HomePage,
   ContactUsPage,
@@ -124,6 +125,7 @@ function App() {
         element={<AdminManagament />}
       />
       <Route path="/admin/user-management/sellers" element={<SellerManagement />} />
+      <Route path="/admin/user-management/researchers" element={<ResearchersManagement />} />
 
       {/* Home page components */}
 
