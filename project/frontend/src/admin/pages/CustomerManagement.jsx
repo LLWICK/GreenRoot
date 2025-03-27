@@ -33,7 +33,7 @@ const CustomerManagement = () => {
                 </div>
 
                 <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-2xl font-semibold text-gray-800">Admin Management</h2>
+                    <h2 className="text-2xl font-semibold text-gray-800">Customer Management</h2>
                     <Link
                         to={`/admin/user-management/user/create`}
                         className="px-5 py-2.5 bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white font-medium rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
