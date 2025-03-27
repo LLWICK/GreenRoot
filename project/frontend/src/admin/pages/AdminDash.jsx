@@ -1,5 +1,5 @@
 import React from 'react'
-// import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/Sidebar';
 import { Link } from 'react-router-dom';
 import NavBar from './home/home_components/NavBar';
 import UserRoleChart from '../components/UserRoleChart';
@@ -7,39 +7,42 @@ import UserRoleChart from '../components/UserRoleChart';
 
 
 function AdminDash() {
-    // const navigate = useNavigate();
+
 
     return (
-        <div>
-            <>
-                <NavBar />
-            </>
+        <div className="flex h-screen bg-gray-100">
+            {/* Sidebar */}
+            <Sidebar />
 
-            <div className='px-6'><h1 className='text-3xl my-4'>Admin Dashboard</h1></div>
+            {/* Main Content + To-Do List */}
+            <div className="flex flex-grow ml-64">
+                <div className="flex-grow p-8">
+                    <NavBar />
+                    <h1 className="text-3xl font-semibold text-gray-700">Admin Dashboard</h1>
 
-            {/* user role chart */}
-            <div className='flex justify-center items-center'>
-                <div className='container p-4'>
-                    <UserRoleChart />
+                    {/* User Role Chart */}
+                    <div className="bg-white shadow-md rounded-lg p-6 mt-6">
+                        <h2 className="text-lg font-semibold text-gray-700 mb-3">User Role Distribution</h2>
+                        <UserRoleChart />
+                    </div>
+
+                    {/* User Management Button */}
+                    <div className="mt-6">
+                        <Link
+                            to={`/admin/user-management`}
+                            className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-lg"
+                        >
+                            Manage Users
+                        </Link>
+                    </div>
+                </div>
+
+                {/* To-Do List Section */}
+                <div className="w-72 bg-white shadow-md p-6 border-l border-gray-300">
+                    <h2 className="text-xl font-semibold mb-3">To-Do List</h2>
+
                 </div>
             </div>
-
-
-            <>
-                <div className='p-4'>
-
-                    <button
-                        className='bg-blue-600 text-white px-4 py-2 rounded-md'
-
-                    >
-                        <Link to={`/admin/user-management`} >
-                            User Management
-                        </Link>
-
-                    </button>
-                </div>
-            </>
-            {/* <><Footer /></> */}
         </div>
     )
 }

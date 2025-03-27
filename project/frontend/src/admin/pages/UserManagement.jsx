@@ -6,17 +6,22 @@ import BackButton from '../components/BackButton';
 const UserManagement = () => {
     return (
         <>
-            <div>
+            <div className="flex h-screen">
+                {/* Sidebar */}
                 <Sidebar />
 
-                <div className='m-2 flex justify-start'>
-                    <BackButton /> {/* Add Back Button Here */}
-                </div>
+                {/* Main Content */}
+                <div className="flex-1 p-6 ml-20"> {/* Adjust left margin based on sidebar width */}
+                    <div className="mb-4">
+                        <BackButton /> {/* Back Button at the top */}
+                    </div>
 
-                <div>
-                    <Card />
+                    {/* User Management Card */}
+                    <div className="bg-white shadow-lg rounded-lg p-6">
+                        <h2 className="text-2xl font-semibold mb-4">User Management</h2>
+                        <Card />
+                    </div>
                 </div>
-
             </div>
 
         </>
