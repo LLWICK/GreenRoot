@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Sidebar from "./Common/Sidebar";
 
+
 {
   /* Farmer Pages imports */
 }
@@ -20,7 +21,24 @@ import {
   TaskCard,
   EditTasksModal,
   ExpertsPage,
+  BlogPage,
 } from "./farmer/pages";
+
+import SearchLocation from "./farmer/unregistered/SearchLocation";
+
+//import LandingPage from "./farmer/pages/LandingPage";
+
+/*Import Researcher's pages */
+import HomeResearcher from "./researcher/pages/HomeResearcher";
+import Blog from "./researcher/pages/Blog";
+import MyNews from "./researcher/pages/MyNews";
+import BlogNews from "./researcher/pages/BlogNews";
+import SingleNewsPage from "./researcher/pages/SingleNewsPage";
+import MyQnA from "./researcher/pages/MyQnA";
+import ReplyQnA from "./researcher/pages/ReplyQnA";
+import MyGrowingGuide from "./researcher/pages/MyGrowingGuide";
+import GrowingGuideBlog from "./researcher/pages/GrowingGuideBlog";
+import SingleGrowingGuide from "./researcher/pages/SingleGrowingGuide";
 
 /* Admin pages */
 import {
@@ -40,23 +58,19 @@ import {
   AboutUs,
   HomePage,
   ContactUsPage,
-
 } from "./admin/pages";
-
 
 /* retail seller page imports  */
 
 import SellerHome from "./seller/pages/sellerHP";
 import SellerInventroy from "./seller/pages/sellerInventroy";
 
-
 //import customer routes
 import Home from "./customer/pages/Home";
+
 import DashboardPage from "./customer/pages/DashboardPage";
-
-
-
-
+import Cus_LandingBanner from "./customer/components/Cus_LandingBanner";
+import CheckoutPage from "./customer/pages/CheckoutPage";
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -64,7 +78,7 @@ function App() {
   return (
     <Routes>
       <Route path="/test" element={<Sidebar />} />
-
+ 
       {/* Farmer Router */}
 
       <Route path="/farmer/:uid/dashboard" element={<FarmerHome />} />
@@ -80,6 +94,8 @@ function App() {
       <Route path="/farmer/:uid/experts" element={<ExpertsPage />} />
       <Route path="/farmer/:uid/addTask" element={<TaskCard />} />
       <Route path="/farmer/:uid/editTask/:tid" element={<EditTasksModal />} />
+      <Route path="/farmer/Blogs" element={<BlogPage />} />
+      <Route path="/farmer/:uid/addMap" element={<SearchLocation />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
@@ -127,34 +143,44 @@ function App() {
       <Route path="/admin/user-management/sellers" element={<SellerManagement />} />
       <Route path="/admin/user-management/researchers" element={<ResearchersManagement />} />
 
+      {/* Researcher Routes */}
+      <Route path="/researcher" element={<HomeResearcher/>}/>
+      <Route path="/blog" element={<Blog/>}/>
+      <Route path="/researcher/my-news" element={<MyNews/>}/>
+      <Route path="/blog/news" element={<BlogNews/>}/>
+      <Route path="/blog/news/:id" element={<SingleNewsPage/>}/>
+      <Route path="/researcher/my-qna" element={<MyQnA/>}/>
+      <Route path="/researcher/my-qna/reply/:id" element={<ReplyQnA/>}/>
+      <Route path="/researcher/my-growing-guide" element={<MyGrowingGuide/>}/>
+      <Route path="/blog/growing-guide" element={<GrowingGuideBlog/>}/>
+      <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide/>}/>
+
+
+
+
+
       {/* Home page components */}
 
       <Route path="/aboutus" element={<AboutUs />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/contact" element={<ContactUsPage />} />
 
-
-
       {/* Retail seller Router */}
 
-      <Route path='/seller/home' element={<SellerHome />} />
-      <Route path='/seller/Inventroy' element={<SellerInventroy />} />
-
-
-
+      <Route path="/seller/home" element={<SellerHome />} />
+      <Route path="/seller/Inventroy" element={<SellerInventroy />} />
 
       {/* Customer Routes */}
 
-
-      <Route path='/Customer' element={<Home />} />
-
-      <Route path='/Customer/Dashboard' element={<DashboardPage />} />
-
+      {/* <Route path='/products-Category/:categoryName' element={<CategoryPage />} />
+        <Route path='/Home/Checkout' element={<CheckoutPage />} />
+        <Route path='/user/Dashboard' element={<DashboardPage />} /> */}
 
 
-
-
-
+      <Route path="/Customer" element={<Home />} />
+      <Route path="/CusLanding" element={<Cus_LandingBanner />} />
+      <Route path="/Customer/Dashboard" element={<DashboardPage />} />
+      <Route path="/Home/Checkout" element={<CheckoutPage />} />
 
     </Routes>
   );

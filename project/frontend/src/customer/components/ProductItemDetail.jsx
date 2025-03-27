@@ -41,7 +41,7 @@ const ProductItemDetail = ({ product }) => {
             }
 
             console.log('Product added to cart successfully');
-            // Optionally, close the dialog or provide feedback to the user
+            //  close the dialog or provide feedback to the user
 
              // Add the product details to cart
 

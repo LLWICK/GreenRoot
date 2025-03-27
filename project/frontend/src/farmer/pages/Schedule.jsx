@@ -8,13 +8,12 @@ function Schedule() {
   return (
     <div>
       <Sidebar />
-      <div style={{ float: "left", padding: "5%" }}>
+      <div style={{ float: "left", padding: "2%", marginLeft: "20px" }}>
+        <ScheduleCards />
         <ScheduleList />
       </div>
 
-      <div style={{ float: "right" }}>
-        <ScheduleCards />
-      </div>
+      <div style={{ float: "right" }}></div>
     </div>
   );
 }
