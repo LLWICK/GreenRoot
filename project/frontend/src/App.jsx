@@ -53,6 +53,8 @@ import {
   CreateUser,
   AdminManagament,
   CustomerManagement,
+  SellerManagement,
+  ResearchersManagement,
   AboutUs,
   HomePage,
   ContactUsPage,
@@ -138,7 +140,8 @@ function App() {
         path="/admin/user-management/admins"
         element={<AdminManagament />}
       />
-
+      <Route path="/admin/user-management/sellers" element={<SellerManagement />} />
+      <Route path="/admin/user-management/researchers" element={<ResearchersManagement />} />
 
       {/* Researcher Routes */}
       <Route path="/researcher" element={<HomeResearcher/>}/>
@@ -173,10 +176,12 @@ function App() {
         <Route path='/Home/Checkout' element={<CheckoutPage />} />
         <Route path='/user/Dashboard' element={<DashboardPage />} /> */}
 
+
       <Route path="/Customer" element={<Home />} />
       <Route path="/CusLanding" element={<Cus_LandingBanner />} />
       <Route path="/Customer/Dashboard" element={<DashboardPage />} />
       <Route path="/Home/Checkout" element={<CheckoutPage />} />
+
     </Routes>
   );
 }
