@@ -36,6 +36,8 @@ import ReplyQnA from "./researcher/pages/ReplyQnA";
 import MyGrowingGuide from "./researcher/pages/MyGrowingGuide";
 import GrowingGuideBlog from "./researcher/pages/GrowingGuideBlog";
 import SingleGrowingGuide from "./researcher/pages/SingleGrowingGuide";
+import BlogCrop from "./researcher/pages/BlogCrop";
+import BlogCropDetails from "./researcher/pages/BlogCropDetails"
 
 /* Admin pages */
 import {
@@ -96,6 +98,7 @@ function App() {
       <Route path="/farmer/:uid/editTask/:tid" element={<EditTasksModal />} />
       <Route path="/farmer/Blogs" element={<BlogPage />} />
 
+
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
       <Route path="/auth/register" element={<RegisterPage />} />
@@ -151,6 +154,8 @@ function App() {
       <Route path="/researcher/my-growing-guide" element={<MyGrowingGuide/>}/>
       <Route path="/blog/growing-guide" element={<GrowingGuideBlog/>}/>
       <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide/>}/>
+      <Route path="/blog/crop" element={<BlogCrop/>}/>
+      <Route path="/blog/crop/:id" element={<BlogCropDetails/>}/>
 
 
 
