@@ -9,7 +9,7 @@ const NavBar = () => {
 
     return (
         <>
-            <nav className="bg-green-600 border-b border-green-600 shadow-md rounded-3xl mx-2.5 sticky top-0.5 z-50">
+            <nav className="bg-white border-b shadow-md rounded-3xl mx-2.5 sticky top-0.5 z-50">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="#" className="flex items-center space-x-3">
                         <img
@@ -17,7 +17,7 @@ const NavBar = () => {
                             className="h-8"
                             alt="Logo"
                         />
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
+                        <span className="self-center text-2xl font-semibold whitespace-nowrap text-black">
                             GreenRoot
                         </span>
                     </a>
@@ -113,7 +113,7 @@ const NavBar = () => {
                             <li>
                                 <Link
                                     to={`/`}
-                                    className="block py-2 px-3 text-white bg-green-800 rounded-sm md:bg-transparent md:text-white md:p-0 md:hover:text-green-300"
+                                    className="block py-2 px-3 text-black bg-green-800 rounded-sm md:bg-transparent  md:p-0 md:hover:text-green-600"
                                 >
                                     Home
                                 </Link>
@@ -121,7 +121,7 @@ const NavBar = () => {
                             <li>
                                 <a
                                     href="#aboutHome"
-                                    className="block py-2 px-3 text-white rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0"
+                                    className="block py-2 px-3 text-black rounded-sm hover:bg-green-600 md:hover:bg-transparent md:hover:text-green-600 md:p-0"
                                 >
                                     About
                                 </a>
@@ -129,7 +129,7 @@ const NavBar = () => {
                             <li>
                                 <a
                                     href="#serviceHome"
-                                    className="block py-2 px-3 text-white rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0"
+                                    className="block py-2 px-3 text-black rounded-sm hover:bg-green-600 md:hover:bg-transparent md:hover:text-green-600 md:p-0"
                                 >
                                     Services
                                 </a>
@@ -137,7 +137,7 @@ const NavBar = () => {
                             <li>
                                 <a
                                     href="#blogsHome"
-                                    className="block py-2 px-3 text-white rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0"
+                                    className="block py-2 px-3 text-black rounded-sm hover:bg-green-600 md:hover:bg-transparent md:hover:text-green-600 md:p-0"
                                 >
                                     Blogs
                                 </a>
@@ -145,17 +145,17 @@ const NavBar = () => {
                             <li>
                                 <Link
                                     to={`/contact`}
-                                    className="block py-2 px-3 text-white rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0"
+                                    className="block py-2 px-3 text-black rounded-sm hover:bg-green-600 md:hover:bg-transparent md:hover:text-green-600 md:p-0"
                                 >
                                     Contact
                                 </Link>
                             </li>
                             <li>
 
-                                <Link to={`/auth/login`} className="block py-2 px-3 text-white rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0">Login</Link>
+                                <Link to={`/auth/login`} className="block py-2 px-3 text-black rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0">Login</Link>
                             </li>
                             <li>
-                                <Link to={`/auth/register`} className="block py-2 px-3 text-white rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0">Sign Up</Link>
+                                <Link to={`/auth/register`} className="block py-2 px-3 text-black rounded-sm hover:bg-green-600 md:hover:bg-transparent md:hover:text-green-600 md:p-0">Sign Up</Link>
                             </li>
                         </ul>
                     </div>
