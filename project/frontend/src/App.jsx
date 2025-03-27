@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Sidebar from "./Common/Sidebar";
 
+
 {
   /* Farmer Pages imports */
 }
@@ -22,7 +23,22 @@ import {
   ExpertsPage,
   BlogPage,
 } from "./farmer/pages";
+
 import SearchLocation from "./farmer/unregistered/SearchLocation";
+
+//import LandingPage from "./farmer/pages/LandingPage";
+
+/*Import Researcher's pages */
+import HomeResearcher from "./researcher/pages/HomeResearcher";
+import Blog from "./researcher/pages/Blog";
+import MyNews from "./researcher/pages/MyNews";
+import BlogNews from "./researcher/pages/BlogNews";
+import SingleNewsPage from "./researcher/pages/SingleNewsPage";
+import MyQnA from "./researcher/pages/MyQnA";
+import ReplyQnA from "./researcher/pages/ReplyQnA";
+import MyGrowingGuide from "./researcher/pages/MyGrowingGuide";
+import GrowingGuideBlog from "./researcher/pages/GrowingGuideBlog";
+import SingleGrowingGuide from "./researcher/pages/SingleGrowingGuide";
 
 /* Admin pages */
 import {
@@ -60,7 +76,7 @@ function App() {
   return (
     <Routes>
       <Route path="/test" element={<Sidebar />} />
-
+ 
       {/* Farmer Router */}
 
       <Route path="/farmer/:uid/dashboard" element={<FarmerHome />} />
@@ -122,6 +138,23 @@ function App() {
         path="/admin/user-management/admins"
         element={<AdminManagament />}
       />
+
+
+      {/* Researcher Routes */}
+      <Route path="/researcher" element={<HomeResearcher/>}/>
+      <Route path="/blog" element={<Blog/>}/>
+      <Route path="/researcher/my-news" element={<MyNews/>}/>
+      <Route path="/blog/news" element={<BlogNews/>}/>
+      <Route path="/blog/news/:id" element={<SingleNewsPage/>}/>
+      <Route path="/researcher/my-qna" element={<MyQnA/>}/>
+      <Route path="/researcher/my-qna/reply/:id" element={<ReplyQnA/>}/>
+      <Route path="/researcher/my-growing-guide" element={<MyGrowingGuide/>}/>
+      <Route path="/blog/growing-guide" element={<GrowingGuideBlog/>}/>
+      <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide/>}/>
+
+
+
+
 
       {/* Home page components */}
 
