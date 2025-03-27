@@ -1,11 +1,29 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
-
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const NavBar = () => {
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [navOpen, setNavOpen] = useState(false);
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const navigate = useNavigate();
+
+    // chekc the authToken is present
+    useEffect(() => {
+        const token = Cookies.get("authToken");
+        setIsAuthenticated(!!token);
+    }, []);
+
+    // logout function
+    const handleLogout = () => {
+        // remove token from cookies
+        Cookies.remove("authToken");
+        setIsAuthenticated(false);
+        navigate("/");
+    };
+
 
     return (
         <>
@@ -73,7 +91,7 @@ const NavBar = () => {
                                             href="#"
                                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-green-100"
                                         >
-                                            Sign out
+                                            <button onClick={handleLogout}> Sign out</button>
                                         </a>
                                     </li>
                                 </ul>
@@ -150,13 +168,26 @@ const NavBar = () => {
                                     Contact
                                 </Link>
                             </li>
-                            <li>
+                            {isAuthenticated ? (
+                                <li>
 
-                                <Link to={`/auth/login`} className="block py-2 px-3 text-black rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0">Login</Link>
-                            </li>
-                            <li>
-                                <Link to={`/auth/register`} className="block py-2 px-3 text-black rounded-sm hover:bg-green-600 md:hover:bg-transparent md:hover:text-green-600 md:p-0">Sign Up</Link>
-                            </li>
+                                    <button
+                                        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
+                                        onClick={handleLogout}>Logout
+                                    </button>
+                                </li>
+                            ) : (
+                                <>
+                                    <li>
+
+                                        <Link to={`/auth/login`} className="block py-2 px-3 text-black rounded-sm hover:bg-green-500 md:hover:bg-transparent md:hover:text-green-300 md:p-0">Login</Link>
+                                    </li>
+                                    <li>
+                                        <Link to={`/auth/register`} className="block py-2 px-3 text-black rounded-sm hover:bg-green-600 md:hover:bg-transparent md:hover:text-green-600 md:p-0">Sign Up</Link>
+                                    </li>
+                                </>
+                            )}
+
                         </ul>
                     </div>
                 </div>

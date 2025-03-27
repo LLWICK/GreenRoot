@@ -44,7 +44,7 @@ import SingleGrowingGuide from "./researcher/pages/SingleGrowingGuide";
 import {
   LoginPage,
   RegisterPage,
-  AdminDashbord,
+  AdminDashboard,
   FarmerManagement,
   UserManagement,
   ViewUser,
@@ -102,7 +102,7 @@ function App() {
       <Route path="/auth/register" element={<RegisterPage />} />
 
       {/* Admin Routers */}
-      <Route path="/admin/:id/dashboard" element={<AdminDashbord />} />
+      <Route path="/admin/:id/dashboard" element={<AdminDashboard />} />
       <Route path="/admin/user-management" element={<UserManagement />} />
       <Route path="/admin/user-management/farmer" element={<FarmerManagement />} />
       <Route path="/admin/user-management/customers" element={<CustomerManagement />} />
