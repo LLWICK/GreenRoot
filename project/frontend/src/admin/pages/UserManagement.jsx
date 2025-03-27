@@ -7,16 +7,16 @@ const UserManagement = () => {
     return (
         <>
             <div className="flex h-screen">
-                {/* Sidebar */}
+                {/* sidebar */}
                 <Sidebar />
 
-                {/* Main Content */}
-                <div className="flex-1 p-6 ml-20"> {/* Adjust left margin based on sidebar width */}
+
+                <div className="flex-1 p-6 ml-20">
                     <div className="mb-4">
-                        <BackButton /> {/* Back Button at the top */}
+                        <BackButton />
                     </div>
 
-                    {/* User Management Card */}
+                    {/* content */}
                     <div className="bg-white shadow-lg rounded-lg p-6">
                         <h2 className="text-2xl font-semibold mb-4">User Management</h2>
                         <Card />
