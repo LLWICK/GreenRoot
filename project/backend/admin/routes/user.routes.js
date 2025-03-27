@@ -9,6 +9,11 @@ const {
 } = require("../controller/user.controller");
 const router = express.Router();
 
+
+
+router.get('/allusers', getUserCounts);
+
+
 // get all admins
 router.get("/admins", (req, res) => getUsersByRole(req, res, "admin"));
 // get all farmers
@@ -34,7 +39,6 @@ router.put("/update/:id", updateUser);
 // delete user
 router.delete("/delete/:id", deleteUser);
 
-// get user count
-router.get("/allusers", getUserCounts);
+
 
 module.exports = router;

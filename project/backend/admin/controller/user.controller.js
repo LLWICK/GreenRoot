@@ -133,13 +133,17 @@ const deleteUser = async (req, res) => {
 
 // get user count
 const getUserCounts = async (req, res) => {
-  try {
-    const users = await User.find({});
-    res.status(200).json({ data: users });
-    console.log("Request received");
-  } catch (error) {
-    res.status(500).json({ message: `something went wrong`, error });
-  }
+
+    try {
+        console.log("Request received");
+        const users = await User.find();
+        res.status(200).json({ data: users });
+
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+        console.log(err.message)
+    }
+
 };
 
 module.exports = {
