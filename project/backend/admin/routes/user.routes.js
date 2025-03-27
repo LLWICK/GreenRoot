@@ -9,6 +9,8 @@ const {
 } = require("../controller/user.controller");
 const router = express.Router();
 
+// get user count
+router.get('/allusers', getUserCounts);
 
 // get all admins
 router.get("/admins", (req, res) => getUsersByRole(req, res, "admin"));
@@ -32,7 +34,6 @@ router.put("/update/:id", updateUser);
 router.delete("/delete/:id", deleteUser);
 
 
-// get user count
-router.get('/allusers', getUserCounts);
+
 
 module.exports = router;
