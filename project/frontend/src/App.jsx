@@ -23,6 +23,9 @@ import {
   ExpertsPage,
   BlogPage,
 } from "./farmer/pages";
+
+import SearchLocation from "./farmer/unregistered/SearchLocation";
+
 //import LandingPage from "./farmer/pages/LandingPage";
 
 /*Import Researcher's pages */
@@ -67,11 +70,6 @@ import DashboardPage from "./customer/pages/DashboardPage";
 import Cus_LandingBanner from "./customer/components/Cus_LandingBanner";
 import CheckoutPage from "./customer/pages/CheckoutPage";
 
-
-
-
-
-
 // import UserManagement from "./admin/pages/UserManagement";
 
 function App() {
@@ -95,6 +93,7 @@ function App() {
       <Route path="/farmer/:uid/addTask" element={<TaskCard />} />
       <Route path="/farmer/:uid/editTask/:tid" element={<EditTasksModal />} />
       <Route path="/farmer/Blogs" element={<BlogPage />} />
+      <Route path="/farmer/:uid/addMap" element={<SearchLocation />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
@@ -140,6 +139,7 @@ function App() {
         element={<AdminManagament />}
       />
 
+
       {/* Researcher Routes */}
       <Route path="/researcher" element={<HomeResearcher/>}/>
       <Route path="/blog" element={<Blog/>}/>
@@ -155,8 +155,8 @@ function App() {
 
 
 
-      {/* Home page components */}
 
+      {/* Home page components */}
 
       <Route path="/aboutus" element={<AboutUs />} />
       <Route path="/" element={<HomePage />} />
@@ -164,13 +164,8 @@ function App() {
 
       {/* Retail seller Router */}
 
-
-      <Route path='/seller/home' element={<SellerHome />} />
-      <Route path='/seller/Inventroy' element={<SellerInventroy />} />
-
-
-
-
+      <Route path="/seller/home" element={<SellerHome />} />
+      <Route path="/seller/Inventroy" element={<SellerInventroy />} />
 
       {/* Customer Routes */}
 
@@ -178,19 +173,10 @@ function App() {
         <Route path='/Home/Checkout' element={<CheckoutPage />} />
         <Route path='/user/Dashboard' element={<DashboardPage />} /> */}
 
-
-        <Route path='/Customer' element={<Home />} />
-        <Route path="/CusLanding" element={<Cus_LandingBanner/>}/>
-        <Route path='/Customer/Dashboard' element={<DashboardPage />} />
-        <Route path='/Home/Checkout' element={<CheckoutPage />} />
-
-
-
-
-
-
-
-
+      <Route path="/Customer" element={<Home />} />
+      <Route path="/CusLanding" element={<Cus_LandingBanner />} />
+      <Route path="/Customer/Dashboard" element={<DashboardPage />} />
+      <Route path="/Home/Checkout" element={<CheckoutPage />} />
     </Routes>
   );
 }
