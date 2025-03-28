@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Card = () => {
     return (
         <>
-            <section className="bg-gray-2 pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px]">
+            <section className="bg-gray-2 pb-10 pt-20 lg:pb-20 lg:pt-[120px]">
                 <div className="container">
                     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 p-2.5">
                         <SingleCard
@@ -28,6 +28,22 @@ const Card = () => {
                             CardTitle="Manage Customers"
                             titleHref="/admin/user-management/customers"
                             btnHref="/admin/user-management/customers"
+                            CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
+                            Button="View Details"
+                        />
+                        <SingleCard
+                            image="https://static.vecteezy.com/system/resources/thumbnails/011/728/524/small/woman-seller-of-fruit-at-the-market-near-the-counter-photo.jpg"
+                            CardTitle="Manage Sellers"
+                            titleHref="/admin/user-management/sellers"
+                            btnHref="/admin/user-management/sellers"
+                            CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
+                            Button="View Details"
+                        />
+                        <SingleCard
+                            image="https://st.depositphotos.com/1194063/1568/i/450/depositphotos_15682751-stock-photo-working-at-the-laboratory.jpg"
+                            CardTitle="Manage Researchers"
+                            titleHref="/admin/user-management/researchers"
+                            btnHref="/admin/user-management/researchers"
                             CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
                             Button="View Details"
                         />
@@ -72,12 +88,7 @@ const SingleCard = ({
                     </p>
 
                     {Button && (
-                        // <a
-                        //     href={btnHref ? btnHref : "#"}
-                        //     className="inline-block rounded-full border border-gray-3 px-7 py-2 text-base font-medium text-body-color transition hover:border-blue-700 hover:bg-blue-600 hover:text-white dark:border-dark-3 dark:text-dark-6"
-                        // >
-                        //     {Button}
-                        // </a>
+
                         <button
                             className="inline-block rounded-full border border-gray-3 px-7 py-2 text-base font-medium text-body-color transition hover:border-blue-700 hover:bg-blue-600 hover:text-white dark:border-dark-3 dark:text-dark-6"
                         >

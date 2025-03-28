@@ -1,11 +1,26 @@
 const mongoose = require('mongoose');
 
-const bulkOrderSchema = new mongoose.Schema({
+const bulkOrderItemSchema = new mongoose.Schema({
   cropId: {  
     type: mongoose.Schema.Types.ObjectId,  
     ref: 'CropModel',  
     required: true,  
   },
+  name: {  
+    type: String,  
+    required: true,  
+  },
+  price: {  
+    type: Number,  
+    required: true,  
+  },
+  subtotal: {  
+    type: Number,  
+    required: true,  
+  },
+});
+
+const bulkOrderSchema = new mongoose.Schema({
   sellerId: {  
     type: mongoose.Schema.Types.ObjectId,  
     ref: 'User',  
@@ -16,14 +31,11 @@ const bulkOrderSchema = new mongoose.Schema({
     ref: 'User',  
     required: true,  
   },
-  quantity: {  
-    type: Number,  
-    required: true,  
-    min: 1,  
-  },
+  items: [bulkOrderItemSchema], // Array of items in the bulk order
   totalPrice: {  
     type: Number,  
     required: true,  
+    default: 0,  
   },
   status: {  
     type: String,  
@@ -34,6 +46,16 @@ const bulkOrderSchema = new mongoose.Schema({
     type: Date,  
     default: Date.now,  
   },
+  // New fields for payment info
+  paymentAmount: {  
+    type: Number,  
+    required: true,  
+  },
+  paymentStatus: {  
+    type: String,  
+    enum: ['Pending', 'Completed', 'Failed', 'Refunded'],  
+    default: 'Pending',  
+  }
 });
 
 const BulkOrder = mongoose.model('BulkOrder', bulkOrderSchema);

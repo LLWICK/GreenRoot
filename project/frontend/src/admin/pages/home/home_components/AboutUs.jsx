@@ -3,7 +3,7 @@ import React from 'react'
 const AboutUs = () => {
     return (
         <>
-            <section className="bg-gray-100 py-12">
+            <section id='aboutHome' className="bg-gray-100 py-12">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                         <div>
@@ -21,7 +21,7 @@ const AboutUs = () => {
                             </a>
                         </div>
                         <div>
-                            <img src="images/about-img.png" alt="About Us" className="rounded shadow-lg" />
+                            <img src="https://kj1bcdn.b-cdn.net/media/79663/s.jpg?width=1200" alt="About Us" className="rounded shadow-lg" />
                         </div>
                     </div>
                 </div>

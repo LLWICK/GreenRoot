@@ -50,12 +50,20 @@ const Header = () => {
 
   useEffect(()=>{
      const fetchProducts = async()=>{
-      const response = await fetch('http://localhost:4000/api/products')//change
-      const json = await response.json()
 
-      if(response.ok){
-        setProducts(json)
+      try {
+      const response = await fetch('http://localhost:3000/api/RetailSeller/products/products')//change
+      // const json = await response.json()
+
+      if(!response.ok){
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+      const json = await response.json()
+      setProducts(json.products);
+            console.log(json.products); 
+          } catch (error) {
+            console.error("Error fetching products:", error);
+        }
   }
 
   fetchProducts()
@@ -119,7 +127,7 @@ const Header = () => {
     <div className='flex gap-5 items-center'>
         
 
-        {/* <Sheet>
+         <Sheet>
   <SheetTrigger>
   <h2 className='flex gap-2 items-center text-lg'>
           <ShoppingBasket className='h-7 w-7 cursor-pointer'/>
@@ -130,12 +138,12 @@ const Header = () => {
     <SheetHeader>
       <SheetTitle className="bg-green-500 text-white font-bold text-lg p-2">My Cart</SheetTitle>
       <SheetDescription>
-        <CartItemList /> 
+        {/* <CartItemList />  */}
       </SheetDescription>
     </SheetHeader>
      
   </SheetContent>
-</Sheet> */}
+</Sheet> 
 
 
 

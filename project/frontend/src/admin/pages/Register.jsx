@@ -9,6 +9,8 @@ import customerImg from "../extras/register_img/undraw_customer.svg";
 import researcherImg from "../extras/register_img/undraw_research.svg";
 import farmerImg from "../extras/register_img/undraw_farmer.svg";
 import delivaryPersonImg from "../extras/register_img/undraw_delivery.svg";
+import NavBar from './home/home_components/NavBar';
+import Footer from './home/home_components/Footer';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -41,19 +43,19 @@ const Register = () => {
         // change the form backgdound image
         switch (role) {
             case "farmer":
-                setFormImage(`${farmerImg}`);
+                setFormImage(`https://b3075642.smushcdn.com/3075642/wp-content/uploads/Canva-Farmer-in-sugar-beet-field-1-scaled.jpg?lossy=1&strip=1&webp=1`);
                 break;
             case "seller":
-                setFormImage(`${sellerImg}`);
+                setFormImage(`https://t4.ftcdn.net/jpg/10/60/16/15/360_F_1060161597_v6l6h7STA8bg4ByQZakuN7ymQNpPAk4Z.jpg`);
                 break;
             case "customer":
-                setFormImage(`${customerImg}`);
+                setFormImage(`https://media.gettyimages.com/id/2153978519/video/girl-customer-and-shopping-for-vegetables-at-market-with-peppers-tomato-and-organic-grocery.jpg?s=640x640&k=20&c=yjO3qm-bzAZgkSHAScPaZcb98J00kPgy7Wey2sQK84g=`);
                 break;
             case "researcher":
-                setFormImage(`${researcherImg}`);
+                setFormImage(`https://www.asianscientist.com/wp-content/uploads/bfi_thumb/In-the-lab-WEF-scientists-pexels-20200527-3azizvm6d5i6kyzhmhmigw.jpeg`);
                 break;
             default:
-                setFormImage(`${delivaryPersonImg}`);
+                setFormImage(`https://img.freepik.com/free-photo/delivery-concept-handsome-african-american-delivery-man-carrying-package-box-grocery-food-drink-from-store-isolated-grey-studio-background-copy-space_1258-1232.jpg`);
         }
 
     };
@@ -83,6 +85,9 @@ const Register = () => {
 
     return (
         <>
+            <>
+                <NavBar />
+            </>
             <section className="bg-white">
                 <div className="flex justify-center min-h-screen">
                     {/* Form Image */}
@@ -226,6 +231,9 @@ const Register = () => {
                     </div>
                 </div>
             </section>
+            <>
+                <Footer />
+            </>
         </>
     )
 }

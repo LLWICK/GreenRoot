@@ -56,7 +56,7 @@ const SideBar = () => {
                 Bulk Orders
             </Link>
             <Link
-                to="#"
+                to="/seller/normalOrders"
                 className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white rounded-md transition duration-150 ease-in-out"
             >
                 normal orders

@@ -23,27 +23,28 @@ const AdminManagement = () => {
             });
     }, []);
 
-    const totalUsers = user.length;
+
 
     return (
         <>
 
-            <div className=' p-4 min-h-dvh' style={{ backgroundImage: `url('https://th.bing.com/th/id/OIP.kka96T6DXXAAIGxx0RoonAHaEK?rs=1&pid=ImgDetMain')` }}>
+            <div className="p-6 bg-gray-100 min-h-screen">
 
-                <div className='m-2 flex justify-start'>
-                    <BackButton /> {/* Add Back Button Here */}
+                <div className="mb-4">
+                    <BackButton />
                 </div>
 
-                <div className='m-2 flex justify-center items-center'>
-                    <div className='inline-block pt-3 pb-3 pl-8 pr-8 bg-amber-500 hover:bg-emerald-600  ease-in-out transition-all duration-300'>
-                        <div className='inline-block border-2 border-amber-50 pt-2 pb-2 pr-8 pl-8 hover:bg-amber-600  ease-in-out transition-all duration-300'>
-                            <h1 className='text-white text-2xl'>Total {user.role}: {totalUsers}</h1>
-                        </div>
-                    </div>
+                <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-2xl font-semibold text-gray-800">Admin Management</h2>
+                    <Link
+                        to={`/admin/user-management/user/create`}
+                        className="px-5 py-2.5 bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white font-medium rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
+                    >
+                        + Create New Account
+                    </Link>
                 </div>
 
-                <button className=' text-white'><Link to={`/admin/user-management/user/create`} className='p-2.5 block bg-green-600 hover:bg-green-700'>Create New Account</Link></button>
-                <div className='p-2.5'>
+                <div className="rounded-lg shadow-md">
                     <Table user={user} />
                 </div>
             </div>

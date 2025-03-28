@@ -1,15 +1,18 @@
 import React from 'react'
-// import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import { Link } from 'react-router-dom';
+import NavBar from './home/home_components/NavBar';
+// import Footer from './home/home_components/Footer';
 // import AdminSideBar from '../components/AdminSideBar';
-
 
 function AdminDash() {
     // const navigate = useNavigate();
 
     return (
         <>
+            <>
+                <NavBar />
+            </>
             {/* <AdminSideBar /> */}
             <Sidebar />
             <>
@@ -26,7 +29,7 @@ function AdminDash() {
                     </button>
                 </div>
             </>
-
+            {/* <><Footer /></> */}
         </>
     )
 }

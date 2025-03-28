@@ -1,10 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
-
 import loginImg from "../extras/loginImage.svg";
+import NavBar from "./home/home_components/NavBar";
+import Footer from "./home/home_components/Footer";
+
+// logo
+import Logo from "/Greenroots-logo-color.png";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -44,13 +48,13 @@ const Login = () => {
                             navigate("/farmer/:uid/dashboard");
                             break;
                         case "seller":
-                            navigate("/seller");
+                            navigate("/");
                             break;
                         case "researcher":
-                            navigate("/researcher");
+                            navigate("/");
                             break;
                         default:
-                            navigate("/home");
+                            navigate("/");
                     }
                 }
             }
@@ -62,14 +66,16 @@ const Login = () => {
 
     return (
         <>
+            <NavBar />
+
             <>
                 <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
                     <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
                         <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
                             <div>
                                 <img
-                                    src="https://drive.google.com/uc?export=view&id=1MFiKAExRFF0-2YNpAZzIu1Sh52J8r16v"
-                                    className="mx-auto"
+                                    src={Logo}
+                                    className="w-45 h-52"
                                     alt="Sign In Illustration"
                                 />
                             </div>
@@ -112,7 +118,7 @@ const Login = () => {
                                         </div>
                                     </div>
 
-                                    {/* Form starts here */}
+                                    {/* Form */}
                                     <form onSubmit={handleSubmit} className="mx-auto max-w-xs">
                                         <input
                                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
@@ -135,10 +141,13 @@ const Login = () => {
                                             <span>Sign In</span>
                                         </button>
                                     </form>
-                                    {/* Form ends here */}
+
+                                    <p className="text-center mt-1.5">
+                                        Still Don't have an account? <span className="text-blue-600 underline hover:text-blue-700"><Link to={`/auth/login`}>Sing Up</Link></span>
+                                    </p>
 
                                     <p className="mt-6 text-xs text-gray-600 text-center">
-                                        I agree to abide by Cartesian Kinetics{" "}
+                                        I agree to abide by GreenRoots{" "}
                                         <a href="#" className="border-b border-gray-500 border-dotted">
                                             Terms of Service
                                         </a>{" "}
@@ -162,7 +171,7 @@ const Login = () => {
                     </div>
                 </div>
             </>
-
+            <Footer />
         </>
 
     );
