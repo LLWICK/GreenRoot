@@ -28,6 +28,7 @@ function FarmerHome() {
 
   return (
     <div>
+      <Header />
       <Sidebar uid={userID} />
 
       <div style={{ float: "left", padding: "2%" }}>

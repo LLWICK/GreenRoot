@@ -1,13 +1,13 @@
 import React from "react";
-import logo from "../extras/Greenroots-logo-color.png";
+import logo from "../extras/new/Greenroots-logo-color.png";
 
 function Header() {
   return (
     <div>
-      <header class="mb-2 px-4 shadow">
+      <header class="mb-2 px-4 shadow sticky top-0">
         <div class="relative mx-auto flex max-w-screen-lg flex-col py-4 sm:flex-row sm:items-center sm:justify-between">
           <a class="flex items-center text-2xl font-black" href="/">
-            <img src={logo} alt="Logo" className="h-30 w-auto " />
+            <img src={logo} alt="Logo" className="h-20 w-auto " />
           </a>
           <input class="peer hidden" type="checkbox" id="navbar-open" />
           <label
