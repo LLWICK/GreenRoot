@@ -45,7 +45,9 @@ const fieldManage = require("./farmer/routes/fieldRoute");
 
 const paymentManage = require("./common/routes/paymentRoute.js");
 
-const orderManage = require("./customer/routes/orderRoute");
+//Customer route import
+const orderManage = require("./customer/routes/orderRoute.js");
+const addtocartManage = require("./customer/routes/AddtoCartRoute.js")
 
 //Researcher routes import
 const postRoutes = require('./researcher/routes/postRoutes.js')
@@ -86,7 +88,8 @@ app.use("/api/v1/payment", paymentManage);
 app.use("/api/v1/farmer/schedule", farmerScheduleManage);
 
 //customer Routes
-app.use("/api/v1/orders", orderManage);
+app.use("/api/customer/orders", orderManage);
+app.use("/api/customer/addtocart",addtocartManage);
 
 //Researcher Routes
 app.use('/api/researcher/posts', postRoutes)

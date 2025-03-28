@@ -2,35 +2,48 @@ import React from 'react'
 import Sidebar from '../components/Sidebar';
 import { Link } from 'react-router-dom';
 import NavBar from './home/home_components/NavBar';
+import UserRoleChart from '../components/UserRoleChart';
 // import Footer from './home/home_components/Footer';
-// import AdminSideBar from '../components/AdminSideBar';
+
 
 function AdminDash() {
-    // const navigate = useNavigate();
+
 
     return (
-        <>
-            <>
-                <NavBar />
-            </>
-            {/* <AdminSideBar /> */}
+        <div className="flex h-screen bg-gray-100">
+            {/* Sidebar */}
             <Sidebar />
-            <>
-                <div className='p-4'>
-                    <h1 className='text-3xl my-4'>Admin Dashboard</h1>
-                    <button
-                        className='bg-blue-600 text-white px-4 py-2 rounded-md'
 
-                    >
-                        <Link to={`/admin/user-management`} >
-                            User Management
+            {/* Main Content + To-Do List */}
+            <div className="flex flex-grow ml-64">
+                <div className="flex-grow p-8">
+                    <NavBar />
+                    <h1 className="text-3xl font-semibold text-gray-700">Admin Dashboard</h1>
+
+                    {/* User Role Chart */}
+                    <div className="bg-white shadow-md rounded-lg p-6 mt-6">
+                        <h2 className="text-lg font-semibold text-gray-700 mb-3">User Role Distribution</h2>
+                        <UserRoleChart />
+                    </div>
+
+                    {/* User Management Button */}
+                    <div className="mt-6">
+                        <Link
+                            to={`/admin/user-management`}
+                            className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-lg"
+                        >
+                            Manage Users
                         </Link>
-
-                    </button>
+                    </div>
                 </div>
-            </>
-            {/* <><Footer /></> */}
-        </>
+
+                {/* To-Do List Section */}
+                <div className="w-72 bg-white shadow-md p-6 border-l border-gray-300">
+                    <h2 className="text-xl font-semibold mb-3">To-Do List</h2>
+
+                </div>
+            </div>
+        </div>
     )
 }
 
