@@ -4,59 +4,52 @@ import { Link } from 'react-router-dom';
 const Table = ({ user }) => {
     return (
         <>
-            <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+            <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-md">
+                <table className="min-w-full divide-y divide-gray-300">
+                    <thead className="bg-gray-100 text-gray-700">
                         <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Name
-                            </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Phone
-                            </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Status
-                            </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Role
-                            </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Email
-                            </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Actions
-                            </th>
+                            <th className="px-6 py-3 text-left text-sm font-semibold uppercase">Name</th>
+                            <th className="px-6 py-3 text-left text-sm font-semibold uppercase">Phone</th>
+                            <th className="px-6 py-3 text-left text-sm font-semibold uppercase">Status</th>
+                            <th className="px-6 py-3 text-left text-sm font-semibold uppercase">Role</th>
+                            <th className="px-6 py-3 text-left text-sm font-semibold uppercase">Email</th>
+                            <th className="px-6 py-3 text-left text-sm font-semibold uppercase">Actions</th>
                         </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
+                    <tbody className="divide-y divide-gray-300">
                         {user.map((user, index) => (
-                            <tr key={user._id} style={{ backgroundColor: (index + 1) % 2 === 0 ? '#ffffff' : '#f9f0f0' }}>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="flex items-center">
-                                        <div className="flex-shrink-0 h-10 w-10">
-                                            <img className="h-10 w-10 rounded-full" src={`/${user.image}`} alt={user.firstName} />
-                                        </div>
-                                        <div className="ml-4">
-                                            <div className="text-sm font-medium text-gray-900">{user.firstName}</div>
-                                            <div className="text-sm text-gray-500">{user.email}</div>
-                                        </div>
+                            <tr key={user._id} className="even:bg-gray-100 odd:bg-white hover:bg-gray-200 transition">
+                                <td className="px-6 py-4 whitespace-nowrap flex items-center space-x-3">
+                                    <img className="h-10 w-10 rounded-full border" src={`/${user.image}`} alt={user.firstName} />
+                                    <div>
+                                        <p className="text-sm font-medium text-gray-900">{user.firstName}</p>
+                                        <p className="text-sm text-gray-500">{user.email}</p>
                                     </div>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm text-gray-900">{user.phone}</div>
-                                    <div className="text-sm text-gray-500">Optimization</div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                <td className="px-6 py-4 text-sm text-gray-900">{user.phone}</td>
+                                <td className="px-6 py-4">
+                                    <span className={`px-3 py-1 text-xs font-semibold rounded-full 
+                ${user.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
                                         {user.status}
                                     </span>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.role}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.email}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <Link to={`/admin/user-management/user/edit/${user._id}`} className='ml-2 inline-block bg-indigo-500 hover:bg-indigo-700 text-white p-1.5 pl-3 pr-3 rounded-xl'>Edit</Link>
-                                    <Link to={`/admin/user-management/user/delete/${user._id}`} className='ml-2 inline-block bg-red-500 hover:bg-red-700 text-white p-1.5 pl-3 pr-3 rounded-xl'>Delete</Link>
-                                    <Link to={`/admin/user-management/user/view/${user._id}`} className="text-white bg-yellow-500 hover:bg-yellow-700 ml-1.5 inline-block p-1.5 pl-3 pr-3 rounded-xl">View</Link>
+                                <td className="px-6 py-4 text-sm text-gray-500">{user.role}</td>
+                                <td className="px-6 py-4 text-sm text-gray-500">{user.email}</td>
+                                <td className="px-6 py-4 text-sm font-medium">
+                                    <div className="flex gap-2">
+                                        <Link to={`/admin/user-management/user/view/${user._id}`}
+                                            className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full shadow-md hover:shadow-lg transition">
+                                            👁 View
+                                        </Link>
+                                        <Link to={`/admin/user-management/user/edit/${user._id}`}
+                                            className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full shadow-md hover:shadow-lg transition">
+                                            ✏️ Edit
+                                        </Link>
+                                        <Link to={`/admin/user-management/user/delete/${user._id}`}
+                                            className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-md hover:shadow-lg transition">
+                                            🗑 Delete
+                                        </Link>
+                                    </div>
                                 </td>
                             </tr>
                         ))}

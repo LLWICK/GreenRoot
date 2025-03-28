@@ -25,7 +25,7 @@ const HomePage = () => {
 
     return (
         <>
-            <div className='z-50 top-1.5 sticky w-full'>
+            <div className='z-50 top-0.5 sticky w-full'>
                 <NavBar />
             </div>
 
