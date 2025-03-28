@@ -5,12 +5,14 @@ import JobsHome from "../components/JobsHome";
 import FieldMap from "../components/FieldMap";
 import SummaryCards from "../components/SummaryCards";
 import ExpensesGraph from "../components/ExpensesGraph";
+import "../extras/styles.css";
 
 import { useNavigate } from "react-router-dom";
 import { getUserIdFromToken } from "../utills/authUtils";
 import WeatherCards from "../components/WeatherCards";
 import Header from "../components/Header";
 import Sidebar2 from "../tests/Sidebar2";
+import NavBar2 from "../tests/NavBar2";
 
 function FarmerHome() {
   const navigate = useNavigate();
@@ -28,7 +30,8 @@ function FarmerHome() {
 
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
+      <NavBar2 />
       <Sidebar uid={userID} />
 
       <div style={{ float: "left", padding: "2%" }}>
