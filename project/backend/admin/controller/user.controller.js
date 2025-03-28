@@ -135,13 +135,15 @@ const deleteUser = async (req, res) => {
 const getUserCounts = async (req, res) => {
 
     try {
-        console.log("Request received");
-        const users = await User.find();
-        res.status(200).json({ data: users });
+        const userCounts = await User.aggregate([
+            { $group: { _id: "$role", count: { $sum: 1 } } }
+        ]);
+
+        res.status(200).json(userCounts);
 
     } catch (err) {
         res.status(500).json({ msg: err.message });
-        console.log(err.message)
+
     }
 
 };
