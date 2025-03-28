@@ -67,10 +67,13 @@ import SellerInventroy from "./seller/pages/sellerInventroy";
 
 //import customer routes
 import Home from "./customer/pages/Home";
+import SellerBulkOrders from "./seller/pages/sellerBulkOrders";
 
 import DashboardPage from "./customer/pages/DashboardPage";
 import Cus_LandingBanner from "./customer/components/Cus_LandingBanner";
 import CheckoutPage from "./customer/pages/CheckoutPage";
+import SellerNormalOrders from "./seller/pages/sellerNormalOrders";
+import FinalizeOrder from "./seller/pages/sellerfinalizeOrder";
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -138,6 +141,9 @@ function App() {
 
       <Route path="/seller/home" element={<SellerHome />} />
       <Route path="/seller/Inventroy" element={<SellerInventroy />} />
+      <Route path="/seller/bulkOrders" element={<SellerBulkOrders />} />
+      <Route path="/seller/normalOrders" element={<SellerNormalOrders />} />
+      <Route path="/seller/placeOrder" element={<FinalizeOrder/>} />
 
       {/* Customer Routes */}
 
