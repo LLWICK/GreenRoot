@@ -7,6 +7,9 @@ import loginImg from "../extras/loginImage.svg";
 import NavBar from "./home/home_components/NavBar";
 import Footer from "./home/home_components/Footer";
 
+// logo
+import Logo from "/Greenroots-logo-color.png";
+
 const Login = () => {
     const navigate = useNavigate();
     const [error, setError] = useState("");
@@ -42,7 +45,7 @@ const Login = () => {
                             navigate(`/admin/${payload.userId}/dashboard`);
                             break;
                         case "farmer":
-                            navigate("/farmer/:uid/dashboard");
+                            navigate(`/farmer/${payload.userId}/dashboard`);
                             break;
                         case "seller":
                             navigate("/");
@@ -71,8 +74,8 @@ const Login = () => {
                         <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
                             <div>
                                 <img
-                                    src="https://drive.google.com/uc?export=view&id=1MFiKAExRFF0-2YNpAZzIu1Sh52J8r16v"
-                                    className="mx-auto"
+                                    src={Logo}
+                                    className="w-45 h-52"
                                     alt="Sign In Illustration"
                                 />
                             </div>
