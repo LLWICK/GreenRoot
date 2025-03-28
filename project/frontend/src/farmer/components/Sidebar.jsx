@@ -52,10 +52,10 @@ function Sidebar() {
               >
                 <div class="space-y-6 md:space-y-10 mt-10">
                   <h1 class="font-bold text-4xl text-center md:hidden">
-                    D<span class="text-teal-600">.</span>
+                    <span class="text-teal-600"></span>
                   </h1>
                   <h1 class="hidden md:block font-bold text-sm md:text-xl text-center">
-                    <span class="text-teal-600">.</span>
+                    <span class="text-teal-600"></span>
                   </h1>
                   <div id="profile" class="space-y-3">
                     <img
