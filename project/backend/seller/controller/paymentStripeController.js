@@ -1,44 +1,47 @@
-// checkoutController.js
-const stripe = require('stripe')('sk_test_51R5p89RvsikKtmlomY1q53IlqgUCIZkj7D0hK92D8eBwm8ohWxY5X5SKKE0C7ZG4FrvoPhP2eRS6wPqSsrNImP7v00VQk26fyY');  // Make sure to load your Stripe secret key from an environment variable
+const stripe = require('stripe')('sk_test_51R5p89RvsikKtmlomY1q53IlqgUCIZkj7D0hK92D8eBwm8ohWxY5X5SKKE0C7ZG4FrvoPhP2eRS6wPqSsrNImP7v00VQk26fyY');
 
-// Example endpoint for handling checkout
-exports.createCheckoutSession = async (req, res) => {
+async function createCheckoutSession(req, res) {
   try {
-    const { cartItems, totalAmount } = req.body;
+    const { cartItems, totalAmount, cartId, userId } = req.body;
+
     console.log('Cart Items:', cartItems);
     console.log('Total Amount:', totalAmount);
 
-    // Validate the incoming data
     if (!cartItems || cartItems.length === 0 || !totalAmount) {
       return res.status(400).json({ error: 'Invalid cart data or total amount' });
     }
 
-    // Create an array of items for Stripe checkout session
+    console.log('Metadata:', { cartId, userId });
+
     const line_items = cartItems.map(item => ({
       price_data: {
-        currency: 'usd', // or your desired currency
+        currency: 'usd',
         product_data: {
           name: item.name,
-          images: [item.cropId.image], // Image URL from the item data
+          images: item.image ? [item.image] : [], // Ensure images exist
         },
-        unit_amount: item.price * 100, // Stripe expects the amount in cents
+        unit_amount: Math.round(item.price * 100), // Ensure whole number
       },
       quantity: item.quantity || 1,
     }));
 
-    // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items,
-      mode: 'payment', // Can be 'payment' or 'subscription'
-      success_url: "http://localhost:5173/seller/home",
-      cancel_url: "http://localhost:5173/seller/Inventroy",
+      mode: 'payment',
+      success_url: `http://localhost:5173/seller/placeOrder?session_id={CHECKOUT_SESSION_ID}`, // ✅ Corrected success_url
+      cancel_url: "http://localhost:5173/seller/Inventory",
+      metadata: { 
+        cartId, 
+        userId 
+      },
     });
 
-    // Send the session ID back to the client to complete the checkout
     res.json({ sessionId: session.id });
   } catch (error) {
     console.error("Error creating checkout session:", error);
     res.status(500).json({ error: 'Internal server error' });
   }
-};
+}
+
+module.exports = { createCheckoutSession };
