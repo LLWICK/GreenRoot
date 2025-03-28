@@ -1,7 +1,7 @@
 import React from "react";
-import logo from "../extras/new/Greenroots-logo-color.png";
+import logo from "./new/Greenroots-logo-color.png";
 
-function Header() {
+function NavBar() {
   return (
     <div>
       <header class="mb-2 px-4 shadow sticky top-0">
@@ -64,4 +64,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default NavBar;

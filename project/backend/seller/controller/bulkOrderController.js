@@ -1,51 +1,92 @@
-const Cart = require('../model/cartModel');
-const Order = require('../model/bulkOrderModel'); // Assuming you have an Order model
-const Stripe = require('stripe');
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+const Order = require("../model/bulkOrderModel"); // Import your Order model
+const Cart = require("../model/cartModel");   // Import your Cart model
+const Crop = require("../../farmer/model/cropModel");   // Import your Crop model
 
-// Place Order from Cart
+// Function to place an order
 const placeOrder = async (req, res) => {
-  try {
-    const { sellerId, paymentMethodId } = req.body; // Payment method from frontend
+  const { userId, cartId, totalPrice, items } = req.body;
 
-    // Fetch cart
-    const cart = await Cart.findOne({ sellerId }).populate('items.cropId');
-    if (!cart || cart.items.length === 0) {
-      return res.status(400).json({ message: 'Cart is empty' });
+  try {
+    // Log incoming data for debugging
+    console.log('Request Body:', req.body);
+    
+    if (!items || items.length === 0) {
+      return res.status(400).json({ error: 'No items in the order.' });
     }
 
-    // Get farmerId (since all items belong to the same farmer)
-    const farmerId = cart.items[0].cropId.farmerID; 
+    const cropId = items[0].cropId;
 
-    // Create Stripe Payment Intent
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: cart.totalPrice * 100, // Convert to cents
-      currency: 'usd',
-      payment_method: paymentMethodId,
-      confirm: true,
-    });
+    // Fetch the crop document to get the farmerId
+    const crop = await Crop.findById(cropId);
+    if (!crop) {
+      return res.status(404).json({ error: 'Crop not found' });
+    }
 
-    // Save Order
+    const farmerId = crop.farmerID;  // Get the farmerId from the crop document
+
+    // Log seller and farmer information
+    console.log('Seller ID:', userId);
+    console.log('Farmer ID:', farmerId);
+    console.log('crop ID:', cropId);
+
+    // Create the bulk order in your database
     const newOrder = new Order({
-      sellerId,
-      farmerId,
-      items: cart.items,
-      totalAmount: cart.totalPrice,
-      paymentStatus: 'Paid',
-      orderStatus: 'Processing',
-      paymentIntentId: paymentIntent.id,
+      sellerId: userId,  // The seller of the items in the cart
+      farmerId: farmerId,  // The farmer supplying the crops
+      items: items.map(item => ({
+        cropId: item.cropId,  // Store the full cropId
+        name: item.name,
+        price: item.price,
+        subtotal: item.subtotal,
+      })),
+      totalPrice: totalPrice,
+      paymentAmount: totalPrice, // Assuming the payment amount equals the total price
+      paymentStatus: "Completed", // Assuming the payment is successful
+      status: "Processing", // Initial status
+      createdAt: new Date(),
     });
+
+    // Log the order to ensure it has the correct structure
+    console.log('New Order:', newOrder);
+
+    // Save the bulk order to the database
     await newOrder.save();
+    console.log('Order saved successfully:', newOrder);
 
-    // Clear the cart
-    cart.items = [];
-    cart.totalPrice = 0;
-    await cart.save();
+    // Clear the cart after placing the order
+    await Cart.deleteOne({ _id: cartId });
 
-    res.status(201).json({ message: 'Order placed successfully', order: newOrder });
-  } catch (err) {
-    res.status(500).json({ message: 'Order processing failed', error: err.message });
+    res.json({ success: true, orderId: newOrder._id });
+  } catch (error) {
+    console.error('Error placing order:', error);
+    res.status(500).json({ error: error.message });
   }
 };
 
-module.exports = { placeOrder };
+// Function to get orders based on different criteria (e.g., by seller or by customer)
+const getOrders = async (req, res) => {
+  const sellerID = req.params.sellerID;
+  console.log(sellerID)
+  try {
+    if (!sellerID) {
+      return res.status(400).json({ error: 'Seller ID is required.' });
+    }
+
+    // Fetch the bulk orders for the seller
+    const orders = await Order.find({ sellerId: sellerID });
+    console.log(orders)
+
+    // If no orders found for the seller
+    if (orders.length === 0) {
+      return res.status(404).json({ error: 'No orders found for this seller.' });
+    }
+
+    // Return the list of orders
+    res.json({ success: true, orders });
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = { placeOrder, getOrders };
