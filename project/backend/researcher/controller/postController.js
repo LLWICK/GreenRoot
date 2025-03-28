@@ -61,11 +61,11 @@ const createPost = async (req, res) => {
         
     }
 
-    const {title, binominalName, description, sunRequirement, soilRequirements, sowingMethod, wateringNeeds, spread, rowSpacing, height} = req.body
+    const {title, binominalName, description, sunRequirement, soilRequirements, sowingMethod, wateringNeeds, spread, rowSpacing, height, user_id} = req.body
 
     try {
         //const user_id = req.user.userId  add user_id down there(next to file)
-        const createPost = await posts.create({title, binominalName, description, sunRequirement, soilRequirements, sowingMethod, wateringNeeds, spread, rowSpacing, height, file: newPath})
+        const createPost = await posts.create({title, binominalName, description, sunRequirement, soilRequirements, sowingMethod, wateringNeeds, spread, rowSpacing, height, user_id, file: newPath})
         res.status(200).json(createPost)
     } catch (error) {
         res.status(400).json({error: error.message})

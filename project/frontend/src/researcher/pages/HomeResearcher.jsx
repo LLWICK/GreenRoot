@@ -17,7 +17,6 @@ export default function HomeResearcher() {
       
       if (userId) {
         setUserID(userId);
-        console.log(userId)
       } else {
         navigate(`/auth/login`);
       }

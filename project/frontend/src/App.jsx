@@ -41,6 +41,8 @@ import GrowingGuideBlog from "./researcher/pages/GrowingGuideBlog";
 import SingleGrowingGuide from "./researcher/pages/SingleGrowingGuide";
 import BlogCrop from "./researcher/pages/BlogCrop";
 import BlogCropDetails from "./researcher/pages/BlogCropDetails"
+import GrowingGuideUpdate from "./researcher/pages/GrowingGuideUpdate";
+import NewsUpdate from "./researcher/pages/NewsUpdate";
 
 /* Admin pages */
 import {
@@ -144,21 +146,6 @@ function App() {
         element={<AdminManagament />}
       />
 
-      {/* Researcher Routes */}
-      <Route path="/researcher" element={<HomeResearcher/>}/>
-      <Route path="/blog" element={<Blog/>}/>
-      <Route path="/researcher/my-news" element={<MyNews/>}/>
-      <Route path="/blog/news" element={<BlogNews/>}/>
-      <Route path="/blog/news/:id" element={<SingleNewsPage/>}/>
-      <Route path="/researcher/my-qna" element={<MyQnA/>}/>
-      <Route path="/researcher/my-qna/reply/:id" element={<ReplyQnA/>}/>
-      <Route path="/researcher/my-growing-guide" element={<MyGrowingGuide/>}/>
-      <Route path="/blog/growing-guide" element={<GrowingGuideBlog/>}/>
-      <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide/>}/>
-
-
-
-
       {/* Home page components */}
 
       <Route path="/aboutus" element={<AboutUs />} />
@@ -176,6 +163,10 @@ function App() {
       <Route path="/researcher/my-growing-guide" element={<MyGrowingGuide />} />
       <Route path="/blog/growing-guide" element={<GrowingGuideBlog />} />
       <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide />} />
+      <Route path="/blog/crop" element={<BlogCrop/>}/>
+      <Route path="/blog/crop/:id" element={<BlogCropDetails/>}/>
+      <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate/>}/>
+      <Route path="/researcher/my-news/update" element={<NewsUpdate/>}/>
 
 
       {/* Retail seller Router */}

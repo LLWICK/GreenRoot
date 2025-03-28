@@ -4,7 +4,8 @@ import NewsForm from '../components/NewsForm';
 import NewsCardR from '../components/NewsCardR';
 
 export default function MyNews() {
-  const [newss, setNewss] = useState([]); // Initialize as an empty array
+  const [newss, setNewss] = useState([]);
+  const [showForm, setShowForm] = useState(false); // State to control form visibility
   // const { user } = useAuthContext(); // Uncomment if you need user authentication
 
   useEffect(() => {
@@ -18,14 +19,14 @@ export default function MyNews() {
         const json = await response.json();
 
         if (response.ok) {
-          setNewss(json); // Corrected typo: setWorkouts -> setNewss
+          setNewss(json);
         }
       } catch (error) {
         console.error('Error fetching news:', error);
       }
     };
 
-    fetchNews(); // Call the function directly
+    fetchNews();
   }, []); // Add `user` to the dependency array if you uncomment it
 
   return (
@@ -35,21 +36,28 @@ export default function MyNews() {
 
       {/* Main Content */}
       <div className="flex-1 p-8 ml-64">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4 mt-4">Publish Latest News</h1>
+        {/* Toggle Button for News Form */}
+        <div className="mb-6 mt-10">
+          <button
+            onClick={() => setShowForm(!showForm)}
+            className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition-colors"
+          >
+            {showForm ? 'Cancel' : '+ Publish New News'}
+          </button>
+        </div>
 
-        {/* News Form */}
-        <NewsForm />
+        {/* Conditional News Form */}
+        {showForm && <NewsForm />}
 
-        <div className="flex-1 p-8 ">
+        <div className="flex-1 p-8">
           <h1 className="text-2xl font-bold text-gray-800 -mb-16 mt-6">Your Published News</h1>
         </div>
 
         {/* News List */}
         <div className='mt-16 w-6xl'>
           {newss.map((news) => (
-            <NewsCardR key={news._id} news={news} /> // Added return statement
+            <NewsCardR key={news._id} news={news} />
           ))}
-          
         </div>
       </div>
     </div>
