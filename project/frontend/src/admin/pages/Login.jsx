@@ -45,7 +45,7 @@ const Login = () => {
                             navigate(`/admin/${payload.userId}/dashboard`);
                             break;
                         case "farmer":
-                            navigate("/farmer/:uid/dashboard");
+                            navigate(`/farmer/${payload.userId}/dashboard`);
                             break;
                         case "seller":
                             navigate("/");
