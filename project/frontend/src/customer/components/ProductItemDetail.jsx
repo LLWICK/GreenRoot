@@ -22,7 +22,7 @@ const ProductItemDetail = ({ product }) => {
 
     const handleAddToCart = async () => {
         try {
-            const response = await fetch('http://localhost:4000/api/AddtoCart', {//change
+            const response = await fetch('http://localhost:4000/api/customer/addtocart', {//change
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
