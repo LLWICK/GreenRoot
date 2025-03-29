@@ -121,7 +121,7 @@ const NavBar2 = () => {
                   to={`/aboutus`}
                   className="text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  About us
+                  About
                 </Link>
                 <Link
                   to={`/services`}
@@ -140,7 +140,7 @@ const NavBar2 = () => {
                   to={'/contact'}
                   className="text-gray-900 hover:bg-gray-100 px-3 py-2 focus:bg-gray-200 rounded-md text-sm font-medium"
                 >
-                  Contact Us
+                  Contact
                 </Link>
               </div>
             </div>
