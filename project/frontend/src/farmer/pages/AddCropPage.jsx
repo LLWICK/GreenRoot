@@ -4,6 +4,7 @@ import AddCrop from "../components/AddCrop";
 import { useNavigate } from "react-router-dom";
 import { getUserIdFromToken } from "../utills/authUtils";
 import { useEffect, useState } from "react";
+import NavBFarmer from "../extras/NavBFarmer";
 
 function AddCropPage() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ function AddCropPage() {
   }, []);
   return (
     <div>
+      <NavBFarmer />
       <Sidebar />
       <AddCrop fid={userID} />
     </div>
