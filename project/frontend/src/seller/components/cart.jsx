@@ -8,10 +8,16 @@ const stripePromise = loadStripe('pk_test_51R5p89RvsikKtmloiLC3Fvftp1daEyZtpOuFq
 const Cart = ({ cart, onClose, onRemoveItem }) => {
   const cartItems = cart ? cart.items : [];
   const tot = cart.totalPrice; // The total price of the cart
+  const cartID = cart._id
+  const sellerId = cart.sellerId
+
+  console.log("meta",cartID,sellerId)
+
 
   const handleRemove = (itemId) => {
     onRemoveItem(itemId);
   };
+  //cartId, userId 
 
   const handleCheckout = async () => {
     try {
@@ -20,6 +26,8 @@ const Cart = ({ cart, onClose, onRemoveItem }) => {
       const response = await axios.post('http://localhost:3000/api/RetailSeller/payment/stripe', {
         cartItems: cartItems,
         totalAmount: tot, // Use 'tot' here instead of 'totalAmount'
+        cartId:cartID,
+        userId:sellerId,
       });
 
       const { sessionId } = response.data;
