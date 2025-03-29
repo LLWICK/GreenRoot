@@ -1,6 +1,7 @@
 const Order = require("../model/bulkOrderModel"); // Import your Order model
 const Cart = require("../model/cartModel");   // Import your Cart model
 const Crop = require("../../farmer/model/cropModel");   // Import your Crop model
+const {clearCart} = require("./cartController")
 
 // Function to place an order
 const placeOrder = async (req, res) => {
@@ -54,7 +55,17 @@ const placeOrder = async (req, res) => {
     console.log('Order saved successfully:', newOrder);
 
     // Clear the cart after placing the order
-    await Cart.deleteOne({ _id: cartId });
+    //await Cart.deleteOne({ _id: cartId });
+
+    // ✅ Call clearCart function manually
+    const fakeReq = { params: { sellerId: userId } }; // Create a fake request object
+    const fakeRes = {
+      status: (code) => ({
+        json: (data) => console.log(`Clear Cart Response: ${code}`, data),
+      }),
+    };
+    await clearCart(fakeReq, fakeRes);
+
 
     res.json({ success: true, orderId: newOrder._id });
   } catch (error) {
