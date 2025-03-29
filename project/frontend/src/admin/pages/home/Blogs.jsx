@@ -1,17 +1,17 @@
 import React from 'react';
 import NavBar2 from '@/Common/NavBar2';
 
-const AboutUs = () => {
+const Blogs = () => {
     return (
         <div>
             <div>
                 <NavBar2 />
             </div>
             <div>
-                <h1 className='text-4xl'>About us</h1>
+                <h1 className='text-4xl'>Blogs Page</h1>
             </div>
         </div>
     )
 }
 
-export default AboutUs
+export default Blogs
