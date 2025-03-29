@@ -57,6 +57,8 @@ import {
   AboutUs,
   HomePage,
   ContactUsPage,
+  ServicesPage,
+  BlogsPage
 } from "./admin/pages";
 
 /* retail seller page imports  */
@@ -148,10 +150,13 @@ function App() {
       />
 
       {/* Home page components */}
-
-      <Route path="/aboutus" element={<AboutUs />} />
-      <Route path="/" element={<HomePage />} />
       <Route path="/contact" element={<ContactUsPage />} />
+      <Route path="/services" element={<ServicesPage />} />
+      <Route path="/aboutus" element={<AboutUs />} />
+      <Route path="/blogs" element={<BlogsPage />} />
+      <Route path="/" element={<HomePage />} />
+
+
 
       {/* Researcher Routes */}
       <Route path="/researcher" element={<HomeResearcher />} />

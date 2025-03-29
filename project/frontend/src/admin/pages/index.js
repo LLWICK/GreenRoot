@@ -16,8 +16,10 @@ export { default as CreateUser } from "./userManagement/CreateUser";
 
 
 
-// contact us page
+// pages
 export { default as ContactUsPage } from "./home/ContactUs";
 export { default as AboutUs } from "./home/AboutUs";
 export { default as HomePage } from "./home/HomePage";
+export { default as ServicesPage } from "./home/Services";
+export { default as BlogsPage } from "./home/Blogs";
 
