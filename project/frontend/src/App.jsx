@@ -178,6 +178,7 @@ function App() {
       <Route path="/seller/bulkOrders" element={<SellerBulkOrders />} />
       <Route path="/seller/normalOrders" element={<SellerNormalOrders />} />
       <Route path="/seller/placeOrder" element={<FinalizeOrder />} />
+      <Route path="/seller/stat" element={<SellerStat/>} />
 
       {/* Customer Routes */}
 
