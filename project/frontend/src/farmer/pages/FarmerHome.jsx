@@ -31,7 +31,10 @@ function FarmerHome() {
   return (
     <div>
       {/* <Header /> */}
-      <NavBar2 />
+      <div className="sticky top-0">
+        <NavBar2 />
+      </div>
+
       <Sidebar uid={userID} />
 
       <div style={{ float: "left", padding: "2%" }}>
