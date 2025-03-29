@@ -35,14 +35,15 @@ router.get('/:id',async(req, res) => {
 
 //Create a new order
 router.post('/', async (req, res) => {
-    const { name, quantity,image, price } = req.body;
+    const { name, quantity,image, price, totalPrice } = req.body;
 
     try {
         const newAddtoCart = await AddtoCart.create({
             name,
             quantity,
             image,
-            price
+            price,
+            totalPrice
         });
 
         res.status(201).json(newAddtoCart);
@@ -74,7 +75,15 @@ router.delete('/:id', async (req, res) => {
 
 
 //update an order
-
+// Get Cart Item Count
+router.get('/cart/count', async (req, res) => {
+  try {
+    const count = await AddtoCart.countDocuments();
+    res.status(200).json({ count });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 
 module.exports = router;
