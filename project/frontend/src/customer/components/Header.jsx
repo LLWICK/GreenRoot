@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 //images
-
+import CartItemList from './CartItemList'
 
 
 import {
@@ -138,7 +138,7 @@ const Header = () => {
     <SheetHeader>
       <SheetTitle className="bg-green-500 text-white font-bold text-lg p-2">My Cart</SheetTitle>
       <SheetDescription>
-        {/* <CartItemList />  */}
+         <CartItemList />  
       </SheetDescription>
     </SheetHeader>
      
