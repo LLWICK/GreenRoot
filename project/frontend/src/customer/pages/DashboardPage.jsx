@@ -1,7 +1,7 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar'; // Import the Sidebar component
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Footer from '@/admin/pages/home/home_components/Footer';
 
 const DashboardPage = () => {
     return (
