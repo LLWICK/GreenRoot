@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 const FinalizeOrder = () => {
+  const navigate = useNavigate();
   const [orderDetails, setOrderDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const sessionId = new URLSearchParams(window.location.search).get("session_id"); // Get session_id from URL
@@ -34,7 +37,7 @@ const FinalizeOrder = () => {
 
       if (response.data.success) {
         alert("Order placed successfully!");
-        window.location.href = "/order-summary"; // Redirect to order summary page
+        navigate('/seller/bulkOrders') // Redirect to order summary page
       } else {
         alert("Failed to place the order");
       }

@@ -1,6 +1,7 @@
 import React from 'react';
 import SideBar from '../components/sideBar(seller)';
 import SalesBarChart from '../components/salesChart';
+import NavBar from '@/admin/pages/home/home_components/NavBar';
 
 function SellerNormalOrders() {
 
@@ -32,7 +33,7 @@ function SellerNormalOrders() {
       
   return (
     <div className="bg-gray-100">
-      <nav className="bg-gray-300 p-4 text-center font-semibold">NAV</nav>
+      <nav className="bg-gray-300 p-4 text-center font-semibold"><NavBar/></nav>
       <div className="grid grid-cols-12 min-h-screen">
         {/* Sidebar */}
         <SideBar/>

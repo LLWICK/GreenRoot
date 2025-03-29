@@ -79,6 +79,7 @@ import ChartPage from "./customer/pages/ChartPage";
 
 import SellerNormalOrders from "./seller/pages/sellerNormalOrders";
 import FinalizeOrder from "./seller/pages/sellerfinalizeOrder";
+import SellerStat from "./seller/pages/sellerStat";
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -181,6 +182,7 @@ function App() {
       <Route path="/seller/bulkOrders" element={<SellerBulkOrders />} />
       <Route path="/seller/normalOrders" element={<SellerNormalOrders />} />
       <Route path="/seller/placeOrder" element={<FinalizeOrder />} />
+      <Route path="/seller/stat" element={<SellerStat/>} />
 
       {/* Customer Routes */}
 
