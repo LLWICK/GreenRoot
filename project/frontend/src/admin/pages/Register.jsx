@@ -3,13 +3,7 @@ import React, { useState } from 'react';
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
 
-// import svg
-import sellerImg from "../extras/register_img/undraw_seller.svg";
-import customerImg from "../extras/register_img/undraw_customer.svg";
-import researcherImg from "../extras/register_img/undraw_research.svg";
-import farmerImg from "../extras/register_img/undraw_farmer.svg";
-import delivaryPersonImg from "../extras/register_img/undraw_delivery.svg";
-import NavBar from './home/home_components/NavBar';
+import NavBar2 from '@/Common/NavBar2';
 import Footer from './home/home_components/Footer';
 
 const Register = () => {
@@ -86,7 +80,7 @@ const Register = () => {
     return (
         <>
             <>
-                <NavBar />
+                <NavBar2 />
             </>
             <section className="bg-white">
                 <div className="flex justify-center min-h-screen">

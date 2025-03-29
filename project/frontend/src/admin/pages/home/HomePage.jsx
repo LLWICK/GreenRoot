@@ -3,7 +3,7 @@ import Services from './home_components/Services';
 import AboutUs from './home_components/AboutUs';
 import Testimonial from './home_components/Testimonial';
 // nav bar
-import NavBar from './home_components/NavBar';
+import NavBar2 from '@/Common/NavBar2';
 import Landing from './Landing';
 // footer
 import Footer from './home_components/Footer';
@@ -11,6 +11,9 @@ import Footer from './home_components/Footer';
 
 // import the video 
 import backVD from "/bannerimg.mp4";
+
+
+
 
 const HomePage = () => {
 
@@ -25,8 +28,8 @@ const HomePage = () => {
 
     return (
         <>
-            <div className='z-50 top-0.5 sticky w-full'>
-                <NavBar />
+            <div className='z-50 top-0 sticky'>
+                <NavBar2 />
             </div>
 
             <div className='top-0'>
