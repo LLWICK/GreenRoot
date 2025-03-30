@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function OrderTable() {
   const { uid } = useParams();
@@ -195,6 +195,9 @@ function OrderTable() {
                   <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
                     Status
                   </td>
+                  <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
+                    View
+                  </td>
                 </tr>
               </thead>
 
@@ -284,6 +287,7 @@ function OrderTable() {
                       <td class="whitespace-no-wrap hidden py-4 text-left text-sm text-gray-600 sm:px-3 lg:table-cell lg:text-left">
                         Rs. {element.totalPrice}
                       </td>
+
                       <td class="whitespace-no-wrap py-4 text-right text-sm text-gray-600 sm:px-3 lg:text-left">
                         Rs. {element.paymentAmount}
                         <span class="mt-1 ml-auto block w-fit whitespace-nowrap rounded-full bg-purple-100 px-2 py-0.5 text-center text-xs text-purple-800 lg:hidden">
@@ -295,6 +299,15 @@ function OrderTable() {
                         <span class="ml-2 mr-3 whitespace-nowrap rounded-full bg-purple-100 px-2 py-0.5 text-purple-800">
                           {element.status}
                         </span>
+                      </td>
+
+                      <td class="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-3 lg:table-cell">
+                        <Link
+                          to={`/farmer/${uid}/order/${element._id}/update`}
+                          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                        >
+                          View
+                        </Link>
                       </td>
                     </tr>
                   );
