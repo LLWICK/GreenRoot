@@ -1,7 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 function WeatherCards() {
+  const { uid } = useParams();
+
   const [det, setDet] = useState({
     city: "Colombo",
     temperature: 0,
@@ -13,7 +16,19 @@ function WeatherCards() {
     lat: 6.9319,
   });
 
-  const [cit, setCity] = useState("Colombo");
+  const [cit, setCity] = useState(null);
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:3000/api/v1/field/parameters", {
+        farmerID: uid,
+      })
+      .then((res) => {
+        const datas = res.data.data[0];
+        console.log(datas);
+        setCity(datas.city);
+      });
+  }, [uid]);
 
   useEffect(() => {
     axios
@@ -45,7 +60,7 @@ function WeatherCards() {
           visibility: "",
         });
       });
-  }, []);
+  }, [cit]);
 
   return (
     <div>

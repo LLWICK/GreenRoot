@@ -2,7 +2,6 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Sidebar from "./Common/Sidebar";
 
-
 {
   /* Farmer Pages imports */
 }
@@ -71,10 +70,13 @@ import SellerInventroy from "./seller/pages/sellerInventroy";
 
 //import customer routes
 import Home from "./customer/pages/Home";
+import SellerBulkOrders from "./seller/pages/sellerBulkOrders";
 
 import DashboardPage from "./customer/pages/DashboardPage";
 import Cus_LandingBanner from "./customer/components/Cus_LandingBanner";
 import CheckoutPage from "./customer/pages/CheckoutPage";
+import SellerNormalOrders from "./seller/pages/sellerNormalOrders";
+import FinalizeOrder from "./seller/pages/sellerfinalizeOrder";
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -92,7 +94,7 @@ function App() {
       <Route path="/error" element={<ErrorPage />} />
       <Route path="/farmer/crop/edit/:cid" element={<CropEdit />} />
       <Route path="/farmer/crop/addCrop" element={<AddCropPage />} />
-      <Route path="/farmer/orders" element={<OrdersPage />} />
+      <Route path="/farmer/:uid/orders" element={<OrdersPage />} />
       <Route path="/farmer/:uid/schedule" element={<Schedule />} />
       <Route path="/farmer/test" element={<TestPage />} />
       <Route path="/farmer/:uid/experts" element={<ExpertsPage />} />
@@ -109,12 +111,10 @@ function App() {
       {/* Admin Routers */}
       <Route path="/admin/:id/dashboard" element={<AdminDashboard />} />
       <Route path="/admin/user-management" element={<UserManagement />} />
-
       <Route
         path="/admin/user-management/farmer"
         element={<FarmerManagement />}
       />
-
       <Route
         path="/admin/user-management/customers"
         element={<CustomerManagement />}
@@ -123,12 +123,10 @@ function App() {
         path="/admin/user-management/user/create"
         element={<CreateUser />}
       />
-
       <Route
         path="/admin/user-management/user/create"
         element={<CreateUser />}
       />
-
       <Route
         path="/admin/user-management/user/view/:id"
         element={<ViewUser />}
@@ -144,6 +142,14 @@ function App() {
       <Route
         path="/admin/user-management/admins"
         element={<AdminManagament />}
+      />
+      <Route
+        path="/admin/user-management/sellers"
+        element={<SellerManagement />}
+      />
+      <Route
+        path="/admin/user-management/researchers"
+        element={<ResearchersManagement />}
       />
 
       {/* Home page components */}
@@ -163,16 +169,15 @@ function App() {
       <Route path="/researcher/my-growing-guide" element={<MyGrowingGuide />} />
       <Route path="/blog/growing-guide" element={<GrowingGuideBlog />} />
       <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide />} />
-      <Route path="/blog/crop" element={<BlogCrop/>}/>
-      <Route path="/blog/crop/:id" element={<BlogCropDetails/>}/>
-      <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate/>}/>
-      <Route path="/researcher/my-news/update" element={<NewsUpdate/>}/>
 
 
       {/* Retail seller Router */}
 
       <Route path="/seller/home" element={<SellerHome />} />
       <Route path="/seller/Inventroy" element={<SellerInventroy />} />
+      <Route path="/seller/bulkOrders" element={<SellerBulkOrders />} />
+      <Route path="/seller/normalOrders" element={<SellerNormalOrders />} />
+      <Route path="/seller/placeOrder" element={<FinalizeOrder />} />
 
       {/* Customer Routes */}
 
@@ -180,12 +185,10 @@ function App() {
         <Route path='/Home/Checkout' element={<CheckoutPage />} />
         <Route path='/user/Dashboard' element={<DashboardPage />} /> */}
 
-
       <Route path="/Customer" element={<Home />} />
       <Route path="/CusLanding" element={<Cus_LandingBanner />} />
       <Route path="/Customer/Dashboard" element={<DashboardPage />} />
       <Route path="/Home/Checkout" element={<CheckoutPage />} />
-
     </Routes>
   );
 }
