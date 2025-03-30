@@ -12,3 +12,4 @@ export { default as EditTasksModal } from "../modals/EditTasksModal";
 export { default as TaskCard } from "../modals/TaskCard";
 export { default as ExpertsPage } from "./ExpertsPage";
 export { default as BlogPage } from "./BlogPage";
+export { default as OrderUpdate } from "./OrderUpdate";
