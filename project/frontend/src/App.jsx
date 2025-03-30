@@ -73,8 +73,13 @@ import SellerBulkOrders from "./seller/pages/sellerBulkOrders";
 import DashboardPage from "./customer/pages/DashboardPage";
 import Cus_LandingBanner from "./customer/components/Cus_LandingBanner";
 import CheckoutPage from "./customer/pages/CheckoutPage";
+import OrderhistoryPage from "./customer/pages/OrderhistoryPage";
+import ChartPage from "./customer/pages/ChartPage";
+
+
 import SellerNormalOrders from "./seller/pages/sellerNormalOrders";
 import FinalizeOrder from "./seller/pages/sellerfinalizeOrder";
+import SellerStat from "./seller/pages/sellerStat";
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -177,6 +182,7 @@ function App() {
       <Route path="/seller/bulkOrders" element={<SellerBulkOrders />} />
       <Route path="/seller/normalOrders" element={<SellerNormalOrders />} />
       <Route path="/seller/placeOrder" element={<FinalizeOrder />} />
+      <Route path="/seller/stat" element={<SellerStat/>} />
 
       {/* Customer Routes */}
 
@@ -188,6 +194,10 @@ function App() {
       <Route path="/CusLanding" element={<Cus_LandingBanner />} />
       <Route path="/Customer/Dashboard" element={<DashboardPage />} />
       <Route path="/Home/Checkout" element={<CheckoutPage />} />
+      <Route path='/Customer/Orderhistory' element={<OrderhistoryPage/>} />
+      <Route path='/Customer/ChartPage' element={<ChartPage/>}/>
+
+
     </Routes>
   );
 }

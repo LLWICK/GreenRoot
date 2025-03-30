@@ -10,9 +10,9 @@ import "../extras/styles.css";
 import { useNavigate } from "react-router-dom";
 import { getUserIdFromToken } from "../utills/authUtils";
 import WeatherCards from "../components/WeatherCards";
-import Header from "../components/Header";
+
 import Sidebar2 from "../tests/Sidebar2";
-import NavBar2 from "../tests/NavBar2";
+import NavBFarmer from "../extras/NavBFarmer";
 
 function FarmerHome() {
   const navigate = useNavigate();
@@ -30,8 +30,7 @@ function FarmerHome() {
 
   return (
     <div>
-      {/* <Header /> */}
-      <NavBar2 />
+      <NavBFarmer />
       <Sidebar uid={userID} />
 
       <div style={{ float: "left", padding: "2%" }}>

@@ -3,6 +3,7 @@ import axios from "axios";
 import Cart from "../components/cart";
 import Crop from "../components/cropCard";
 import SideBar from "../components/sideBar(seller)";
+import NavBar from '@/admin/pages/home/home_components/NavBar';
 
 const SellerHome = () => {
     const [cartOpen, setCartOpen] = useState(false);
@@ -89,7 +90,7 @@ const SellerHome = () => {
     return (
         <>
             {/* Navbar */}
-            <nav className="bg-gray-300 p-4 text-center font-semibold">NAV</nav>
+            <nav className="bg-gray-300 p-4 text-center font-semibold"><NavBar/></nav>
 
             <div className="grid grid-cols-12 min-h-screen">
                 {/* Sidebar */}
