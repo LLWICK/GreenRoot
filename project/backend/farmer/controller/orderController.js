@@ -76,30 +76,36 @@ const updateOrders = async (req, res) => {
 
 //email conformation
 const emailSender = (req, res) => {
-  let transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: "linwick679@gmail.com",
-      pass: "lgzqwjvnzblgppwu",
-    },
-  });
+  try {
+    const { id, status } = req.body;
 
-  let mailOptions = {
-    from: "linwick679@gmail.com",
-    to: "wicrama123@gmail.com",
-    subject: "Greenroot Test email",
-    text: "Greenroot order management",
-  };
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "greenrootp@gmail.com",
+        pass: "weifglbjhwgzofym",
+      },
+    });
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-      res.status(400).json({ state: "Not sent", msg: error });
-    } else {
-      console.log("Email sent: " + info.response);
-      res.status(200).json({ state: "Email sent", msg: info.response });
-    }
-  });
+    let mailOptions = {
+      from: "greenrootp@gmail.com",
+      to: "linwick679@gmail.com",
+      subject: "Greenroot Bulk order management",
+      text: `orderID: ${id}     status: ${status}`,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+        res.status(400).json({ state: "Not sent", msg: error });
+      } else {
+        console.log("Email sent: " + info.response);
+        res.status(200).json({ state: "Email sent", msg: info.response });
+      }
+    });
+  } catch (e) {
+    res.status(500).json({ msg: "Server error", error: e.message });
+  }
 };
 
 module.exports = {

@@ -105,7 +105,7 @@ function App() {
       <Route path="/farmer/:uid/editTask/:tid" element={<EditTasksModal />} />
       <Route path="/farmer/Blogs" element={<BlogPage />} />
       <Route path="/farmer/:uid/addMap" element={<SearchLocation />} />
-      <Route path="/farmer/:oid/order/update" element={<OrderUpdate />} />
+      <Route path="/farmer/:uid/order/:oid/update" element={<OrderUpdate />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
