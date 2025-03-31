@@ -63,6 +63,7 @@ function OtpForm2() {
                     placeholder="Enter your email"
                     value={userEmail}
                     onChange={(e) => setUserEmail(e.target.value)}
+                    required
                   />
                   <button
                     className="w-full bg-blue-700 text-white py-3 rounded-lg"
