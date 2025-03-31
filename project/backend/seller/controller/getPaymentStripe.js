@@ -3,7 +3,7 @@ const Cart = require("../model/cartModel"); // ✅ Import Cart model
 
 const getPayment = async (req, res) => {
   const { sessionId } = req.params;
-  console.log(sessionId)
+  console.log(sessionId);
 
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId); // Retrieve Stripe session
@@ -17,6 +17,8 @@ const getPayment = async (req, res) => {
     if (!cart) {
       return res.status(404).json({ error: "Cart not found" });
     }
+
+    
 
     // Return the session and cart details to frontend
     const orderDetails = {
