@@ -5,6 +5,7 @@ import CropEditComp from "../components/CropEditComp";
 import { useNavigate } from "react-router-dom";
 import { getUserIdFromToken } from "../utills/authUtils";
 import { useEffect, useState } from "react";
+import NavBFarmer from "../extras/NavBFarmer";
 
 function CropEdit() {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ function CropEdit() {
 
   return (
     <div>
+      <NavBFarmer />
       <Sidebar />
       <CropEditComp fid={userID} />
     </div>

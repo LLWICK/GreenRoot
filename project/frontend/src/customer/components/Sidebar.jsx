@@ -38,7 +38,7 @@ function Sidebar() {
         </div>
         <div id="menu" className="flex flex-col space-y-2">
           <Link
-            to="/user/Dashboard" // Add link to the dashboard
+            to="/Customer/Dashboard" // Add link to the dashboard
             className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out flex items-center"
           >
             <LayoutDashboard className="w-4 h-4 mr-2" />
@@ -49,21 +49,21 @@ function Sidebar() {
             className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
           >
             <Package className="w-4 h-4 mr-2" />
-            <span>Crops</span>
+            <span>Products</span>
           </Link>
           <Link
-            to="/user/Orders" // Add link to orders page
+            to="/Customer/Orderhistory" // Add link to orders page
             className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
           >
             <ShoppingCart className="w-4 h-4 mr-2" />
-            <span>Orders</span>
+            <span>Order history</span>
           </Link>
           <Link
-            to="/user/Chat" // Add link to chat page
+            to="/Customer/ChartPage" // Add link to chat page
             className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
           >
             <MessageSquare className="w-4 h-4 mr-2" />
-            <span>Chat</span>
+            <span>Chart</span>
           </Link>
           <Link
             to="/user/Calendar" // Add link to calendar page

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function OrderTable() {
   const { uid } = useParams();
@@ -157,7 +157,7 @@ function OrderTable() {
                     Order ID
                   </td>
                   <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
-                    Description
+                    Items
                   </td>
                   <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
                     Shop
@@ -171,7 +171,7 @@ function OrderTable() {
                   </td>
 
                   <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
-                    Weight
+                    Total Price
                   </td>
 
                   <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
@@ -195,6 +195,9 @@ function OrderTable() {
                   <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
                     Status
                   </td>
+                  <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
+                    View
+                  </td>
                 </tr>
               </thead>
 
@@ -203,7 +206,7 @@ function OrderTable() {
                   return (
                     <tr class="">
                       <td class="whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 lg:text-left">
-                        {element.createdAt}
+                        {element.createdAt.split("T")[0]}
                         <div class="mt-1 flex flex-col text-xs font-medium lg:hidden">
                           <div class="flex items-center">
                             <svg
@@ -255,7 +258,7 @@ function OrderTable() {
                                 d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
                               />
                             </svg>
-                            1 Kg
+                            {element.totalPrice}
                           </div>
                         </div>
                       </td>
@@ -265,7 +268,7 @@ function OrderTable() {
                       </td>
 
                       <td class="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-600 sm:px-3 lg:table-cell">
-                        Desktop Computer
+                        {element.items[0].name}
                       </td>
 
                       <td class="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-600 sm:px-3 lg:table-cell">
@@ -282,10 +285,11 @@ function OrderTable() {
                         24 x 10 x 5 cm
                       </td>
                       <td class="whitespace-no-wrap hidden py-4 text-left text-sm text-gray-600 sm:px-3 lg:table-cell lg:text-left">
-                        1.0 Kg
-                      </td>
-                      <td class="whitespace-no-wrap py-4 text-right text-sm text-gray-600 sm:px-3 lg:text-left">
                         Rs. {element.totalPrice}
+                      </td>
+
+                      <td class="whitespace-no-wrap py-4 text-right text-sm text-gray-600 sm:px-3 lg:text-left">
+                        Rs. {element.paymentAmount}
                         <span class="mt-1 ml-auto block w-fit whitespace-nowrap rounded-full bg-purple-100 px-2 py-0.5 text-center text-xs text-purple-800 lg:hidden">
                           {element.status}
                         </span>
@@ -295,6 +299,15 @@ function OrderTable() {
                         <span class="ml-2 mr-3 whitespace-nowrap rounded-full bg-purple-100 px-2 py-0.5 text-purple-800">
                           {element.status}
                         </span>
+                      </td>
+
+                      <td class="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-3 lg:table-cell">
+                        <Link
+                          to={`/farmer/${uid}/order/${element._id}/update`}
+                          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                        >
+                          View
+                        </Link>
                       </td>
                     </tr>
                   );

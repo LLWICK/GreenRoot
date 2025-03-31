@@ -5,7 +5,7 @@ import Sidebar from "./Common/Sidebar";
 {
   /* Farmer Pages imports */
 }
-
+import OtpPage from "./Common/pages/otpPage";
 import {
   FarmerHome,
   CropsHome,
@@ -21,6 +21,7 @@ import {
   EditTasksModal,
   ExpertsPage,
   BlogPage,
+  OrderUpdate,
 } from "./farmer/pages";
 
 import SearchLocation from "./farmer/unregistered/SearchLocation";
@@ -58,7 +59,7 @@ import {
   HomePage,
   ContactUsPage,
   ServicesPage,
-  BlogsPage
+  BlogsPage,
 } from "./admin/pages";
 
 /* retail seller page imports  */
@@ -73,6 +74,9 @@ import SellerBulkOrders from "./seller/pages/sellerBulkOrders";
 import DashboardPage from "./customer/pages/DashboardPage";
 import Cus_LandingBanner from "./customer/components/Cus_LandingBanner";
 import CheckoutPage from "./customer/pages/CheckoutPage";
+import OrderhistoryPage from "./customer/pages/OrderhistoryPage";
+import ChartPage from "./customer/pages/ChartPage";
+
 import SellerNormalOrders from "./seller/pages/sellerNormalOrders";
 import FinalizeOrder from "./seller/pages/sellerfinalizeOrder";
 import SellerStat from "./seller/pages/sellerStat";
@@ -102,6 +106,10 @@ function App() {
       <Route path="/farmer/:uid/editTask/:tid" element={<EditTasksModal />} />
       <Route path="/farmer/Blogs" element={<BlogPage />} />
       <Route path="/farmer/:uid/addMap" element={<SearchLocation />} />
+      <Route path="/farmer/:uid/order/:oid/update" element={<OrderUpdate />} />
+
+      {/* Common Pages */}
+      <Route path="/otp/send" element={<OtpPage />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
@@ -158,8 +166,6 @@ function App() {
       <Route path="/blogs" element={<BlogsPage />} />
       <Route path="/" element={<HomePage />} />
 
-
-
       {/* Researcher Routes */}
       <Route path="/researcher" element={<HomeResearcher />} />
       <Route path="/blog" element={<Blog />} />
@@ -179,8 +185,7 @@ function App() {
       <Route path="/seller/bulkOrders" element={<SellerBulkOrders />} />
       <Route path="/seller/normalOrders" element={<SellerNormalOrders />} />
       <Route path="/seller/placeOrder" element={<FinalizeOrder />} />
-      <Route path="/seller/stat" element={<SellerStat/>} />
-      <Route path="/seller/BulkOrder/:orderId" element={<BulkOrderSummary/>} />
+      <Route path="/seller/stat" element={<SellerStat />} />
 
       {/* Customer Routes */}
 
@@ -192,6 +197,8 @@ function App() {
       <Route path="/CusLanding" element={<Cus_LandingBanner />} />
       <Route path="/Customer/Dashboard" element={<DashboardPage />} />
       <Route path="/Home/Checkout" element={<CheckoutPage />} />
+      <Route path="/Customer/Orderhistory" element={<OrderhistoryPage />} />
+      <Route path="/Customer/ChartPage" element={<ChartPage />} />
     </Routes>
   );
 }
