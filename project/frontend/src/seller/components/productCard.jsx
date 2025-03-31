@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Product = ({ product, updateProduct, deleteProduct }) => {
+const Product = ({ product, updateProduct, deleteProduct,openEditModal }) => {
   const { name, quantity, fertilizer, image, category, supplier, price, _id } = product;
 
   return (
@@ -45,7 +45,9 @@ const Product = ({ product, updateProduct, deleteProduct }) => {
         <span className="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
           <button
             className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-400"
-            onClick={() => updateProduct(_id, product)} // Trigger update function
+            onClick={() => {
+              openEditModal(product)
+            }} // Trigger update function
           >
             Edit
           </button>
