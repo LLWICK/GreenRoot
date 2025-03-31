@@ -47,26 +47,28 @@ const ChartPage = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center h-screen">Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="flex justify-center items-center h-screen text-red-500">Error: {error}</div>;
   }
 
   return (
-    <div className="flex h-screen">
-        <Sidebar /> {/* Render the Sidebar component */}
-    <div className="mx-auto m-24">
-      <div>Order Quantity Chart by product</div>
-      <BarChart width={548} height={548} data={orderQuantityData} margin={{ bottom: 30 }} >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" label={{ value: 'Product', position: 'insideBottom', offset: -10 }} />
-        <YAxis label={{ value: 'Total Quantity Ordered', angle: -90, position: 'insideLeft', offset: 10 }} />
-        <Tooltip />
-        <Bar dataKey="quantity" fill="#8874d8" />
-      </BarChart>
-    </div>
+    <div className="flex h-screen bg-green-50">
+      <Sidebar />
+      <div className="mx-auto mt-16 mb-8 p-6 bg-white rounded-lg shadow-md">
+        <h2 className="text-2xl font-semibold text-green-800 mb-6 text-center">
+          Product Order Quantity
+        </h2>
+        <BarChart width={500} height={400} data={orderQuantityData} margin={{ bottom: 30, left: 20 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+          <XAxis dataKey="name" label={{ value: 'Product', position: 'insideBottom', offset: -10 }} style={{ fontSize: '12px' }} />
+          <YAxis label={{ value: 'Total Quantity Ordered', angle: -90, position: 'insideLeft', offset: 10 }} style={{ fontSize: '12px' }} />
+          <Tooltip contentStyle={{ background: '#f9f9f9', border: '1px solid #ddd', padding: '5px' }} />
+          <Bar dataKey="quantity" fill="#689f38" barSize={60} /> {/* Increased barSize here */}
+        </BarChart>
+      </div>
     </div>
   );
 };

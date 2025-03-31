@@ -50,6 +50,7 @@ const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
 //Common routes
 
 const paymentManage = require("./common/routes/paymentRoute.js");
+const otpManage = require("./common/routes/otpRoute.js");
 
 //Customer route import
 const orderManage = require("./customer/routes/orderRoute.js");
@@ -68,6 +69,7 @@ const productRoutes = require("./seller/routes/productRoutes.js");
 const paymentRoutes = require("./seller/routes/stripeRoute.js");
 const bulkOrderRoutes = require("./seller/routes/bulkOrderRoutes.js");
 const statDataRoutes = require("./seller/routes/statDataRoutes.js");
+const FarmerToDoRoutes = require("./seller/routes/TodoListRoutes.js");
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -95,6 +97,10 @@ app.use("/api/v1/payment", paymentManage);
 app.use("/api/v1/farmer/schedule", farmerScheduleManage);
 app.use("/api/v1/farmer/order", orderManageFarmer);
 
+//Use OTP route
+
+app.use("/api/v1/otp", otpManage);
+
 //customer Routes
 app.use("/api/customer/orders", orderManage);
 app.use("/api/customer/addtocart", addtocartManage);
@@ -113,6 +119,8 @@ app.use("/api/RetailSeller/products", productRoutes);
 app.use("/api/RetailSeller/payment/stripe", paymentRoutes);
 app.use("/api/RetailSeller/bulkOrder", bulkOrderRoutes);
 app.use("/api/RetailSeller/stats", statDataRoutes);
+app.use("/api/RetailSeller/farmers", FarmerToDoRoutes);
+
 
 mongoose
   .connect(mongoURL)

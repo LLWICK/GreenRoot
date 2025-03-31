@@ -5,7 +5,7 @@ import Sidebar from "./Common/Sidebar";
 {
   /* Farmer Pages imports */
 }
-
+import OtpPage from "./Common/pages/otpPage";
 import {
   FarmerHome,
   CropsHome,
@@ -80,6 +80,8 @@ import ChartPage from "./customer/pages/ChartPage";
 import SellerNormalOrders from "./seller/pages/sellerNormalOrders";
 import FinalizeOrder from "./seller/pages/sellerfinalizeOrder";
 import SellerStat from "./seller/pages/sellerStat";
+import BulkOrderSummary from "./seller/pages/sellerBulkOrderSummary";
+import FarmerList from "./seller/pages/farmers";
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -106,6 +108,9 @@ function App() {
       <Route path="/farmer/Blogs" element={<BlogPage />} />
       <Route path="/farmer/:uid/addMap" element={<SearchLocation />} />
       <Route path="/farmer/:uid/order/:oid/update" element={<OrderUpdate />} />
+
+      {/* Common Pages */}
+      <Route path="/otp/send" element={<OtpPage />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
@@ -182,6 +187,9 @@ function App() {
       <Route path="/seller/normalOrders" element={<SellerNormalOrders />} />
       <Route path="/seller/placeOrder" element={<FinalizeOrder />} />
       <Route path="/seller/stat" element={<SellerStat />} />
+      <Route path="/seller/stat" element={<SellerStat/>} />
+      <Route path="/seller/BulkOrder/:orderId" element={<BulkOrderSummary/>} />
+      <Route path="/seller/farmers" element={<FarmerList/>} />
 
       {/* Customer Routes */}
 

@@ -13,27 +13,31 @@ async function createCheckoutSession(req, res) {
 
     console.log('Metadata:', { cartId, userId });
 
+    
     const line_items = cartItems.map(item => ({
       price_data: {
         currency: 'usd',
         product_data: {
           name: item.name,
-          images: item.image ? [item.image] : [], // Ensure images exist
+          images: item.cropId.image ? [item.cropId.image] : [], // Ensure images exist
         },
         unit_amount: Math.round(item.price * 100), // Ensure whole number
       },
       quantity: item.quantity || 1,
     }));
 
+    
+
+   
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items,
       mode: 'payment',
-      success_url: `http://localhost:5173/seller/placeOrder?session_id={CHECKOUT_SESSION_ID}`, // ✅ Corrected success_url
+      success_url: `http://localhost:5173/seller/placeOrder?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: "http://localhost:5173/seller/Inventory",
       metadata: { 
         cartId, 
-        userId 
+        userId,
       },
     });
 

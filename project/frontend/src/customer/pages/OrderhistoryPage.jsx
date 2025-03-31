@@ -33,46 +33,52 @@ const OrderhistoryPage = () => {
 
   // Render loading message if loading is true
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center h-screen">Loading...</div>;
   }
 
   // Render error message if there's an error
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="flex justify-center items-center h-screen text-red-500">Error: {error}</div>;
   }
 
   // Render the order history
   return (
-    <div className="flex h-screen">
-      <Sidebar /> {/* Render the Sidebar component */}
-      <div className="p-10 px-5 md:px-16 flex-grow">
-        <h2 className="text-lg font-bold flex justify-between">
-          Order History <span></span>
+    <div className="flex h-screen bg-green-100">
+      <Sidebar />
+      <div className="p-6 md:p-10 flex-grow">
+        <h2 className="text-2xl font-semibold text-green-800 mb-6">
+          Order History
         </h2>
-        {orders.map((order, index) => (
-          <div key={order._id} className="mb-4 border p-2">
-            <h3 className="font-semibold">Order #{order.orderNumber}</h3> {/*  orderNumber */}
-            <p>Total Price: ${order.totalPrice}</p> {/* Display total price of the order */}
-            {order.cartItems && order.cartItems.map((item) => (
-              <div key={item.id} className="flex justify-around items-center my-2">
-                {item.image && (
-                  <img
-                    src={item.image}
-                    alt={item.status}
-                    style={{ width: '70px', height: '70px' }}
-                    className="border p-2"
-                  />
-                )}
-                
-                  <h2 className="font-bold">{item.name}</h2> {/* Display item status (name) */}
-                  <p>Quantity: {item.quantity}</p> {/* Display item quantity */}
-                  <p>Item Price: ${item.totalPrice}</p> {/* Display total price of the item */}
-                
-              </div>
-            ))}
-            <p>Delivery: ${order.delivery}</p>
-            <p>Tax: ${order.tax}</p>
-            <p>Final Total: ${order.finalTotal}</p>
+        {orders.map((order) => (
+          <div key={order._id} className="mb-4 border border-green-200 rounded-lg p-4 bg-white shadow-md">
+            <h3 className="text-xl font-semibold text-green-800 mb-2">
+              Order #{order.orderNumber}
+            </h3>
+            <p className="text-gray-700 mb-4">Total Price: ${order.totalPrice}</p>
+            {order.cartItems &&
+              order.cartItems.map((item) => (
+                <div key={item.id} className="flex items-center justify-between py-2 border-b border-green-100">
+                  <div className="flex items-center space-x-4">
+                    {item.image && (
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-16 h-16 rounded-md object-cover border border-green-200"
+                      />
+                    )}
+                    <div>
+                      <h4 className="font-semibold text-green-800">{item.name}</h4>
+                      <p className="text-gray-600">Quantity: {item.quantity}</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-700">Item Price: ${item.totalPrice}</p>
+                </div>
+              ))}
+            <div className="mt-4 pt-4 border-t border-green-200">
+              <p className="text-gray-700">Delivery: ${order.delivery}</p>
+              <p className="text-gray-700">Tax: ${order.tax}</p>
+              <p className="text-lg font-semibold text-green-800 mt-2">Final Total: ${order.finalTotal}</p>
+            </div>
           </div>
         ))}
       </div>

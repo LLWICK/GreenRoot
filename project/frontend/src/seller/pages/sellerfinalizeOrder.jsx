@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 const FinalizeOrder = () => {
   const navigate = useNavigate();
   const [orderDetails, setOrderDetails] = useState(null);
@@ -13,9 +12,9 @@ const FinalizeOrder = () => {
   useEffect(() => {
     const fetchOrderDetails = async () => {
       try {
-        //`http://localhost:3000/api/RetailSeller/
         const response = await axios.get(`http://localhost:3000/api/RetailSeller/payment/stripe/getdetails/${sessionId}`);
         setOrderDetails(response.data); // Set order details from backend
+        console.log(response.data); 
         setLoading(false);
       } catch (error) {
         console.error("Error fetching order details", error);
@@ -37,7 +36,7 @@ const FinalizeOrder = () => {
 
       if (response.data.success) {
         alert("Order placed successfully!");
-        navigate('/seller/bulkOrders') // Redirect to order summary page
+        navigate('/seller/bulkOrders'); // Redirect to order summary page
       } else {
         alert("Failed to place the order");
       }
@@ -56,7 +55,7 @@ const FinalizeOrder = () => {
           Payment Successful
         </h2>
         <p className="mt-4 font-normal text-lg leading-8 text-gray-500 mb-11 text-center">
-          Thanks for making a purchase, you can check our order summary from below
+          Thanks for making a purchase, you can check our order summary below
         </p>
         <div className="main-box border border-gray-200 rounded-xl pt-6 max-w-xl max-lg:mx-auto lg:max-w-full">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between px-6 pb-6 border-b border-gray-200">
@@ -77,7 +76,7 @@ const FinalizeOrder = () => {
               <div key={item.cropId} className="flex flex-col lg:flex-row items-center py-6 border-b border-gray-200 gap-6 w-full">
                 <div className="img-box max-lg:w-full">
                   <img
-                    src={item.imageUrl} // Assuming the crop has an imageUrl
+                    src={item.image} // Assuming the crop has an imageUrl
                     alt={item.name}
                     className="aspect-square w-full lg:max-w-[140px] rounded-xl object-cover"
                   />
