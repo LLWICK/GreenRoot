@@ -30,7 +30,7 @@ const getAllQuestions = async (req, res) => {
 // get user's questions
 const getUserQuestions = async (req, res) => {
     try {
-        const userId = req.usre.id;
+        const userId = req.user.id;
         const questions = await Question.find({ createdBy: userId });
         res.status(200).json(questions);
 
@@ -38,6 +38,20 @@ const getUserQuestions = async (req, res) => {
         res.status(500).json({ message: err });
     }
 }
+
+// Get a specific question by ID (New function)
+const getQuestionById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const question = await Question.findById(id).populate("createdBy", "email");
+
+        if (!question) return res.status(404).json({ message: "Question not found" });
+
+        res.status(200).json({ data: question });
+    } catch (err) {
+        res.status(500).json({ message: "Something went wrong" });
+    }
+};
 
 // edit question within 20 minutes
 const editQuestion = async (req, res) => {
@@ -133,6 +147,6 @@ module.exports = {
     editQuestion,
     deleteQuestion,
     replyToQuestion,
-    adminDeleteQuestion
-
+    adminDeleteQuestion,
+    getQuestionById
 }
