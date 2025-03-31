@@ -4,6 +4,7 @@ import CropChart from "../components/CropChart";
 import CropTable from "../components/CropTable";
 import { useNavigate } from "react-router-dom";
 import { getUserIdFromToken } from "../utills/authUtils";
+import NavBFarmer from "../extras/NavBFarmer";
 
 function CropsHome() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ function CropsHome() {
   }, []);
   return (
     <div>
+      <NavBFarmer />
       <Sidebar />
       <div style={{ float: "left", marginLeft: "10%" }}>
         <CropChart fid={userID} />

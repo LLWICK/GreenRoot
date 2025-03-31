@@ -27,11 +27,14 @@ app.use(
 
 //Import your routes using require , here
 
+/** Admin Routes */
 // Auth routes
 const authRoutes = require("./admin/routes/auth.routes.js");
 const adminRoutes = require("./admin/routes/admin.routes.js"); // admin routes
 // user management routes (Admin)
 const userManagement = require("./admin/routes/user.routes.js");
+// Q&A management routes (Admin)
+const qnaManagement = require("./admin/routes/question.routes.js");
 
 //Farmer routes import
 const stockManage = require("./farmer/routes/stockRoute");
@@ -47,6 +50,7 @@ const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
 //Common routes
 
 const paymentManage = require("./common/routes/paymentRoute.js");
+const otpManage = require("./common/routes/otpRoute.js");
 
 //Customer route import
 const orderManage = require("./customer/routes/orderRoute.js");
@@ -64,6 +68,8 @@ const cartRoutes = require("./seller/routes/cartRoutes");
 const productRoutes = require("./seller/routes/productRoutes.js");
 const paymentRoutes = require("./seller/routes/stripeRoute.js");
 const bulkOrderRoutes = require("./seller/routes/bulkOrderRoutes.js");
+const statDataRoutes = require("./seller/routes/statDataRoutes.js");
+const FarmerToDoRoutes = require("./seller/routes/TodoListRoutes.js");
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -75,10 +81,11 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 
 //Put your routes here using app.use
-/** User Routes (Admin) */
+/** Admin Routes */
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/user", userManagement);
+app.use("/api/qna", qnaManagement);
 
 //Use farmer routes
 app.use("/api/v1/stock", stockManage);
@@ -89,6 +96,10 @@ app.use("/api/v1/ticket", ticketManage);
 app.use("/api/v1/payment", paymentManage);
 app.use("/api/v1/farmer/schedule", farmerScheduleManage);
 app.use("/api/v1/farmer/order", orderManageFarmer);
+
+//Use OTP route
+
+app.use("/api/v1/otp", otpManage);
 
 //customer Routes
 app.use("/api/customer/orders", orderManage);
@@ -107,6 +118,9 @@ app.use("/api/RetailSeller/crops", getCropRoutesRS);
 app.use("/api/RetailSeller/products", productRoutes);
 app.use("/api/RetailSeller/payment/stripe", paymentRoutes);
 app.use("/api/RetailSeller/bulkOrder", bulkOrderRoutes);
+app.use("/api/RetailSeller/stats", statDataRoutes);
+app.use("/api/RetailSeller/farmers", FarmerToDoRoutes);
+
 
 mongoose
   .connect(mongoURL)

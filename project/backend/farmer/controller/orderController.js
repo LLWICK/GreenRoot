@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const nodemailer = require("nodemailer");
 
 const ORDER = require("../../seller/model/bulkOrderModel");
 
@@ -19,7 +20,7 @@ const allOrders = async (req, res) => {
   }
 };
 
-//get cat accoding to the parameters
+//get Orders accoding to the parameters
 
 const OrdersByParams = async (req, res) => {
   try {
@@ -36,7 +37,7 @@ const OrdersByParams = async (req, res) => {
   }
 };
 
-//Get a single category
+//Get a single Orders
 
 const OrdersById = async (req, res) => {
   const { id } = req.params;
@@ -55,7 +56,7 @@ const OrdersById = async (req, res) => {
   }
 };
 
-//Update category
+//Update Orders
 
 const updateOrders = async (req, res) => {
   try {
@@ -73,11 +74,44 @@ const updateOrders = async (req, res) => {
   }
 };
 
-//delete category
+//email conformation
+const emailSender = (req, res) => {
+  try {
+    const { id, status } = req.body;
+
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "greenrootp@gmail.com",
+        pass: "weifglbjhwgzofym",
+      },
+    });
+
+    let mailOptions = {
+      from: "greenrootp@gmail.com",
+      to: "linwick679@gmail.com",
+      subject: "Greenroot Bulk order management",
+      text: `orderID: ${id}     status: ${status}`,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+        res.status(400).json({ state: "Not sent", msg: error });
+      } else {
+        console.log("Email sent: " + info.response);
+        res.status(200).json({ state: "Email sent", msg: info.response });
+      }
+    });
+  } catch (e) {
+    res.status(500).json({ msg: "Server error", error: e.message });
+  }
+};
 
 module.exports = {
   allOrders,
   OrdersById,
   OrdersByParams,
   updateOrders,
+  emailSender,
 };

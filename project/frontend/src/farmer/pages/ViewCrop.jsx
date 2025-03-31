@@ -3,6 +3,8 @@ import CropInfo from "../components/CropInfo";
 import Sidebar from "../components/Sidebar";
 import { useNavigate } from "react-router-dom";
 import { getUserIdFromToken } from "../utills/authUtils";
+import NavBar from "@/admin/pages/home/home_components/NavBar";
+import NavBFarmer from "../extras/NavBFarmer";
 
 function ViewCrop() {
   const navigate = useNavigate();
@@ -20,6 +22,7 @@ function ViewCrop() {
 
   return (
     <div>
+      <NavBFarmer />
       <Sidebar />
       <CropInfo />
     </div>

@@ -1,7 +1,8 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar';
 import { Link } from 'react-router-dom';
-import NavBar from './home/home_components/NavBar';
+// import NavBar from './home/home_components/NavBar';
+import NavBar2 from '@/Common/NavBar2';
 import UserRoleChart from '../components/UserRoleChart';
 // import Footer from './home/home_components/Footer';
 
@@ -17,7 +18,8 @@ function AdminDash() {
             {/* Main Content + To-Do List */}
             <div className="flex flex-grow ml-64">
                 <div className="flex-grow p-8">
-                    <NavBar />
+                    {/* <NavBar /> */}
+                    <NavBar2 />
                     <h1 className="text-3xl font-semibold text-gray-700">Admin Dashboard</h1>
 
                     {/* User Role Chart */}

@@ -1,14 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import SideBar from '../components/sideBar(seller)';
 import SalesBarChart from '../components/salesChart';
+import NavBar2 from '@/Common/NavBar2';
+import { Link } from 'react-router-dom';
 
 function SellerBulkOrders() {
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/api/RetailSeller/bulkOrder/getOrders/67d8e72067646fe0d3f87794')
+      .then((response) => {
+        console.log("API Response:", response.data);
+        if (response.data.success) {
+          setOrders(response.data.orders);
+        } else {
+          console.error('Error fetching orders');
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching orders:", error);
+        setOrders([]);
+      });
+  }, []);
+
   return (
     <div className="bg-gray-100">
-      <nav className="bg-gray-300 p-4 text-center font-semibold">NAV</nav>
+      <nav className="p-4"><NavBar2 /></nav>
       <div className="grid grid-cols-12 min-h-screen">
         {/* Sidebar */}
-        <SideBar/>
+        <SideBar />
 
         {/* Main Content */}
         <div className="col-span-10 flex flex-col p-6">
@@ -35,48 +56,40 @@ function SellerBulkOrders() {
                 <table className="w-full">
                   <thead>
                     <tr className="bg-green-600 text-left text-xs font-semibold uppercase tracking-widest text-white">
-                      <th className="px-5 py-3">Image</th>
-                      <th className="px-5 py-3">Product Name</th>
-                      <th className="px-5 py-3">Category</th>
-                      <th className="px-5 py-3">Stock Qty</th>
-                      <th className="px-5 py-3">Total Price</th>
-                      <th className="px-5 py-3">Supplier</th>
+                      <th className="px-5 py-3">Order ID</th>
+                      <th className="px-5 py-3">Subtotal</th>
                       <th className="px-5 py-3">Status</th>
                       <th className="px-5 py-3">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="text-gray-500">
-                    <tr>
-                      <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                        <img className="h-10 w-10" src="/images/carrot.png" alt="Carrot" />
-                      </td>
-                      <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                        <p className="whitespace-no-wrap">Carrot</p>
-                      </td>
-                      <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                        <p className="whitespace-no-wrap">Vegetable</p>
-                      </td>
-                      <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                        <p className="whitespace-no-wrap">50</p>
-                      </td>
-                      <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                        <p className="whitespace-no-wrap">$100</p>
-                      </td>
-                      <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                        <p className="whitespace-no-wrap">John's Farm</p>
-                      </td>
-                      <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                        <span className="rounded-full bg-green-200 px-3 py-1 text-xs font-semibold text-green-900">
-                          Available
-                        </span>
-                      </td>
-                      <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                        <div className="flex items-center space-x-1">
-                          <button className="rounded bg-green-500 px-3 py-1 text-white">More</button>
-                          <button className="rounded bg-red-500 px-3 py-1 text-white">Cancel</button>
-                        </div>
-                      </td>
-                    </tr>
+                    {orders.map((order) => (
+                      <React.Fragment key={order._id}>
+                        <tr key={order._id}>
+                          <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                            {order._id}
+                          </td>
+                          <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                            {order.totalPrice} {/* Assuming 'totalPrice' is the subtotal */}
+                          </td>
+                          <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                            <span className="rounded-full bg-green-200 px-3 py-1 text-xs font-semibold text-green-900">
+                              {order.status}
+                            </span>
+                          </td>
+                          <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                            <div className="flex items-center space-x-1">
+                            <Link
+                                  to={`/seller/BulkOrder/${order._id}`}
+                                  className="rounded-full py-3 px-7 font-semibold text-sm leading-7 text-white bg-green-600 max-lg:mt-5 shadow-sm shadow-transparent transition-all duration-500 hover:bg-green-700 hover:shadow-green-400"
+                                >
+                                   <button className="">More</button>
+                                  </Link>
+                            </div>
+                          </td>
+                        </tr>
+                      </React.Fragment>
+                    ))}
                   </tbody>
                 </table>
               </div>
@@ -96,11 +109,9 @@ function SellerBulkOrders() {
           {/* End of Table */}
 
           <div>
-            <SalesBarChart/>
+            <SalesBarChart />
           </div>
         </div>
-
-        
       </div>
     </div>
   );
