@@ -13,12 +13,11 @@ const DashboardPage = () => {
             <p className="text-lg text-gray-600">Explore fresh produce and manage your orders.</p>
           </div>
           <div className="flex space-x-4">
-            <button className="bg-white hover:bg-green-100 text-green-700 font-semibold py-2 px-4 rounded-full shadow-md">
-              Filters
-            </button>
+            <Link to="/Customer">
             <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-full shadow-md">
-              Add Widget
+              Products
             </button>
+            </Link>
           </div>
         </div>
 
