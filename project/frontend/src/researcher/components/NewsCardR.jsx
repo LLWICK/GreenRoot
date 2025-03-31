@@ -59,9 +59,9 @@ export default function NewsCardR({ news }) {
           {/* Action Buttons */}
           <div className="flex justify-end space-x-2 mt-2">
             <Link 
-              to="/update" 
+              to="/researcher/my-news/update" 
               state={{ news }}
-              className="p-2 text-blue-600 hover:bg-blue-50 rounded-full transition-colors"
+              className="p-2 text-green-600 hover:bg-blue-50 rounded-full transition-colors"
             >
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 

@@ -22,7 +22,7 @@ export default function SidebarResearcher() {
         {/* Dashboard */}
         <Link
           to="/researcher"
-          className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
+          className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-green-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
         >
           <svg
             className="w-6 h-6 fill-current"
@@ -39,7 +39,7 @@ export default function SidebarResearcher() {
         {/* News */}
         <Link
           to="/researcher/my-news"
-          className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
+          className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-green-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
         >
           <svg
             className="w-6 h-6 fill-current"
@@ -59,7 +59,7 @@ export default function SidebarResearcher() {
         {/* Growing Guide */}
         <Link
           to="/researcher/my-growing-guide"
-          className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
+          className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-green-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
         >
           <svg
             className="w-6 h-6 fill-current"
@@ -79,7 +79,7 @@ export default function SidebarResearcher() {
         {/* Pest and Disease */}
         <Link
           to="/my-pnd"
-          className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
+          className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-green-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
         >
           <svg
             className="w-6 h-6 fill-current"
@@ -99,7 +99,7 @@ export default function SidebarResearcher() {
         {/* Stats */}
         <Link
           to="/stats"
-          className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
+          className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-green-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
         >
           <svg
             className="w-6 h-6 fill-current"
@@ -119,7 +119,7 @@ export default function SidebarResearcher() {
         {/* Q&A */}
         <Link
           to="/researcher/my-qna"
-          className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
+          className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-green-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
         >
           <svg
             className="w-6 h-6 fill-current"
@@ -139,7 +139,7 @@ export default function SidebarResearcher() {
         {/* View Blog */}
         <Link
           to="/blog"
-          className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
+          className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-green-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
         >
           <svg
             className="w-6 h-6 fill-current"
