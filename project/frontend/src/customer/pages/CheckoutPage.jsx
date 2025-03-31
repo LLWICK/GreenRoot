@@ -4,6 +4,7 @@ import { ArrowBigRight } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import axios from 'axios';
 
 const CheckoutPage = () => {
   const location = useLocation();
@@ -107,6 +108,28 @@ const CheckoutPage = () => {
     }
   };
 
+
+  //payment sreipe
+  const handleForm = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const stripeAmount = Math.round((total*0.01 )* 100); // Convert to cents
+  
+      const response = await axios.post("http://localhost:3000/api/customer/payment", { //change
+        totalPrice: stripeAmount, // Only sending total price
+      });
+  
+      if (response.data && response.data.data.url) {
+        window.location.href = response.data.data.url; // Redirect to Stripe payment page
+      }
+    } catch (error) {
+      console.error("Error processing payment:", error);
+      alert("Error processing payment. Please try again.");
+    }
+  };
+
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -180,7 +203,19 @@ const CheckoutPage = () => {
             <Button  onClick={handleOrder} className={`bg-green-700 text-white cursor-pointer`}>
               Payment <ArrowBigRight />
             </Button>
+
           </div>
+
+
+          <div style={{ padding: "10%", float: "right" }}>
+      <form onSubmit={handleForm}>
+        
+
+        
+        <Button type="submit">proceed to checkout</Button>
+      </form>
+    </div>
+
         </div>
       </div>
       <Footer />
