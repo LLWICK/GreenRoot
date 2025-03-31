@@ -2,6 +2,9 @@ const User = require("../model/userModel.js");
 const { hashPassword, comparePassword } = require("../utils/passwordUtils.js");
 const { createJWToken } = require("../utils/tokenUtils.js");
 
+// nodemailer
+const nodemailer = require('nodemailer');
+
 const register = async (req, res) => {
     try {
         const { email, password, confirmPassword, role } = req.body;
@@ -27,6 +30,36 @@ const register = async (req, res) => {
 
         // Create new user
         const user = await User.create(req.body);
+
+        // send a welcome email
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'greenrootp@gmail.com',
+                pass: 'weifglbjhwgzofym',
+            }
+        });
+
+        const mailOptions = {
+            from: 'greenrootp@gmail.com',
+            to: email,
+            subject: 'Welcome to GreenRoots',
+            html: `
+            <h1>Welcome to GreenRoots!</h1>
+            <p>Hello ${user.firstName} ${user.lastName},</p>
+            <p>We're excited to have you on board. Thank you for joining us!</p>
+            <p>Best regards,</p>
+            <p><strong>The GreenRoots Team</strong></p>
+            `
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error sending email:', error);
+            } else {
+                console.log('Email sent:', info.response);
+            }
+        });
 
         res.status(201).json({
             msg: `User registered successfully`,
