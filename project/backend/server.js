@@ -47,6 +47,7 @@ const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
 //Common routes
 
 const paymentManage = require("./common/routes/paymentRoute.js");
+const otpManage = require("./common/routes/otpRoute.js");
 
 //Customer route import
 const orderManage = require("./customer/routes/orderRoute.js");
@@ -90,6 +91,10 @@ app.use("/api/v1/ticket", ticketManage);
 app.use("/api/v1/payment", paymentManage);
 app.use("/api/v1/farmer/schedule", farmerScheduleManage);
 app.use("/api/v1/farmer/order", orderManageFarmer);
+
+//Use OTP route
+
+app.use("/api/v1/otp", otpManage);
 
 //customer Routes
 app.use("/api/customer/orders", orderManage);

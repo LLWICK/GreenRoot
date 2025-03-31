@@ -5,7 +5,7 @@ import Sidebar from "./Common/Sidebar";
 {
   /* Farmer Pages imports */
 }
-
+import OtpPage from "./Common/pages/otpPage";
 import {
   FarmerHome,
   CropsHome,
@@ -106,6 +106,9 @@ function App() {
       <Route path="/farmer/Blogs" element={<BlogPage />} />
       <Route path="/farmer/:uid/addMap" element={<SearchLocation />} />
       <Route path="/farmer/:uid/order/:oid/update" element={<OrderUpdate />} />
+
+      {/* Common Pages */}
+      <Route path="/otp/send" element={<OtpPage />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
