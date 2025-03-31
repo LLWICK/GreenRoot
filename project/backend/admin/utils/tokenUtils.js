@@ -13,7 +13,7 @@ const verifyJWT = (token) => {
         return payload;
 
     } catch (error) {
-        return null;
+        return { error: 'Invalid or expired token' };
     }
 }
 

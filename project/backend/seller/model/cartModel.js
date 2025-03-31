@@ -9,6 +9,7 @@ const cartItemSchema = new mongoose.Schema({
   name: { type: String, required: true }, 
   price: { type: Number, required: true }, // Price per unit
   subtotal: { type: Number, required: true }, // price * 1 (since quantity is 1)
+  image: { type: String, required: true }, 
 });
 
 const cartSchema = new mongoose.Schema({
@@ -28,8 +29,6 @@ const cartSchema = new mongoose.Schema({
     default: Date.now 
   },
 });
-
-
 
 const Cart = mongoose.model("cartModel", cartSchema);
 module.exports = Cart;

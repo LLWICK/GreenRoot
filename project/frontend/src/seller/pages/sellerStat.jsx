@@ -4,6 +4,7 @@ import NavBar from "@/admin/pages/home/home_components/NavBar";
 import SideBar from "../components/sideBar(seller)";
 import SalesBarChart from "../components/salesChart";
 import PieChartComponent from "../components/productsChart";
+import NavBar2 from "@/Common/NavBar2";
 
 const SellerStat = () => {
     const [counts, setCounts] = useState({ bulkOrders: 0, normalOrders: 0, totalProducts: 0 });
@@ -34,8 +35,8 @@ const SellerStat = () => {
     return (
         <div className="min-h-screen grid grid-cols-12">
             {/* Navbar */}
-            <nav className="bg-gray-300 p-4 text-center font-semibold w-full col-span-12">
-                <NavBar />
+            <nav className=" p-4 text-center font-semibold w-full col-span-12">
+                <NavBar2 />
             </nav>
             
             {/* Sidebar */}
