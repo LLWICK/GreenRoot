@@ -51,7 +51,9 @@ const Login = () => {
                             navigate(`/seller/${payload.userId}/home`);
                             break;
                         case "researcher":
+
                             navigate(`/researcher`);
+
                             break;
                         default:
                             navigate("/");

@@ -81,6 +81,7 @@ import Cus_LandingBanner from "./customer/components/Cus_LandingBanner";
 import CheckoutPage from "./customer/pages/CheckoutPage";
 import OrderhistoryPage from "./customer/pages/OrderhistoryPage";
 import ChartPage from "./customer/pages/ChartPage";
+import ConfirmPage from "./customer/pages/ConfirmPage";
 
 import SellerNormalOrders from "./seller/pages/sellerNormalOrders";
 import FinalizeOrder from "./seller/pages/sellerfinalizeOrder";
@@ -215,6 +216,8 @@ function App() {
       <Route path="/Home/Checkout" element={<CheckoutPage />} />
       <Route path="/Customer/Orderhistory" element={<OrderhistoryPage />} />
       <Route path="/Customer/ChartPage" element={<ChartPage />} />
+      <Route path="/Customer/ConfirmPage" element={<ConfirmPage/>} />
+      
     </Routes>
   );
 }
