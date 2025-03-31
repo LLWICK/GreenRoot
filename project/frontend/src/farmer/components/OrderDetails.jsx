@@ -28,8 +28,16 @@ function OrderDetails() {
     fetchOrderDetails();
   }, []);
 
-  const handleSubmit = () => {
-    axios
+  const handleSubmit = async () => {
+    await axios
+      .patch(`http://localhost:3000/api/v1/farmer/order/${oid}`, {
+        status: orderStatus,
+      })
+      .then((res) => {
+        alert("Order Updated!");
+      });
+
+    await axios
       .post("http://localhost:3000/api/v1/farmer/order/email", {
         id: order._id,
         status: orderStatus,
@@ -91,6 +99,7 @@ function OrderDetails() {
                   <select
                     className="w-full border rounded p-2"
                     name="status"
+                    value={orderStatus}
                     onChange={(e) => {
                       setStatus(e.target.value);
                     }}
