@@ -3,6 +3,8 @@ import axios from "axios";
 import Cart from "../components/cart";
 import Crop from "../components/cropCard";
 import SideBar from "../components/sideBar(seller)";
+import NavBar from '@/admin/pages/home/home_components/NavBar';
+import NavBar2 from "@/Common/NavBar2";
 
 const SellerHome = () => {
     const [cartOpen, setCartOpen] = useState(false);
@@ -89,7 +91,7 @@ const SellerHome = () => {
     return (
         <>
             {/* Navbar */}
-            <nav className="bg-gray-300 p-4 text-center font-semibold">NAV</nav>
+            <nav className="p-4"><NavBar2/></nav>
 
             <div className="grid grid-cols-12 min-h-screen">
                 {/* Sidebar */}
@@ -100,12 +102,20 @@ const SellerHome = () => {
                     <h1 className="text-lg font-semibold mb-4">Crops</h1>
 
                     {/* Categories & Cart Icon */}
-                    <div className="flex justify-center items-center gap-12 mb-10">
-                        <a href="#" className="text-gray-700 hover:text-green-600">cat 1</a>
-                        <a href="#" className="text-gray-700 hover:text-green-600">cat 2</a>
-                        <a href="#" className="text-gray-700 hover:text-green-600">cat 3</a>
-                        <a href="#" className="text-gray-700 hover:text-green-600">cat 4</a>
-
+                                    <div className="flex justify-end items-center gap-6 mb-10 mr-10">
+                            <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
+                                cat 1
+                            </a>
+                            <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
+                                cat 2
+                            </a>
+                            <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
+                                cat 3
+                            </a>
+                            <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
+                                cat 4
+                            </a>
+                            
                         {/* Cart Icon */}
                         <button className="text-gray-700 hover:text-green-600 relative" onClick={() => setCartOpen(true)}>
                             🛒 Cart

@@ -16,26 +16,32 @@ const validateUser = (req, res, next) => {
 
 // autheticate user
 const authenticateUser = (req, res, next) => {
-    const { authToken } = req.cookies;
+    try {
+        const { authToken } = req.cookies;
 
-    if (!authToken) {
-        return res.status(400).json({ err: `Authentication invalid!` });
+        if (!authToken) {
+            return res.status(400).json({ err: `Authentication invalid!` });
+        }
+
+        const payload = verifyJWT(authToken);
+
+        if (!payload) {
+            return res.status(401).json({ err: `Authentication invalid!` });
+        }
+
+        req.user = { userId: payload.userId, role: payload.role };
+        next();
+
+    } catch (err) {
+        res.status(401).json({ message: err });
     }
 
-    const payload = verifyJWT(authToken);
-
-    if (!payload) {
-        return res.status(400).json({ err: `Authentication invalid!` });
-    }
-
-    req.user = { userId: payload.userId, role: payload.role };
-    next();
 };
 
 const authorizePermissions = (...roles) => {
     return (req, res, next) => {
         if (!roles.includes(req.user.role)) {
-            return res.status(400).json({ err: `unauthorized to access this route!` });
+            return res.status(403).json({ err: `unauthorized to access this route!` });
         }
         next();
     }

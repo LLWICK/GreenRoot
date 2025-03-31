@@ -4,7 +4,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 import loginImg from "../extras/loginImage.svg";
-import NavBar from "./home/home_components/NavBar";
+import NavBar2 from "@/Common/NavBar2";
 import Footer from "./home/home_components/Footer";
 
 // logo
@@ -48,7 +48,7 @@ const Login = () => {
                             navigate(`/farmer/${payload.userId}/dashboard`);
                             break;
                         case "seller":
-                            navigate("/");
+                            navigate(`/seller/${payload.userId}/home`);
                             break;
                         case "researcher":
                             navigate(`/researcher`);
@@ -66,7 +66,7 @@ const Login = () => {
 
     return (
         <>
-            <NavBar />
+            <NavBar2 />
 
             <>
                 <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">

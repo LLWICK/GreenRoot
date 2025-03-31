@@ -4,8 +4,7 @@ const Crop = require('../../farmer/model/cropModel');
 // Add crop to cart
 const addToCart = async (req, res) => {
   try {
-    const { cropId ,sellerId } = req.body; // Just cropId, no quantity
-    //const sellerId = req.user.id; // Assuming JWT middleware sets user ID
+    const { cropId, sellerId } = req.body; // Just cropId, no quantity
 
     // Check if crop exists
     const crop = await Crop.findById(cropId);
@@ -22,7 +21,9 @@ const addToCart = async (req, res) => {
       cart = new Cart({ sellerId, items: [] });
     }
 
-    // Add crop to cart
+    console.log(crop.image)
+
+    // Check if the crop is already in the cart
     const existingItem = cart.items.find((item) => item.cropId.equals(cropId));
     if (existingItem) {
       return res.status(400).json({ message: 'Crop already in cart' });
@@ -32,6 +33,7 @@ const addToCart = async (req, res) => {
         name: crop.name,
         price: crop.price,
         subtotal: crop.price, // Each crop added is considered 1 unit
+        image: crop.image, // ✅ Add crop image
       });
     }
 
@@ -41,48 +43,50 @@ const addToCart = async (req, res) => {
     await cart.save();
     res.status(200).json(cart);
   } catch (err) {
+    console.error('Error adding to cart:', err);
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
 
-//get cart using seller id
+// Get cart using seller ID
 const getCart = async (req, res) => {
   try {
     const { sellerId } = req.params;
 
-    //const cart = await Cart.findOne({ sellerId });
+    // Find the cart and populate cropId fields (fetch the image and farmerID)
     const cart = await Cart.findOne({ sellerId })
-    .populate({
-      path: "items.cropId",
-      select: "farmerID image", // Only fetch farmerId
-    })
+      .populate({
+        path: 'items.cropId',
+        select: 'farmerID image', // Only fetch farmerId and image
+      });
 
     if (!cart) {
       return res.status(404).json({ message: 'Cart not found' });
     }
 
-    res.status(200).json(cart); 
+    res.status(200).json(cart);
   } catch (err) {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
 
-
 // Remove item from cart
 const removeFromCart = async (req, res) => {
   try {
-    const { cropId ,sellerId } = req.params;
-    //const sellerId = req.user.id;
+    const { cropId, sellerId } = req.params;
 
+    // Find the cart
     const cart = await Cart.findOne({ sellerId });
     if (!cart) return res.status(404).json({ message: 'Cart not found' });
 
+    // Remove the item from the cart
     cart.items = cart.items.filter((item) => !item.cropId.equals(cropId));
     cart.totalPrice = cart.items.reduce((acc, item) => acc + item.subtotal, 0);
 
     await cart.save();
     res.status(200).json(cart);
   } catch (err) {
+    console.log(err)
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
