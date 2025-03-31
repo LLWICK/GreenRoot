@@ -66,6 +66,7 @@ const productRoutes = require("./seller/routes/productRoutes.js");
 const paymentRoutes = require("./seller/routes/stripeRoute.js");
 const bulkOrderRoutes = require("./seller/routes/bulkOrderRoutes.js");
 const statDataRoutes = require("./seller/routes/statDataRoutes.js");
+const FarmerToDoRoutes = require("./seller/routes/TodoListRoutes.js");
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -114,6 +115,8 @@ app.use("/api/RetailSeller/products", productRoutes);
 app.use("/api/RetailSeller/payment/stripe", paymentRoutes);
 app.use("/api/RetailSeller/bulkOrder", bulkOrderRoutes);
 app.use("/api/RetailSeller/stats", statDataRoutes);
+app.use("/api/RetailSeller/farmers", FarmerToDoRoutes);
+
 
 mongoose
   .connect(mongoURL)

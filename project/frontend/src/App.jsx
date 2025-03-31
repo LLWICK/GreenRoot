@@ -81,6 +81,7 @@ import SellerNormalOrders from "./seller/pages/sellerNormalOrders";
 import FinalizeOrder from "./seller/pages/sellerfinalizeOrder";
 import SellerStat from "./seller/pages/sellerStat";
 import BulkOrderSummary from "./seller/pages/sellerBulkOrderSummary";
+import FarmerList from "./seller/pages/farmers";
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -186,6 +187,9 @@ function App() {
       <Route path="/seller/normalOrders" element={<SellerNormalOrders />} />
       <Route path="/seller/placeOrder" element={<FinalizeOrder />} />
       <Route path="/seller/stat" element={<SellerStat />} />
+      <Route path="/seller/stat" element={<SellerStat/>} />
+      <Route path="/seller/BulkOrder/:orderId" element={<BulkOrderSummary/>} />
+      <Route path="/seller/farmers" element={<FarmerList/>} />
 
       {/* Customer Routes */}
 
