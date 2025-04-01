@@ -45,11 +45,11 @@ function Sidebar() {
             <span>Dashboard</span>
           </Link>
           <Link
-            to="/user/Crops" // Add link to crops page
+            to="/Customer/ProductDetailsPage" // Add link to crops page
             className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
           >
             <Package className="w-4 h-4 mr-2" />
-            <span>Products</span>
+            <span>Product Details</span>
           </Link>
           <Link
             to="/Customer/Orderhistory" // Add link to orders page

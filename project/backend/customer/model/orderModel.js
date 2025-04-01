@@ -19,17 +19,7 @@ const orderSchema = new mongoose.Schema(
     //         required: true,
     //       },
     
-    //     ordinary_buyer_id: {
-    //       type: String,
-    //       required: true,
-    //       default: "0",
-    //     },
     
-    //     Retailer_ID: {
-    //       type: String,
-    //       default: "0",
-    //       required: false,
-    //     },
     
     //     Quantity: {
     //       type: Number,
@@ -79,6 +69,17 @@ const orderSchema = new mongoose.Schema(
       status:{
         type:String,
       },
+      ordinary_buyer_id: {
+        type: String,
+        
+        default: "0",
+      },
+  
+      Retailer_ID: {
+        type: String,
+       
+      },
+
     },
         {
             timestamps: true,

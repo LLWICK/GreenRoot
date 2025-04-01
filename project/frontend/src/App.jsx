@@ -83,6 +83,8 @@ import CheckoutPage from "./customer/pages/CheckoutPage";
 import OrderhistoryPage from "./customer/pages/OrderhistoryPage";
 import ChartPage from "./customer/pages/ChartPage";
 import ConfirmPage from "./customer/pages/ConfirmPage";
+import CategoryPage from "./customer/pages/CategoryPage";
+import ProductDetailsPage from "./customer/pages/ProductDetailsPage";
 
 import SellerNormalOrders from "./seller/pages/sellerNormalOrders";
 import FinalizeOrder from "./seller/pages/sellerfinalizeOrder";
@@ -221,6 +223,8 @@ function App() {
       <Route path="/Customer/Orderhistory" element={<OrderhistoryPage />} />
       <Route path="/Customer/ChartPage" element={<ChartPage />} />
       <Route path="/Customer/ConfirmPage" element={<ConfirmPage/>} />
+      <Route path='/Customer/products-Category/:categoryName' element={<CategoryPage />} />
+      <Route path='/Customer/ProductDetailsPage' element={<ProductDetailsPage />} />
       
     </Routes>
   );

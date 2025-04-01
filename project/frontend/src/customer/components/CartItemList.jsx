@@ -2,6 +2,7 @@
  import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
  import { useNavigate } from 'react-router-dom';
+ import axios from 'axios';
 
  const CartItemList = () => {
     const [cartItems, setCartItems] = useState(null);
@@ -81,10 +82,25 @@ import { Button } from '@/components/ui/button';
          }
      };
 
-     //navigate  to checkout page
-     const handleCheckout = () => {
-         navigate('/Home/Checkout', { state: { subtotal: Subtotal } }); // Pass subtotal as state
-    };// change above path
+   //payment sreipe
+   const handleForm = async (e) => {
+    e.preventDefault();
+
+    try {
+        const stripeAmount = Math.round((Subtotal*0.01) * 100); // Corrected calculation
+
+        const response = await axios.post("http://localhost:3000/api/customer/payment", {
+            Subtotal: stripeAmount,
+        });
+
+        if (response.data && response.data.data.url) {
+            window.location.href = response.data.data.url;
+        }
+    } catch (error) {
+        console.error("Error processing payment:", error);
+        alert("Error processing payment. Please try again.");
+    }
+};
 
 
      if (loading) {
@@ -126,7 +142,7 @@ import { Button } from '@/components/ui/button';
                             <div className='absolute w-[90%] bottom-6 flex flex-col'>
 
                     <h2 className='text-lg font-bold flex justify-between'>Subtotal <span>${Subtotal}</span></h2>
-                    <Button onClick={handleCheckout}>Checkout</Button>
+                    <Button onClick={handleForm}>Checkout</Button>
                      </div>
                             
                         </div>
