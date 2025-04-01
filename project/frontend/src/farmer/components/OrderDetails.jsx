@@ -5,6 +5,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 function OrderDetails() {
   const [order, setOrder] = useState({});
   const [Items, setItems] = useState([]);
+  const [reciver, setReciver] = useState(false);
+  const [sellerEmail, setEmail] = useState(null);
   const [orderStatus, setStatus] = useState("");
   const { oid, uid } = useParams();
   const navigate = useNavigate();
@@ -19,6 +21,7 @@ function OrderDetails() {
             setOrder(res.data.data);
             setItems(res.data.data.items);
             setStatus(res.data.data.status);
+            setReciver(true);
           });
       } catch (error) {
         console.error("Error fetching CaOrder Details:", error);
@@ -27,6 +30,26 @@ function OrderDetails() {
 
     fetchOrderDetails();
   }, []);
+
+  useEffect(() => {
+    // Simulate fetching Seller data from an API
+    const fetchSellerDetails = async () => {
+      try {
+        axios
+          .get(`http://localhost:3000/api/user/${order.sellerId}`)
+          .then((res) => {
+            console.log(res.data.data.email);
+            setEmail(res.data.data.email);
+          });
+      } catch (error) {
+        console.error("Error fetching Seller Details:", error);
+      }
+    };
+
+    if (Object.entries(order).length != 0) {
+      fetchSellerDetails();
+    }
+  }, [reciver]);
 
   const handleSubmit = async () => {
     await axios
