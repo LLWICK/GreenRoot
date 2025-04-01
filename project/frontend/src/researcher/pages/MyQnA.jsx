@@ -1,13 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import SidebarResearcher from '../components/SidebarResearcher';
 import MyQnACard from '../components/MyQnACard';
+import { getResearcherId } from '../utils/auth';
+import { useNavigate } from 'react-router-dom';
 
 export default function MyQnA() {
+
+  const navigate = useNavigate();
+  const [userID, setUserID] = useState(null);
   const [tickets, setTickets] = useState([]); // All tickets
   const [ticketsWithNoSolutions, setTicketsWithNoSolutions] = useState([]); // Tickets with no solutions
   const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
+
+    const userId = getResearcherId();
+      
+    if (userId) {
+      setUserID(userId);
+    } else {
+      navigate(`/auth/login`);
+    }
+
     const fetchTicketsAndSolutions = async () => {
       try {
         // Fetch all tickets

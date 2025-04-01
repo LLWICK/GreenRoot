@@ -2,32 +2,49 @@ import React, { useState, useEffect } from 'react';
 import SidebarResearcher from '../components/SidebarResearcher';
 import NewsForm from '../components/NewsForm';
 import NewsCardR from '../components/NewsCardR';
+import { useNavigate } from 'react-router-dom';
+import { getResearcherId } from '../utils/auth';
+import Cookies from 'js-cookie';
 
 export default function MyNews() {
+
+  const navigate = useNavigate();
+  const [userID, setUserID] = useState(null);
   const [newss, setNewss] = useState([]);
-  const [showForm, setShowForm] = useState(false); // State to control form visibility
-  // const { user } = useAuthContext(); // Uncomment if you need user authentication
+  const [showForm, setShowForm] = useState(false); 
 
   useEffect(() => {
+    const userId = getResearcherId();
+      
+    if (userId) {
+      setUserID(userId);
+    } else {
+      navigate(`/auth/login`);
+    }
+
     const fetchNews = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/researcher/news', {
-          // headers: {
-          //   'Authorization': `Bearer ${user.token}` // Uncomment if you need authentication
-          // }
+        const response = await fetch(`http://localhost:3000/api/researcher/news/my-news`, {
+          headers: {
+            'Authorization': `Bearer ${Cookies.get('authToken')}`
+          },
+          credentials: 'include'
         });
-        const json = await response.json();
-
+        
+        const json = await response.json(); 
+    
         if (response.ok) {
           setNewss(json);
+        } else {
+          console.error('Error response:', json);
         }
       } catch (error) {
-        console.error('Error fetching news:', error);
+        console.error('Fetch error:', error);
       }
     };
 
     fetchNews();
-  }, []); // Add `user` to the dependency array if you uncomment it
+  }, []); 
 
   return (
     <div className="min-h-screen bg-gray-200 flex">

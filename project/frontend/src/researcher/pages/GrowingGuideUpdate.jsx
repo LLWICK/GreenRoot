@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SidebarResearcher from '../components/SidebarResearcher';
+import { getResearcherId } from '../utils/auth';
 
 export default function GrowingGuideUpdate() {
     const location = useLocation();
     const navigate = useNavigate();
+    const [userID, setUserID] = useState(null);
     const { post } = location.state || {};
+
+    useEffect(() => {
+      const userId = getResearcherId();
+        
+      if (userId) {
+        setUserID(userId);
+      } else {
+        navigate(`/auth/login`);
+      }
+    })
     
     // State initialization
     const [title, setTitle] = useState(post?.title || '');

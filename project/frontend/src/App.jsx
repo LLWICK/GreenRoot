@@ -44,6 +44,8 @@ import BlogCropDetails from "./researcher/pages/BlogCropDetails"
 import GrowingGuideUpdate from "./researcher/pages/GrowingGuideUpdate";
 import NewsUpdate from "./researcher/pages/NewsUpdate";
 import QnABlog from "./researcher/pages/QnABlog";
+import MyStats from "./researcher/pages/MyStats";
+import MyPnd from "./researcher/pages/MyPnd";
 
 /* Admin pages */
 import {
@@ -190,6 +192,8 @@ function App() {
       <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate/>}/>
       <Route path="/researcher/my-news/update" element={<NewsUpdate/>}/>
       <Route path="/blog/qna" element={<QnABlog/>}/>
+      <Route path="/researcher/my-stats" element={<MyStats/>}/>
+      <Route path="/researcher/my-pnd" element={<MyPnd/>}/>
 
 
       {/* Retail seller Router */}
