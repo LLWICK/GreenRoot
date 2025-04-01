@@ -75,6 +75,28 @@ const getQuestionByTitle = async (req, res, title) => {
     }
 }
 
+// reply to a question
+const replyToQuestion = async (req, res) => {
+    try {
+        const { adminId, message } = req.body;
+        const { questionId } = req.params;
+
+        // find the question
+        const question = Question.findById(questionId);
+        if (!question) {
+            return res.status(404).json({ error: `Question not found...` });
+        }
+
+        question.replies.push({ adminId, message, createdAt: new Date() });
+        await question.save();
+
+        res.status(200).json({ msg: `Reply added successfully...` });
+
+    } catch (error) {
+        res.status(500).json({ msg: error.message });
+    }
+}
+
 /*
 // get all questions
 const getAllQuestions = async (req, res) => {
@@ -206,4 +228,5 @@ module.exports = {
     getUserQuestions,
     updateQuestion,
     getQuestionByTitle,
+    replyToQuestion
 }
