@@ -20,7 +20,7 @@ const ReplyQuestion = () => {
         console.log(adminid);
 
         try {
-            await axios.post(`http://localhost:3000/api/qna/reply/${question._id}`, {
+            await axios.post(`http://localhost:3000/api/qna/question/reply/${question._id}`, {
                 message: reply,
                 adminId: adminid
             });
