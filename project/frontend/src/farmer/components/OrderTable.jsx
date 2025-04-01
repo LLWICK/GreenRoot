@@ -29,6 +29,8 @@ function OrderTable() {
     }
   }, [uid]);
 
+  const searchFunction = (e) => {};
+
   return (
     <div style={{ float: "left" }}>
       <div class="mx-auto max-w-screen-xl bg-white">
@@ -104,6 +106,9 @@ function OrderTable() {
                   name="search"
                   class="h-12 w-full border-b-gray-400 bg-transparent py-4 pl-12 text-sm outline-none focus:border-b-2"
                   placeholder="Search by Order ID, Date, Customer"
+                  onChange={(e) => {
+                    searchFunction(e.target.value);
+                  }}
                 />
               </form>
 
