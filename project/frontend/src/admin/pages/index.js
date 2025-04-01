@@ -15,7 +15,11 @@ export { default as ViewUser } from "./userManagement/ViewUser";
 export { default as CreateUser } from "./userManagement/CreateUser";
 
 // Q & A management
+export { default as QuestionManagement } from "./QuestionManagement";
 export { default as CreateQuestion } from "./CreateQuestion";
+export { default as ViewQuestions } from "./questionManagement/ViewQuestions";
+export { default as QuestionDetails } from "./questionManagement/QuestionDetails";
+export { default as ReplyQuestion } from "./questionManagement/ReplyQuestion";
 
 // pages
 export { default as ContactUsPage } from "./home/ContactUs";
