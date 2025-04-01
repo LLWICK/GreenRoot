@@ -33,7 +33,7 @@ export default function BlogHeader() {
             Pest and Disease
           </Link>
 
-          <Link to="/qna" className="text-gray-700 hover:bg-amber-500 transition-colors font-bold py-2 px-4 rounded">
+          <Link to="/blog/qna" className="text-gray-700 hover:bg-amber-500 transition-colors font-bold py-2 px-4 rounded">
             Q&A
           </Link>
         </nav>

@@ -76,6 +76,9 @@ const orderSchema = new mongoose.Schema(
         type: Number,
         unique: true, // Optional: Ensure order numbers are unique
       },
+      status:{
+        type:String,
+      },
     },
         {
             timestamps: true,

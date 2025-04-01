@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import BlogHeader from '../components/BlogHeader';
 import BlogFooter from '../components/BlogFooter';
 import GrowingGuideCard from '../components/GrowingGuideCard';
+import BlogCrop from '../pages/BlogCrop'
 
 export default function GrowingGuideBlog() {
     const [posts, setPosts] = useState([]);
@@ -48,6 +49,13 @@ export default function GrowingGuideBlog() {
                     <p className="text-gray-600">Discover expert growing guides for your plants</p>
                 </div>
 
+                <div className="p-4  ml-26 -mb-10">
+                <h3 className="text-xl font-bold text-gray-800 ">
+                  Popular plants to grow
+                </h3>
+                
+              </div>
+
                 {/* Content Section */}
                 {loading ? (
                     <div className="flex justify-center items-center h-64">
@@ -65,6 +73,9 @@ export default function GrowingGuideBlog() {
                     </div>
                 ) : posts.length > 0 ? (
                     <div className="px-4 sm:px-6 lg:px-8 py-6">
+                        <div className="p-4 text-center">
+                
+              </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
                             {posts.map((post) => (
                                 <GrowingGuideCard key={post._id} post={post} />
@@ -77,6 +88,11 @@ export default function GrowingGuideBlog() {
                     </div>
                 )}
             </main>
+
+            <div className='ml-30 mb-16 mt-6' >
+               <BlogCrop/>
+            </div>
+
 
             <BlogFooter />
         </div>

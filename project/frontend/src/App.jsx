@@ -39,6 +39,11 @@ import ReplyQnA from "./researcher/pages/ReplyQnA";
 import MyGrowingGuide from "./researcher/pages/MyGrowingGuide";
 import GrowingGuideBlog from "./researcher/pages/GrowingGuideBlog";
 import SingleGrowingGuide from "./researcher/pages/SingleGrowingGuide";
+import BlogCrop from "./researcher/pages/BlogCrop";
+import BlogCropDetails from "./researcher/pages/BlogCropDetails"
+import GrowingGuideUpdate from "./researcher/pages/GrowingGuideUpdate";
+import NewsUpdate from "./researcher/pages/NewsUpdate";
+import QnABlog from "./researcher/pages/QnABlog";
 
 /* Admin pages */
 import {
@@ -76,6 +81,7 @@ import Cus_LandingBanner from "./customer/components/Cus_LandingBanner";
 import CheckoutPage from "./customer/pages/CheckoutPage";
 import OrderhistoryPage from "./customer/pages/OrderhistoryPage";
 import ChartPage from "./customer/pages/ChartPage";
+import ConfirmPage from "./customer/pages/ConfirmPage";
 
 import SellerNormalOrders from "./seller/pages/sellerNormalOrders";
 import FinalizeOrder from "./seller/pages/sellerfinalizeOrder";
@@ -107,6 +113,7 @@ function App() {
       <Route path="/farmer/:uid/addTask" element={<TaskCard />} />
       <Route path="/farmer/:uid/editTask/:tid" element={<EditTasksModal />} />
       <Route path="/farmer/Blogs" element={<BlogPage />} />
+
       <Route path="/farmer/:uid/addMap" element={<SearchLocation />} />
       <Route path="/farmer/:uid/order/:oid/update" element={<OrderUpdate />} />
 
@@ -179,6 +186,12 @@ function App() {
       <Route path="/researcher/my-growing-guide" element={<MyGrowingGuide />} />
       <Route path="/blog/growing-guide" element={<GrowingGuideBlog />} />
       <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide />} />
+      <Route path="/blog/crop" element={<BlogCrop/>}/>
+      <Route path="/blog/crop/:id" element={<BlogCropDetails/>}/>
+      <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate/>}/>
+      <Route path="/researcher/my-news/update" element={<NewsUpdate/>}/>
+      <Route path="/blog/qna" element={<QnABlog/>}/>
+
 
       {/* Retail seller Router */}
 
@@ -205,6 +218,8 @@ function App() {
       <Route path="/Home/Checkout" element={<CheckoutPage />} />
       <Route path="/Customer/Orderhistory" element={<OrderhistoryPage />} />
       <Route path="/Customer/ChartPage" element={<ChartPage />} />
+      <Route path="/Customer/ConfirmPage" element={<ConfirmPage/>} />
+      
     </Routes>
   );
 }
