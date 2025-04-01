@@ -1,13 +1,24 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const QuestionManagement = () => {
+
+    const [workingIssues, setWorkingIssues] = useState([]);
+    const [generalInquiries, setGeneralInquiries] = useState([]);
+    const [accountIssues, setAccountIssues] = useState([]);
+    const [technicalSupport, setTechnicalSupport] = useState([]);
+    const [otherQuestions, setOtherQuestions] = useState([]);
+
+    const navigate = useNavigate();
+
     const questionTypes = [
-        { id: 1, title: "General Inquiry" },
-        { id: 2, title: "Technical Support" },
-        { id: 3, title: "Product Feedback" },
-        { id: 4, title: "Account Issues" },
-        { id: 5, title: "Other" },
+        { id: 1, title: "Working Issue", state: workingIssues },
+        { id: 2, title: "General Inquiry", state: generalInquiries },
+        { id: 3, title: "Account Issue", state: accountIssues },
+        { id: 4, title: "Technical Support", state: technicalSupport },
+        { id: 5, title: "Other", state: otherQuestions },
     ];
+
 
     return (
         <div className="container mx-auto py-16">

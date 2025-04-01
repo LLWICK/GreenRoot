@@ -3,13 +3,13 @@ const Question = require('../model/QuestionModel')
 // create a question
 const createQuestion = async (req, res) => {
     try {
-        const { title, message, userId } = req.body;
+        const { title, customTitle, message, userId } = req.body;
 
         if (!title || !message || !userId) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
-        const question = new Question({ title, message, createdBy: userId });
+        const question = new Question({ title, customTitle, message, createdBy: userId });
         await question.save();
 
         res.status(201).json({ message: "Question created successfully", data: question });
@@ -64,7 +64,7 @@ const updateQuestion = async (req, res) => {
     }
 };
 
-// get user by title
+// get questions by title
 const getQuestionByTitle = async (req, res, title) => {
     try {
         const question = await Question.find({ title });

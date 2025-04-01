@@ -37,19 +37,22 @@ const AskQuestion = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!title && !otherTitle || !message) {
+        if ((!title || (title === "Other" && !otherTitle)) || !message) {
             Swal.fire("Error", "All fields are required!", "error");
             return;
         }
 
-        const finalTitle = title === "Other" ? "Other" : title; // Use custom title if "Other" is selected
+        // const finalTitle = title === "Other" ? "Other" : title;
+        const payload = {
+            title: title === "Other" ? "Other" : title, // Save "Other" as the title
+            customTitle: title === "Other" ? otherTitle.trim() : null, // Save the custom title separately
+            message: message.trim(),
+            userId,
+        };
+
 
         try {
-            await axios.post("http://localhost:3000/api/qna/create", {
-                title: finalTitle,
-                message,
-                userId
-            });
+            await axios.post("http://localhost:3000/api/qna/create", payload);
 
             Swal.fire("Success", "Question submitted successfully!", "success");
             setTitle("");
@@ -67,16 +70,19 @@ const AskQuestion = () => {
         const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
         const canEdit = createdAt > oneHourAgo;
 
+        // get the custom title if it is present
+        const displayTitle = question.customTitle || question.title;
+
         Swal.fire({
             title: "View Question",
-            width: "60vw", // Increased width
+            width: "60vw",
             heightAuto: false,
             padding: "20px",
             html: `
                 <div style="max-height: 60vh; overflow-y: auto; text-align: left;">
                     <input id="edit-title" class="swal2-input" 
                         style="width: 95%; font-size: 1.1rem;" 
-                        value="${question.title}" placeholder="Title" ${canEdit ? "" : "disabled"}>
+                        value="${displayTitle}" placeholder="Title" ${canEdit ? "" : "disabled"}>
 
                     <textarea id="edit-message" class="swal2-textarea" 
                         style="width: 95%; height: 150px; font-size: 1.1rem;" 

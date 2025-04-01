@@ -14,9 +14,10 @@ router.get('/questions/:userId', getUserQuestions);
 router.put("/update/:questionId", updateQuestion);
 
 // get question by title
-router.get("/title1", (req, res) => getQuestionByTitle(req, res, "Working Issue"));
-router.get("/title2", (req, res) => getQuestionByTitle(req, res, "General Inquiry"));
-router.get("/title3", (req, res) => getQuestionByTitle(req, res, "Account Issue"));
-router.get("/title4", (req, res) => getQuestionByTitle(req, res, "Technical Support"));
+router.get("/question/title1", (req, res) => getQuestionByTitle(req, res, "Working Issue"));
+router.get("/question/title2", (req, res) => getQuestionByTitle(req, res, "General Inquiry"));
+router.get("/question/title3", (req, res) => getQuestionByTitle(req, res, "Account Issue"));
+router.get("/question/title4", (req, res) => getQuestionByTitle(req, res, "Technical Support"));
+router.get("/question/Other", (req, res) => getQuestionByTitle(req, res, "Other"));
 
 module.exports = router;
