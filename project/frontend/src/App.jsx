@@ -61,7 +61,8 @@ import {
   ServicesPage,
   BlogsPage,
   CreateQuestion,
-  QuestionManagement
+  QuestionManagement,
+  ViewQuestions,
 } from "./admin/pages";
 
 /* retail seller page imports  */
@@ -163,6 +164,7 @@ function App() {
       />
       <Route path="/admin/ques" element={<QuestionManagement />} />
       <Route path="/admin/test/ques" element={<CreateQuestion />} />
+      <Route path="/admin/view-questions/:id" element={<ViewQuestions />} />
 
       {/* Home page components */}
       <Route path="/contact" element={<ContactUsPage />} />

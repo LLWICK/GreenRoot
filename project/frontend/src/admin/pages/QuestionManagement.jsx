@@ -1,24 +1,48 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const QuestionManagement = () => {
-
-    const [workingIssues, setWorkingIssues] = useState([]);
-    const [generalInquiries, setGeneralInquiries] = useState([]);
-    const [accountIssues, setAccountIssues] = useState([]);
-    const [technicalSupport, setTechnicalSupport] = useState([]);
-    const [otherQuestions, setOtherQuestions] = useState([]);
-
+    const [questionsByType, setQuestionsByType] = useState({});
     const navigate = useNavigate();
 
     const questionTypes = [
-        { id: 1, title: "Working Issue", state: workingIssues },
-        { id: 2, title: "General Inquiry", state: generalInquiries },
-        { id: 3, title: "Account Issue", state: accountIssues },
-        { id: 4, title: "Technical Support", state: technicalSupport },
-        { id: 5, title: "Other", state: otherQuestions },
+        { id: "title1", title: "Working Issue", api: "http://localhost:3000/api/qna/question/title1" },
+        { id: "title2", title: "General Inquiry", api: "http://localhost:3000/api/qna/question/title2" },
+        { id: "title3", title: "Account Issue", api: "http://localhost:3000/api/qna/question/title3" },
+        { id: "title4", title: "Technical Support", api: "http://localhost:3000/api/qna/question/title4" },
+        { id: "Other", title: "Other", api: "http://localhost:3000/api/qna/question/Other" },
     ];
 
+    useEffect(() => {
+        const fetchQuestions = async () => {
+            try {
+                const responses = await Promise.all(
+                    questionTypes.map((type) => axios.get(type.api))
+                );
+
+                console.log("API Responses:", responses); // Debugging
+
+                const data = {};
+                responses.forEach((res, index) => {
+                    data[questionTypes[index].id] = res.data.data;
+                });
+
+                setQuestionsByType(data);
+            } catch (error) {
+                console.error("Error fetching questions:", error);
+            }
+        };
+
+        fetchQuestions();
+    }, []);
+
+    const handleViewNavigation = (typeId, typeTitle) => {
+        console.log("Navigating to:", typeId, questionsByType[typeId]); // Debugging
+        navigate(`/admin/view-questions/${typeId}`, {
+            state: { questions: questionsByType[typeId] || [], typeTitle },
+        });
+    };
 
     return (
         <div className="container mx-auto py-16">
@@ -27,18 +51,18 @@ const QuestionManagement = () => {
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-                {questionTypes.map((type) => (
-                    <div key={type.id} className="bg-white p-6 rounded-lg shadow-lg">
-                        <h3 className="text-xl font-semibold text-gray-800 mb-4">{type.title}</h3>
+                {questionTypes.map(({ id, title }) => (
+                    <div key={id} className="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 className="text-xl font-semibold text-gray-800 mb-4">{title}</h3>
                         <p className="text-gray-600 mb-6">
                             Manage questions of this type. View, edit, and respond to inquiries.
                         </p>
-                        <Link
-                            to={`/admin/questions/${type.id}`}
+                        <button
+                            onClick={() => handleViewNavigation(id, title)}
                             className="inline-block bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition-all"
                         >
-                            View Questions
-                        </Link>
+                            View Questions ({questionsByType[id]?.length || 0})
+                        </button>
                     </div>
                 ))}
             </div>
