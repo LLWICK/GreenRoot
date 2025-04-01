@@ -1,6 +1,12 @@
 const express = require('express');
 // const { authenticateUser, authorizePermissions } = require('../middleware/auth.middleware');
-const { createQuestion, getUserQuestions, updateQuestion, getQuestionByTitle } = require('../controller/question.controller');
+const {
+    createQuestion,
+    getUserQuestions,
+    updateQuestion,
+    getQuestionByTitle,
+    replyToQuestion
+} = require('../controller/question.controller');
 const router = express.Router();
 
 
@@ -19,5 +25,5 @@ router.get("/question/title2", (req, res) => getQuestionByTitle(req, res, "Gener
 router.get("/question/title3", (req, res) => getQuestionByTitle(req, res, "Account Issue"));
 router.get("/question/title4", (req, res) => getQuestionByTitle(req, res, "Technical Support"));
 router.get("/question/Other", (req, res) => getQuestionByTitle(req, res, "Other"));
-
+router.post("/question/reply/:quesId", replyToQuestion);
 module.exports = router;
