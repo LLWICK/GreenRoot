@@ -23,6 +23,15 @@ const NavBar2 = () => {
     navigate("/");
   }
 
+  const payload = () => {
+    const token = Cookies.get("authToken");
+    if (token) {
+      const decodedPayload = JSON.parse(atob(token.split(".")[1]));
+      return decodedPayload;
+    }
+    return null;
+  }
+
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -158,7 +167,13 @@ const NavBar2 = () => {
                   </button>
 
                   <Link
-                    to={`/`}
+                    to={
+                      payload()?.role === 'admin' ? `/admin/${payload().userId}/dashboard`
+                        : payload()?.role === 'farmer' ? `/farmer/${payload().userId}/dashboard`
+                          : payload()?.role === 'seller' ? `/seller/${payload().userId}/home`
+                            : payload()?.role === 'researcher' ? `/researcher`
+                              : payload()?.role === 'customer' ? `/Customer` : `/`
+                    }
                     className="ml-4 bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700"
                   >
                     DashBoard

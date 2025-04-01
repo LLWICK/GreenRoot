@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { getResearcherId } from '../utils/auth'
 
 export default function GrowingGuideForm() {
 
@@ -29,6 +30,14 @@ export default function GrowingGuideForm() {
         setIsSubmitting(true); // Set loading state
         setError(null); // Clear previous errors
 
+         // Get the researcher's ID
+        const researcherId = getResearcherId();
+        if (!researcherId) {
+          setError('You must be logged in as a researcher to submit news.');
+          setIsSubmitting(false);
+          return;
+        }
+
         const data = new FormData();
         data.set('title', title);
         data.set('binominalName', bName);
@@ -40,6 +49,7 @@ export default function GrowingGuideForm() {
         data.set('spread', spread);
         data.set('rowSpacing', rowSpacing);
         data.set('height', height);
+        data.set('user_id', researcherId);
 
         // Only add file if it exists
         if (file && file[0]) {
@@ -50,13 +60,9 @@ export default function GrowingGuideForm() {
         try {
             const response = await fetch('http://localhost:3000/api/researcher/posts', {
             method: 'POST',
-            body: data
-          //   headers: {
-          //     credentials: 'include',
-          //     'Authorization': `Bearer ${user.token}`
-          //   }
-           
-          });
+            body: data,
+           credentials: 'include',
+         });
       
           const json = await response.json();
       

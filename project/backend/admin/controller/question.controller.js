@@ -1,21 +1,27 @@
-const Question = require('../model/QuestionModel');
+const Question = require('../model/QuestionModel')
 
 // create a question
 const createQuestion = async (req, res) => {
     try {
-        const { title, message } = req.body;
-        const createdBy = req.user.id;
+        const { title, message, userId } = req.body;
 
-        const question = new Question({ title, message, createdBy });
+        if (!title || !message || !userId) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
+
+        const question = new Question({ title, message, createdBy: userId });
         await question.save();
 
-        res.status(200).json({ message: 'Question created successfully', data: question });
-
+        res.status(201).json({ message: "Question created successfully", data: question });
     } catch (err) {
-        res.status(500).json({ message: err });
+        // console.log(err.message);
+
+        res.status(500).json({ msg: err.message });
+
     }
 }
 
+/*
 // get all questions
 const getAllQuestions = async (req, res) => {
     try {
@@ -23,7 +29,8 @@ const getAllQuestions = async (req, res) => {
         res.status(200).json({ data: questions });
 
     } catch (err) {
-        res.status(500).json({ message: err })
+        console.error("Error in createQuestion:", err);
+        res.status(500).json({ message: "Internal server error" });
     }
 }
 
@@ -138,15 +145,16 @@ const adminDeleteQuestion = async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err });
     }
-}
+} */
 
 module.exports = {
-    createQuestion,
+    createQuestion
+    /*
     getAllQuestions,
     getUserQuestions,
     editQuestion,
     deleteQuestion,
     replyToQuestion,
     adminDeleteQuestion,
-    getQuestionById
+    getQuestionById */
 }

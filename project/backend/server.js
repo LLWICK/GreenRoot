@@ -27,11 +27,14 @@ app.use(
 
 //Import your routes using require , here
 
+/** Admin Routes */
 // Auth routes
 const authRoutes = require("./admin/routes/auth.routes.js");
 const adminRoutes = require("./admin/routes/admin.routes.js"); // admin routes
 // user management routes (Admin)
 const userManagement = require("./admin/routes/user.routes.js");
+// Q&A management routes (Admin)
+const qnaManagement = require("./admin/routes/question.routes.js");
 
 //Farmer routes import
 const stockManage = require("./farmer/routes/stockRoute");
@@ -52,6 +55,10 @@ const otpManage = require("./common/routes/otpRoute.js");
 //Customer route import
 const orderManage = require("./customer/routes/orderRoute.js");
 const addtocartManage = require("./customer/routes/AddtoCartRoute.js");
+const PaymentManage = require("./customer/routes/PaymentRoute.js");//change
+
+
+
 
 //Researcher routes import
 const postRoutes = require("./researcher/routes/postRoutes.js");
@@ -78,10 +85,12 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 
 //Put your routes here using app.use
-/** User Routes (Admin) */
+/** Admin Routes */
+app.use("/api/qna", qnaManagement);
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/user", userManagement);
+
 
 //Use farmer routes
 app.use("/api/v1/stock", stockManage);
@@ -100,6 +109,8 @@ app.use("/api/v1/otp", otpManage);
 //customer Routes
 app.use("/api/customer/orders", orderManage);
 app.use("/api/customer/addtocart", addtocartManage);
+app.use('/api/customer/payment',PaymentManage)//change
+
 
 //Researcher Routes
 app.use("/api/researcher/posts", postRoutes);

@@ -5,9 +5,9 @@ export default function GrowingGuideCard({ post }) {
   return (
     <Link 
       to={`/blog/growing-guide/${post._id}`} 
-      className="block rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-200 hover:-translate-y-1"
+      className="block rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-200 hover:-translate-y-1 bg-white"
     >
-      <div className="aspect-square bg-gray-100"> {/* Fixed aspect ratio */}
+      <div className="aspect-square"> {/* Fixed aspect ratio */}
         <img 
           src={`http://localhost:3000/${post.file}`} 
           alt="post cover" 

@@ -17,30 +17,25 @@
     "@tailwindcss/vite": "^4.0.12",
     "axios": "^1.8.3",
     "boxicons": "^2.1.4",
-
-    "date-fns": "^4.1.0",
-
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-
+    "date-fns": "^4.1.0",
     "dotenv": "^16.4.7",
     "embla-carousel-react": "^8.5.2",
     "js-cookie": "^3.0.5",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.483.0",
     "react": "^19.0.0",
-
     "react-accessible-accordion": "^5.0.0",
-
     "react-calendar": "^5.1.0",
-
     "react-dom": "^19.0.0",
     "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.3.0",
+    "react-select": "^5.10.1",
     "react-select-async-paginate": "^0.7.9",
     "react-toastify": "^11.0.5",
     "recharts": "^2.15.1",
-    "sweetalert2": "^11.17.2",
+    "sweetalert2": "^11.6.13",
     "tailwind-merge": "^3.0.2",
     "tailwindcss": "^4.0.12",
     "tw-animate-css": "^1.2.4"

@@ -60,11 +60,10 @@ const createNews = async (req, res) => {
         
     }
 
-    const {title, content, author } = req.body
+    const {title, content, author, user_id } = req.body
 
     try {
-        //const user_id = req.user.userId  add user_id down there(next to file)
-        const createNews = await news.create({title, content, author, file: newPath})
+        const createNews = await news.create({title, content, author, user_id, file: newPath})
         res.status(200).json(createNews)
     } catch (error) {
         res.status(400).json({error: error.message})

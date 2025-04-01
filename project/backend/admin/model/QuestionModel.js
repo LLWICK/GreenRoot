@@ -40,3 +40,5 @@ const qestionsSchema = new mongoose.Schema({
         default: false
     }
 });
+
+module.exports = mongoose.model("Question", qestionsSchema);
