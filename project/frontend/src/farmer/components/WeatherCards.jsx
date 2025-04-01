@@ -18,6 +18,9 @@ function WeatherCards() {
 
   const [cit, setCity] = useState(null);
 
+  const [lat, setLat] = useState(null);
+  const [lon, setLon] = useState(null);
+
   useEffect(() => {
     axios
       .post("http://localhost:3000/api/v1/field/parameters", {
@@ -27,13 +30,15 @@ function WeatherCards() {
         const datas = res.data.data[0];
         console.log(datas);
         setCity(datas.city);
+        setLat(datas.xcordinate);
+        setLon(datas.ycordinate);
       });
   }, [uid]);
 
   useEffect(() => {
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${cit}&appid=e8345f31b1df93a3674bccd369e8c682&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=e8345f31b1df93a3674bccd369e8c682&units=metric`
       )
       .then((res) => {
         console.log(res);

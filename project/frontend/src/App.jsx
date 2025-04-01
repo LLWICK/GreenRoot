@@ -65,6 +65,7 @@ import {
   ContactUsPage,
   ServicesPage,
   BlogsPage,
+  CreateQuestion
 } from "./admin/pages";
 
 /* retail seller page imports  */
@@ -168,6 +169,7 @@ function App() {
         path="/admin/user-management/researchers"
         element={<ResearchersManagement />}
       />
+      <Route path="/admin/test/ques" element={<CreateQuestion />} />
 
       {/* Home page components */}
       <Route path="/contact" element={<ContactUsPage />} />
@@ -202,9 +204,9 @@ function App() {
       <Route path="/seller/normalOrders" element={<SellerNormalOrders />} />
       <Route path="/seller/placeOrder" element={<FinalizeOrder />} />
       <Route path="/seller/stat" element={<SellerStat />} />
-      <Route path="/seller/stat" element={<SellerStat/>} />
-      <Route path="/seller/BulkOrder/:orderId" element={<BulkOrderSummary/>} />
-      <Route path="/seller/farmers" element={<FarmerList/>} />
+      <Route path="/seller/stat" element={<SellerStat />} />
+      <Route path="/seller/BulkOrder/:orderId" element={<BulkOrderSummary />} />
+      <Route path="/seller/farmers" element={<FarmerList />} />
 
       {/* Customer Routes */}
 

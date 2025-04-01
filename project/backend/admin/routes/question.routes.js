@@ -1,14 +1,15 @@
 const express = require('express');
-const { authenticateUser, authorizePermissions } = require('../middleware/auth.middleware');
-const { createQuestion, getAllQuestions, getUserQuestions, getQuestionById, editQuestion, deleteQuestion, replyToQuestion, adminDeleteQuestion } = require('../controller/question.controller');
+// const { authenticateUser, authorizePermissions } = require('../middleware/auth.middleware');
+const { createQuestion } = require('../controller/question.controller');
 const router = express.Router();
 
 
 // create a question
-router.post("/create", authenticateUser, createQuestion);
+router.post("/create", createQuestion);
 
+/*
 // get all questions
-router.get("/questions", authenticateUser, authorizePermissions("admin"), getAllQuestions);
+router.get("/questions", getAllQuestions);
 
 // get user question
 router.get("/my-questions", authenticateUser, getUserQuestions);
@@ -27,6 +28,6 @@ router.post("/reply/:id", authenticateUser, authorizePermissions("admin"), reply
 
 // admin delete question
 router.delete("/delete/:id", authenticateUser, authorizePermissions("admin"), adminDeleteQuestion);
-
+*/
 
 module.exports = router;

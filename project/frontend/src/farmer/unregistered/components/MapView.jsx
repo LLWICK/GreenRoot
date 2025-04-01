@@ -1,20 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../extra/MapStyles.css";
 import "leaflet/dist/leaflet.css";
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 
-function MapView(prop) {
-  const dat = [7.2906, 80.6337];
+function MapUpdater({ location }) {
+  const map = useMap();
+  useEffect(() => {
+    map.setView(location, 13);
+  }, [location, map]);
+  return null;
+}
+
+function MapView({ locationProp }) {
+  const [location, setLocation] = useState([7.2906, 80.6337]);
+
+  useEffect(() => {
+    if (locationProp) {
+      setLocation(locationProp);
+    }
+  }, [locationProp]);
+
   return (
     <div>
-      <MapContainer center={[7.2906, 80.6337]} zoom={13}>
+      <MapContainer center={location} zoom={13}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        <Marker position={[7.2906, 80.6337]}>
+        <Marker position={location}>
           <Popup>Office Location</Popup>
         </Marker>
       </MapContainer>
