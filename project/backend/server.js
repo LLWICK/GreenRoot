@@ -82,10 +82,11 @@ app.use(express.json());
 
 //Put your routes here using app.use
 /** Admin Routes */
+app.use("/api/qna", qnaManagement);
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/user", userManagement);
-app.use("/api/qna", qnaManagement);
+
 
 //Use farmer routes
 app.use("/api/v1/stock", stockManage);
