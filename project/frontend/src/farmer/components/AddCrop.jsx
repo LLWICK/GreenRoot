@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 
 function AddCrop(prop) {
   const [cats, setCats] = useState([]);
@@ -28,13 +29,40 @@ function AddCrop(prop) {
     data = { ...data, farmerID: prop.fid };
     //console.log(data);
 
-    axios
-      .post("http://localhost:3000/api/v1/crops", data)
-      .then(navigate(`/farmer/${prop.fid}/cropProducts`));
+    axios.post("http://localhost:3000/api/v1/crops", data).then((res) => {
+      toast.success("Task Created successfully!", {
+        position: "top-center",
+        autoClose: 2000, // Show toast for 2 seconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      });
+
+      // Delay navigation to ensure the toast message is visible
+      setTimeout(() => {
+        navigate(`/farmer/${prop.fid}/cropProducts`);
+      }, 2000);
+    });
   };
 
   return (
     <div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
       <div>
         <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
           <form onSubmit={handleForm}>

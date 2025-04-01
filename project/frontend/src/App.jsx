@@ -65,6 +65,7 @@ import {
   ContactUsPage,
   ServicesPage,
   BlogsPage,
+  CreateQuestion
 } from "./admin/pages";
 
 /* retail seller page imports  */
@@ -167,6 +168,7 @@ function App() {
         path="/admin/user-management/researchers"
         element={<ResearchersManagement />}
       />
+      <Route path="/admin/test/ques" element={<CreateQuestion />} />
 
       {/* Home page components */}
       <Route path="/contact" element={<ContactUsPage />} />
