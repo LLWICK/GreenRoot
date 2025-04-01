@@ -1,12 +1,11 @@
 const express = require('express');
-const { getOrders, getOrderById } = require('../controllers/orderController');
+const { fetchOrders } = require('../controller/normalOrderCotroller');
 
 const router = express.Router();
 
 // Route to fetch all orders (with optional filtering)
-router.get('/', getOrders);
+router.get('/', fetchOrders);
 
-// Route to fetch a specific order by ID
-router.get('/:id', getOrderById);
+
 
 module.exports = router;

@@ -3,8 +3,10 @@ import SideBar from '../components/sideBar(seller)';
 import SalesBarChart from '../components/salesChart';
 import NavBar from '@/admin/pages/home/home_components/NavBar';
 import NavBar2 from '@/Common/NavBar2';
+import { useParams } from 'react-router-dom';
 
 function SellerNormalOrders() {
+  const { sid } = useParams();
 
     const orders = {
         "orders": [
@@ -37,7 +39,7 @@ function SellerNormalOrders() {
       <nav className="p-4"><NavBar2/></nav>
       <div className="grid grid-cols-12 min-h-screen">
         {/* Sidebar */}
-        <SideBar/>
+        <SideBar sellerid={sid} />
 
         {/* Main Content */}
         <div className="col-span-10 flex flex-col p-6">

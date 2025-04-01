@@ -195,15 +195,15 @@ function App() {
 
       {/* Retail seller Router */}
 
-      <Route path="/seller/home" element={<SellerHome />} />
-      <Route path="/seller/Inventroy" element={<SellerInventroy />} />
-      <Route path="/seller/bulkOrders" element={<SellerBulkOrders />} />
-      <Route path="/seller/normalOrders" element={<SellerNormalOrders />} />
-      <Route path="/seller/placeOrder" element={<FinalizeOrder />} />
-      <Route path="/seller/stat" element={<SellerStat />} />
+      <Route path="/seller/:sid/home" element={<SellerHome />} />
+      <Route path="/seller/:sid/Inventroy" element={<SellerInventroy />} />
+      <Route path="/seller/:sid/bulkOrders" element={<SellerBulkOrders />} />
+      <Route path="/seller/:sid/normalOrders" element={<SellerNormalOrders />} />
+      <Route path="/seller/:sid/placeOrder" element={<FinalizeOrder />} />
+      <Route path="/seller/:sid/stat" element={<SellerStat />} />
       <Route path="/seller/stat" element={<SellerStat/>} />
       <Route path="/seller/BulkOrder/:orderId" element={<BulkOrderSummary/>} />
-      <Route path="/seller/farmers" element={<FarmerList/>} />
+      <Route path="/seller/:sid/farmers" element={<FarmerList/>} />
       <Route path="/diliveryGuy/dash" element={<DiliveryDash/>} />
 
       {/* Customer Routes */}
