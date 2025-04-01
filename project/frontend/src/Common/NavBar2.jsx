@@ -171,7 +171,8 @@ const NavBar2 = () => {
                       payload()?.role === 'admin' ? `/admin/${payload().userId}/dashboard`
                         : payload()?.role === 'farmer' ? `/farmer/${payload().userId}/dashboard`
                           : payload()?.role === 'seller' ? `/seller/${payload().userId}/home`
-                            : payload()?.role === 'researcher' ? `/researcher` : `/`
+                            : payload()?.role === 'researcher' ? `/researcher`
+                              : payload()?.role === 'customer' ? `/Customer` : `/`
                     }
                     className="ml-4 bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700"
                   >
