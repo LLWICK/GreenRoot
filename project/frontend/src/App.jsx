@@ -67,6 +67,7 @@ import {
   ContactUsPage,
   ServicesPage,
   BlogsPage,
+  CreateQuestion
 } from "./admin/pages";
 
 /* retail seller page imports  */
@@ -84,6 +85,8 @@ import CheckoutPage from "./customer/pages/CheckoutPage";
 import OrderhistoryPage from "./customer/pages/OrderhistoryPage";
 import ChartPage from "./customer/pages/ChartPage";
 import ConfirmPage from "./customer/pages/ConfirmPage";
+import CategoryPage from "./customer/pages/CategoryPage";
+import ProductDetailsPage from "./customer/pages/ProductDetailsPage";
 
 import SellerNormalOrders from "./seller/pages/sellerNormalOrders";
 import FinalizeOrder from "./seller/pages/sellerfinalizeOrder";
@@ -168,6 +171,7 @@ function App() {
         path="/admin/user-management/researchers"
         element={<ResearchersManagement />}
       />
+      <Route path="/admin/test/ques" element={<CreateQuestion />} />
 
       {/* Home page components */}
       <Route path="/contact" element={<ContactUsPage />} />
@@ -204,9 +208,9 @@ function App() {
       <Route path="/seller/normalOrders" element={<SellerNormalOrders />} />
       <Route path="/seller/placeOrder" element={<FinalizeOrder />} />
       <Route path="/seller/stat" element={<SellerStat />} />
-      <Route path="/seller/stat" element={<SellerStat/>} />
-      <Route path="/seller/BulkOrder/:orderId" element={<BulkOrderSummary/>} />
-      <Route path="/seller/farmers" element={<FarmerList/>} />
+      <Route path="/seller/stat" element={<SellerStat />} />
+      <Route path="/seller/BulkOrder/:orderId" element={<BulkOrderSummary />} />
+      <Route path="/seller/farmers" element={<FarmerList />} />
 
       {/* Customer Routes */}
 
@@ -221,6 +225,8 @@ function App() {
       <Route path="/Customer/Orderhistory" element={<OrderhistoryPage />} />
       <Route path="/Customer/ChartPage" element={<ChartPage />} />
       <Route path="/Customer/ConfirmPage" element={<ConfirmPage/>} />
+      <Route path='/Customer/products-Category/:categoryName' element={<CategoryPage />} />
+      <Route path='/Customer/ProductDetailsPage' element={<ProductDetailsPage />} />
       
     </Routes>
   );

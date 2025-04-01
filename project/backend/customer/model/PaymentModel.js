@@ -6,14 +6,14 @@ const stripe = require("stripe")(process.env.CUS_STRIPE);
 
 const checkout = async (req, res) => {
   try {
-    const { totalPrice } = req.body; // Only get totalPrice from request
+    const { Subtotal } = req.body; // Only get Subtotal from request
 
-    if (!totalPrice || totalPrice <= 0) {
+    if (!Subtotal || Subtotal <= 0) {
       return res.status(400).json({ error: "Invalid total price" });
     }
 
     // Convert total price to cents (Stripe requires amounts in cents)
-    const totalAmount = Math.round(parseFloat(totalPrice) * 100);
+    const totalAmount = Math.round(parseFloat(Subtotal) * 100);
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -31,8 +31,8 @@ const checkout = async (req, res) => {
       shipping_address_collection: {
         allowed_countries: ["LK", "US"],
       },
-      success_url: `http://localhost:5173/Customer/ConfirmPage`,//change
-      cancel_url: "http://localhost:5173/Home/Checkout",//change
+      success_url: `http://localhost:5173/Home/Checkout`,//change
+      cancel_url: "http://localhost:5173/Customer",//change
     });
 
     res.status(200).json({ data: session });

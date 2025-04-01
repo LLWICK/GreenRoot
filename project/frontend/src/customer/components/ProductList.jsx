@@ -36,7 +36,7 @@ const ProductList = () => {
           products.length > 0 &&
           products.map(
             (product, index) =>
-              index < 8 && <ProductItem key={product._id} product={product} />
+              index < 32 && <ProductItem key={product._id} product={product} />
           )}
       </div>
     </div>

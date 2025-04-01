@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 
 const EditTaskModal = () => {
   const { uid, tid } = useParams();
@@ -25,7 +26,23 @@ const EditTaskModal = () => {
 
     axios
       .patch(`http://localhost:3000/api/v1/farmer/schedule/${tid}`, data)
-      .then(navigate(`/farmer/${uid}/schedule`))
+      .then((res) => {
+        toast.success("Task updated successfully!", {
+          position: "top-center",
+          autoClose: 2000, // Show toast for 2 seconds
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+        });
+
+        // Delay navigation to ensure the toast message is visible
+        setTimeout(() => {
+          navigate(`/farmer/${uid}/schedule`);
+        }, 2000);
+      })
       .catch((e) => {
         console.log(e.message);
       });
@@ -56,6 +73,20 @@ const EditTaskModal = () => {
 
   return (
     <div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
+
       <div className="w-full flex justify-center py-12"></div>
 
       {isOpen && (
