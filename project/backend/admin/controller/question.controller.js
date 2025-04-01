@@ -64,6 +64,8 @@ const updateQuestion = async (req, res) => {
     }
 };
 
+
+
 /*
 // get all questions
 const getAllQuestions = async (req, res) => {
