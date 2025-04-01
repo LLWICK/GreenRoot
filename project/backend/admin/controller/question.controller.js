@@ -64,7 +64,16 @@ const updateQuestion = async (req, res) => {
     }
 };
 
+// get user by title
+const getQuestionByTitle = async (req, res, title) => {
+    try {
+        const question = await Question.find({ title });
+        res.status(200).json({ data: question });
 
+    } catch (error) {
+        res.status(500).json({ msg: error.message });
+    }
+}
 
 /*
 // get all questions
@@ -196,4 +205,5 @@ module.exports = {
     createQuestion,
     getUserQuestions,
     updateQuestion,
+    getQuestionByTitle,
 }

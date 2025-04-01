@@ -42,7 +42,7 @@ const AskQuestion = () => {
             return;
         }
 
-        const finalTitle = title === "Other" ? otherTitle : title; // Use custom title if "Other" is selected
+        const finalTitle = title === "Other" ? "Other" : title; // Use custom title if "Other" is selected
 
         try {
             await axios.post("http://localhost:3000/api/qna/create", {
@@ -164,11 +164,11 @@ const AskQuestion = () => {
                                         onChange={(e) => setTitle(e.target.value)}
                                         className="w-full rounded-lg border border-gray-300 bg-white py-3 px-4 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                     >
-                                        <option value="Technical Support">Technical Support</option>
+                                        <option value="">Select a title</option>
                                         <option value="Working Issue">Working Issue</option>
                                         <option value="General Inquiry">General Inquiry</option>
                                         <option value="Account Issue">Account Issue</option>
-                                        <option value="Order Issue">Order Issue</option>
+                                        <option value="Technical Support">Technical Support</option>
                                         <option value="Other">Other</option>
                                     </select>
                                 </div>
