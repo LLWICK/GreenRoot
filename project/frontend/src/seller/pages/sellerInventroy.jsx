@@ -19,7 +19,7 @@ const SellerInventroy = () => {
     image: '',
     category: '',
     supplier: '',
-    sellerId: "67d8e72067646fe0d3f87794",
+    sellerId: sid,
     price: '',
   });
 
@@ -40,7 +40,7 @@ const SellerInventroy = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/RetailSeller/products/products');
+        const response = await axios.get(`http://localhost:3000/api/RetailSeller/products/products/${sid}`);
         setProducts(response.data.products);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -131,17 +131,15 @@ const SellerInventroy = () => {
          {/* Category Links */}
             <div className="flex justify-end items-center gap-6 mb-10 mr-10">
               <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
-                cat 1
+               Fruits
               </a>
               <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
-                cat 2
+                Vegetables
               </a>
               <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
-                cat 3
+                Grains
               </a>
-              <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
-                cat 4
-              </a>
+              
             </div>
 
 

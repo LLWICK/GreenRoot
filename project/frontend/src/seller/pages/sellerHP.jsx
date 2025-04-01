@@ -107,17 +107,15 @@ const SellerHome = () => {
                     {/* Categories & Cart Icon */}
                                     <div className="flex justify-end items-center gap-6 mb-10 mr-10">
                             <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
-                                cat 1
+                                Fruits
                             </a>
                             <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
-                                cat 2
+                                Vegetables
                             </a>
                             <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
-                                cat 3
+                               Grains
                             </a>
-                            <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
-                                cat 4
-                            </a>
+                           
                             
                         {/* Cart Icon */}
                         <button className="text-gray-700 hover:text-green-600 relative" onClick={() => setCartOpen(true)}>
