@@ -21,6 +21,49 @@ const createQuestion = async (req, res) => {
     }
 }
 
+// Get all questions for a specific user
+const getUserQuestions = async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const questions = await Question.find({ createdBy: userId }).populate("replies.adminId", "name");
+
+        res.status(200).json(questions);
+
+    } catch (error) {
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+// update question within 1 hour
+const updateQuestion = async (req, res) => {
+    try {
+        const { questionId } = req.params;
+        const { title, message } = req.body;
+
+        const question = await Question.findById(questionId);
+        if (!question) {
+            return res.status(404).json({ message: "Question not found!" });
+        }
+
+        // Check if the question is older than 1 hour
+        const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+        if (question.createdAt < oneHourAgo) {
+            return res.status(403).json({ message: "Editing time expired!" });
+        }
+
+        // Update question
+        question.title = title;
+        question.message = message;
+        question.editedAt = new Date();
+        await question.save();
+
+        res.status(200).json({ message: "Question updated successfully", data: question });
+
+    } catch (err) {
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
 /*
 // get all questions
 const getAllQuestions = async (req, res) => {
@@ -148,13 +191,7 @@ const adminDeleteQuestion = async (req, res) => {
 } */
 
 module.exports = {
-    createQuestion
-    /*
-    getAllQuestions,
+    createQuestion,
     getUserQuestions,
-    editQuestion,
-    deleteQuestion,
-    replyToQuestion,
-    adminDeleteQuestion,
-    getQuestionById */
+    updateQuestion,
 }
