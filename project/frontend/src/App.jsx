@@ -40,7 +40,7 @@ import MyGrowingGuide from "./researcher/pages/MyGrowingGuide";
 import GrowingGuideBlog from "./researcher/pages/GrowingGuideBlog";
 import SingleGrowingGuide from "./researcher/pages/SingleGrowingGuide";
 import BlogCrop from "./researcher/pages/BlogCrop";
-import BlogCropDetails from "./researcher/pages/BlogCropDetails"
+import BlogCropDetails from "./researcher/pages/BlogCropDetails";
 import GrowingGuideUpdate from "./researcher/pages/GrowingGuideUpdate";
 import NewsUpdate from "./researcher/pages/NewsUpdate";
 import QnABlog from "./researcher/pages/QnABlog";
@@ -65,7 +65,7 @@ import {
   ContactUsPage,
   ServicesPage,
   BlogsPage,
-  CreateQuestion
+  CreateQuestion,
 } from "./admin/pages";
 
 /* retail seller page imports  */
@@ -89,6 +89,7 @@ import FinalizeOrder from "./seller/pages/sellerfinalizeOrder";
 import SellerStat from "./seller/pages/sellerStat";
 import BulkOrderSummary from "./seller/pages/sellerBulkOrderSummary";
 import FarmerList from "./seller/pages/farmers";
+import AboutUsPage from "./Common/pages/AboutUsPage";
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -119,6 +120,7 @@ function App() {
 
       {/* Common Pages */}
       <Route path="/otp/send" element={<OtpPage />} />
+      <Route path="/aboutUs" element={<AboutUsPage />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
@@ -187,12 +189,14 @@ function App() {
       <Route path="/researcher/my-growing-guide" element={<MyGrowingGuide />} />
       <Route path="/blog/growing-guide" element={<GrowingGuideBlog />} />
       <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide />} />
-      <Route path="/blog/crop" element={<BlogCrop/>}/>
-      <Route path="/blog/crop/:id" element={<BlogCropDetails/>}/>
-      <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate/>}/>
-      <Route path="/researcher/my-news/update" element={<NewsUpdate/>}/>
-      <Route path="/blog/qna" element={<QnABlog/>}/>
-
+      <Route path="/blog/crop" element={<BlogCrop />} />
+      <Route path="/blog/crop/:id" element={<BlogCropDetails />} />
+      <Route
+        path="/researcher/my-growing-guide/update"
+        element={<GrowingGuideUpdate />}
+      />
+      <Route path="/researcher/my-news/update" element={<NewsUpdate />} />
+      <Route path="/blog/qna" element={<QnABlog />} />
 
       {/* Retail seller Router */}
 
@@ -218,8 +222,7 @@ function App() {
       <Route path="/Home/Checkout" element={<CheckoutPage />} />
       <Route path="/Customer/Orderhistory" element={<OrderhistoryPage />} />
       <Route path="/Customer/ChartPage" element={<ChartPage />} />
-      <Route path="/Customer/ConfirmPage" element={<ConfirmPage/>} />
-      
+      <Route path="/Customer/ConfirmPage" element={<ConfirmPage />} />
     </Routes>
   );
 }

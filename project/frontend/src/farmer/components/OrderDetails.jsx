@@ -64,6 +64,7 @@ function OrderDetails() {
       .post("http://localhost:3000/api/v1/farmer/order/email", {
         id: order._id,
         status: orderStatus,
+        email: sellerEmail,
       })
       .then((res) => {
         navigate(`/farmer/${uid}/orders`);
