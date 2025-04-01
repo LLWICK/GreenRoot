@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const ReplyQuestion = () => {
     const location = useLocation();
@@ -13,9 +14,15 @@ const ReplyQuestion = () => {
             return alert("reply cannot be empty!");
         }
 
+        const token = Cookies.get("authToken");
+        const payload = JSON.parse(atob(token.split(".")[1]));
+        const adminid = payload.userId;
+        console.log(adminid);
+
         try {
             await axios.post(`http://localhost:3000/api/qna/reply/${question._id}`, {
                 message: reply,
+                adminId: adminid
             });
 
             alert("Reply added successfully...");
