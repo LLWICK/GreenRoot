@@ -23,6 +23,7 @@ import {
   ExpertsPage,
   BlogPage,
   OrderUpdate,
+  AllLocations,
 } from "./farmer/pages";
 
 import SearchLocation from "./farmer/unregistered/SearchLocation";
@@ -67,17 +68,15 @@ import {
   ServicesPage,
   BlogsPage,
   CreateQuestion,
-
   QuestionManagement,
   ViewQuestions,
   QuestionDetails,
   ReplyQuestion,
 
+
   // new question routes
   QuestionDash,
   WorkingIssue,
-
-
 
 } from "./admin/pages";
 
@@ -130,6 +129,7 @@ function App() {
       <Route path="/farmer/:uid/addTask" element={<TaskCard />} />
       <Route path="/farmer/:uid/editTask/:tid" element={<EditTasksModal />} />
       <Route path="/farmer/Blogs" element={<BlogPage />} />
+      <Route path="/farmer/:uid/allLocations" element={<AllLocations />} />
 
       <Route path="/farmer/:uid/addMap" element={<SearchLocation />} />
       <Route path="/farmer/:uid/order/:oid/update" element={<OrderUpdate />} />
@@ -194,7 +194,10 @@ function App() {
       <Route path="/admin/ques" element={<QuestionManagement />} />
       <Route path="/admin/test/ques" element={<CreateQuestion />} />
       <Route path="/admin/view-questions/:id" element={<ViewQuestions />} />
-      <Route path="/admin/question-details/:qid" element={<QuestionDetails />} />
+      <Route
+        path="/admin/question-details/:qid"
+        element={<QuestionDetails />}
+      />
       <Route path="/admin/reply-question/:qid" element={<ReplyQuestion />} />
 
 
@@ -231,13 +234,16 @@ function App() {
       <Route path="/seller/:sid/home" element={<SellerHome />} />
       <Route path="/seller/:sid/Inventroy" element={<SellerInventroy />} />
       <Route path="/seller/:sid/bulkOrders" element={<SellerBulkOrders />} />
-      <Route path="/seller/:sid/normalOrders" element={<SellerNormalOrders />} />
+      <Route
+        path="/seller/:sid/normalOrders"
+        element={<SellerNormalOrders />}
+      />
       <Route path="/seller/:sid/placeOrder" element={<FinalizeOrder />} />
       <Route path="/seller/:sid/stat" element={<SellerStat />} />
-      <Route path="/seller/stat" element={<SellerStat/>} />
-      <Route path="/seller/BulkOrder/:orderId" element={<BulkOrderSummary/>} />
-      <Route path="/seller/:sid/farmers" element={<FarmerList/>} />
-      <Route path="/diliveryGuy/dash" element={<DiliveryDash/>} />
+      <Route path="/seller/stat" element={<SellerStat />} />
+      <Route path="/seller/BulkOrder/:orderId" element={<BulkOrderSummary />} />
+      <Route path="/seller/:sid/farmers" element={<FarmerList />} />
+      <Route path="/diliveryGuy/dash" element={<DiliveryDash />} />
 
       {/* Customer Routes */}
 
@@ -251,6 +257,9 @@ function App() {
       <Route path="/Home/Checkout" element={<CheckoutPage />} />
       <Route path="/Customer/Orderhistory" element={<OrderhistoryPage />} />
       <Route path="/Customer/ChartPage" element={<ChartPage />} />
+
+
+
       <Route path="/Customer/ConfirmPage" element={<ConfirmPage />} />
       <Route path='/Customer/products-Category/:categoryName' element={<CategoryPage />} />
       <Route path='/Customer/ProductDetailsPage' element={<ProductDetailsPage />} />
