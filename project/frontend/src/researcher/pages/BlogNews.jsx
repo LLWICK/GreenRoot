@@ -4,8 +4,8 @@ import BlogHeader from '../components/BlogHeader';
 import BlogFooter from '../components/BlogFooter';
 
 export default function BlogNews() {
-  const [newss, setNewss] = useState([]);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [newsList, setNewsList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -14,12 +14,14 @@ export default function BlogNews() {
         const json = await response.json();
 
         if (response.ok) {
-          setNewss(json);
+          // Sort news by createdAt date (newest first)
+          const sortedNews = json.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+          setNewsList(sortedNews);
         }
       } catch (error) {
         console.error('Error fetching news:', error);
       } finally {
-        setLoading(false); // Set loading to false after fetch completes
+        setLoading(false);
       }
     };
 
@@ -28,37 +30,41 @@ export default function BlogNews() {
 
   return (
     <div className='bg-gray-200'>
-      {/* Blog Header */}
       <BlogHeader />
+      
+     {/* Heading Section */}
+     <div className="text-center my-8 md:my-12">
+                    <h2 className="text-3xl md:text-4xl font-bold text-green-600 mb-2">
+                       Agriculture News
+                    </h2>
+                    <p className="text-gray-600">Stay Updated, Stay Ahead</p>
+                </div>
 
-      {/* Heading Section */}
-      <div className="text-center my-8">
-        <h2 className="text-2xl font-bold text-green-600 mb-4">
-          Agriculture News, Government Policies, <br />
-          Climate Changes, and Farming Innovations
-        </h2>
-      </div>
-
-      {/* Loading Screen */}
+      {/* Loading State */}
       {loading ? (
         <div className="flex justify-center items-center h-64">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-600"></div>
         </div>
       ) : (
-        /* News Cards Grid - Centered Horizontally */
-        <div className="flex justify-center p-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full max-w-7xl">
-            {newss.length > 0 ? (
-              newss.map((news) => (
-                <NewsCard key={news._id} news={news} /> // Render each NewsCard
-              ))
-            ) : (
-              <p className="text-gray-600 col-span-full text-center">No news available.</p>
-            )}
-          </div>
+        /* News Grid */
+        <div className="max-w-7xl mx-auto px-4 pb-12">
+          {newsList.length === 0 ? (
+            <p className="text-center text-gray-600">No news available.</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
+              {newsList.map((news) => (
+                <NewsCard 
+                  key={news._id} 
+                  news={news}
+                  showNewBadge={Date.now() - new Date(news.createdAt) < 7 * 24 * 60 * 60 * 1000}
+                />
+              ))}
+            </div>
+          )}
         </div>
       )}
-      <BlogFooter/>
+      
+      <BlogFooter />
     </div>
   );
 }

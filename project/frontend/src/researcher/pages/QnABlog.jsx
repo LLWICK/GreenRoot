@@ -105,6 +105,15 @@ export default function QnABlog() {
   return (
     <div className='bg-gray-200'>
       <BlogHeader />
+      {/* Heading Section */}
+      <div className="text-center my-8 md:my-12">
+                    <h2 className="text-3xl md:text-4xl font-bold text-green-600 mb-2">
+                       Ask, Learn, Grow
+                    </h2>
+                    <p className="text-gray-600">Need Help? Get Answers from Agriculture Experts</p>
+                </div>
+
+
       <div className="min-h-screen p-4 md:p-8 mt-10">
         <div className="max-w-4xl mx-auto">
           <div className="flex justify-between items-center mb-6">
@@ -153,7 +162,7 @@ export default function QnABlog() {
                         <img
                           src={ticket.image}
                           alt="Ticket attachment"
-                          className="max-w-full h-auto max-h-60 rounded-lg border"
+                          className="w-96 h-auto max-h-60 rounded-lg border"
                           onError={(e) => {
                             e.target.onerror = null; 
                             e.target.src = 'https://via.placeholder.com/400x300?text=Image+Not+Available';

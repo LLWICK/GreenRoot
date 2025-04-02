@@ -11,6 +11,9 @@ const {
     deleteNews
 } = require('../controller/newsController')
 
+const authenticateResearcher = require('../middleware/requireAuth');
+
+
 // Import middleware
 //const { authenticateUser} = require('../../admin/middleware/auth.middleware')
 
@@ -22,7 +25,7 @@ const uploadMiddleware = multer({ dest: 'researcher/uploads/' });
 router.get('/', getNews)
 
 //Get user news
-router.get('/my-news', getUserNews)
+router.get('/my-news', authenticateResearcher, getUserNews)
 
 //Get a single News
 router.get('/:id', getANews)

@@ -2,22 +2,45 @@ import React, { useEffect, useState } from 'react'
 import GrowingGuideForm from '../components/GrowingGuideForm'
 import SidebarResearcher from '../components/SidebarResearcher'
 import MyGrowingguideCard from '../components/MyGrowingguideCard'
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { getResearcherId } from '../utils/auth';
 
 export default function MyGrowingGuide() {
+  
+    const navigate = useNavigate();
+    const [userID, setUserID] = useState(null);
     const [posts, setPosts] = useState([])
-    const [showForm, setShowForm] = useState(false) // State to control form visibility
+    const [showForm, setShowForm] = useState(false) 
 
     useEffect(() => {
+
+      const userId = getResearcherId();
+      
+      if (userId) {
+        setUserID(userId);
+      } else {
+        navigate(`/auth/login`);
+      }
+
         const fetchPosts = async () => {
           try {
-            const response = await fetch('http://localhost:3000/api/researcher/posts');
-            const json = await response.json();
-    
+            const response = await fetch(`http://localhost:3000/api/researcher/posts/my-posts`, {
+              headers: {
+                'Authorization': `Bearer ${Cookies.get('authToken')}`
+              },
+              credentials: 'include'
+            });
+            
+            const json = await response.json(); 
+        
             if (response.ok) {
               setPosts(json);
+            } else {
+              console.error('Error response:', json);
             }
           } catch (error) {
-            console.error('Error fetching posts:', error);
+            console.error('Fetch error:', error);
           }
         };
     
@@ -25,7 +48,7 @@ export default function MyGrowingGuide() {
       }, []);
 
   return (
-    <div className='bg-gray-200'>
+    <div className='min-h-screen bg-gray-200 flex'>
        <div>
          <SidebarResearcher/>
        </div>

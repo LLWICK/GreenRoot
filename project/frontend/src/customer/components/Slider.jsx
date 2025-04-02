@@ -9,9 +9,9 @@ import {
 
 const Slider = () => {
   const imageUrls = [
-    '/customer_images/slider_01.avif',
-    '/customer_images/slider_02.jpg',
-    '/customer_images/slider_03.avif',
+    '/customer_images/second.png',
+    '/customer_images/last.jpg',
+    '/customer_images/products.jpg',
   ];
 
   return (

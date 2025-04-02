@@ -6,7 +6,9 @@ const stripe = require("stripe")(process.env.CUS_STRIPE);
 
 const checkout = async (req, res) => {
   try {
-    const { Subtotal } = req.body; // Only get Subtotal from request
+    const { Subtotal,customerId } = req.body; // Only get Subtotal from request
+
+    console.log("cusid:",customerId);
 
     if (!Subtotal || Subtotal <= 0) {
       return res.status(400).json({ error: "Invalid total price" });
@@ -20,7 +22,7 @@ const checkout = async (req, res) => {
       line_items: [
         {
           price_data: {
-            currency: "USD",
+            currency: "Lkr",
             product_data: { name: "Total Order Payment" },
             unit_amount: totalAmount,
           },
@@ -31,7 +33,7 @@ const checkout = async (req, res) => {
       shipping_address_collection: {
         allowed_countries: ["LK", "US"],
       },
-      success_url: `http://localhost:5173/Home/Checkout`,//change
+      success_url: `http://localhost:5173/Home/Checkout/${customerId}`,//change
       cancel_url: "http://localhost:5173/Customer",//change
     });
 

@@ -4,7 +4,10 @@ import { Button } from '@/components/ui/button';
  import { useNavigate } from 'react-router-dom';
  import axios from 'axios';
 
- const CartItemList = () => {
+ const CartItemList = ({custId}) => {
+
+        console.log("customerId:",custId);
+
     const [cartItems, setCartItems] = useState(null);
      const [loading, setLoading] = useState(true);
      const [error, setError] = useState(null);
@@ -91,6 +94,7 @@ import { Button } from '@/components/ui/button';
 
         const response = await axios.post("http://localhost:3000/api/customer/payment", {
             Subtotal: stripeAmount,
+            customerId:custId,
         });
 
         if (response.data && response.data.data.url) {
@@ -174,12 +178,12 @@ import { Button } from '@/components/ui/button';
                                     <h2>{item.quantity}</h2>
                                     <button onClick={() => handleQuantityChange(item._id, item.quantity + 1, item.price)}>+</button>
                                 </div>
-                            <h2 className='text-lg font-bold'>$ {item.totalPrice}</h2>
+                            <h2 className='text-lg font-bold'>Rs. {item.totalPrice}</h2>
                             </div>
                            
                             <div className='absolute w-[90%] bottom-6 flex flex-col'>
 
-                    <h2 className='text-lg font-bold flex justify-between'>Subtotal <span>${Subtotal}</span></h2>
+                    <h2 className='text-lg font-bold flex justify-between'>Subtotal <span>Rs.{Subtotal}</span></h2>
                     <Button onClick={handleForm}>Checkout</Button>
                      </div>
                             

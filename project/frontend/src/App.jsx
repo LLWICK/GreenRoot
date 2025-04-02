@@ -46,6 +46,8 @@ import BlogCropDetails from "./researcher/pages/BlogCropDetails";
 import GrowingGuideUpdate from "./researcher/pages/GrowingGuideUpdate";
 import NewsUpdate from "./researcher/pages/NewsUpdate";
 import QnABlog from "./researcher/pages/QnABlog";
+import MyStats from "./researcher/pages/MyStats";
+import MyPnd from "./researcher/pages/MyPnd";
 
 /* Admin pages */
 import {
@@ -230,8 +232,15 @@ function App() {
       <Route path="/researcher/my-growing-guide" element={<MyGrowingGuide />} />
       <Route path="/blog/growing-guide" element={<GrowingGuideBlog />} />
       <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide />} />
-      <Route path="/blog/crop" element={<BlogCrop />} />
-      <Route path="/blog/crop/:id" element={<BlogCropDetails />} />
+
+      <Route path="/blog/crop" element={<BlogCrop/>}/>
+      <Route path="/blog/crop/:id" element={<BlogCropDetails/>}/>
+      <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate/>}/>
+      <Route path="/researcher/my-news/update" element={<NewsUpdate/>}/>
+      <Route path="/blog/qna" element={<QnABlog/>}/>
+      <Route path="/researcher/my-stats" element={<MyStats/>}/>
+      <Route path="/researcher/my-pnd" element={<MyPnd/>}/>
+
 
       <Route
         path="/researcher/my-growing-guide/update"
@@ -264,20 +273,16 @@ function App() {
 
       <Route path="/Customer/:cid" element={<Home />} />
       <Route path="/CusLanding" element={<Cus_LandingBanner />} />
-      <Route path="/Customer/Dashboard" element={<DashboardPage />} />
-      <Route path="/Home/Checkout" element={<CheckoutPage />} />
-      <Route path="/Customer/Orderhistory" element={<OrderhistoryPage />} />
-      <Route path="/Customer/ChartPage" element={<ChartPage />} />
+      <Route path="/Customer/Dashboard/:cid" element={<DashboardPage />} />
+      <Route path="/Home/Checkout/:cid" element={<CheckoutPage />} />
+      <Route path="/Customer/Orderhistory/:cid" element={<OrderhistoryPage />} />
+      <Route path="/Customer/ChartPage/:cid" element={<ChartPage />} />
 
       <Route path="/Customer/ConfirmPage" element={<ConfirmPage />} />
-      <Route
-        path="/Customer/products-Category/:categoryName"
-        element={<CategoryPage />}
-      />
-      <Route
-        path="/Customer/ProductDetailsPage"
-        element={<ProductDetailsPage />}
-      />
+      <Route path='/Customer/products-Category/:categoryName/:cid' element={<CategoryPage />} />
+      <Route path='/Customer/ProductDetailsPage/:cid' element={<ProductDetailsPage />} />
+
+
     </Routes>
   );
 }

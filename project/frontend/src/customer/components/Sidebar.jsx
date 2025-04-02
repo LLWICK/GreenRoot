@@ -11,7 +11,10 @@ import {
     Users,
 } from "lucide-react";
 
-function Sidebar() {
+function Sidebar({custId}) {
+
+
+
     return (
         <div className="bg-gradient-to-b from-green-800 to-green-900 h-screen md:block shadow-xl px-3 md:w-60 lg:w-60 overflow-y-auto">
             <div className="space-y-6 md:space-y-10 mt-10">
@@ -34,28 +37,28 @@ function Sidebar() {
                 </div>
                 <div id="menu" className="flex flex-col space-y-2">
                     <Link
-                        to="/Customer/Dashboard"
+                        to={`/Customer/Dashboard/${custId}`}
                         className="text-sm font-medium text-white py-2 px-3 rounded-md transition duration-200 ease-in-out flex items-center hover:bg-green-700"
                     >
                         <LayoutDashboard className="w-4 h-4 mr-2 text-green-300" />
                         <span>Dashboard</span>
                     </Link>
                     <Link
-                        to="/Customer/ProductDetailsPage"
+                        to={`/Customer/ProductDetailsPage/${custId}`}
                         className="text-sm font-medium text-white py-2 px-3 rounded-md transition duration-200 ease-in-out flex items-center hover:bg-green-700"
                     >
                         <Package className="w-4 h-4 mr-2 text-green-300" />
                         <span>Product Details</span>
                     </Link>
                     <Link
-                        to="/Customer/Orderhistory"
+                        to={`/Customer/Orderhistory/${custId}`}
                         className="text-sm font-medium text-white py-2 px-3 rounded-md transition duration-200 ease-in-out flex items-center hover:bg-green-700"
                     >
                         <ShoppingCart className="w-4 h-4 mr-2 text-green-300" />
                         <span>Order history</span>
                     </Link>
                     <Link
-                        to="/Customer/ChartPage"
+                        to={`/Customer/ChartPage/${custId}`}
                         className="text-sm font-medium text-white py-2 px-3 rounded-md transition duration-200 ease-in-out flex items-center hover:bg-green-700"
                     >
                         <MessageSquare className="w-4 h-4 mr-2 text-green-300" />
