@@ -49,19 +49,21 @@ const addToCart = async (req, res) => {
 };
 
 // Get cart using seller ID
+// Get cart using seller ID
 const getCart = async (req, res) => {
   try {
     const { sellerId } = req.params;
 
-    // Find the cart and populate cropId fields (fetch the image and farmerID)
-    const cart = await Cart.findOne({ sellerId })
+    let cart = await Cart.findOne({ sellerId })
       .populate({
         path: 'items.cropId',
-        select: 'farmerID image', // Only fetch farmerId and image
+        select: 'farmerID image', // Fetch only farmerID and image
       });
 
+    // If no cart exists, create a new one
     if (!cart) {
-      return res.status(404).json({ message: 'Cart not found' });
+      cart = new Cart({ sellerId, items: [], totalPrice: 0 });
+      await cart.save();
     }
 
     res.status(200).json(cart);
@@ -69,6 +71,7 @@ const getCart = async (req, res) => {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
+
 
 // Remove item from cart
 const removeFromCart = async (req, res) => {

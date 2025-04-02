@@ -56,6 +56,7 @@ const otpManage = require("./common/routes/otpRoute.js");
 const orderManage = require("./customer/routes/orderRoute.js");
 const addtocartManage = require("./customer/routes/AddtoCartRoute.js");
 const PaymentManage = require("./customer/routes/PaymentRoute.js");//change
+const ProductManage = require("./customer/routes/GetProducts.js")
 
 
 
@@ -74,6 +75,7 @@ const paymentRoutes = require("./seller/routes/stripeRoute.js");
 const bulkOrderRoutes = require("./seller/routes/bulkOrderRoutes.js");
 const statDataRoutes = require("./seller/routes/statDataRoutes.js");
 const FarmerToDoRoutes = require("./seller/routes/TodoListRoutes.js");
+const NormalOrderRoutes = require("./seller/routes/normalOrderRoutes.js");
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -110,6 +112,7 @@ app.use("/api/v1/otp", otpManage);
 app.use("/api/customer/orders", orderManage);
 app.use("/api/customer/addtocart", addtocartManage);
 app.use('/api/customer/payment',PaymentManage)//change
+app.use('/api/customer/products',ProductManage)
 
 
 //Researcher Routes
@@ -127,6 +130,8 @@ app.use("/api/RetailSeller/payment/stripe", paymentRoutes);
 app.use("/api/RetailSeller/bulkOrder", bulkOrderRoutes);
 app.use("/api/RetailSeller/stats", statDataRoutes);
 app.use("/api/RetailSeller/farmers", FarmerToDoRoutes);
+app.use("/api/RetailSeller/normalOrders", NormalOrderRoutes);
+
 
 
 mongoose

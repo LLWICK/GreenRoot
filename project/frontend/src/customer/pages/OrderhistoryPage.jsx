@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
+import { Button } from '@/components/ui/button';
 
 const OrderhistoryPage = () => {
   // State variables to manage orders, loading, and errors
@@ -54,7 +55,8 @@ const OrderhistoryPage = () => {
             <h3 className="text-xl font-semibold text-green-800 mb-2">
               Order #{order.orderNumber}
             </h3>
-            <p className="text-gray-700 mb-4">Total Price: ${order.totalPrice}</p>
+            
+           
             {order.cartItems &&
               order.cartItems.map((item) => (
                 <div key={item.id} className="flex items-center justify-between py-2 border-b border-green-100">
@@ -68,16 +70,17 @@ const OrderhistoryPage = () => {
                     )}
                     <div>
                       <h4 className="font-semibold text-green-800">{item.name}</h4>
+                      <p className="text-gray-700">Seller Id : {item.sellerId}</p>
                       <p className="text-gray-600">Quantity: {item.quantity}</p>
                     </div>
                   </div>
-                  <p className="text-gray-700">Item Price: ${item.totalPrice}</p>
+                  <p className="text-gray-700">Item Price: Rs.{item.totalPrice}</p>
                 </div>
               ))}
             <div className="mt-4 pt-4 border-t border-green-200">
-              <p className="text-gray-700">Delivery: ${order.delivery}</p>
-              <p className="text-gray-700">Tax: ${order.tax}</p>
-              <p className="text-lg font-semibold text-green-800 mt-2">Final Total: ${order.finalTotal}</p>
+              
+              <p className="text-lg font-semibold text-green-800 mt-2">Final Total: Rs.{order.finalTotal}</p>
+              <Button>Cancel order</Button>
             </div>
           </div>
         ))}

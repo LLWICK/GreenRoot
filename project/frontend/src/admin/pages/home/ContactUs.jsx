@@ -7,6 +7,7 @@ import NavBar2 from "@/Common/NavBar2";
 
 const AskQuestion = () => {
     const [title, setTitle] = useState("");
+    const [otherTitle, setOtherTitle] = useState(""); // Store the 'Other' title input
     const [message, setMessage] = useState("");
     const [userId, setUserId] = useState("");
     const [questions, setQuestions] = useState([]);
@@ -18,6 +19,7 @@ const AskQuestion = () => {
                 const decodedToken = JSON.parse(atob(authToken.split(".")[1])); // Decode JWT
                 setUserId(decodedToken.userId);
                 fetchUserQuestions(decodedToken.userId);
+                console.log(decodedToken.userId);
             } catch (error) {
                 console.error("Error decoding token:", error);
             }
@@ -36,20 +38,26 @@ const AskQuestion = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!title || !message) {
+        if ((!title || (title === "Other" && !otherTitle)) || !message) {
             Swal.fire("Error", "All fields are required!", "error");
             return;
         }
 
+        // const finalTitle = title === "Other" ? "Other" : title;
+        const payload = {
+            title: title === "Other" ? "Other" : title, // Save "Other" as the title
+            customTitle: title === "Other" ? otherTitle.trim() : null, // Save the custom title separately
+            message: message.trim(),
+            userId,
+        };
+
+
         try {
-            await axios.post("http://localhost:3000/api/qna/create", {
-                title,
-                message,
-                userId
-            });
+            await axios.post("http://localhost:3000/api/qna/create", payload);
 
             Swal.fire("Success", "Question submitted successfully!", "success");
             setTitle("");
+            setOtherTitle("");
             setMessage("");
             fetchUserQuestions(userId);
         } catch (error) {
@@ -63,16 +71,19 @@ const AskQuestion = () => {
         const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
         const canEdit = createdAt > oneHourAgo;
 
+        // get the custom title if it is present
+        const displayTitle = question.customTitle || question.title;
+
         Swal.fire({
             title: "View Question",
-            width: "60vw", // Increased width
+            width: "60vw",
             heightAuto: false,
             padding: "20px",
-            html: `  
+            html: `
                 <div style="max-height: 60vh; overflow-y: auto; text-align: left;">
                     <input id="edit-title" class="swal2-input" 
                         style="width: 95%; font-size: 1.1rem;" 
-                        value="${question.title}" placeholder="Title" ${canEdit ? "" : "disabled"}>
+                        value="${displayTitle}" placeholder="Title" ${canEdit ? "" : "disabled"}>
 
                     <textarea id="edit-message" class="swal2-textarea" 
                         style="width: 95%; height: 150px; font-size: 1.1rem;" 
@@ -155,14 +166,32 @@ const AskQuestion = () => {
 
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-4">
-                                    <input
-                                        type="text"
-                                        placeholder="Question Title"
-                                        className="w-full rounded-lg border border-gray-300 bg-white py-3 px-4 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    <select
                                         value={title}
                                         onChange={(e) => setTitle(e.target.value)}
-                                    />
+                                        className="w-full rounded-lg border border-gray-300 bg-white py-3 px-4 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    >
+                                        <option value="">Select a title</option>
+                                        <option value="Working Issue">Working Issue</option>
+                                        <option value="General Inquiry">General Inquiry</option>
+                                        <option value="Account Issue">Account Issue</option>
+                                        <option value="Technical Support">Technical Support</option>
+                                        <option value="Other">Other</option>
+                                    </select>
                                 </div>
+
+                                {title === "Other" && (
+                                    <div className="mb-4">
+                                        <input
+                                            type="text"
+                                            placeholder="Enter your custom title"
+                                            value={otherTitle}
+                                            onChange={(e) => setOtherTitle(e.target.value)}
+                                            className="w-full rounded-lg border border-gray-300 bg-white py-3 px-4 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                        />
+                                    </div>
+                                )}
+
                                 <div className="mb-4">
                                     <textarea
                                         cols="30"
@@ -193,9 +222,15 @@ const AskQuestion = () => {
                         ) : (
                             <ul className="space-y-4">
                                 {questions.map((question) => (
-                                    <li key={question._id} className="flex justify-between items-center border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition">
+                                    <li
+                                        key={question._id}
+                                        className="flex justify-between items-center border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition"
+                                    >
                                         <span className="text-lg font-medium text-gray-800">{question.title}</span>
-                                        <button onClick={() => handleViewQuestion(question)} className="ml-4 bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 transition-all">
+                                        <button
+                                            onClick={() => handleViewQuestion(question)}
+                                            className="ml-4 bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 transition-all"
+                                        >
                                             View
                                         </button>
                                     </li>

@@ -33,15 +33,17 @@ function FarmerHome() {
       <NavBFarmer />
       <Sidebar uid={userID} />
 
-      <div style={{ float: "left", padding: "2%" }}>
-        <WeatherCards />
-        <FieldMap />
-        <div>{/* <ExpensesGraph /> */}</div>
-      </div>
+      <div className="bg-gray-100">
+        <div style={{ float: "left", padding: "2%" }}>
+          <WeatherCards />
+          <FieldMap />
+          <div>{/* <ExpensesGraph /> */}</div>
+        </div>
 
-      <div style={{ float: "right", padding: "1.3%" }}>
-        <StockchartFrame />
-        <JobsHome fid={userID} />
+        <div style={{ float: "right", padding: "1.3%" }}>
+          <StockchartFrame />
+          <JobsHome fid={userID} />
+        </div>
       </div>
     </div>
   );

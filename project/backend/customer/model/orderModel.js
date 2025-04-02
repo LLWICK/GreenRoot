@@ -49,7 +49,7 @@ const orderSchema = new mongoose.Schema(
           image: String,
         
           quantity: Number,
-        
+          sellerId: String,
           totalPrice: Number, // total price of each item
         },
       ],
@@ -75,10 +75,7 @@ const orderSchema = new mongoose.Schema(
         default: "0",
       },
   
-      Retailer_ID: {
-        type: String,
-       
-      },
+      
 
     },
         {
@@ -88,5 +85,4 @@ const orderSchema = new mongoose.Schema(
 
 const order = mongoose.model("orderModel", orderSchema);
 
-module.exports = order;
-    
+module.exports = order;   

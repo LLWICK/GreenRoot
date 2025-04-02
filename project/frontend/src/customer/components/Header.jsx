@@ -64,7 +64,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="p-5 shadow-sm flex justify-between">
+    <div className="p-5 shadow-sm flex justify-between bg-green-200">
       <div className="flex items-center gap-8">
         <img src="/Greenroots-logo-color.png" alt="Logo" width={150} height={100} />
 
