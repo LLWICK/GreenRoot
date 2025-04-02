@@ -21,7 +21,7 @@ const Home = () => {
     <div className='p-5 md:p-10 px-16'>
       
        <Slider/>
-       <CategoryList/>
+       <CategoryList custId={cid}/>
        <ProductList custId={cid}/>
        <Banner/>
        
