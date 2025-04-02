@@ -77,6 +77,8 @@ import {
   // new question routes
   QuestionDash,
   WorkingIssue,
+  GeneralInquiry,
+  AccountIssue,
 
 } from "./admin/pages";
 
@@ -190,6 +192,8 @@ function App() {
       {/* Question routes new */}
       <Route path="/admin/question-dash" element={<QuestionDash />} />
       <Route path="/admin/question-management/working-issue" element={<WorkingIssue />} />
+      <Route path="/admin/question-management/general-inquiry" element={<GeneralInquiry />} />
+      <Route path="/admin/question-management/account-issue" element={<AccountIssue />} />
 
       <Route path="/admin/ques" element={<QuestionManagement />} />
       <Route path="/admin/test/ques" element={<CreateQuestion />} />
