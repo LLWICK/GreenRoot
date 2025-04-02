@@ -172,7 +172,7 @@ const NavBar2 = () => {
                         : payload()?.role === 'farmer' ? `/farmer/${payload().userId}/dashboard`
                           : payload()?.role === 'seller' ? `/seller/${payload().userId}/home`
                             : payload()?.role === 'researcher' ? `/researcher`
-                              : payload()?.role === 'customer' ? `/Customer` : `/`
+                              : payload()?.role === 'customer' ? `/Customer/${payload().userId}` : `/`
                     }
                     className="ml-4 bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700"
                   >

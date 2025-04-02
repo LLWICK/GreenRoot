@@ -259,7 +259,7 @@ function App() {
         <Route path='/Home/Checkout' element={<CheckoutPage />} />
         <Route path='/user/Dashboard' element={<DashboardPage />} /> */}
 
-      <Route path="/Customer" element={<Home />} />
+      <Route path="/Customer/:cid" element={<Home />} />
       <Route path="/CusLanding" element={<Cus_LandingBanner />} />
       <Route path="/Customer/Dashboard" element={<DashboardPage />} />
       <Route path="/Home/Checkout" element={<CheckoutPage />} />
