@@ -64,8 +64,10 @@ const CheckoutPage = () => {
           image: item.image,
           
           quantity: item.quantity,
+          sellerId: item.sellerId,
           
           totalPrice: item.totalPrice,
+
         })),
         delivery,
         tax,
@@ -146,6 +148,7 @@ const CheckoutPage = () => {
                 <div>
                   <h2 className="font-bold">{item.name}</h2>
                   <h2>Quantity {item.quantity}</h2>
+                  <h2>Seller ID:{item.sellerId}</h2>{/*sellerid*/}
                   <h2 className="text-lg font-bold">$ {item.totalPrice}</h2>
                 </div>
               </div>

@@ -9,7 +9,7 @@ const DashboardPage = () => {
       <div className="flex-1 p-6 space-y-6">
         <div className="flex items-center justify-between ">
           <div>
-            <h1 className="text-3xl font-semibold text-green-800">Welcome Back, Esther!</h1>
+            <h1 className="text-3xl font-semibold text-green-800">Welcome Back, Eduard!</h1>
             <p className="text-lg text-gray-600">Explore fresh produce and manage your orders.</p>
           </div>
           <div className="flex space-x-4">
@@ -31,7 +31,7 @@ const DashboardPage = () => {
             </div>
             <div className="rounded-xl overflow-hidden shadow-md">
               <img
-                src="/customer_images/banner.jpg"
+                src="/customer_images/products.jpg"
                 alt="Fresh Produce"
                 className="w-full h-48 object-cover"
               />
@@ -60,7 +60,7 @@ const DashboardPage = () => {
               </div>
               <div className="rounded-xl overflow-hidden shadow-md">
                 <img
-                  src="/customer_images/banner.jpg"
+                  src="/customer_images/chart.avif"
                   alt="Sales Chart"
                   className="w-full h-48 object-cover"
                 />

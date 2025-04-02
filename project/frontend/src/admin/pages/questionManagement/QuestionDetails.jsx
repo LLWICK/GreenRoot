@@ -8,6 +8,30 @@ const QuestionDetails = () => {
 
     const { question } = location.state || { question: {} };
 
+    // handle delete question
+    const handleDelete = async () => {
+        if (window.confirm("Are you sure you want to delete this question?")) {
+            try {
+
+                const response = await fetch(`http://localhost:3000/api/qna/question/delete/${question._id}`, {
+                    method: "DELETE",
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert(data.msg);
+                    navigate(-1);
+                } else {
+                    alert("Failed to delete question: " + data.msg);
+                }
+
+            } catch (error) {
+                console.error("Error deleting question:", error);
+                alert("An error occurred while deleting the question.");
+            }
+        }
+    }
+
     return (
         <div className="container mx-auto py-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Question Details</h2>
@@ -43,6 +67,12 @@ const QuestionDetails = () => {
                         className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
                     >
                         Reply
+                    </button>
+                    <button
+                        onClick={handleDelete}
+                        className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+                    >
+                        Delete
                     </button>
                 </div>
             </div>

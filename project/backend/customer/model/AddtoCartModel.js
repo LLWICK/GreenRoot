@@ -27,6 +27,16 @@ const AddtoCartSchema = new mongoose.Schema(
             type: Number,
             required: true,
         },
+        ordinary_buyer_id: {
+          type: String,
+          
+          default: "0",
+        },
+    
+        sellerId: {
+          type: String,
+          default: "0",
+        },
     },
     {
         timestamps: true,
