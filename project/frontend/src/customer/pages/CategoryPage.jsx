@@ -6,7 +6,11 @@ import Header from '../components/Header';
 import Footer from '@/admin/pages/home/home_components/Footer';
 import NavBar from '@/admin/pages/home/home_components/NavBar';
 
-const CategoryPage = ({custId}) => {
+const CategoryPage = () => {
+
+    const { cid } = useParams();
+      console.log(cid)
+
     const { categoryName } = useParams();
     const [products, setProducts] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -57,13 +61,13 @@ const CategoryPage = ({custId}) => {
         
         <div>
             <NavBar />
-            <Header />
+            <Header custId={cid}/>
             
             <h2 className="p-4 bg-green-700 text-white font-bold text-3xl text-center">
                 {categoryName}
             </h2>
 
-            <TopCategoryList custId={custId} selectedCategory={categoryName} />
+            <TopCategoryList custId={cid} selectedCategory={categoryName} />
 
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-6'>
                 {products.map((product) => (

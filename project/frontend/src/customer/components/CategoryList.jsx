@@ -16,7 +16,7 @@ const CategoryList = ({custId}) => {
       <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-5 mt-2">
         {categoryImages.map((imageUrl, index) => (
           <Link
-            to={`/Customer/products-category/${categoryNames[index]}/${custId}`}
+            to={`/Customer/products-category/${categoryNames[index]}/${custId}`}//category page
             key={index}
             className="flex flex-col items-center bg-green-50 gap-2 p-6 rounded-lg group cursor-pointer hover:bg-green-200"
           >
