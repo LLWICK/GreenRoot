@@ -23,7 +23,7 @@ const ProductItem = ({ product,custId }) => {
       <Dialog >
   <DialogTrigger asChild >
   <Button variant="outline" className="text-green-600
-       hover:text-white hover:bg-green-600 cursor-pointer">Add to cart</Button>
+       hover:text-black hover:bg-green-600 cursor-pointer">Add to cart</Button>
   </DialogTrigger>
   <DialogContent>
     <DialogHeader>
