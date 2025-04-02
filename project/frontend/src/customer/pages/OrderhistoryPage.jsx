@@ -55,6 +55,9 @@ const OrderhistoryPage = () => {
             <h3 className="text-xl font-semibold text-green-800 mb-2">
               Order #{order.orderNumber}
             </h3>
+            <h2 className="text-xl font-semibold text-red-600 mb-2">
+              Status :{order.status}
+            </h2>
             
            
             {order.cartItems &&
