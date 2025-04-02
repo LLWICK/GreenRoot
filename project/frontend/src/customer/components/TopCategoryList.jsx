@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const TopCategoryList = ({ selectedCategory }) => {
+const TopCategoryList = ({ selectedCategory ,custId}) => {
     const categoryImages = ['/customer_images/fruits.jpg', '/customer_images/vegetables.webp', '/customer_images/grains.jpg'];
     const categoryNames = ['Fruits', 'Vegetables', 'Grains'];
 
@@ -10,7 +10,7 @@ const TopCategoryList = ({ selectedCategory }) => {
             <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-5 mt-2 ">
                 {categoryImages.map((imageUrl, index) => (
                     <Link
-                        to={`/Customer/products-category/${categoryNames[index]}`}
+                        to={`/Customer/products-category/${categoryNames[index]}/${custId}`}
                         key={index}
                         className={`flex flex-col items-center bg-green-50 gap-2 p-6 rounded-lg group cursor-pointer hover:bg-green-600 min-w-[100px] ${
                             selectedCategory === categoryNames[index] ? 'bg-green-600 text-white' : ''

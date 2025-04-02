@@ -1,7 +1,9 @@
 import React from "react";
 import StockChart from "./StockChart";
+import { Link, useParams } from "react-router-dom";
 
 function StockchartFrame() {
+  const { uid } = useParams();
   return (
     <div>
       <div class="max-w-sm w-full bg-white rounded-lg shadow-sm dark:bg-gray-800 p-4 md:p-6">
@@ -9,7 +11,7 @@ function StockchartFrame() {
           <div class="flex-col items-center">
             <div class="flex items-center mb-1">
               <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white me-1">
-                Crop Distribution
+                Order Distribution
               </h5>
               <svg
                 data-popover-target="chart-info"
@@ -270,30 +272,14 @@ function StockchartFrame() {
         <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
           <div class="flex justify-between items-center pt-5">
             {/* <!-- Button --> */}
-            <button
-              id="dropdownDefaultButton"
-              data-dropdown-toggle="lastDaysdropdown"
-              data-dropdown-placement="bottom"
-              class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
-              type="button"
-            >
-              Last 7 days
-              <svg
-                class="w-2.5 m-2.5 ms-1.5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 10 6"
+            <div style={{ float: "right" }}>
+              <Link
+                to={`/farmer/${uid}/orders`}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="m1 1 4 4 4-4"
-                />
-              </svg>
-            </button>
+                View
+              </Link>
+            </div>
             <div
               id="lastDaysdropdown"
               class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700"

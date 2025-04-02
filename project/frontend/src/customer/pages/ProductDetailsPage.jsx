@@ -57,8 +57,14 @@ const ProductDetailsPage = () => {
                                     className="w-20 h-20 object-contain rounded-md mr-4"
                                 />
                                 <div>
-                                    <h2 className="text-md font-semibold">{product.name}</h2>
-                                    <p className="text-sm text-gray-600">{product.fertilizer}</p>
+                                    <h2 className="text-md font-semibold"> {product.name}</h2>
+                                    <p className="text-sm text-gray-600">These delicious, organic {product.category} are cultivated with care at Auckland Farms, known for their commitment to sustainable and natural farming practices. Fertilizer:{product.fertilizer}</p>
+                                    
+                                    <p className="text-sm text-gray-600">Supplier:{product.supplier}</p>
+                                    
+                                    {/* <h2 className="text-md font-semibold">{product.category}</h2>
+                                    <h2 className="text-sm text-gray-600">{product.supplier}</h2>
+                                    <h2 className="text-sm text-gray-600">{product.sellerId}</h2> */}
                                 </div>
                             </div>
                         ))}
