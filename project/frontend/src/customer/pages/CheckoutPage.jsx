@@ -4,6 +4,7 @@ import { ArrowBigRight } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 
 const CheckoutPage = () => {
   const location = useLocation();
@@ -107,6 +108,8 @@ const CheckoutPage = () => {
     }
   };
 
+
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -148,39 +151,29 @@ const CheckoutPage = () => {
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-2 gap-10 mt-3">
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-          </div>
-          <div className="grid grid-cols-2 gap-10 mt-3">
-            <input type="text" placeholder="Phone" />
-            <input type="text" placeholder="Zip" />
-          </div>
-          <div className="mt-3">
-            <input type="text" placeholder="Address" />
-          </div>
+          
+          
+          
         </div>
         <div className="mx-10 border">
           <h2 className="p-3 bg-gray-200 font-bold text-center">Total Cart {cartItems.length}</h2>
           <div className="p-4 flex flex-col gap-4">
             <h2 className="font-bold flex justify-between">
-              Subtotal : <span>${subtotal.toFixed(2)}</span>
+              Subtotal : <span>${Subtotal.toFixed(2)}</span>
             </h2>
             <hr />
-            <h2 className="flex justify-between">
-              Delivery <span>${delivery.toFixed(2)}</span>
-            </h2>
-            <h2 className="flex justify-between">
-              Tax {9}% <span>${tax.toFixed(2)}</span>
-            </h2>
-            <hr />
-            <h2 className="font-bold flex justify-between">
-              Total :<span>${total.toFixed(2)}</span>
-            </h2>
+            
+            <Link to='/Customer/Orderhistory'>
             <Button  onClick={handleOrder} className={`bg-green-700 text-white cursor-pointer`}>
-              Payment <ArrowBigRight />
+              OK <ArrowBigRight />
             </Button>
+            </Link>
+
           </div>
+
+
+         
+
         </div>
       </div>
       <Footer />

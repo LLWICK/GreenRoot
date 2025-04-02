@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 import axios from "axios";
 
 function CropEdit(prop) {
@@ -46,15 +47,43 @@ function CropEdit(prop) {
     axios
       .patch(`http://localhost:3000/api/v1/crops/${cid}`, data)
       .then(() => {
-        navigate(`/farmer/${prop.fid}/cropProducts`);
+        toast.success("Crop updated successfully!", {
+          position: "top-center",
+          autoClose: 2000, // Show toast for 2 seconds
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+        });
+
+        // Delay navigation to ensure the toast message is visible
+        setTimeout(() => {
+          navigate(`/farmer/${prop.fid}/cropProducts`);
+        }, 2000);
       })
       .catch((e) => {
+        alert("Error!");
         console.log(e);
       });
   };
 
   return (
     <div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
       <div>
         <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
           <form onSubmit={handleForm}>
