@@ -1,5 +1,7 @@
 const User = require("../model/userModel.js");
 const { hashPassword } = require("../utils/passwordUtils.js");
+// nodemailer
+const nodemailer = require('nodemailer');
 
 // get all users by role(Admin / Farmer / Seller)
 const getUsersByRole = async (req, res, role) => {
@@ -93,6 +95,48 @@ const updateUser = async (req, res) => {
       req.body.status = "active";
     }
 
+    // send a welcome email
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'greenrootp@gmail.com',
+        pass: 'weifglbjhwgzofym',
+      }
+    });
+
+    const mailOptions = {
+      from: 'greenrootp@gmail.com',
+      to: email,
+      subject: 'Your information has updated',
+      html: `
+            <h1>Welcome to GreenRoots!</h1>
+            <p>Hello ${firstName} ${lastName},</p>
+            <p>We're excited to have you on board. Your credentials are updated</p>
+            <p>Here are your updated details:</p>
+            <ul>
+                <li><strong>First Name:</strong> ${firstName}</li>
+                <li><strong>Last Name:</strong> ${lastName}</li>
+                <li><strong>password:</strong> ${lastName}</li>
+                <li><strong>Email:</strong> ${email}</li>
+                <li><strong>Status:</strong> ${status}</li>
+                <li><strong>Address:</strong> ${address}</li>
+                <li><strong>Phone:</strong> ${phone}</li>
+            </ul>
+            <p>Thank you for joining us!</p>
+            <p>Best regards,</p>
+            <p><strong>The GreenRoots Team</strong></p>
+            `
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error('Error sending email:', error);
+      } else {
+        console.log('Email sent:', info.response);
+      }
+    });
+
+
     // hash the password
     const hashedPassword = await hashPassword(password);
     req.body.password = hashedPassword;
@@ -134,17 +178,17 @@ const deleteUser = async (req, res) => {
 // get user count
 const getUserCounts = async (req, res) => {
 
-    try {
-        const userCounts = await User.aggregate([
-            { $group: { _id: "$role", count: { $sum: 1 } } }
-        ]);
+  try {
+    const userCounts = await User.aggregate([
+      { $group: { _id: "$role", count: { $sum: 1 } } }
+    ]);
 
-        res.status(200).json(userCounts);
+    res.status(200).json(userCounts);
 
-    } catch (err) {
-        res.status(500).json({ msg: err.message });
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
 
-    }
+  }
 
 };
 
