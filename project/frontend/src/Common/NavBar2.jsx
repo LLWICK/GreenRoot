@@ -71,7 +71,7 @@ const NavBar2 = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-6">
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                          Software
+                          Software Support
                         </h3>
                         <ul className="space-y-3">
                           <li>
@@ -79,7 +79,7 @@ const NavBar2 = () => {
                               href="#"
                               className="text-gray-600 hover:text-indigo-600"
                             >
-                              Web Development
+                              Technical Support
                             </a>
                           </li>
                           <li>
@@ -102,7 +102,7 @@ const NavBar2 = () => {
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                          Hardware
+                          Equpments
                         </h3>
                         <ul className="space-y-3">
                           <li>
@@ -110,7 +110,7 @@ const NavBar2 = () => {
                               href="#"
                               className="text-gray-600 hover:text-indigo-600"
                             >
-                              Laptops
+                              Selles
                             </a>
                           </li>
                           <li>
@@ -118,7 +118,7 @@ const NavBar2 = () => {
                               href="#"
                               className="text-gray-600 hover:text-indigo-600"
                             >
-                              Desktops
+                              Working
                             </a>
                           </li>
                         </ul>
@@ -161,7 +161,7 @@ const NavBar2 = () => {
                 <>
                   <button
                     onClick={handleLogout}
-                    className="text-gray-900 hover:bg-red-200 px-3 py-2 rounded-md text-sm font-medium"
+                    className="text-gray-900 hover:bg-red-200 px-3 py-2 mb-2.5 rounded-md text-sm font-medium"
                   >
                     Logout
                   </button>
