@@ -57,23 +57,67 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const { firstName, lastName, address, email, phone, password, confirmPassword, role } = formData;
+
+        // Validation checks
+        if (!firstName || !lastName || !address || !email || !phone || !password || !confirmPassword || !role) {
+            Swal.fire({
+                title: "Please fill out all fields!",
+                icon: "warning",
+            });
+            return;
+        }
+
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            Swal.fire({
+                title: "Invalid email format!",
+                icon: "error",
+            });
+            return;
+        }
+
+        if (phone.length !== 10 || isNaN(phone)) {
+            Swal.fire({
+                title: "Phone number must contain exactly 10 digits!",
+                icon: "error",
+            });
+            return;
+        }
+
+        if (password.length <= 6) {
+            Swal.fire({
+                title: "Password must be longer than 6 characters!",
+                icon: "error",
+            });
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            Swal.fire({
+                title: "Passwords do not match!",
+                icon: "error",
+            });
+            return;
+        }
+
         try {
-            const response = await axios.post(`http://localhost:3000/api/auth/register`, formData)
-                .then((res) => {
-                    navigate('/auth/login'); // navigate to the login page
+            const response = await axios.post(`http://localhost:3000/api/auth/register`, formData);
 
-                    Swal.fire({
-                        title: "Registeration successfull!",
-                        text: "",
-                        timer: 1500,
-                        showConfirmButton: false,
-                        icon: "success"
-                    });
-                });
-
+            navigate('/auth/login'); // Navigate to the login page
+            Swal.fire({
+                title: "Registration successful!",
+                text: "",
+                timer: 1500,
+                showConfirmButton: false,
+                icon: "success"
+            });
         } catch (error) {
-            console.log(err);
-
+            Swal.fire({
+                title: "Error during registration!",
+                text: error.response?.data.message || "Please try again later.",
+                icon: "error",
+            });
+            console.log(error);
         }
     };
 
