@@ -70,6 +70,11 @@ import {
   ViewQuestions,
   QuestionDetails,
   ReplyQuestion,
+  // new question routes
+  QuestionDash,
+  WorkingIssue,
+
+
 } from "./admin/pages";
 
 /* retail seller page imports  */
@@ -173,11 +178,18 @@ function App() {
         path="/admin/user-management/researchers"
         element={<ResearchersManagement />}
       />
+
+      {/* Question routes new */}
+      <Route path="/admin/question-dash" element={<QuestionDash />} />
+      <Route path="/admin/question-management/working-issue" element={<WorkingIssue />} />
+
       <Route path="/admin/ques" element={<QuestionManagement />} />
       <Route path="/admin/test/ques" element={<CreateQuestion />} />
       <Route path="/admin/view-questions/:id" element={<ViewQuestions />} />
       <Route path="/admin/question-details/:qid" element={<QuestionDetails />} />
       <Route path="/admin/reply-question/:qid" element={<ReplyQuestion />} />
+
+
 
       {/* Home page components */}
       <Route path="/contact" element={<ContactUsPage />} />
@@ -197,11 +209,11 @@ function App() {
       <Route path="/researcher/my-growing-guide" element={<MyGrowingGuide />} />
       <Route path="/blog/growing-guide" element={<GrowingGuideBlog />} />
       <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide />} />
-      <Route path="/blog/crop" element={<BlogCrop/>}/>
-      <Route path="/blog/crop/:id" element={<BlogCropDetails/>}/>
-      <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate/>}/>
-      <Route path="/researcher/my-news/update" element={<NewsUpdate/>}/>
-      <Route path="/blog/qna" element={<QnABlog/>}/>
+      <Route path="/blog/crop" element={<BlogCrop />} />
+      <Route path="/blog/crop/:id" element={<BlogCropDetails />} />
+      <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate />} />
+      <Route path="/researcher/my-news/update" element={<NewsUpdate />} />
+      <Route path="/blog/qna" element={<QnABlog />} />
 
 
       {/* Retail seller Router */}
@@ -228,10 +240,10 @@ function App() {
       <Route path="/Home/Checkout" element={<CheckoutPage />} />
       <Route path="/Customer/Orderhistory" element={<OrderhistoryPage />} />
       <Route path="/Customer/ChartPage" element={<ChartPage />} />
-      <Route path="/Customer/ConfirmPage" element={<ConfirmPage/>} />
+      <Route path="/Customer/ConfirmPage" element={<ConfirmPage />} />
       <Route path='/Customer/products-Category/:categoryName' element={<CategoryPage />} />
       <Route path='/Customer/ProductDetailsPage' element={<ProductDetailsPage />} />
-      
+
     </Routes>
   );
 }

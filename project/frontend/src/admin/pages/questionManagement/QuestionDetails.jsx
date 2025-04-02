@@ -20,7 +20,7 @@ const QuestionDetails = () => {
                 const data = await response.json();
                 if (response.ok) {
                     alert(data.msg);
-                    navigate(-1); // Go back after deletion
+                    navigate(-1);
                 } else {
                     alert("Failed to delete question: " + data.msg);
                 }

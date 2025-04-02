@@ -20,6 +20,9 @@ export { default as CreateQuestion } from "./CreateQuestion";
 export { default as ViewQuestions } from "./questionManagement/ViewQuestions";
 export { default as QuestionDetails } from "./questionManagement/QuestionDetails";
 export { default as ReplyQuestion } from "./questionManagement/ReplyQuestion";
+// test Q & A management
+export { default as QuestionDash } from "./qaManagement/QuestionDash";
+export { default as WorkingIssue } from "./qaManagement/WorkingIssue";
 
 // pages
 export { default as ContactUsPage } from "./home/ContactUs";

@@ -39,9 +39,19 @@ function AdminDash() {
                     </div>
 
                     {/* Question management button */}
-                    <div className="mt-8 mb-10">
+                    {/* <div className="mt-8 mb-10">
                         <Link
                             to={`/admin/ques`}
+                            className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-lg"
+                        >
+                            Manage Questions
+                        </Link>
+                    </div> */}
+
+                    {/* New Question management button */}
+                    <div className="mt-8 mb-10">
+                        <Link
+                            to={`/admin/question-dash`}
                             className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-lg"
                         >
                             Manage Questions
