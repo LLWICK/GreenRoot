@@ -107,11 +107,11 @@ const updateUser = async (req, res) => {
     const mailOptions = {
       from: 'greenrootp@gmail.com',
       to: email,
-      subject: 'Your information has updated',
+      subject: 'Your Information Has Been Updated',
       html: `
             <h1>Welcome to GreenRoots!</h1>
             <p>Hello ${firstName} ${lastName},</p>
-            <p>We're excited to have you on board. Your credentials are updated</p>
+            <p>We are delighted to have you onboard. Your credentials have been successfully updated.</p>
             <p>Here are your updated details:</p>
             <ul>
                 <li><strong>First Name:</strong> ${firstName}</li>
@@ -122,7 +122,7 @@ const updateUser = async (req, res) => {
                 <li><strong>Address:</strong> ${address}</li>
                 <li><strong>Phone:</strong> ${phone}</li>
             </ul>
-            <p>Thank you for joining us!</p>
+            <p>Thank you for being a part of our community!</p>
             <p>Best regards,</p>
             <p><strong>The GreenRoots Team</strong></p>
             `
