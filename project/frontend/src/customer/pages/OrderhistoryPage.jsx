@@ -54,6 +54,7 @@ const OrderhistoryPage = () => {
             <h3 className="text-xl font-semibold text-green-800 mb-2">
               Order #{order.orderNumber}
             </h3>
+            
             <p className="text-gray-700 mb-4">Total Price: ${order.totalPrice}</p>
             {order.cartItems &&
               order.cartItems.map((item) => (
@@ -68,6 +69,7 @@ const OrderhistoryPage = () => {
                     )}
                     <div>
                       <h4 className="font-semibold text-green-800">{item.name}</h4>
+                      <p className="text-gray-700">Seller Id : {item.sellerId}</p>
                       <p className="text-gray-600">Quantity: {item.quantity}</p>
                     </div>
                   </div>
