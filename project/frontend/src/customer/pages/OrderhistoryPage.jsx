@@ -78,7 +78,7 @@ const OrderhistoryPage = () => {
                 </div>
               ))}
             <div className="mt-4 pt-4 border-t border-green-200">
-              
+            <p className="text-lg font-semibold text-green-800 mt-2">ordinary_buyer_id:{order.ordinary_buyer_id}</p>
               <p className="text-lg font-semibold text-green-800 mt-2">Final Total: Rs.{order.finalTotal}</p>
               <Button>Cancel order</Button>
             </div>

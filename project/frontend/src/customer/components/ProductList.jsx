@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ProductItem from "./ProductItem";
 
-const ProductList = () => {
+const ProductList = ({custId}) => {
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const ProductList = () => {
           products.length > 0 &&
           products.map(
             (product, index) =>
-              index < 32 && <ProductItem key={product._id} product={product} />
+              index < 32 && <ProductItem custId={custId} key={product._id} product={product} />
           )}
       </div>
     </div>
