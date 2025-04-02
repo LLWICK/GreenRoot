@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import NavBar2 from '@/Common/NavBar2';
 import UserRoleChart from '../components/UserRoleChart';
 // import Footer from './home/home_components/Footer';
-
+import QuestionTitleChart from './qaManagement/QuestionTitleChart';
 
 function AdminDash() {
 
@@ -38,15 +38,11 @@ function AdminDash() {
                         </Link>
                     </div>
 
-                    {/* Question management button */}
-                    {/* <div className="mt-8 mb-10">
-                        <Link
-                            to={`/admin/ques`}
-                            className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-lg"
-                        >
-                            Manage Questions
-                        </Link>
-                    </div> */}
+                    {/* Question Title Chart */}
+                    <div className="bg-white shadow-md rounded-lg p-6 mt-6">
+                        <h2 className="text-lg font-semibold text-gray-700 mb-3">Questions Categorized by Title</h2>
+                        <QuestionTitleChart />
+                    </div>
 
                     {/* New Question management button */}
                     <div className="mt-8 mb-10">
