@@ -8,16 +8,21 @@ import NavBar from '@/admin/pages/home/home_components/NavBar'
 
 import Footer from '@/admin/pages/home/home_components/Footer'
 
+import { useParams } from 'react-router-dom'
+
 const Home = () => {
+  const { cid } = useParams();
+  console.log(cid)
+
   return (
     <div >
       <NavBar/>
-      <Header />
+      <Header custId={cid}/>
     <div className='p-5 md:p-10 px-16'>
       
        <Slider/>
-       <CategoryList/>
-       <ProductList/>
+       <CategoryList custId={cid}/>
+       <ProductList custId={cid}/>
        <Banner/>
        
     </div>

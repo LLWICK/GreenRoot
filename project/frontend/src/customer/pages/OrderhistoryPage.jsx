@@ -55,6 +55,9 @@ const OrderhistoryPage = () => {
             <h3 className="text-xl font-semibold text-green-800 mb-2">
               Order #{order.orderNumber}
             </h3>
+            <h2 className="text-xl font-semibold text-red-600 mb-2">
+              Status :{order.status}
+            </h2>
             
            
             {order.cartItems &&
@@ -78,7 +81,7 @@ const OrderhistoryPage = () => {
                 </div>
               ))}
             <div className="mt-4 pt-4 border-t border-green-200">
-              
+            <p className="text-lg font-semibold text-green-800 mt-2">ordinary_buyer_id:{order.ordinary_buyer_id}</p>
               <p className="text-lg font-semibold text-green-800 mt-2">Final Total: Rs.{order.finalTotal}</p>
               <Button>Cancel order</Button>
             </div>
