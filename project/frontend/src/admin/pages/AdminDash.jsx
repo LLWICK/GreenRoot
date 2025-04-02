@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import useAuth from '../hooks/useAuth';
 import Sidebar from '../components/Sidebar';
 import { Link } from 'react-router-dom';
 // import NavBar from './home/home_components/NavBar';
@@ -7,8 +8,9 @@ import UserRoleChart from '../components/UserRoleChart';
 // import Footer from './home/home_components/Footer';
 import QuestionTitleChart from './qaManagement/QuestionTitleChart';
 
-function AdminDash() {
 
+const AdminDash = () => {
+    useAuth("admin");
 
     return (
         <div className="flex bg-gray-100">
