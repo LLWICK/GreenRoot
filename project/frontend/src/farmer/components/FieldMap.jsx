@@ -72,6 +72,14 @@ function FieldMap() {
       >
         View
       </Link>
+
+      <Link
+        to={`/farmer/${uid}/Location/${det._id}/update`}
+        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded float-right"
+      >
+        Edit
+      </Link>
+
       <MapContainer center={[det.xcordinate, det.ycordinate]} zoom={13}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

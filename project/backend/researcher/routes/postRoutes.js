@@ -12,8 +12,7 @@ const {
 } = require('../controller/postController')
 
 
-// Import middleware
-//const { authenticateUser} = require('../../admin/middleware/auth.middleware')
+const authenticateResearcher = require('../middleware/requireAuth');
 
 //multer
 const multer = require('multer');
@@ -24,7 +23,7 @@ const uploadMiddleware = multer({ dest: 'researcher/uploads/' });
 router.get('/', getPosts)
 
 //Get user posts
-router.get('/my-posts', getUserPosts)
+router.get('/my-posts', authenticateResearcher, getUserPosts)
 
 //Get a single post
 router.get('/:id', getAPost)

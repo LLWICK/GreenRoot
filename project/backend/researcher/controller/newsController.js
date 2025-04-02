@@ -2,6 +2,7 @@ const news = require('../model/newsModel')
 const mongoose = require('mongoose')
 const fs = require('fs')
 
+
 //Get all posts
 const getNews = async (req, res) => {
 

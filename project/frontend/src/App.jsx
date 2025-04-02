@@ -46,6 +46,8 @@ import BlogCropDetails from "./researcher/pages/BlogCropDetails";
 import GrowingGuideUpdate from "./researcher/pages/GrowingGuideUpdate";
 import NewsUpdate from "./researcher/pages/NewsUpdate";
 import QnABlog from "./researcher/pages/QnABlog";
+import MyStats from "./researcher/pages/MyStats";
+import MyPnd from "./researcher/pages/MyPnd";
 
 /* Admin pages */
 import {
@@ -73,14 +75,15 @@ import {
   QuestionDetails,
   ReplyQuestion,
 
-
   // new question routes
   QuestionDash,
   WorkingIssue,
+
   GeneralInquiry,
   AccountIssue,
   TechnicalSupport,
   OtherQuestion,
+
 
 } from "./admin/pages";
 
@@ -109,6 +112,7 @@ import BulkOrderSummary from "./seller/pages/sellerBulkOrderSummary";
 import FarmerList from "./seller/pages/farmers";
 import DiliveryDash from "./seller/pages/diliveryGuy/diliveryGuyDash";
 import AboutUsPage from "./Common/pages/AboutUsPage";
+import MapEdit from "./farmer/mapComponents/MapEdit";
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -134,9 +138,9 @@ function App() {
       <Route path="/farmer/:uid/editTask/:tid" element={<EditTasksModal />} />
       <Route path="/farmer/Blogs" element={<BlogPage />} />
       <Route path="/farmer/:uid/allLocations" element={<AllLocations />} />
-
       <Route path="/farmer/:uid/addMap" element={<SearchLocation />} />
       <Route path="/farmer/:uid/order/:oid/update" element={<OrderUpdate />} />
+      <Route path="/farmer/:uid/Location/:mid/update" element={<MapEdit />} />
 
       {/* Common Pages */}
       <Route path="/otp/send" element={<OtpPage />} />
@@ -193,11 +197,13 @@ function App() {
 
       {/* Question routes new */}
       <Route path="/admin/question-dash" element={<QuestionDash />} />
+
       <Route path="/admin/question-management/working-issue" element={<WorkingIssue />} />
       <Route path="/admin/question-management/general-inquiry" element={<GeneralInquiry />} />
       <Route path="/admin/question-management/account-issue" element={<AccountIssue />} />
       <Route path="/admin/question-management/technical-support" element={<TechnicalSupport />} />
       <Route path="/admin/question-management/other" element={<OtherQuestion />} />
+
 
       <Route path="/admin/ques" element={<QuestionManagement />} />
       <Route path="/admin/test/ques" element={<CreateQuestion />} />
@@ -207,8 +213,6 @@ function App() {
         element={<QuestionDetails />}
       />
       <Route path="/admin/reply-question/:qid" element={<ReplyQuestion />} />
-
-
 
       {/* Home page components */}
       <Route path="/contact" element={<ContactUsPage />} />
@@ -228,14 +232,22 @@ function App() {
       <Route path="/researcher/my-growing-guide" element={<MyGrowingGuide />} />
       <Route path="/blog/growing-guide" element={<GrowingGuideBlog />} />
       <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide />} />
-      <Route path="/blog/crop" element={<BlogCrop />} />
-      <Route path="/blog/crop/:id" element={<BlogCropDetails />} />
 
-      <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate />} />
+      <Route path="/blog/crop" element={<BlogCrop/>}/>
+      <Route path="/blog/crop/:id" element={<BlogCropDetails/>}/>
+      <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate/>}/>
+      <Route path="/researcher/my-news/update" element={<NewsUpdate/>}/>
+      <Route path="/blog/qna" element={<QnABlog/>}/>
+      <Route path="/researcher/my-stats" element={<MyStats/>}/>
+      <Route path="/researcher/my-pnd" element={<MyPnd/>}/>
+
+
+      <Route
+        path="/researcher/my-growing-guide/update"
+        element={<GrowingGuideUpdate />}
+      />
       <Route path="/researcher/my-news/update" element={<NewsUpdate />} />
       <Route path="/blog/qna" element={<QnABlog />} />
-
-
 
       {/* Retail seller Router */}
 
@@ -265,8 +277,6 @@ function App() {
       <Route path="/Home/Checkout/:cid" element={<CheckoutPage />} />
       <Route path="/Customer/Orderhistory/:cid" element={<OrderhistoryPage />} />
       <Route path="/Customer/ChartPage/:cid" element={<ChartPage />} />
-
-
 
       <Route path="/Customer/ConfirmPage" element={<ConfirmPage />} />
       <Route path='/Customer/products-Category/:categoryName/:cid' element={<CategoryPage />} />
