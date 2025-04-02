@@ -12,7 +12,7 @@ import {
 
   
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product,custId }) => {
   return (
     <div className="p-2 md:p-6 flex flex-col items-center justify-center gap-3 border rounded-lg
     hover:scale-105 hover:shadow-lg transition-all ease-in-out cursor-pointer">
@@ -29,7 +29,7 @@ const ProductItem = ({ product }) => {
     <DialogHeader>
       
       <DialogDescription>
-        <ProductItemDetail product={product}/>
+        <ProductItemDetail custId={custId} product={product}/>
       </DialogDescription>
     </DialogHeader>
   </DialogContent>

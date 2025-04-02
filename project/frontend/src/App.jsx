@@ -261,16 +261,16 @@ function App() {
 
       <Route path="/Customer/:cid" element={<Home />} />
       <Route path="/CusLanding" element={<Cus_LandingBanner />} />
-      <Route path="/Customer/Dashboard" element={<DashboardPage />} />
-      <Route path="/Home/Checkout" element={<CheckoutPage />} />
-      <Route path="/Customer/Orderhistory" element={<OrderhistoryPage />} />
-      <Route path="/Customer/ChartPage" element={<ChartPage />} />
+      <Route path="/Customer/Dashboard/:cid" element={<DashboardPage />} />
+      <Route path="/Home/Checkout/:cid" element={<CheckoutPage />} />
+      <Route path="/Customer/Orderhistory/:cid" element={<OrderhistoryPage />} />
+      <Route path="/Customer/ChartPage/:cid" element={<ChartPage />} />
 
 
 
       <Route path="/Customer/ConfirmPage" element={<ConfirmPage />} />
-      <Route path='/Customer/products-Category/:categoryName' element={<CategoryPage />} />
-      <Route path='/Customer/ProductDetailsPage' element={<ProductDetailsPage />} />
+      <Route path='/Customer/products-Category/:categoryName/:cid' element={<CategoryPage />} />
+      <Route path='/Customer/ProductDetailsPage/:cid' element={<ProductDetailsPage />} />
 
 
     </Routes>

@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowBigRight } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 
 const CheckoutPage = () => {
+
+  const { cid } = useParams();
+    console.log(cid)
+
   const location = useLocation();
   const subtotal = location.state?.subtotal || 0;
 
@@ -72,6 +76,7 @@ const CheckoutPage = () => {
         delivery,
         tax,
         finalTotal: Subtotal,
+        ordinary_buyer_id:cid,
       };
 
       const response = await fetch('http://localhost:3000/api/customer/orders', {
@@ -166,7 +171,7 @@ const CheckoutPage = () => {
             </h2>
             <hr />
             
-            <Link to='/Customer/Orderhistory'>
+            <Link to={`/Customer/Orderhistory/${cid}`}>
             <Button  onClick={handleOrder} className={`bg-green-700 text-white cursor-pointer`}>
               OK <ArrowBigRight />
             </Button>

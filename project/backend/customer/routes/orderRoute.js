@@ -35,7 +35,7 @@ router.get('/:id',async(req, res) => {
 
 // Create a new order
 router.post('/', async (req, res) => {
-  const { totalPrice, cartItems, delivery, tax, finalTotal } = req.body;
+  const { totalPrice, cartItems, delivery, tax, finalTotal,ordinary_buyer_id } = req.body;
 
   try {
 
@@ -47,6 +47,7 @@ router.post('/', async (req, res) => {
       delivery,
       tax,
       finalTotal,
+      ordinary_buyer_id,
 
 
       orderNumber: orderCount + 1, // Generate sequential order number
