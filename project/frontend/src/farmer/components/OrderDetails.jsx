@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 
 function OrderDetails() {
   const [order, setOrder] = useState({});
@@ -57,7 +58,16 @@ function OrderDetails() {
         status: orderStatus,
       })
       .then((res) => {
-        alert("Order Updated!");
+        toast.success(`Order ${orderStatus}`, {
+          position: "top-center",
+          autoClose: 2000, // Show toast for 2 seconds
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+        });
       });
 
     await axios
@@ -76,6 +86,19 @@ function OrderDetails() {
 
   return (
     <div style={{ float: "left" }}>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
       <section class="py-24 relative">
         <div class="w-fi max-w-7xl px-4 md:px-5 lg-6 mx-auto">
           <div class="flex items-start flex-col gap-6 xl:flex-row ">

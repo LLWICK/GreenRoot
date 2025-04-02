@@ -6,6 +6,7 @@ import Sidebar from "./Common/Sidebar";
   /* Farmer Pages imports */
 }
 import OtpPage from "./Common/pages/otpPage";
+import PaySuccess from "./farmer/utills/PaySuccess";
 import {
   FarmerHome,
   CropsHome,
@@ -121,6 +122,7 @@ function App() {
       {/* Common Pages */}
       <Route path="/otp/send" element={<OtpPage />} />
       <Route path="/aboutUs" element={<AboutUsPage />} />
+      <Route path="/payment/success/:id" element={<PaySuccess />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />

@@ -38,11 +38,26 @@ const checkout = async (req, res) => {
       allowed_countries: ["LK", "US"],
     },
 
-    success_url: `http://localhost:5173/farmer/test`,
+    success_url: `http://localhost:5173/payment/success/{CHECKOUT_SESSION_ID}`,
     cancel_url: "http://localhost:5173/farmer/test",
   });
 
   res.status(200).json({ data: session });
 };
 
-module.exports = { checkout };
+const paymentInfo = async (req, res) => {
+  const { id } = req.params;
+
+  const dets1 = await stripe.checkout.sessions.retrieve(id, {
+    expand: ["collected_information.shipping_details"],
+  });
+
+  const dets2 = await stripe.checkout.sessions.listLineItems(id);
+
+  console.log(dets1);
+  console.log(dets2);
+
+  res.status(200).json({ msg: "Successful!", data: dets1 });
+};
+
+module.exports = { checkout, paymentInfo };
