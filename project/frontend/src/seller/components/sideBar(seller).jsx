@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 
 
-const SideBar = () => {
+const SideBar = ({sellerid}) => {
+    console.log(sellerid)
     return ( 
         <aside className="col-span-2 bg-white h-screen shadow-xl px-3 w-60 overflow-x-hidden">
         <div className="space-y-6 mt-10">
@@ -38,37 +39,37 @@ const SideBar = () => {
             </div>
             <div id="menu" className="flex flex-col space-y-2">
             <Link
-                to="/seller/home"
+                to={`/seller/${sellerid}/home`}
                 className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white rounded-md transition duration-150 ease-in-out"
             >
                 Homepage
             </Link>
             <Link
-                to="/seller/Inventroy"
+                to={`/seller/${sellerid}/Inventroy`}
                 className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white rounded-md transition duration-150 ease-in-out"
             >
                 Inventroy
             </Link>
             <Link
-                to="/seller/bulkOrders"
+                to={`/seller/${sellerid}/bulkOrders`}
                 className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white rounded-md transition duration-150 ease-in-out"
             >
                 Bulk Orders
             </Link>
             <Link
-                to="/seller/normalOrders"
+                to={`/seller/${sellerid}/normalOrders`}
                 className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white rounded-md transition duration-150 ease-in-out"
             >
                 normal orders
             </Link>
             <Link
-                to="/seller/stat"
+                to={`/seller/${sellerid}/stat`}
                 className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white rounded-md transition duration-150 ease-in-out"
             >
                 stats
             </Link>
             <Link
-                to="/seller/farmers"
+                to={`/seller/${sellerid}/farmers`}
                 className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white rounded-md transition duration-150 ease-in-out"
             >
                 farmers

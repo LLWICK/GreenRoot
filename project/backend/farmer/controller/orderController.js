@@ -77,7 +77,7 @@ const updateOrders = async (req, res) => {
 //email conformation
 const emailSender = (req, res) => {
   try {
-    const { id, status } = req.body;
+    const { id, status, email } = req.body;
 
     let transporter = nodemailer.createTransport({
       service: "gmail",
@@ -89,7 +89,7 @@ const emailSender = (req, res) => {
 
     let mailOptions = {
       from: "greenrootp@gmail.com",
-      to: "linwick679@gmail.com",
+      to: email,
       subject: "Greenroot Bulk order management",
       text: `orderID: ${id}     status: ${status}`,
     };

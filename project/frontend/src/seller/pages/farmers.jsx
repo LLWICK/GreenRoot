@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import NavBar2 from "@/Common/NavBar2";
 import SideBar from "../components/sideBar(seller)";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const FarmerList = () => {
+  const { sid } = useParams();
   const [farmers, setFarmers] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility state
   const [selectedFarmer, setSelectedFarmer] = useState(null); // To store the selected farmer's to-do list
@@ -53,7 +55,7 @@ const FarmerList = () => {
         </nav>
         <div className="grid grid-cols-12 min-h-screen">
           {/* Sidebar */}
-          <SideBar />
+          <SideBar sellerid={sid} />
 
           {/* Main Content */}
           <div className="col-span-10 flex flex-col p-6">
