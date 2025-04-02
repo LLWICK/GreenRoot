@@ -30,10 +30,10 @@ export default function SingleNewsPage() {
 
   if (loading) {
     return (
-      <div>
+      <div className='bg-gray-200'>
         <BlogHeader />
-        <div className="flex justify-center items-center h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-600"></div>
+        <div className="bg-gray-200 flex justify-center items-center h-64 ">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-600 "></div>
         </div>
       </div>
     );
@@ -41,7 +41,7 @@ export default function SingleNewsPage() {
 
   if (!news) {
     return (
-      <div>
+      <div className='bg-gray-200'>
         <BlogHeader />
         <p className="text-center text-gray-600">News not found.</p>
       </div>
