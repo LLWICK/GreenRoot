@@ -30,8 +30,9 @@ const createProduct = async (req, res) => {
 
 // Get all products
 const getAllProducts = async (req, res) => {
+  const {sid} = req.params;
   try {
-    const products = await Product.find().populate('sellerId', 'name'); // Populate seller name if needed
+    const products = await Product.find({sellerId:sid}).populate('sellerId', 'name'); // Populate seller name if needed
     res.status(200).json({ products });
   } catch (error) {
     res.status(500).json({ message: 'Error fetching products', error: error.message });

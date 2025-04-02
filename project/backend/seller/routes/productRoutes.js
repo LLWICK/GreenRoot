@@ -10,7 +10,7 @@ const { createProduct,
 router.post('/product', createProduct);
 
 // Get all products
-router.get('/products', getAllProducts);
+router.get('/products/:sid', getAllProducts);
 
 // Get a product by ID
 router.get('/product/:id', getProductById);

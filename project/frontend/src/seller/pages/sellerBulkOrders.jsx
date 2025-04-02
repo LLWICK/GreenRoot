@@ -3,13 +3,14 @@ import axios from 'axios';
 import SideBar from '../components/sideBar(seller)';
 import SalesBarChart from '../components/salesChart';
 import NavBar2 from '@/Common/NavBar2';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function SellerBulkOrders() {
+  const { sid } = useParams();
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/RetailSeller/bulkOrder/getOrders/67d8e72067646fe0d3f87794')
+    axios.get(`http://localhost:3000/api/RetailSeller/bulkOrder/getOrders/${sid}`)
       .then((response) => {
         console.log("API Response:", response.data);
         if (response.data.success) {
@@ -29,25 +30,12 @@ function SellerBulkOrders() {
       <nav className="p-4"><NavBar2 /></nav>
       <div className="grid grid-cols-12 min-h-screen">
         {/* Sidebar */}
-        <SideBar />
+        <SideBar sellerid={sid} />
 
         {/* Main Content */}
         <div className="col-span-10 flex flex-col p-6">
           <h1 className="text-xl font-semibold mb-4">My orders</h1>
-          <div className="flex justify-end items-center gap-12 mb-10 mr-10">
-            <a href="#" className="text-gray-700 hover:text-green-600">
-              cat 1
-            </a>
-            <a href="#" className="text-gray-700 hover:text-green-600">
-              cat 2
-            </a>
-            <a href="#" className="text-gray-700 hover:text-green-600">
-              cat 3
-            </a>
-            <a href="#" className="text-gray-700 hover:text-green-600">
-              cat 4
-            </a>
-          </div>
+          
 
           {/* Table */}
           <div className="mx-0 max-w-screen-lg px-4 py-8 sm:px-8">
