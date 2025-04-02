@@ -1,16 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import SidebarResearcher from '../components/SidebarResearcher';
 import SolutionForTicket from '../components/SolutionForTicket';
 import QnAReplyForm from '../components/QnAReplyForm';
+import { getResearcherId } from '../utils/auth';
 
 export default function ReplyQnA() {
+
+  const [userID, setUserID] = useState(null);
+  const navigate = useNavigate();
   const { id } = useParams(); // Get the ticket ID from the URL
   const [ticket, setTicket] = useState(null); // Ticket details
   const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
+
+    const userId = getResearcherId();
+      
+    if (userId) {
+      setUserID(userId);
+    } else {
+      navigate(`/auth/login`);
+    }
+
     const fetchTicket = async () => {
       try {
         console.log('Fetching ticket with ID:', id); // Log the ticket ID

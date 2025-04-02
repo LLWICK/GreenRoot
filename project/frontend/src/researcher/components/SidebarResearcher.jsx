@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../extras/Greenroots-logo-color.png'; // Ensure the path to your logo is correct
+import Logo from '../extras/Greenroots-logo-color.png'; 
 
 export default function SidebarResearcher() {
   return (
@@ -10,11 +10,12 @@ export default function SidebarResearcher() {
     >
       {/* Logo */}
       <div className="flex justify-center mt-6">
+        <Link to="/">
         <img
           src={Logo}
           alt="Greenroots Logo"
-          className="w-40 h-40" // Adjust the size as needed
-        />
+          className="w-40 h-40" 
+        /></Link>
       </div>
 
       {/* Menu Items */}
@@ -78,7 +79,7 @@ export default function SidebarResearcher() {
 
         {/* Pest and Disease */}
         <Link
-          to="/my-pnd"
+          to="/researcher/my-pnd"
           className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-green-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
         >
           <svg
@@ -98,7 +99,7 @@ export default function SidebarResearcher() {
 
         {/* Stats */}
         <Link
-          to="/stats"
+          to="/researcher/my-stats"
           className="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-green-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out flex items-center"
         >
           <svg

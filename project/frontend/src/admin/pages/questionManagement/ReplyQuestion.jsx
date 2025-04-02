@@ -15,14 +15,25 @@ const ReplyQuestion = () => {
         }
 
         const token = Cookies.get("authToken");
-        const payload = JSON.parse(atob(token.split(".")[1]));
-        const adminid = payload.userId;
-        console.log(adminid);
+        if (!token) {
+            return alert("Unauthorized Please Log in!");
+        }
+
+        let adminId; // variable to store adminID
+
+        try {
+            const payload = JSON.parse(atob(token.split(".")[1]));
+            adminId = payload.userId;
+
+        } catch (error) {
+            console.error(error);
+            return alert("Invalid session please login again...");
+        }
 
         try {
             await axios.post(`http://localhost:3000/api/qna/question/reply/${question._id}`, {
                 message: reply,
-                adminId: adminid
+                adminId
             });
 
             alert("Reply added successfully...");

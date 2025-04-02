@@ -20,7 +20,7 @@ const checkout = async (req, res) => {
       line_items: [
         {
           price_data: {
-            currency: "USD",
+            currency: "Lkr",
             product_data: { name: "Total Order Payment" },
             unit_amount: totalAmount,
           },

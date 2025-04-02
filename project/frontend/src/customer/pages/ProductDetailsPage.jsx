@@ -11,7 +11,7 @@ const ProductDetailsPage = () => {
             setLoading(true); // Set loading to true at the start
             try {
                 const response = await fetch(
-                    "http://localhost:3000/api/RetailSeller/products/products"
+                    "http://localhost:3000/api/customer/products"
                 );
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);

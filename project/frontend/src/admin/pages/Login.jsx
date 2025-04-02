@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
-import loginImg from "../extras/loginImage.svg";
+// import loginImg from "../extras/loginImage.svg";
 import NavBar2 from "@/Common/NavBar2";
 import Footer from "./home/home_components/Footer";
 
@@ -51,9 +51,7 @@ const Login = () => {
                             navigate(`/seller/${payload.userId}/home`);
                             break;
                         case "researcher":
-
                             navigate(`/researcher`);
-
                             break;
                         default:
                             navigate("/");
@@ -145,7 +143,7 @@ const Login = () => {
                                     </form>
 
                                     <p className="text-center mt-1.5">
-                                        Still Don't have an account? <span className="text-blue-600 underline hover:text-blue-700"><Link to={`/auth/login`}>Sing Up</Link></span>
+                                        Still Don't have an account? <span className="text-blue-600 underline hover:text-blue-700"><Link to={`/auth/register`}>Sing Up</Link></span>
                                     </p>
 
                                     <p className="mt-6 text-xs text-gray-600 text-center">
@@ -162,14 +160,16 @@ const Login = () => {
                             </div>
                         </div>
 
-                        <div className="flex-1 bg-green-100 text-center hidden lg:flex">
-                            <div
-                                className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
-                                style={{
-                                    backgroundImage: `url(${loginImg})`,
-                                }}
-                            />
-                        </div>
+                        <div
+                            className="flex-1 bg-green-100 text-center hidden lg:flex"
+                            style={{
+                                backgroundImage: `url('https://img.freepik.com/premium-photo/farmer-field_1031776-7345.jpg')`,
+                                backgroundSize: "cover",
+                                backgroundPosition: "center",
+                                backgroundRepeat: "no-repeat",
+                            }}
+                        />
+
                     </div>
                 </div>
             </>

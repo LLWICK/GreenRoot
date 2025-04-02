@@ -20,6 +20,13 @@ export { default as CreateQuestion } from "./CreateQuestion";
 export { default as ViewQuestions } from "./questionManagement/ViewQuestions";
 export { default as QuestionDetails } from "./questionManagement/QuestionDetails";
 export { default as ReplyQuestion } from "./questionManagement/ReplyQuestion";
+// test Q & A management
+export { default as QuestionDash } from "./qaManagement/QuestionDash";
+export { default as WorkingIssue } from "./qaManagement/WorkingIssue";
+export { default as GeneralInquiry } from "./qaManagement/GeneralInquiry";
+export { default as AccountIssue } from "./qaManagement/AccountIssue";
+export { default as TechnicalSupport } from "./qaManagement/TechnicalSupport";
+export { default as OtherQuestion } from "./qaManagement/OtherQuestion";
 
 // pages
 export { default as ContactUsPage } from "./home/ContactUs";

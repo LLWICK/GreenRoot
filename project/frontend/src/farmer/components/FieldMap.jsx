@@ -5,6 +5,7 @@ import axios from "axios";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Link, useParams } from "react-router-dom";
 import Loader from "./Loader";
+import { Button } from "@/components/ui/button";
 
 function FieldMap() {
   const { uid } = useParams();
@@ -65,9 +66,20 @@ function FieldMap() {
 
   return (
     <div className="frame">
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <Link
+        to={`/farmer/${uid}/allLocations`}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
         View
-      </button>
+      </Link>
+
+      <Link
+        to={`/farmer/${uid}/Location/${det._id}/update`}
+        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded float-right"
+      >
+        Edit
+      </Link>
+
       <MapContainer center={[det.xcordinate, det.ycordinate]} zoom={13}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
