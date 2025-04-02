@@ -79,6 +79,7 @@ import {
   WorkingIssue,
   GeneralInquiry,
   AccountIssue,
+  TechnicalSupport,
 
 } from "./admin/pages";
 
@@ -194,6 +195,7 @@ function App() {
       <Route path="/admin/question-management/working-issue" element={<WorkingIssue />} />
       <Route path="/admin/question-management/general-inquiry" element={<GeneralInquiry />} />
       <Route path="/admin/question-management/account-issue" element={<AccountIssue />} />
+      <Route path="/admin/question-management/technical-support" element={<TechnicalSupport />} />
 
       <Route path="/admin/ques" element={<QuestionManagement />} />
       <Route path="/admin/test/ques" element={<CreateQuestion />} />
