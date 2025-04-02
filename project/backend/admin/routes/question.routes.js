@@ -1,33 +1,29 @@
 const express = require('express');
 // const { authenticateUser, authorizePermissions } = require('../middleware/auth.middleware');
-const { createQuestion } = require('../controller/question.controller');
+const {
+    createQuestion,
+    getUserQuestions,
+    updateQuestion,
+    getQuestionByTitle,
+    replyToQuestion
+} = require('../controller/question.controller');
 const router = express.Router();
 
 
 // create a question
 router.post("/create", createQuestion);
 
-/*
-// get all questions
-router.get("/questions", getAllQuestions);
+// get user's questions
+router.get('/questions/:userId', getUserQuestions);
 
-// get user question
-router.get("/my-questions", authenticateUser, getUserQuestions);
+// update question
+router.put("/update/:questionId", updateQuestion);
 
-// get a specific question 
-router.get("/question/:id", authenticateUser, getQuestionById);
-
-// edit/update question
-router.put("/update/:id", authenticateUser, editQuestion);
-
-// close a question
-router.put("/close/:id", authenticateUser, deleteQuestion);
-
-// admin reply to a question
-router.post("/reply/:id", authenticateUser, authorizePermissions("admin"), replyToQuestion);
-
-// admin delete question
-router.delete("/delete/:id", authenticateUser, authorizePermissions("admin"), adminDeleteQuestion);
-*/
-
+// get question by title
+router.get("/question/title1", (req, res) => getQuestionByTitle(req, res, "Working Issue"));
+router.get("/question/title2", (req, res) => getQuestionByTitle(req, res, "General Inquiry"));
+router.get("/question/title3", (req, res) => getQuestionByTitle(req, res, "Account Issue"));
+router.get("/question/title4", (req, res) => getQuestionByTitle(req, res, "Technical Support"));
+router.get("/question/Other", (req, res) => getQuestionByTitle(req, res, "Other"));
+router.post("/question/reply/:quesId", replyToQuestion);
 module.exports = router;

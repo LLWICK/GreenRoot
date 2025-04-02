@@ -11,7 +11,7 @@ function AdminDash() {
 
 
     return (
-        <div className="flex h-screen bg-gray-100">
+        <div className="flex bg-gray-100">
             {/* Sidebar */}
             <Sidebar />
 
@@ -37,6 +37,17 @@ function AdminDash() {
                             Manage Users
                         </Link>
                     </div>
+
+                    {/* Question management button */}
+                    <div className="mt-8 mb-10">
+                        <Link
+                            to={`/admin/ques`}
+                            className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-lg"
+                        >
+                            Manage Questions
+                        </Link>
+                    </div>
+
                 </div>
 
                 {/* To-Do List Section */}

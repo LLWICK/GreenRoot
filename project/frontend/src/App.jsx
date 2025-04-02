@@ -67,6 +67,12 @@ import {
   ServicesPage,
   BlogsPage,
   CreateQuestion,
+
+  QuestionManagement,
+  ViewQuestions,
+  QuestionDetails,
+  ReplyQuestion,
+
 } from "./admin/pages";
 
 /* retail seller page imports  */
@@ -84,6 +90,8 @@ import CheckoutPage from "./customer/pages/CheckoutPage";
 import OrderhistoryPage from "./customer/pages/OrderhistoryPage";
 import ChartPage from "./customer/pages/ChartPage";
 import ConfirmPage from "./customer/pages/ConfirmPage";
+import CategoryPage from "./customer/pages/CategoryPage";
+import ProductDetailsPage from "./customer/pages/ProductDetailsPage";
 
 import SellerNormalOrders from "./seller/pages/sellerNormalOrders";
 import FinalizeOrder from "./seller/pages/sellerfinalizeOrder";
@@ -171,7 +179,11 @@ function App() {
         path="/admin/user-management/researchers"
         element={<ResearchersManagement />}
       />
+      <Route path="/admin/ques" element={<QuestionManagement />} />
       <Route path="/admin/test/ques" element={<CreateQuestion />} />
+      <Route path="/admin/view-questions/:id" element={<ViewQuestions />} />
+      <Route path="/admin/question-details/:qid" element={<QuestionDetails />} />
+      <Route path="/admin/reply-question/:qid" element={<ReplyQuestion />} />
 
       {/* Home page components */}
       <Route path="/contact" element={<ContactUsPage />} />
@@ -224,7 +236,12 @@ function App() {
       <Route path="/Home/Checkout" element={<CheckoutPage />} />
       <Route path="/Customer/Orderhistory" element={<OrderhistoryPage />} />
       <Route path="/Customer/ChartPage" element={<ChartPage />} />
-      <Route path="/Customer/ConfirmPage" element={<ConfirmPage />} />
+
+      <Route path="/Customer/ConfirmPage" element={<ConfirmPage/>} />
+      <Route path='/Customer/products-Category/:categoryName' element={<CategoryPage />} />
+      <Route path='/Customer/ProductDetailsPage' element={<ProductDetailsPage />} />
+      
+
     </Routes>
   );
 }

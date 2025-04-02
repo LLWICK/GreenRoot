@@ -5,6 +5,10 @@ const qestionsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    customTitle: {
+        type: String,
+        default: null,
+    },
     message: {
         type: String,
         required: true
