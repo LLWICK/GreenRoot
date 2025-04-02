@@ -78,13 +78,10 @@ import {
   // new question routes
   QuestionDash,
   WorkingIssue,
-
   GeneralInquiry,
   AccountIssue,
   TechnicalSupport,
   OtherQuestion,
-
-
 } from "./admin/pages";
 
 /* retail seller page imports  */
@@ -144,7 +141,7 @@ function App() {
 
       {/* Common Pages */}
       <Route path="/otp/send" element={<OtpPage />} />
-      <Route path="/aboutUs" element={<AboutUsPage />} />
+      {/* <Route path="/aboutUs" element={<AboutUsPage />} /> */}
       <Route path="/payment/success/:id" element={<PaySuccess />} />
 
       {/* Auth Router */}
@@ -198,12 +195,26 @@ function App() {
       {/* Question routes new */}
       <Route path="/admin/question-dash" element={<QuestionDash />} />
 
-      <Route path="/admin/question-management/working-issue" element={<WorkingIssue />} />
-      <Route path="/admin/question-management/general-inquiry" element={<GeneralInquiry />} />
-      <Route path="/admin/question-management/account-issue" element={<AccountIssue />} />
-      <Route path="/admin/question-management/technical-support" element={<TechnicalSupport />} />
-      <Route path="/admin/question-management/other" element={<OtherQuestion />} />
-
+      <Route
+        path="/admin/question-management/working-issue"
+        element={<WorkingIssue />}
+      />
+      <Route
+        path="/admin/question-management/general-inquiry"
+        element={<GeneralInquiry />}
+      />
+      <Route
+        path="/admin/question-management/account-issue"
+        element={<AccountIssue />}
+      />
+      <Route
+        path="/admin/question-management/technical-support"
+        element={<TechnicalSupport />}
+      />
+      <Route
+        path="/admin/question-management/other"
+        element={<OtherQuestion />}
+      />
 
       <Route path="/admin/ques" element={<QuestionManagement />} />
       <Route path="/admin/test/ques" element={<CreateQuestion />} />
@@ -233,14 +244,16 @@ function App() {
       <Route path="/blog/growing-guide" element={<GrowingGuideBlog />} />
       <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide />} />
 
-      <Route path="/blog/crop" element={<BlogCrop/>}/>
-      <Route path="/blog/crop/:id" element={<BlogCropDetails/>}/>
-      <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate/>}/>
-      <Route path="/researcher/my-news/update" element={<NewsUpdate/>}/>
-      <Route path="/blog/qna" element={<QnABlog/>}/>
-      <Route path="/researcher/my-stats" element={<MyStats/>}/>
-      <Route path="/researcher/my-pnd" element={<MyPnd/>}/>
-
+      <Route path="/blog/crop" element={<BlogCrop />} />
+      <Route path="/blog/crop/:id" element={<BlogCropDetails />} />
+      <Route
+        path="/researcher/my-growing-guide/update"
+        element={<GrowingGuideUpdate />}
+      />
+      <Route path="/researcher/my-news/update" element={<NewsUpdate />} />
+      <Route path="/blog/qna" element={<QnABlog />} />
+      <Route path="/researcher/my-stats" element={<MyStats />} />
+      <Route path="/researcher/my-pnd" element={<MyPnd />} />
 
       <Route
         path="/researcher/my-growing-guide/update"
@@ -275,14 +288,21 @@ function App() {
       <Route path="/CusLanding" element={<Cus_LandingBanner />} />
       <Route path="/Customer/Dashboard/:cid" element={<DashboardPage />} />
       <Route path="/Home/Checkout/:cid" element={<CheckoutPage />} />
-      <Route path="/Customer/Orderhistory/:cid" element={<OrderhistoryPage />} />
+      <Route
+        path="/Customer/Orderhistory/:cid"
+        element={<OrderhistoryPage />}
+      />
       <Route path="/Customer/ChartPage/:cid" element={<ChartPage />} />
 
       <Route path="/Customer/ConfirmPage" element={<ConfirmPage />} />
-      <Route path='/Customer/products-Category/:categoryName/:cid' element={<CategoryPage />} />
-      <Route path='/Customer/ProductDetailsPage/:cid' element={<ProductDetailsPage />} />
-
-
+      <Route
+        path="/Customer/products-Category/:categoryName/:cid"
+        element={<CategoryPage />}
+      />
+      <Route
+        path="/Customer/ProductDetailsPage/:cid"
+        element={<ProductDetailsPage />}
+      />
     </Routes>
   );
 }
