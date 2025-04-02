@@ -19,6 +19,7 @@ const AskQuestion = () => {
                 const decodedToken = JSON.parse(atob(authToken.split(".")[1])); // Decode JWT
                 setUserId(decodedToken.userId);
                 fetchUserQuestions(decodedToken.userId);
+                console.log(decodedToken.userId);
             } catch (error) {
                 console.error("Error decoding token:", error);
             }

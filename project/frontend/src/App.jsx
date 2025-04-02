@@ -76,6 +76,13 @@ import {
   // new question routes
   QuestionDash,
   WorkingIssue,
+
+  GeneralInquiry,
+  AccountIssue,
+  TechnicalSupport,
+  OtherQuestion,
+
+
 } from "./admin/pages";
 
 /* retail seller page imports  */
@@ -188,10 +195,13 @@ function App() {
 
       {/* Question routes new */}
       <Route path="/admin/question-dash" element={<QuestionDash />} />
-      <Route
-        path="/admin/question-management/working-issue"
-        element={<WorkingIssue />}
-      />
+
+      <Route path="/admin/question-management/working-issue" element={<WorkingIssue />} />
+      <Route path="/admin/question-management/general-inquiry" element={<GeneralInquiry />} />
+      <Route path="/admin/question-management/account-issue" element={<AccountIssue />} />
+      <Route path="/admin/question-management/technical-support" element={<TechnicalSupport />} />
+      <Route path="/admin/question-management/other" element={<OtherQuestion />} />
+
 
       <Route path="/admin/ques" element={<QuestionManagement />} />
       <Route path="/admin/test/ques" element={<CreateQuestion />} />
@@ -252,7 +262,7 @@ function App() {
         <Route path='/Home/Checkout' element={<CheckoutPage />} />
         <Route path='/user/Dashboard' element={<DashboardPage />} /> */}
 
-      <Route path="/Customer" element={<Home />} />
+      <Route path="/Customer/:cid" element={<Home />} />
       <Route path="/CusLanding" element={<Cus_LandingBanner />} />
       <Route path="/Customer/Dashboard" element={<DashboardPage />} />
       <Route path="/Home/Checkout" element={<CheckoutPage />} />

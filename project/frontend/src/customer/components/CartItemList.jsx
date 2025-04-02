@@ -103,6 +103,40 @@ import { Button } from '@/components/ui/button';
 };
 
 
+
+    // Handle quantity change
+    const handleQuantityChange = async (itemId, newQuantity, originalPrice) => {
+        try {
+            const response = await fetch(`http://localhost:3000/api/customer/addtocart/${itemId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ quantity: newQuantity }),
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to update quantity');
+            }
+    
+            const updatedItem = await response.json(); // Get updated item from the backend
+    
+            // Update cart items state
+            setCartItems((prevItems) =>
+                prevItems.map((item) =>
+                    item._id === itemId ? updatedItem : item
+                )
+            );
+    
+        } catch (error) {
+            console.error('Error updating quantity:', error);
+        }
+    };
+
+
+
+
+
      if (loading) {
          return <div>Loading...</div>;
      }
@@ -135,7 +169,11 @@ import { Button } from '@/components/ui/button';
                             </div>
                             <div>
                             <h2 className='font-bold'>{item.name}</h2>
-                            <h2>Quantity {item.quantity}</h2>
+                            <div className='p-2 border flex gap-10 items-center px-5'>
+                                    <button disabled={item.quantity === 1} onClick={() => handleQuantityChange(item._id, item.quantity - 1, item.price)}>-</button>
+                                    <h2>{item.quantity}</h2>
+                                    <button onClick={() => handleQuantityChange(item._id, item.quantity + 1, item.price)}>+</button>
+                                </div>
                             <h2 className='text-lg font-bold'>$ {item.totalPrice}</h2>
                             </div>
                            

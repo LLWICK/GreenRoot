@@ -76,7 +76,7 @@ router.delete('/:id', async (req, res) => {
   });
 
 
-//update cart quantity
+//update cart quantity and total
 router.patch('/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -86,20 +86,28 @@ router.patch('/:id', async (req, res) => {
       return res.status(404).json({ error: 'No such product' });
     }
 
-    const singleUpdateCart = await AddtoCart.findOneAndUpdate(
+    // Fetch the existing cart item
+    const cartItem = await AddtoCart.findById(id);
+    if (!cartItem) {
+      return res.status(404).json({ error: 'No such AddtoCart' });
+    }
+
+    // Calculate new total price
+    const newTotalPrice = quantity * cartItem.price;
+
+    // Update the item in the database
+    const updatedCart = await AddtoCart.findOneAndUpdate(
       { _id: id },
-      { quantity: quantity }, // Update the quantity field
+      { quantity: quantity, totalPrice: newTotalPrice }, // Update quantity and totalPrice
       { new: true } // Return the updated document
     );
 
-    if (!singleUpdateCart) {
-      return res.status(404).json({ error: 'No such AddtoCart' });
-    }
-    res.status(200).json(singleUpdateCart);
+    res.status(200).json(updatedCart);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
+
 
 
 

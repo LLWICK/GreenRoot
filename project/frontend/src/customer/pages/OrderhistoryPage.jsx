@@ -77,8 +77,7 @@ const OrderhistoryPage = () => {
                 </div>
               ))}
             <div className="mt-4 pt-4 border-t border-green-200">
-              <p className="text-gray-700">Delivery: ${order.delivery}</p>
-              <p className="text-gray-700">Tax: ${order.tax}</p>
+              
               <p className="text-lg font-semibold text-green-800 mt-2">Final Total: ${order.finalTotal}</p>
             </div>
           </div>

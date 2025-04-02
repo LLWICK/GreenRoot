@@ -56,6 +56,7 @@ const otpManage = require("./common/routes/otpRoute.js");
 const orderManage = require("./customer/routes/orderRoute.js");
 const addtocartManage = require("./customer/routes/AddtoCartRoute.js");
 const PaymentManage = require("./customer/routes/PaymentRoute.js");//change
+const ProductManage = require("./customer/routes/GetProducts.js")
 
 
 
@@ -111,6 +112,7 @@ app.use("/api/v1/otp", otpManage);
 app.use("/api/customer/orders", orderManage);
 app.use("/api/customer/addtocart", addtocartManage);
 app.use('/api/customer/payment',PaymentManage)//change
+app.use('/api/customer/products',ProductManage)
 
 
 //Researcher Routes

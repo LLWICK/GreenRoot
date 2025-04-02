@@ -6,38 +6,23 @@ const ProductList = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:3000/api/RetailSeller/products/products"
-        ); //change
-        // const json = await response.json()
+        try {
+            const response = await fetch("http://localhost:3000/api/customer/products");
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const json = await response.json();
+            setProducts(json.products);
+            console.log(json.products);
+        } catch (error) {
+            console.error("Error fetching products:", error);
         }
-        const json = await response.json();
-        setProducts(json.products);
-        console.log(json.products);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-
-
-      //
-      try {
-        const products = await productModel.find().populate('sellerId');
-        res.json({ products });
-    } catch (error) {
-        console.error("Error fetching products:", error);
-        res.status(500).json({ error: "Internal server error" });
-    }
-
-
-
     };
 
     fetchProducts();
-  }, []);
+}, []);
 
   return (
     <div className="mt-10">
