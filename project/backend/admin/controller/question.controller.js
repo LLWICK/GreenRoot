@@ -67,7 +67,9 @@ const updateQuestion = async (req, res) => {
 // get questions by title
 const getQuestionByTitle = async (req, res, title) => {
     try {
+        // const { title } = req.params;
         const question = await Question.find({ title });
+        // res.status(200).json({ data: question.replies });
         res.status(200).json({ data: question });
 
     } catch (error) {
@@ -82,20 +84,22 @@ const replyToQuestion = async (req, res) => {
         const { questionId } = req.params;
 
         // find the question
-        const question = Question.findById(questionId);
+        const question = await Question.findById(questionId);
         if (!question) {
             return res.status(404).json({ error: `Question not found...` });
         }
 
-        question.replies.push({ adminId, message, createdAt: new Date() });
+        // Add reply
+        question.replies.push({ adminId, message, createdAt: Date.now() });
         await question.save();
 
         res.status(200).json({ msg: `Reply added successfully...` });
 
     } catch (error) {
+        console.error("Error replying to question:", error);
         res.status(500).json({ msg: error.message });
     }
-}
+};
 
 /*
 // get all questions
