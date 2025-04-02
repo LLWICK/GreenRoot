@@ -21,6 +21,19 @@ const ProductList = () => {
       } catch (error) {
         console.error("Error fetching products:", error);
       }
+
+
+      //
+      try {
+        const products = await productModel.find().populate('sellerId');
+        res.json({ products });
+    } catch (error) {
+        console.error("Error fetching products:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+
+
+
     };
 
     fetchProducts();
