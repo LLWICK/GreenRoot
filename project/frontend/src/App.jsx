@@ -6,6 +6,7 @@ import Sidebar from "./Common/Sidebar";
   /* Farmer Pages imports */
 }
 import OtpPage from "./Common/pages/otpPage";
+import PaySuccess from "./farmer/utills/PaySuccess";
 import {
   FarmerHome,
   CropsHome,
@@ -40,7 +41,7 @@ import MyGrowingGuide from "./researcher/pages/MyGrowingGuide";
 import GrowingGuideBlog from "./researcher/pages/GrowingGuideBlog";
 import SingleGrowingGuide from "./researcher/pages/SingleGrowingGuide";
 import BlogCrop from "./researcher/pages/BlogCrop";
-import BlogCropDetails from "./researcher/pages/BlogCropDetails"
+import BlogCropDetails from "./researcher/pages/BlogCropDetails";
 import GrowingGuideUpdate from "./researcher/pages/GrowingGuideUpdate";
 import NewsUpdate from "./researcher/pages/NewsUpdate";
 import QnABlog from "./researcher/pages/QnABlog";
@@ -66,13 +67,16 @@ import {
   ServicesPage,
   BlogsPage,
   CreateQuestion,
+
   QuestionManagement,
   ViewQuestions,
   QuestionDetails,
   ReplyQuestion,
+
   // new question routes
   QuestionDash,
   WorkingIssue,
+
 
 
 } from "./admin/pages";
@@ -100,6 +104,8 @@ import FinalizeOrder from "./seller/pages/sellerfinalizeOrder";
 import SellerStat from "./seller/pages/sellerStat";
 import BulkOrderSummary from "./seller/pages/sellerBulkOrderSummary";
 import FarmerList from "./seller/pages/farmers";
+import DiliveryDash from "./seller/pages/diliveryGuy/diliveryGuyDash";
+import AboutUsPage from "./Common/pages/AboutUsPage";
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -130,6 +136,8 @@ function App() {
 
       {/* Common Pages */}
       <Route path="/otp/send" element={<OtpPage />} />
+      <Route path="/aboutUs" element={<AboutUsPage />} />
+      <Route path="/payment/success/:id" element={<PaySuccess />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
@@ -211,22 +219,25 @@ function App() {
       <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide />} />
       <Route path="/blog/crop" element={<BlogCrop />} />
       <Route path="/blog/crop/:id" element={<BlogCropDetails />} />
+
       <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate />} />
       <Route path="/researcher/my-news/update" element={<NewsUpdate />} />
       <Route path="/blog/qna" element={<QnABlog />} />
 
 
+
       {/* Retail seller Router */}
 
-      <Route path="/seller/home" element={<SellerHome />} />
-      <Route path="/seller/Inventroy" element={<SellerInventroy />} />
-      <Route path="/seller/bulkOrders" element={<SellerBulkOrders />} />
-      <Route path="/seller/normalOrders" element={<SellerNormalOrders />} />
-      <Route path="/seller/placeOrder" element={<FinalizeOrder />} />
-      <Route path="/seller/stat" element={<SellerStat />} />
-      <Route path="/seller/stat" element={<SellerStat />} />
-      <Route path="/seller/BulkOrder/:orderId" element={<BulkOrderSummary />} />
-      <Route path="/seller/farmers" element={<FarmerList />} />
+      <Route path="/seller/:sid/home" element={<SellerHome />} />
+      <Route path="/seller/:sid/Inventroy" element={<SellerInventroy />} />
+      <Route path="/seller/:sid/bulkOrders" element={<SellerBulkOrders />} />
+      <Route path="/seller/:sid/normalOrders" element={<SellerNormalOrders />} />
+      <Route path="/seller/:sid/placeOrder" element={<FinalizeOrder />} />
+      <Route path="/seller/:sid/stat" element={<SellerStat />} />
+      <Route path="/seller/stat" element={<SellerStat/>} />
+      <Route path="/seller/BulkOrder/:orderId" element={<BulkOrderSummary/>} />
+      <Route path="/seller/:sid/farmers" element={<FarmerList/>} />
+      <Route path="/diliveryGuy/dash" element={<DiliveryDash/>} />
 
       {/* Customer Routes */}
 
@@ -243,6 +254,7 @@ function App() {
       <Route path="/Customer/ConfirmPage" element={<ConfirmPage />} />
       <Route path='/Customer/products-Category/:categoryName' element={<CategoryPage />} />
       <Route path='/Customer/ProductDetailsPage' element={<ProductDetailsPage />} />
+
 
     </Routes>
   );

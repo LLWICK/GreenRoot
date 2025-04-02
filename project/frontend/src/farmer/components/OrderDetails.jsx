@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 
 function OrderDetails() {
   const [order, setOrder] = useState({});
   const [Items, setItems] = useState([]);
+  const [reciver, setReciver] = useState(false);
+  const [sellerEmail, setEmail] = useState(null);
   const [orderStatus, setStatus] = useState("");
   const { oid, uid } = useParams();
   const navigate = useNavigate();
@@ -19,6 +22,7 @@ function OrderDetails() {
             setOrder(res.data.data);
             setItems(res.data.data.items);
             setStatus(res.data.data.status);
+            setReciver(true);
           });
       } catch (error) {
         console.error("Error fetching CaOrder Details:", error);
@@ -28,19 +32,49 @@ function OrderDetails() {
     fetchOrderDetails();
   }, []);
 
+  useEffect(() => {
+    // Simulate fetching Seller data from an API
+    const fetchSellerDetails = async () => {
+      try {
+        axios
+          .get(`http://localhost:3000/api/user/${order.sellerId}`)
+          .then((res) => {
+            console.log(res.data.data.email);
+            setEmail(res.data.data.email);
+          });
+      } catch (error) {
+        console.error("Error fetching Seller Details:", error);
+      }
+    };
+
+    if (Object.entries(order).length != 0) {
+      fetchSellerDetails();
+    }
+  }, [reciver]);
+
   const handleSubmit = async () => {
     await axios
       .patch(`http://localhost:3000/api/v1/farmer/order/${oid}`, {
         status: orderStatus,
       })
       .then((res) => {
-        alert("Order Updated!");
+        toast.success(`Order ${orderStatus}`, {
+          position: "top-center",
+          autoClose: 2000, // Show toast for 2 seconds
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+        });
       });
 
     await axios
       .post("http://localhost:3000/api/v1/farmer/order/email", {
         id: order._id,
         status: orderStatus,
+        email: sellerEmail,
       })
       .then((res) => {
         navigate(`/farmer/${uid}/orders`);
@@ -52,6 +86,19 @@ function OrderDetails() {
 
   return (
     <div style={{ float: "left" }}>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
       <section class="py-24 relative">
         <div class="w-fi max-w-7xl px-4 md:px-5 lg-6 mx-auto">
           <div class="flex items-start flex-col gap-6 xl:flex-row ">

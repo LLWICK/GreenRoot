@@ -5,18 +5,20 @@ import SideBar from "../components/sideBar(seller)";
 import SalesBarChart from "../components/salesChart";
 import PieChartComponent from "../components/productsChart";
 import NavBar2 from "@/Common/NavBar2";
+import { useParams } from "react-router-dom";
 
 const SellerStat = () => {
+    const { sid } = useParams();
     const [counts, setCounts] = useState({ bulkOrders: 0, normalOrders: 0, totalProducts: 0 });
-    const sellerId = "67d8e72067646fe0d3f87794"; // Replace with dynamic seller ID if needed
+    //const sellerId = "67d8e72067646fe0d3f87794"; // Replace with dynamic seller ID if needed
 
     useEffect(() => {
         const fetchCounts = async () => {
             try {
                 const [bulkRes, normalRes, productRes] = await Promise.all([
-                    axios.get(`http://localhost:3000/api/RetailSeller/stats/bulk-order-count/${sellerId}`),
-                    axios.get(`http://localhost:3000/api/RetailSeller/stats/normal-order-count/${sellerId}`),
-                    axios.get(`http://localhost:3000/api/RetailSeller/stats/product-count/${sellerId}`)
+                    axios.get(`http://localhost:3000/api/RetailSeller/stats/bulk-order-count/${sid}`),
+                    axios.get(`http://localhost:3000/api/RetailSeller/stats/normal-order-count/${sid}`),
+                    axios.get(`http://localhost:3000/api/RetailSeller/stats/product-count/${sid}`)
                 ]);
                 
                 setCounts({
@@ -30,7 +32,7 @@ const SellerStat = () => {
         };
         
         fetchCounts();
-    }, [sellerId]);
+    }, [sid]);
 
     return (
         <div className="min-h-screen grid grid-cols-12">
@@ -40,7 +42,7 @@ const SellerStat = () => {
             </nav>
             
             {/* Sidebar */}
-            <SideBar />
+            <SideBar sellerid={sid} />
             
             {/* Main Content */}
             <main className="col-span-10 p-6">

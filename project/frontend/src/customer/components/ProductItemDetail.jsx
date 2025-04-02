@@ -33,6 +33,7 @@ const ProductItemDetail = ({ product }) => {
                     image: product.image,
                     quantity: quantity,
                     totalPrice: totalPrice,
+                    sellerId: product.sellerId._id,
                 }),
             });
 
@@ -67,7 +68,9 @@ const ProductItemDetail = ({ product }) => {
           className="bg-slate-200 p-5 h-[320px] w-[300px] object-contain rounded-lg" />
             <div className='flex flex-col gap-3'>
                 <h2 className="text-2xl font-bold">{product.name}</h2>
-                <h2 className="text-sm  text-gray-500">${product.supplier}</h2>{/*supplier*/}
+                <h2 className="text-sm  text-gray-500">{product.supplier}</h2>{/*supplier*/}
+                <h2>Seller ID: {product.sellerId ? product.sellerId._id : 'N/A'}</h2>
+                
                 <h2 className="font-bold text-3xl">${product.price}</h2>
                 <h2 className="font-medium text-lg">Quantity({product.quantity})</h2>
                 <div className='flex flex-col items-baseline gap-3'>

@@ -40,7 +40,7 @@ const bulkOrderSchema = new mongoose.Schema({
   },
   status: {  
     type: String,  
-    enum: ['Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled'],  
+    enum: ['accepted','Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled'],  
     default: 'Pending',  
   },
   createdAt: {  

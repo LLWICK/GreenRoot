@@ -5,8 +5,11 @@ import Crop from "../components/cropCard";
 import SideBar from "../components/sideBar(seller)";
 import NavBar from '@/admin/pages/home/home_components/NavBar';
 import NavBar2 from "@/Common/NavBar2";
+import { useParams } from "react-router-dom";
 
 const SellerHome = () => {
+    const { sid } = useParams();
+    console.log(sid)
     const [cartOpen, setCartOpen] = useState(false);
 
     // Crop fetching state
@@ -37,7 +40,7 @@ const SellerHome = () => {
     const fetchCart = async () => {
         setIsCartPending(true);
         try {
-            const res = await axios.get("http://localhost:3000/api/RetailSeller/cart/get/67d8e72067646fe0d3f87794"); 
+            const res = await axios.get(`http://localhost:3000/api/RetailSeller/cart/get/${sid}`); 
             setCart(res.data);
         } catch (err) {
             console.error("Error fetching cart:", err);
@@ -53,7 +56,7 @@ const SellerHome = () => {
     // Add to Cart Function
     const handleAddToCart = async (cropId) => {
         try {
-            const sellerId = "67d8e72067646fe0d3f87794"; // Replace with dynamic sellerId if needed
+            const sellerId = sid; // Replace with dynamic sellerId if needed
             
             const response = await axios.post("http://localhost:3000/api/RetailSeller/cart/add", {
                 cropId,
@@ -75,7 +78,7 @@ const SellerHome = () => {
     const handleRemoveFromCart = async (itemId) => {
         try {
             //'/remove/:cropId/:sellerId'
-            const response = await axios.delete(`http://localhost:3000/api/RetailSeller/cart/remove/${itemId}/67d8e72067646fe0d3f87794`);
+            const response = await axios.delete(`http://localhost:3000/api/RetailSeller/cart/remove/${itemId}/${sid}`);
             console.log("Item removed from cart:", response.data);
             fetchCart();
         } catch (error) {
@@ -95,7 +98,7 @@ const SellerHome = () => {
 
             <div className="grid grid-cols-12 min-h-screen">
                 {/* Sidebar */}
-                <SideBar />
+                <SideBar sellerid={sid} />
 
                 {/* Main Content */}
                 <div className="col-span-10 flex flex-col p-6">
@@ -104,17 +107,15 @@ const SellerHome = () => {
                     {/* Categories & Cart Icon */}
                                     <div className="flex justify-end items-center gap-6 mb-10 mr-10">
                             <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
-                                cat 1
+                                Fruits
                             </a>
                             <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
-                                cat 2
+                                Vegetables
                             </a>
                             <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
-                                cat 3
+                               Grains
                             </a>
-                            <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
-                                cat 4
-                            </a>
+                           
                             
                         {/* Cart Icon */}
                         <button className="text-gray-700 hover:text-green-600 relative" onClick={() => setCartOpen(true)}>
