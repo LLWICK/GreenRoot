@@ -10,14 +10,18 @@ import Footer from '@/admin/pages/home/home_components/Footer'
 
 const Home = () => {
   return (
-    <div>
+    <div >
       <NavBar/>
       <Header />
+    <div className='p-5 md:p-10 px-16'>
+      
        <Slider/>
        <CategoryList/>
        <ProductList/>
        <Banner/>
-       <Footer/>
+       
+    </div>
+    <Footer/>
     </div>
   )
 }

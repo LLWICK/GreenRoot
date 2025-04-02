@@ -71,7 +71,7 @@ const CheckoutPage = () => {
         })),
         delivery,
         tax,
-        finalTotal: total,
+        finalTotal: Subtotal,
       };
 
       const response = await fetch('http://localhost:3000/api/customer/orders', {

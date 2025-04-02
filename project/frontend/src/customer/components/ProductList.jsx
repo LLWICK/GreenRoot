@@ -25,7 +25,7 @@ const ProductList = () => {
 }, []);
 
   return (
-    <div className="mt-10">
+    <div className="mt-10 ">
       <h2 className="text-green-600 font-bold text-2xl">
         Our Popular products
       </h2>
