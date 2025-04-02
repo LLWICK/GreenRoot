@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SidebarResearcher from '../components/SidebarResearcher';
+import { getResearcherId } from '../utils/auth';
 
 
 export default function NewsUpdate() {
@@ -8,6 +9,7 @@ export default function NewsUpdate() {
     const location = useLocation();
     const navigate = useNavigate();
     const { news } = location.state || {};
+    const [userID, setUserID] = useState(null);
 
     const [title, setTitle] = useState(news?.title || '');
     const [content, setContent] = useState(news?.content || '');
@@ -15,6 +17,15 @@ export default function NewsUpdate() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState(null);
     const [successMsg, setSuccessMsg] = useState('');
+
+    useEffect(() => {
+      const userId = getResearcherId();
+        
+      if (userId) {
+        setUserID(userId);
+      } else {
+        navigate(`/auth/login`);
+      }})
 
     const handleSubmit = async (e) =>  {
    

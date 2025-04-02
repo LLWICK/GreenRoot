@@ -46,7 +46,7 @@ export default function HomeResearcher() {
             <p className="text-gray-500 mb-4">Publish updates on agriculture news and innovations</p>
             <button 
               className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-150 ease-in-out"
-              onClick={() => navigate(`/researcher/${userID}/create-news`)}
+              onClick={() => navigate(`/researcher/my-news`)}
             >
               Create News
             </button>
@@ -59,7 +59,7 @@ export default function HomeResearcher() {
             <p className="text-gray-500 mb-4">Share step-by-step guides on growing different crops</p>
             <button 
               className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-150 ease-in-out"
-              onClick={() => navigate(`/researcher/${userID}/create-guide`)}
+              onClick={() => navigate(`/researcher/my-growing-guide`)}
             >
               Create Post
             </button>
@@ -72,7 +72,7 @@ export default function HomeResearcher() {
             <p className="text-gray-500 mb-4">Preventing and treating plant pests and diseases</p>
             <button 
               className="bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-orange-600 transition duration-150 ease-in-out"
-              onClick={() => navigate(`/researcher/${userID}/create-pest-control`)}
+              onClick={() => navigate(`/researcher/my-pnd`)}
             >
               Create Post
             </button>
@@ -93,7 +93,7 @@ export default function HomeResearcher() {
           </div>
           <button 
             className="bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-orange-600 transition duration-150 ease-in-out"
-            onClick={() => navigate(`/researcher/${userID}/questions`)}
+            onClick={() => navigate(`/researcher/my-qna`)}
           >
             View
           </button>
