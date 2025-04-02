@@ -53,7 +53,7 @@ const Cart = ({ cart, onClose, onRemoveItem }) => {
         <div className="p-6 flex justify-between items-center">
           <h2 className="text-lg font-semibold">Shopping Cart</h2>
           <button onClick={onClose} className="text-teal-700 hover:text-gray-500">
-            <span className="sr-only">Close panel</span> ✖
+            <span className="sr-only">Close panel</span> <span className="text-xl">𐤕</span>
           </button>
         </div>
 

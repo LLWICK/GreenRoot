@@ -1,10 +1,11 @@
 const express = require('express');
-const { fetchOrders } = require('../controller/normalOrderCotroller');
+const { fetchOrders,updateOrderStatus } = require('../controller/normalOrderCotroller');
 
 const router = express.Router();
 
 // Route to fetch all orders (with optional filtering)
-router.get('/', fetchOrders);
+router.get('/:sid', fetchOrders);
+router.put("/updatestatus", updateOrderStatus);
 
 
 

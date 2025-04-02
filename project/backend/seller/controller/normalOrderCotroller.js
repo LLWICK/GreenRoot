@@ -6,6 +6,7 @@ const sendOrderUpdateEmail = require("./emailSender");
 
 // Function to fetch orders (with optional status filter)
 const fetchOrders = async (req, res) => {
+    const {sid} = req.params;
     try {
         const { status } = req.query; // Get status filter from request query
 
@@ -26,10 +27,11 @@ const fetchOrders = async (req, res) => {
 const updateOrderStatus = async (req, res) => {
     try {
         const { orderID, status } = req.body;
+        console.log('update is called')
 
         // Find the order and update status
         const order = await Order.findOneAndUpdate(
-            { orderID: orderID },
+            { _id: orderID },
             { status: status },
             { new: true }
         );
@@ -50,8 +52,9 @@ const updateOrderStatus = async (req, res) => {
         res.status(200).json({ message: "Order status updated and email sent successfully" });
 
     } catch (error) {
+        console.log(error)
         res.status(500).json({ message: "Server Error", error: error.message });
     }
 };
 
-module.exports = { fetchOrders};
+module.exports = { fetchOrders,updateOrderStatus};
