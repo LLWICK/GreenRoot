@@ -8,11 +8,12 @@ export default function BlogHeader() {
       <div className="container mx-auto flex items-center justify-between p-4">
         {/* Logo (aligned to the left) */}
         <div className="flex items-center">
+        <Link to="/">
           <img
             src={Logo}
             alt="Green Roots Logo"
             className="ml-44 h-34 w-34" 
-          />
+          /> </Link>
         </div>
 
         {/* Navigation Links */}
