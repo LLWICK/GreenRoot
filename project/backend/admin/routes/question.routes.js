@@ -5,7 +5,8 @@ const {
     getUserQuestions,
     updateQuestion,
     getQuestionByTitle,
-    replyToQuestion
+    replyToQuestion,
+    deleteQuestion
 } = require('../controller/question.controller');
 const router = express.Router();
 
@@ -21,6 +22,7 @@ router.put("/update/:questionId", updateQuestion);
 
 // get question by title
 router.post("/question/reply/:questionId", replyToQuestion);
+router.delete("/question/delete/:id", deleteQuestion);
 router.get("/question/title1", (req, res) => getQuestionByTitle(req, res, "Working Issue"));
 router.get("/question/title2", (req, res) => getQuestionByTitle(req, res, "General Inquiry"));
 router.get("/question/title3", (req, res) => getQuestionByTitle(req, res, "Account Issue"));
