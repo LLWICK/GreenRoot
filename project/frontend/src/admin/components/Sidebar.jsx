@@ -8,7 +8,7 @@ const Sidebar = () => {
   const menuItems = [
     { name: "Dashboard", icon: <Home className="w-6 h-6" />, link: "/admin/:id/dashboard" },
     { name: "Users", icon: <Users className="w-6 h-6" />, link: "/admin/user-management" },
-    { name: "Files", icon: <Folder className="w-6 h-6" />, link: "/admin/files" },
+    { name: "Questions", icon: <Folder className="w-6 h-6" />, link: "/admin/question-dash" },
     { name: "Calendar", icon: <Calendar className="w-6 h-6" />, link: "/admin/calendar" },
     { name: "Reports", icon: <BarChart className="w-6 h-6" />, link: "/admin/reports" },
     { name: "Settings", icon: <Settings className="w-6 h-6" />, link: "/admin/settings" },
