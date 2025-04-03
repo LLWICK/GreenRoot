@@ -7,7 +7,7 @@ function OrderDetails() {
   const [order, setOrder] = useState({});
   const [Items, setItems] = useState([]);
   const [reciver, setReciver] = useState(false);
-  const [sellerEmail, setEmail] = useState(null);
+  const [sellerEmail, setEmail] = useState("Not valid");
   const [orderStatus, setStatus] = useState("");
   const { oid, uid } = useParams();
   const navigate = useNavigate();
@@ -126,10 +126,10 @@ function OrderDetails() {
                   </div>
                   <div class="flex items-center justify-between gap-4 ">
                     <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700 ">
-                      Coupon Code
+                      Seller Email
                     </p>
                     <p class="font-medium text-lg leading-8 text-emerald-500">
-                      #APPLIED
+                      {sellerEmail}
                     </p>
                   </div>
                 </div>
