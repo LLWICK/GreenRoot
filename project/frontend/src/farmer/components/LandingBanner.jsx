@@ -3,6 +3,7 @@ import "../extras/landing.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 function LandingBanner() {
   const navigate = useNavigate();
@@ -33,11 +34,24 @@ function LandingBanner() {
         }
       })
       .catch((e) => {
-        alert("Incorrect username or password!");
+        toast.error("Incorrect username or password");
       });
   };
   return (
     <div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        //transition={Bounce}
+      />
       <div class="grid grid-cols-12">
         <div class="col-span-4 text-white font-sans font-bold bg-black min-h-screen pl-7">
           <div class="grid grid-rows-6 grid-flow-col min-h-screen items-center justify-items-start">

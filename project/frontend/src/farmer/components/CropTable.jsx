@@ -1,7 +1,51 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-function CropTable() {
+function CropTable(prop) {
+  const [crops, setCrop] = useState([]);
+  const [status, setStatus] = useState("on-field");
+
+  useEffect(() => {
+    const fetchCropData = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/api/v1/crops/parameters",
+          {
+            farmerID: String(prop.fid),
+            status: status,
+          }
+        );
+
+        setCrop(response.data.data);
+        console.log(response.data.data);
+      } catch (error) {
+        console.error("Error fetching crops:", error);
+      }
+    };
+
+    if (prop.fid) {
+      fetchCropData();
+    }
+  }, [prop.fid]);
+
+  const handleChange = async (e) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/v1/crops/parameters",
+        {
+          farmerID: String(prop.fid),
+          status: e,
+        }
+      );
+
+      setCrop(response.data.data);
+      console.log(response.data.data);
+    } catch (error) {
+      console.error("Error fetching crops:", error);
+    }
+  };
+
   return (
     <div>
       <div class=" mx-auto">
@@ -23,6 +67,16 @@ function CropTable() {
                 <p class="text-slate-500">Review each crop before edit</p>
               </div>
               <div class="flex flex-col gap-2 shrink-0 sm:flex-row">
+                <select
+                  class="rounded border border-slate-300 py-2.5 px-3 text-center text-xs font-semibold text-slate-600 transition-all hover:opacity-75 focus:ring focus:ring-slate-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                  onChange={(e) => {
+                    handleChange(e.target.value);
+                  }}
+                >
+                  <option value="on-field">on-field</option>
+                  <option value="off-field">off-field</option>
+                  View All
+                </select>
                 <button
                   class="rounded border border-slate-300 py-2.5 px-3 text-center text-xs font-semibold text-slate-600 transition-all hover:opacity-75 focus:ring focus:ring-slate-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                   type="button"
@@ -143,238 +197,80 @@ function CropTable() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="p-4 border-b border-slate-200">
-                    <div class="flex items-center gap-3">
-                      <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9pMKA8_lDGcERGR4DzJxwF3Mg65OW0giKvg&s"
-                        alt="John Michael"
-                        class="relative inline-block h-9 w-9 !rounded-full object-cover object-center"
-                      />
-                      <div class="flex flex-col">
-                        <p class="text-sm font-semibold text-slate-700">
-                          John Michael
-                        </p>
+                {crops.map((element) => {
+                  return (
+                    <tr>
+                      <td class="p-4 border-b border-slate-200">
+                        <div class="flex items-center gap-3">
+                          <img
+                            src={element.image}
+                            alt="John Michael"
+                            class="relative inline-block h-9 w-9 !rounded-full object-cover object-center"
+                          />
+                          <div class="flex flex-col">
+                            <p class="text-sm font-semibold text-slate-700">
+                              {element.name}
+                            </p>
+                            <p class="text-sm text-slate-500">
+                              john@creative-tim.com
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="p-4 border-b border-slate-200">
+                        <div class="flex flex-col">
+                          <p class="text-sm font-semibold text-slate-700">
+                            {element.price}
+                          </p>
+                          <p class="text-sm text-slate-500">Organization</p>
+                        </div>
+                      </td>
+                      <td class="p-4 border-b border-slate-200">
+                        <div class="w-max">
+                          <div class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
+                            <span class="">{element.status}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="p-4 border-b border-slate-200">
                         <p class="text-sm text-slate-500">
-                          john@creative-tim.com
+                          {element.createdAt.split("T")[0]}
+                          <br />
+                          {element.createdAt.split("T")[1].split(".")[0]}
                         </p>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="p-4 border-b border-slate-200">
-                    <div class="flex flex-col">
-                      <p class="text-sm font-semibold text-slate-700">
-                        Manager
-                      </p>
-                      <p class="text-sm text-slate-500">Organization</p>
-                    </div>
-                  </td>
-                  <td class="p-4 border-b border-slate-200">
-                    <div class="w-max">
-                      <div class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
-                        <span class="">online</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="p-4 border-b border-slate-200">
-                    <p class="text-sm text-slate-500">23/04/18</p>
-                  </td>
-                  <td class="p-4 border-b border-slate-200">
-                    <button
-                      class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-slate-900 transition-all hover:bg-slate-900/10 active:bg-slate-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                      type="button"
-                    >
-                      <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          aria-hidden="true"
-                          class="w-4 h-4"
+                      </td>
+                      <td class="p-4 border-b border-slate-200">
+                        <button
+                          class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-slate-900 transition-all hover:bg-slate-900/10 active:bg-slate-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                          type="button"
                         >
-                          <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z"></path>
-                        </svg>
-                      </span>
-                    </button>
-                  </td>
+                          <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              aria-hidden="true"
+                              class="w-4 h-4"
+                            >
+                              <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z"></path>
+                            </svg>
+                          </span>
+                        </button>
+                      </td>
 
-                  <td class="p-4 border-b border-slate-200">
-                    <div class="w-max">
-                      <Link
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                        to={"/farmer/viewCrop"}
-                      >
-                        View
-                      </Link>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="p-4 border-b border-slate-200">
-                    <div class="flex items-center gap-3">
-                      <img
-                        src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg"
-                        alt="Alexa Liras"
-                        class="relative inline-block h-9 w-9 !rounded-full object-cover object-center"
-                      />
-                      <div class="flex flex-col">
-                        <p class="text-sm font-semibold text-slate-700">
-                          Alexa Liras
-                        </p>
-                        <p class="text-sm text-slate-500">
-                          alexa@creative-tim.com
-                        </p>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="p-4 border-b border-slate-200">
-                    <div class="flex flex-col">
-                      <p class="text-sm font-semibold text-slate-700">
-                        Designer
-                      </p>
-                      <p class="text-sm text-slate-500">Marketing</p>
-                    </div>
-                  </td>
-                  <td class="p-4 border-b border-slate-200">
-                    <div class="w-max">
-                      <div class="relative grid items-center px-2 py-1 font-sans text-xs font-bold uppercase rounded-md select-none whitespace-nowrap bg-slate-100 text-slate-500">
-                        <span class="">offline</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="p-4 border-b border-slate-200">
-                    <p class="text-sm text-slate-500">23/04/18</p>
-                  </td>
-                  <td class="p-4 border-b border-slate-200">
-                    <button
-                      class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-slate-900 transition-all hover:bg-slate-900/10 active:bg-slate-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                      type="button"
-                    >
-                      <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          aria-hidden="true"
-                          class="w-4 h-4"
-                        >
-                          <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z"></path>
-                        </svg>
-                      </span>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="p-4 border-b border-slate-200">
-                    <div class="flex items-center gap-3">
-                      <img
-                        src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg"
-                        alt="Laurent Perrier"
-                        class="relative inline-block h-9 w-9 !rounded-full object-cover object-center"
-                      />
-                      <div class="flex flex-col">
-                        <p class="text-sm font-semibold text-slate-700">
-                          Laurent Perrier
-                        </p>
-                        <p class="text-sm text-slate-500">
-                          laurent@creative-tim.com
-                        </p>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="p-4 border-b border-slate-200">
-                    <div class="flex flex-col">
-                      <p class="text-sm font-semibold text-slate-700">
-                        Executive
-                      </p>
-                      <p class="text-sm text-slate-500">Projects</p>
-                    </div>
-                  </td>
-                  <td class="p-4 border-b border-slate-200">
-                    <div class="w-max">
-                      <div class="relative grid items-center px-2 py-1 font-sans text-xs font-bold uppercase rounded-md select-none whitespace-nowrap bg-slate-100 text-slate-500">
-                        <span class="">offline</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="p-4 border-b border-slate-200">
-                    <p class="text-sm text-slate-500">19/09/17</p>
-                  </td>
-                  <td class="p-4 border-b border-slate-200">
-                    <button
-                      class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-slate-900 transition-all hover:bg-slate-900/10 active:bg-slate-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                      type="button"
-                    >
-                      <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          aria-hidden="true"
-                          class="w-4 h-4"
-                        >
-                          <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z"></path>
-                        </svg>
-                      </span>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="p-4 border-b border-slate-200">
-                    <div class="flex items-center gap-3">
-                      <img
-                        src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg"
-                        alt="Michael Levi"
-                        class="relative inline-block h-9 w-9 !rounded-full object-cover object-center"
-                      />
-                      <div class="flex flex-col">
-                        <p class="text-sm font-semibold text-slate-700">
-                          Michael Levi
-                        </p>
-                        <p class="text-sm text-slate-500">
-                          michael@creative-tim.com
-                        </p>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="p-4 border-b border-slate-200">
-                    <div class="flex flex-col">
-                      <p class="text-sm font-semibold text-slate-700">
-                        Designer
-                      </p>
-                      <p class="text-sm text-slate-500">Developer</p>
-                    </div>
-                  </td>
-                  <td class="p-4 border-b border-slate-200">
-                    <div class="w-max">
-                      <div class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
-                        <span class="">online</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="p-4 border-b border-slate-200">
-                    <p class="text-sm text-slate-500">24/12/08</p>
-                  </td>
-                  <td class="p-4 border-b border-slate-200">
-                    <button
-                      class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-slate-900 transition-all hover:bg-slate-900/10 active:bg-slate-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                      type="button"
-                      data-dialog-target="dialog"
-                    >
-                      <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          aria-hidden="true"
-                          class="w-4 h-4"
-                        >
-                          <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z"></path>
-                        </svg>
-                      </span>
-                    </button>
-                  </td>
-                </tr>
+                      <td class="p-4 border-b border-slate-200">
+                        <div class="w-max">
+                          <Link
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                            to={`/farmer/viewCrop/${element._id}`}
+                          >
+                            View
+                          </Link>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
