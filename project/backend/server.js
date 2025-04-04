@@ -30,6 +30,7 @@ const userManagement = require("./admin/routes/user.routes.js");
 const stockManage = require("./farmer/routes/stockRoute");
 const cropManage = require("./farmer/routes/cropRoute");
 const ticketManage = require("./farmer/routes/ticketRoute.js");
+const farmerScheduleManage = require("./farmer/routes/scheduleRoute.js");
 
 const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
 
@@ -46,6 +47,7 @@ const orderManage = require("./customer/routes/orderRoute");
 const getCropRoutesRS = require("./seller/routes/cropRoutes(rs)");
 const cartRoutes = require("./seller/routes/cartRoutes");
 const productRoutes = require("./seller/routes/productRoutes.js");
+const paymentRoutes = require("./seller/routes/stripeRoute.js");
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -69,6 +71,7 @@ app.use("/api/v1/category", categoryManage);
 app.use("/api/v1/field", fieldManage);
 app.use("/api/v1/ticket", ticketManage);
 app.use("/api/v1/payment", paymentManage);
+app.use("/api/v1/farmer/schedule", farmerScheduleManage);
 
 //customer Routes
 app.use("/api/v1/orders", orderManage);
@@ -77,6 +80,7 @@ app.use("/api/v1/orders", orderManage);
 app.use("/api/RetailSeller/cart", cartRoutes);
 app.use("/api/RetailSeller/crops", getCropRoutesRS);
 app.use("/api/RetailSeller/products", productRoutes);
+app.use("/api/RetailSeller/payment/stripe", paymentRoutes);
 
 mongoose
   .connect(mongoURL)

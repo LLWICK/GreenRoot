@@ -16,19 +16,47 @@ import {
   OrdersPage,
   Schedule,
   LandingPage,
+  TestPage,
+  TaskCard,
+  EditTasksModal,
+  ExpertsPage,
 } from "./farmer/pages";
 
 /* Admin pages */
 import {
   LoginPage,
+  RegisterPage,
   AdminDashbord,
   FarmerManagement,
   UserManagement,
   ViewUser,
   EditUser,
   DeleteUser,
+  CreateUser,
+  AdminManagament,
+  CustomerManagement,
+  AboutUs,
+  HomePage,
+  LandingPageAd,
+  ContactUsPage,
+
 } from "./admin/pages";
-import TestPage from "./farmer/pages/TestPage";
+
+
+/* retail seller page imports  */
+
+import SellerHome from "./seller/pages/sellerHP";
+import SellerInventroy from "./seller/pages/sellerInventroy";
+
+
+//import customer routes
+import Home from "./customer/pages/Home";
+
+
+
+
+
+
 // import UserManagement from "./admin/pages/UserManagement";
 
 function App() {
@@ -46,11 +74,15 @@ function App() {
       <Route path="/farmer/crop/edit/:cid" element={<CropEdit />} />
       <Route path="/farmer/crop/addCrop" element={<AddCropPage />} />
       <Route path="/farmer/orders" element={<OrdersPage />} />
-      <Route path="/farmer/schedule" element={<Schedule />} />
+      <Route path="/farmer/:uid/schedule" element={<Schedule />} />
       <Route path="/farmer/test" element={<TestPage />} />
+      <Route path="/farmer/:uid/experts" element={<ExpertsPage />} />
+      <Route path="/farmer/:uid/addTask" element={<TaskCard />} />
+      <Route path="/farmer/:uid/editTask/:tid" element={<EditTasksModal />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
+      <Route path="/auth/register" element={<RegisterPage />} />
 
       {/* Admin Routers */}
       <Route path="/admin/:id/dashboard" element={<AdminDashbord />} />
@@ -60,6 +92,21 @@ function App() {
         path="/admin/user-management/farmer"
         element={<FarmerManagement />}
       />
+
+      <Route
+        path="/admin/user-management/customers"
+        element={<CustomerManagement />}
+      />
+      <Route
+        path="/admin/user-management/user/create"
+        element={<CreateUser />}
+      />
+
+      <Route
+        path="/admin/user-management/user/create"
+        element={<CreateUser />}
+      />
+
       <Route
         path="/admin/user-management/user/view/:id"
         element={<ViewUser />}
@@ -72,6 +119,61 @@ function App() {
         path="/admin/user-management/user/delete/:id"
         element={<DeleteUser />}
       />
+      <Route
+        path="/admin/user-management/admins"
+        element={<AdminManagament />}
+      />
+
+<<<<<<< HEAD
+      {/* Customer Routes */}
+
+
+        <Route path='/Customer' element={<Home />} />
+        {/* <Route path='/products-Category/:categoryName' element={<CategoryPage />} />
+        <Route path='/Home/Checkout' element={<CheckoutPage />} />
+        <Route path='/user/Dashboard' element={<DashboardPage />} /> */}
+
+
+
+
+=======
+>>>>>>> bb6636bf43e2927f19f5ee443dcac6ccad1a40be
+
+
+      
+      <Route path="/aboutus" element={<AboutUs />} />
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/landingag" element={<LandingPageAd />} />
+
+
+
+      {/* Retail seller Router */}
+
+      <Route path='/seller/home' element={<SellerHome/>}/>
+      <Route path='/seller/Inventroy' element={<SellerInventroy/>}/>
+
+      {/*  <Route path="/aboutus" element={<AboutUs />} /> */}
+      {/* <Route path="/home" element={<HomePage />} /> */}
+
+      <Route path="/contact" element={<ContactUsPage />} />
+<<<<<<< HEAD
+=======
+
+      {/* Customer Routes */}
+
+
+        <Route path='/Customer' element={<Home />} />
+        {/* <Route path='/products-Category/:categoryName' element={<CategoryPage />} />
+        <Route path='/Home/Checkout' element={<CheckoutPage />} />
+        <Route path='/user/Dashboard' element={<DashboardPage />} /> */}
+
+
+
+
+
+
+>>>>>>> bb6636bf43e2927f19f5ee443dcac6ccad1a40be
+
     </Routes>
   );
 }

@@ -9,6 +9,8 @@ import ExpensesGraph from "../components/ExpensesGraph";
 import { useNavigate } from "react-router-dom";
 import { getUserIdFromToken } from "../utills/authUtils";
 import WeatherCards from "../components/WeatherCards";
+import Header from "../components/Header";
+import Sidebar2 from "../tests/Sidebar2";
 
 function FarmerHome() {
   const navigate = useNavigate();
@@ -31,14 +33,12 @@ function FarmerHome() {
       <div style={{ float: "left", padding: "2%" }}>
         <WeatherCards />
         <FieldMap />
-        <div>
-          <ExpensesGraph />
-        </div>
+        <div>{/* <ExpensesGraph /> */}</div>
       </div>
 
       <div style={{ float: "right", padding: "1.3%" }}>
         <StockchartFrame />
-        <JobsHome />
+        <JobsHome fid={userID} />
       </div>
     </div>
   );

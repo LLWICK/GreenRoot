@@ -3,10 +3,10 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Swal from "sweetalert2";
+// back button
+import BackButton from '../../components/BackButton';
 
 const EditUser = () => {
-
-
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -41,10 +41,18 @@ const EditUser = () => {
         }
     }, [id]);
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
 
+    const handleChange = (e) => {
+        if (e.target.name === "image" && e.target.files.length > 0) {
+            const file = e.target.files[0]; // Get the uploaded file
+            setFormData({ ...formData, [e.target.name]: file.name }); // Use only the file name
+        } else {
+            setFormData({ ...formData, [e.target.name]: e.target.value });
+        }
     };
+
+
+
 
     const nextStep = () => {
         if (currentStep < steps.length - 1) setCurrentStep(currentStep + 1);
@@ -61,7 +69,8 @@ const EditUser = () => {
     const handleSubmit = () => {
         axios.put(`http://localhost:3000/api/user/update/${id}`, formData)
             .then((res) => {
-                navigate('/admin/user-management/farmer');
+                // navigate('/admin/user-management/farmer');
+                navigate(-1);
                 // sweet alert
                 Swal.fire({
                     title: "User updated successfully!",
@@ -82,6 +91,9 @@ const EditUser = () => {
 
     return (
         <>
+            <div className='m-2 flex justify-start'>
+                <BackButton /> {/* Add Back Button Here */}
+            </div>
             <div className="min-h-screen flex items-center justify-center bg-gray-50">
                 <div className="w-full max-w-lg bg-white shadow-lg rounded-lg p-8">
                     <div className="flex justify-between mb-8">
@@ -118,7 +130,15 @@ const EditUser = () => {
                                     <h2 className="text-xl font-semibold mb-4">Step 2: Account Security</h2>
                                     <input type="password" name="password" placeholder="Password" onChange={handleChange} className="w-full border px-4 py-2 mb-4" />
                                     <input type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange} className="w-full border px-4 py-2 mb-4" />
-                                    <input type="text" name="image" placeholder="Image URL" value={formData.image} onChange={handleChange} className="w-full border px-4 py-2 mb-4" />
+                                    <input type="file" name="image" onChange={handleChange} className="w-full border px-4 py-2 mb-4" />
+
+                                    <select name="role" value={formData.role} onChange={handleChange} className="w-full border px-4 py-2 mb-2">
+                                        <option value="admin">admin</option>
+                                        <option value="farmer">farmer</option>
+                                        <option value="customer">customer</option>
+                                        <option value="seller">seller</option>
+                                    </select>
+
                                     <select name="status" value={formData.status} onChange={handleChange} className="w-full border px-4 py-2">
                                         <option value="active">Active</option>
                                         <option value="inactive">Inactive</option>

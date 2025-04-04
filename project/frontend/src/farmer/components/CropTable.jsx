@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 function CropTable(prop) {
   const [crops, setCrop] = useState([]);
   const [status, setStatus] = useState("on-field");
+  const [fullList, setList] = useState([]);
 
   useEffect(() => {
     const fetchCropData = async () => {
@@ -13,12 +14,12 @@ function CropTable(prop) {
           "http://localhost:3000/api/v1/crops/parameters",
           {
             farmerID: String(prop.fid),
-            status: status,
           }
         );
 
+        setList(response.data.data);
+
         setCrop(response.data.data);
-        console.log(response.data.data);
       } catch (error) {
         console.error("Error fetching crops:", error);
       }
@@ -29,21 +30,12 @@ function CropTable(prop) {
     }
   }, [prop.fid]);
 
-  const handleChange = async (e) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/crops/parameters",
-        {
-          farmerID: String(prop.fid),
-          status: e,
-        }
-      );
+  const handleChange = (e) => {
+    const newData = fullList.filter((element) => {
+      return element.status == e;
+    });
 
-      setCrop(response.data.data);
-      console.log(response.data.data);
-    } catch (error) {
-      console.error("Error fetching crops:", error);
-    }
+    setCrop(newData);
   };
 
   return (
@@ -78,6 +70,9 @@ function CropTable(prop) {
                   View All
                 </select>
                 <button
+                  onClick={() => {
+                    setCrop(fullList);
+                  }}
                   class="rounded border border-slate-300 py-2.5 px-3 text-center text-xs font-semibold text-slate-600 transition-all hover:opacity-75 focus:ring focus:ring-slate-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                   type="button"
                 >
