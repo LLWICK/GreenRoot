@@ -64,7 +64,10 @@ function CropProgress() {
             <div className="flex-1">
               <div className="flex justify-between text-sm font-medium text-gray-700">
                 <span>{crop.name}</span>
-                <span>{(crop.quantity / totalAmount) * 100}%</span>
+                <span>
+                  {parseFloat(((crop.quantity / totalAmount) * 100).toFixed(2))}
+                  %
+                </span>
               </div>
               <div className="text-xs text-gray-400">{crop.status}</div>
               <div className="w-full bg-gray-200 h-2 mt-1 rounded-full">
