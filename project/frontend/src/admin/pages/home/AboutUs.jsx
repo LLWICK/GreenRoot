@@ -5,9 +5,7 @@ import AboutSection from "./home_components/AboutSection";
 const AboutUs = () => {
   return (
     <div>
-      <div>
-        <NavBar2 />
-      </div>
+      <NavBar2 />
       <div>
         <AboutSection />
       </div>

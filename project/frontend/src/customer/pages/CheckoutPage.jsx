@@ -129,7 +129,7 @@ const CheckoutPage = () => {
     <div className="">
       <Header />
       <h2 className="p-3 bg-green-800 text-xl font-bold text-center text-white">
-        Checkout
+        Thank You!
       </h2>
       <div className="p-5 px-5 md:px-10 grid grid-cols-1 md:grid-cols-3 py-8">
         <div className="col-span-2 mx-20">

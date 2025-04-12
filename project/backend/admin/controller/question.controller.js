@@ -119,8 +119,16 @@ const deleteQuestion = async (req, res) => {
     }
 }
 
+// get all question for pie chart
+const getAllQuestions = async (req, res) => {
+    try {
+        const questions = await Question.find({}, "title");
+        res.status(200).json(questions);
 
-
+    } catch (error) {
+        res.status(500).json({ msg: error.message });
+    }
+}
 
 
 module.exports = {
@@ -130,4 +138,5 @@ module.exports = {
     getQuestionByTitle,
     replyToQuestion,
     deleteQuestion,
+    getAllQuestions
 }
