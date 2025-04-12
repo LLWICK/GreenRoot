@@ -201,11 +201,63 @@ function ScheduleList() {
                     <tr>
                       <td class="p-4 border-b border-slate-200">
                         <div class="flex items-center gap-3">
-                          <img
-                            src="#"
-                            alt="John Michael"
-                            class="relative inline-block h-9 w-9 !rounded-full object-cover object-center"
-                          />
+                          <div class="relative inline-block h-9 w-9 rounded-full overflow-hidden bg-white">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 64 64"
+                              fill="none"
+                              class="h-full w-full"
+                            >
+                              <rect
+                                width="64"
+                                height="64"
+                                rx="12"
+                                fill="#E3F2FD"
+                              />
+                              <rect
+                                x="16"
+                                y="18"
+                                width="32"
+                                height="4"
+                                rx="2"
+                                fill="#42A5F5"
+                              />
+                              <rect
+                                x="16"
+                                y="28"
+                                width="24"
+                                height="4"
+                                rx="2"
+                                fill="#90CAF9"
+                              />
+                              <rect
+                                x="16"
+                                y="38"
+                                width="28"
+                                height="4"
+                                rx="2"
+                                fill="#90CAF9"
+                              />
+                              <path
+                                d="M46 17L48.5 19.5L53 15"
+                                stroke="#2E7D32"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                              />
+                              <path
+                                d="M46 27L48.5 29.5L53 25"
+                                stroke="#2E7D32"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                              />
+                              <path
+                                d="M46 37L48.5 39.5L53 35"
+                                stroke="#2E7D32"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                              />
+                            </svg>
+                          </div>
                           <div class="flex flex-col">
                             <p class="text-sm font-semibold text-slate-700">
                               {element.description}
