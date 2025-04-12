@@ -13,6 +13,7 @@ import WeatherCards from "../components/WeatherCards";
 
 import Sidebar2 from "../tests/Sidebar2";
 import NavBFarmer from "../extras/NavBFarmer";
+import CropProgress from "../components/CropProgress";
 
 function FarmerHome() {
   const navigate = useNavigate();
@@ -30,13 +31,25 @@ function FarmerHome() {
 
   return (
     <div>
-      <NavBFarmer />
-      <Sidebar uid={userID} />
+      <div>
+        <NavBFarmer />
+        <div className="sticky top-0">
+          <Sidebar uid={userID} />
+        </div>
+      </div>
 
       <div className="bg-gray-100">
         <div style={{ float: "left", padding: "2%" }}>
           <WeatherCards />
-          <FieldMap />
+
+          <div className="overflow-hidden">
+            <FieldMap />
+          </div>
+
+          <div>
+            <CropProgress />
+          </div>
+
           <div>{/* <ExpensesGraph /> */}</div>
         </div>
 

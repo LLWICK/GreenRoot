@@ -179,11 +179,11 @@ function OrderDetails() {
                 {Items.map((element) => {
                   return (
                     <div class="ounded-3xl p-10 bg-gray-100 border border-gray-100 flex flex-col md:flex-row md:items-center gap-5 transition-all duration-500 hover:border-gray-400">
-                      <div class="img-box ">
+                      <div className="img-box w-32 h-32 border-2 border-gray-300 rounded-xl overflow-hidden shadow-md">
                         <img
-                          src="https://pagedone.io/asset/uploads/1701167635.png"
-                          alt="Denim Jacket image"
-                          class="w-full md:max-w-[122px] rounded-lg object-cover"
+                          src={element.image}
+                          alt="Plant product"
+                          className="w-full h-full object-cover"
                         />
                       </div>
                       <div class="grid grid-cols-1 md:grid-cols-2 w-full gap-3 md:gap-8">
@@ -197,7 +197,7 @@ function OrderDetails() {
                         </div>
                         <div class="flex items-center justify-between gap-8">
                           <h6 class="font-medium text-xl leading-8 text-indigo-600">
-                            $120.00
+                            Rs. {element.price}
                           </h6>
                         </div>
                       </div>
