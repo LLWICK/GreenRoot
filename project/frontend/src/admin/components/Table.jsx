@@ -20,7 +20,7 @@ const Table = ({ user }) => {
                         {user.map((user, index) => (
                             <tr key={user._id} className="even:bg-gray-100 odd:bg-white hover:bg-gray-200 transition">
                                 <td className="px-6 py-4 whitespace-nowrap flex items-center space-x-3">
-                                    <img className="h-10 w-10 rounded-full border" src={`/${user.image}`} alt={user.firstName} />
+                                    <img className="h-10 w-10 rounded-full border" src={`/profile/${user.image}`} alt={user.firstName} />
                                     <div>
                                         <p className="text-sm font-medium text-gray-900">{user.firstName}</p>
                                         <p className="text-sm text-gray-500">{user.email}</p>

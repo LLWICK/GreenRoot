@@ -4,7 +4,10 @@ import { Button } from '@/components/ui/button';
  import { useNavigate } from 'react-router-dom';
  import axios from 'axios';
 
- const CartItemList = () => {
+ const CartItemList = ({custId}) => {
+
+        console.log("customerId:",custId);
+
     const [cartItems, setCartItems] = useState(null);
      const [loading, setLoading] = useState(true);
      const [error, setError] = useState(null);
@@ -91,6 +94,7 @@ import { Button } from '@/components/ui/button';
 
         const response = await axios.post("http://localhost:3000/api/customer/payment", {
             Subtotal: stripeAmount,
+            customerId:custId,
         });
 
         if (response.data && response.data.data.url) {
