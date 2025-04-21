@@ -9,6 +9,7 @@ function NewOrderComp() {
   const [reciver, setReciver] = useState(false);
   const [sellerEmail, setEmail] = useState("Not valid");
   const [sellerDets, setSellerDets] = useState("Not valid");
+  const [validEmail, setValid] = useState(false);
   const [orderStatus, setStatus] = useState("");
   const { oid, uid } = useParams();
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ function NewOrderComp() {
             console.log(res.data.data.email);
             setSellerDets(res.data.data);
             setEmail(res.data.data.email);
+            setValid(true);
           });
       } catch (error) {
         console.error("Error fetching Seller Details:", error);
@@ -234,23 +236,34 @@ function NewOrderComp() {
                     </select>
                   </div>
                 </div>
-                <div className="mt-6">
-                  <button
-                    onClick={handleSubmit}
-                    type="submit"
-                    class="float-left text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                  >
-                    Save Changes
-                  </button>
 
+                {validEmail ? (
+                  <div className="mt-6">
+                    <button
+                      onClick={handleSubmit}
+                      type="submit"
+                      class="float-left text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                    >
+                      Save Changes
+                    </button>
+
+                    <Link
+                      to={`/farmer/${uid}/orders`}
+                      class="float-right focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                    >
+                      Cancel
+                    </Link>
+                  </div>
+                ) : (
                   <Link
                     to={`/farmer/${uid}/orders`}
                     class="float-right focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                   >
-                    Cancel
+                    Back
                   </Link>
-                </div>
+                )}
               </div>
+
               <div class="flex flex-col justify-center px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 dark:bg-gray-800 space-y-6">
                 <h3 class="text-xl dark:text-white font-semibold leading-5 text-gray-800">
                   Shipping
