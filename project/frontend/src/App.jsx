@@ -110,6 +110,7 @@ import FarmerList from "./seller/pages/farmers";
 import DiliveryDash from "./seller/pages/diliveryGuy/diliveryGuyDash";
 import AboutUsPage from "./Common/pages/AboutUsPage";
 import MapEdit from "./farmer/mapComponents/MapEdit";
+import TrackPage from "./farmer/mapComponents/components/TrackPage";
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -141,6 +142,7 @@ function App() {
 
       {/* Common Pages */}
       <Route path="/otp/send" element={<OtpPage />} />
+      <Route path="/track/location" element={<TrackPage />} />
       {/* <Route path="/aboutUs" element={<AboutUsPage />} /> */}
       <Route path="/payment/success/:id" element={<PaySuccess />} />
 
