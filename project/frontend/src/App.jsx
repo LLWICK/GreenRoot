@@ -48,6 +48,9 @@ import NewsUpdate from "./researcher/pages/NewsUpdate";
 import QnABlog from "./researcher/pages/QnABlog";
 import MyStats from "./researcher/pages/MyStats";
 import MyPnd from "./researcher/pages/MyPnd";
+import PnDUpdate from "./researcher/pages/PnDUpdate";
+import PnDBlog from "./researcher/pages/PnDBlog";
+import SinglePndPage from "./researcher/pages/SinglePndPage";
 
 /* Admin pages */
 import {
@@ -240,6 +243,9 @@ function App() {
       <Route path="/blog/qna" element={<QnABlog/>}/>
       <Route path="/researcher/my-stats" element={<MyStats/>}/>
       <Route path="/researcher/my-pnd" element={<MyPnd/>}/>
+      <Route path="/researcher/my-pnd/update" element={<PnDUpdate/>}/>
+      <Route path="/blog/pest-and-disease" element={<PnDBlog/>}/>
+      <Route path="/blog/pest-and-disease/:id" element={<SinglePndPage/>}/>
 
 
       <Route
