@@ -12,6 +12,13 @@ const ticketSchema = new mongoose.Schema(
       required: true,
     },
 
+    priority: {
+      type: String,
+      enum: ["Low", "Medium", "High"],
+      default: "Medium",
+      required: true,
+    },
+
     image: {
       type: String,
       default: "https://demofree.sirv.com/nope-not-here.jpg",
