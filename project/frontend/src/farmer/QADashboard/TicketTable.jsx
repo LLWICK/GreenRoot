@@ -37,15 +37,10 @@ const TicketDashboard = () => {
         `http://localhost:3000/api/researcher/solutions/ticket/${ticket._id}`
       )
       .then((res) => {
-        if (res.status == 400) {
-          alert("No sol!");
-          setSolutions(null);
-        } else {
-          setSolutions(res.data);
-        }
+        setSolutions(res.data);
       })
       .catch((e) => {
-        alert("error!");
+        setSolutions(false);
       });
 
     setSelectedTicket(ticket);
@@ -143,21 +138,25 @@ const TicketDashboard = () => {
                 <p className="text-gray-700">{selectedTicket.description}</p>
               </div>
 
-              {solutions.map((sol, index) => {
-                return (
-                  <div className="bg-white p-4 shadow rounded">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-semibold text-gray-800">
-                        {sol.createdAt}
-                      </span>
-                      <span className="text-xs text-gray-500">
-                        {sol.updatedAt}
-                      </span>
+              {solutions ? (
+                solutions.map((sol, index) => {
+                  return (
+                    <div className="bg-white p-4 shadow rounded">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="font-semibold text-gray-800">
+                          {sol.createdAt}
+                        </span>
+                        <span className="text-xs text-gray-500">
+                          {sol.updatedAt}
+                        </span>
+                      </div>
+                      <p className="text-gray-700">{sol.description}</p>
                     </div>
-                    <p className="text-gray-700">{sol.description}</p>
-                  </div>
-                );
-              })}
+                  );
+                })
+              ) : (
+                <p className=" text-gray-500">No replies yet</p>
+              )}
 
               <div className="mt-6">
                 <textarea
