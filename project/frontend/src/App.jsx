@@ -26,6 +26,15 @@ import {
   AllLocations,
 } from "./farmer/pages";
 
+//Farmer ecommerce store
+
+import {
+  HomePagefEcom,
+  ProductsPagefEcom,
+  CartPagefEcom,
+  OverviewPagefEcom,
+} from "./farmer_ecommerce/pages";
+
 import SearchLocation from "./farmer/unregistered/SearchLocation";
 
 //import LandingPage from "./farmer/pages/LandingPage";
@@ -139,6 +148,10 @@ function App() {
       <Route path="/farmer/:uid/addMap" element={<SearchLocation />} />
       <Route path="/farmer/:uid/order/:oid/update" element={<OrderUpdate />} />
       <Route path="/farmer/:uid/Location/:mid/update" element={<MapEdit />} />
+
+      {/* farmer e-commerce Pages */}
+
+      <Route path="/farmer/shop/products" element={<ProductsPagefEcom />} />
 
       {/* Common Pages */}
       <Route path="/otp/send" element={<OtpPage />} />
