@@ -1,5 +1,6 @@
-const Order = require("../../customer/model/orderModel");  // Your Order model
-const sendOrderUpdateEmail = require("./emailSender");
+const Order = require("../../customer/model/orderModel");
+const User = require("../../admin/model/userModel");  // Your Order model
+const {sendOrderUpdateEmail} = require("./emailSender");
 
 
 
@@ -39,6 +40,7 @@ const updateOrderStatus = async (req, res) => {
         if (!order) {
             return res.status(404).json({ message: "Order not found" });
         }
+        console.log(order)
 
         // Fetch the user's email (assuming you have an ordinary_buyer_id reference)
         const user = await User.findById(order.ordinary_buyer_id);
@@ -47,7 +49,7 @@ const updateOrderStatus = async (req, res) => {
         }
 
         // Send email notification
-        await sendOrderUpdateEmail(user.email, orderID, status);
+        await sendOrderUpdateEmail(user.email,orderID, `Your order has been ${status} by the seller,Well keep you updated on the progress, and youll receive a notification once your order is ready to move forward.`);
 
         res.status(200).json({ message: "Order status updated and email sent successfully" });
 

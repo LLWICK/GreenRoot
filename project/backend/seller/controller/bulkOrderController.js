@@ -1,7 +1,9 @@
 const Order = require("../model/bulkOrderModel"); // Import your Order model
 const Cart = require("../model/cartModel");   // Import your Cart model
 const Crop = require("../../farmer/model/cropModel");   // Import your Crop model
+const User = require('../../admin/model/userModel')
 const {clearCart} = require("./cartController")
+const {sendOrderUpdateEmail} = require("./emailSender");
 
 // Function to place an order
 const placeOrder = async (req, res) => {
@@ -67,8 +69,13 @@ const placeOrder = async (req, res) => {
     };
     await clearCart(fakeReq, fakeRes);
 
+    const user = await User.findById(userId);
+    console.log(user)
 
+    await sendOrderUpdateEmail(user.email,newOrder._id, "Thank you for placing your order with us! Your request has been successfully submitted, and we are now waiting for the farmers to confirm availability.Well keep you updated on the progress, and youll receive a notification once your order is ready to move forward.");
     res.json({ success: true, orderId: newOrder._id });
+    // Send email notification
+    
   } catch (error) {
     console.error('Error placing order:', error);
     res.status(500).json({ error: error.message });

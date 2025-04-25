@@ -74,7 +74,7 @@ const CategoryPage = () => {
                     <ProductItem key={product._id} product={product} />
                 ))}
             </div>
-            <Footer />
+            <Footer/>
         </div>
     );
 };
