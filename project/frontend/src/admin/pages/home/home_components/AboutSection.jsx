@@ -5,32 +5,32 @@ function AboutSection() {
     {
       title: "Increase Yield",
       description: "Optimize crop production with smart farming solutions.",
-      image: "https://source.unsplash.com/600x400/farm",
+      image: "https://d14a823tufvajd.cloudfront.net/images/mAbVjgm6sPUv17yvP2wN.jpg",
     },
     {
       title: "Farm-Ready Technology",
       description: "Advanced tools tailored for modern agriculture.",
-      image: "https://source.unsplash.com/600x400/?agriculture,technology",
+      image: "https://kingstec.com/wp-content/uploads/2023/12/Smart-Farming.png",
     },
     {
       title: "Sustainable Growth",
       description: "Eco-friendly practices for long-term agricultural success.",
-      image: "https://source.unsplash.com/600x400/?organic,farming",
+      image: "https://www.cmu.edu/tepper/news/assets/images/istock-1400960132.jpg",
     },
     {
       title: "Expert-Backed Solutions",
       description: "Recommendations from agronomists and industry leaders.",
-      image: "https://source.unsplash.com/600x400/?scientist,farm",
+      image: "https://expertgate.org/assets/frontend/img/agriculture-consultation.jpg",
     },
     {
       title: "Smart Farm Management",
       description: "AI-powered platforms to monitor and enhance efficiency.",
-      image: "https://source.unsplash.com/600x400/?smartfarm,IoT",
+      image: "https://capsulesight.com/58-15EARinAgriculture-feature.webp",
     },
     {
       title: "Seamless Integrations",
       description: "Connect with weather data, IoT sensors, and marketplaces.",
-      image: "https://source.unsplash.com/600x400/?satellite,weather",
+      image: "https://www.zenitel.com/sites/default/files/2023-03/1358x452_Seamless%20integration.jpg",
     },
   ];
 

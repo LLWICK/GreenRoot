@@ -15,9 +15,7 @@ const Services = () => {
     return (
         <>
             <div>
-                <div>
-                    <NavBar2 />
-                </div>
+                <NavBar2 />
 
                 <div className="flex flex-wrap">
                     <div className="w-full sm:w-8/12 mb-10">

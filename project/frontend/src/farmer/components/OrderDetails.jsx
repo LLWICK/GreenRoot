@@ -7,7 +7,8 @@ function OrderDetails() {
   const [order, setOrder] = useState({});
   const [Items, setItems] = useState([]);
   const [reciver, setReciver] = useState(false);
-  const [sellerEmail, setEmail] = useState(null);
+  const [sellerEmail, setEmail] = useState("Not valid");
+  const [validEmail, setValid] = useState(false);
   const [orderStatus, setStatus] = useState("");
   const { oid, uid } = useParams();
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ function OrderDetails() {
           .then((res) => {
             console.log(res.data.data.email);
             setEmail(res.data.data.email);
+            setValid(true);
           });
       } catch (error) {
         console.error("Error fetching Seller Details:", error);
@@ -126,10 +128,10 @@ function OrderDetails() {
                   </div>
                   <div class="flex items-center justify-between gap-4 ">
                     <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700 ">
-                      Coupon Code
+                      Seller Email
                     </p>
                     <p class="font-medium text-lg leading-8 text-emerald-500">
-                      #APPLIED
+                      {sellerEmail}
                     </p>
                   </div>
                 </div>
@@ -156,22 +158,32 @@ function OrderDetails() {
                     <option value="Cancelled">Cancelled</option>
                   </select>
                 </div>
-                <div className="mt-6">
-                  <button
-                    onClick={handleSubmit}
-                    type="submit"
-                    class="float-left text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                  >
-                    Save Changes
-                  </button>
 
+                {validEmail ? (
+                  <div className="mt-6">
+                    <button
+                      onClick={handleSubmit}
+                      type="submit"
+                      class="float-left text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                    >
+                      Save Changes
+                    </button>
+
+                    <Link
+                      to={`/farmer/${uid}/orders`}
+                      class="float-right focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                    >
+                      Cancel
+                    </Link>
+                  </div>
+                ) : (
                   <Link
                     to={`/farmer/${uid}/orders`}
                     class="float-right focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                   >
                     Cancel
                   </Link>
-                </div>
+                )}
               </div>
             </div>
             <div class="w-full max-w-sm md:max-w-3xl max-xl:mx-auto">
@@ -179,11 +191,11 @@ function OrderDetails() {
                 {Items.map((element) => {
                   return (
                     <div class="ounded-3xl p-10 bg-gray-100 border border-gray-100 flex flex-col md:flex-row md:items-center gap-5 transition-all duration-500 hover:border-gray-400">
-                      <div class="img-box ">
+                      <div className="img-box w-32 h-32 border-2 border-gray-300 rounded-xl overflow-hidden shadow-md">
                         <img
-                          src="https://pagedone.io/asset/uploads/1701167635.png"
-                          alt="Denim Jacket image"
-                          class="w-full md:max-w-[122px] rounded-lg object-cover"
+                          src={element.image}
+                          alt="Plant product"
+                          className="w-full h-full object-cover"
                         />
                       </div>
                       <div class="grid grid-cols-1 md:grid-cols-2 w-full gap-3 md:gap-8">
@@ -197,7 +209,7 @@ function OrderDetails() {
                         </div>
                         <div class="flex items-center justify-between gap-8">
                           <h6 class="font-medium text-xl leading-8 text-indigo-600">
-                            $120.00
+                            Rs. {element.price}
                           </h6>
                         </div>
                       </div>

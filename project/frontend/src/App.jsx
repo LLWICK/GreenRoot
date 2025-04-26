@@ -26,6 +26,15 @@ import {
   AllLocations,
 } from "./farmer/pages";
 
+//Farmer ecommerce store
+
+import {
+  HomePagefEcom,
+  ProductsPagefEcom,
+  CartPagefEcom,
+  OverviewPagefEcom,
+} from "./farmer_ecommerce/pages";
+
 import SearchLocation from "./farmer/unregistered/SearchLocation";
 
 //import LandingPage from "./farmer/pages/LandingPage";
@@ -110,6 +119,7 @@ import FarmerList from "./seller/pages/farmers";
 import DiliveryDash from "./seller/pages/diliveryGuy/diliveryGuyDash";
 import AboutUsPage from "./Common/pages/AboutUsPage";
 import MapEdit from "./farmer/mapComponents/MapEdit";
+import TrackPage from "./farmer/mapComponents/components/TrackPage";
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -139,8 +149,13 @@ function App() {
       <Route path="/farmer/:uid/order/:oid/update" element={<OrderUpdate />} />
       <Route path="/farmer/:uid/Location/:mid/update" element={<MapEdit />} />
 
+      {/* farmer e-commerce Pages */}
+
+      <Route path="/farmer/shop/products" element={<ProductsPagefEcom />} />
+
       {/* Common Pages */}
       <Route path="/otp/send" element={<OtpPage />} />
+      <Route path="/track/location" element={<TrackPage />} />
       {/* <Route path="/aboutUs" element={<AboutUsPage />} /> */}
       <Route path="/payment/success/:id" element={<PaySuccess />} />
 
