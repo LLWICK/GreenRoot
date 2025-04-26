@@ -119,6 +119,7 @@ import FarmerList from "./seller/pages/farmers";
 import DiliveryDash from "./seller/pages/diliveryGuy/diliveryGuyDash";
 import AboutUsPage from "./Common/pages/AboutUsPage";
 import MapEdit from "./farmer/mapComponents/MapEdit";
+import AgroDetails from "./seller/pages/sellerAgroDetails";
 import TrackPage from "./farmer/mapComponents/components/TrackPage";
 
 // import UserManagement from "./admin/pages/UserManagement";
@@ -292,6 +293,7 @@ function App() {
       <Route path="/seller/BulkOrder/:orderId" element={<BulkOrderSummary />} />
       <Route path="/seller/:sid/farmers" element={<FarmerList />} />
       <Route path="/diliveryGuy/dash" element={<DiliveryDash />} />
+      <Route path="/seller/:sid/news" element={< AgroDetails/>} />
 
       {/* Customer Routes */}
 

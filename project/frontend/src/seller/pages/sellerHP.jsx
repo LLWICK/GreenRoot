@@ -6,6 +6,7 @@ import SideBar from "../components/sideBar(seller)";
 import NavBar from '@/admin/pages/home/home_components/NavBar';
 import NavBar2 from "@/Common/NavBar2";
 import { useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 const SellerHome = () => {
     const { sid } = useParams();
@@ -64,7 +65,7 @@ const SellerHome = () => {
             });
 
             console.log("Cart updated:", response.data);
-            alert("Item added to cart!");
+            toast.success("Item added to cart")
 
             // Refresh cart after adding an item
             fetchCart();
@@ -93,12 +94,17 @@ const SellerHome = () => {
 
     return (
         <>
+        
+        <ToastContainer position="top-center" />
+       
+        
             {/* Navbar */}
             <nav className="p-4"><NavBar2/></nav>
 
             <div className="grid grid-cols-12 min-h-screen">
                 {/* Sidebar */}
                 <SideBar sellerid={sid} />
+                
 
                 {/* Main Content */}
                 <div className="col-span-10 flex flex-col p-6">

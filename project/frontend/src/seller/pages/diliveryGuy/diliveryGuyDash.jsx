@@ -64,9 +64,9 @@ const DiliveryDash = () => {
                   <th className="border-y p-4 text-gray-700">Farmer</th>
                   <th className="border-y p-4 text-gray-700">Total Price</th>
                   <th className="border-y p-4 text-gray-700">Status</th>
-                  <th className="border-y p-4 text-gray-700">Payment Amount</th>
                   <th className="border-y p-4 text-gray-700">Payment Status</th>
                   <th className="border-y p-4 text-gray-700">Created At</th>
+                  <th className="border-y p-4 text-gray-700">Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-300">
@@ -77,17 +77,19 @@ const DiliveryDash = () => {
                   <td className="p-4 border-b">$500</td>
                   <td className="p-4 border-b">
                     <select className="border p-2 rounded bg-white shadow-sm">
-                      <option value="Accepted" selected>
-                        Accepted
-                      </option>
+                      <option value="Accepted" selected>Accepted</option>
                       <option value="Processing">Processing</option>
                       <option value="Out for Delivery">Out for Delivery</option>
                       <option value="Delivered">Delivered</option>
                     </select>
                   </td>
-                  <td className="p-4 border-b">$500</td>
                   <td className="p-4 border-b">Pending</td>
                   <td className="p-4 border-b">2025-03-31</td>
+                  <td className="p-4 border-b">
+                    <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                      Save
+                    </button>
+                  </td>
                 </tr>
                 <tr className="hover:bg-gray-100">
                   <td className="p-4 border-b">ORD12346</td>
@@ -96,21 +98,24 @@ const DiliveryDash = () => {
                   <td className="p-4 border-b">$750</td>
                   <td className="p-4 border-b">
                     <select className="border p-2 rounded bg-white shadow-sm">
-                      <option value="Accepted" selected>
-                        Accepted
-                      </option>
+                      <option value="Accepted" selected>Accepted</option>
                       <option value="Processing">Processing</option>
                       <option value="Out for Delivery">Out for Delivery</option>
                       <option value="Delivered">Delivered</option>
                     </select>
                   </td>
-                  <td className="p-4 border-b">$750</td>
                   <td className="p-4 border-b">Completed</td>
                   <td className="p-4 border-b">2025-03-30</td>
+                  <td className="p-4 border-b">
+                    <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                      Save
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
+
           <h1 className="text-2xl font-bold mb-6">Normal Orders</h1>
           <div className="p-6 overflow-scroll px-0">
             <table className="mt-4 w-full min-w-max table-auto text-left border-collapse shadow-lg">
