@@ -32,7 +32,7 @@ function Sidebar() {
         })
         .catch((error) => console.error("Error fetching user details:", error));
     }
-  }, [userID, !userDetails]);
+  }, [userID]);
 
   return (
     <div>
