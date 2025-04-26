@@ -33,295 +33,203 @@ function OrderTable() {
 
   return (
     <div style={{ float: "left" }}>
-      <div class="mx-auto max-w-screen-xl bg-white">
-        <h1 class="mt-20 mb-10 ml-5 text-2xl font-bold text-gray-900">
-          Order Management
-        </h1>
-        <div class="bg-white py-2 px-3">
-          <nav class="flex flex-wrap gap-4">
-            <a
-              href="#"
-              class="inline-flex whitespace-nowrap border-b-2 border-transparent py-2 px-3 text-sm font-medium text-gray-600 transition-all duration-200 ease-in-out hover:border-b-purple-600 hover:text-purple-600"
-            >
-              {" "}
-              Account{" "}
-            </a>
+      <section class="py-24 relative">
+        <div class="w-full max-w-7xl mx-auto px-4 md:px-8">
+          <h2 class="font-manrope font-extrabold text-3xl lead-10 text-black mb-9">
+            Order History
+          </h2>
 
-            <a
-              href="#"
-              class="inline-flex whitespace-nowrap border-b-2 border-transparent py-2 px-3 text-sm font-medium text-gray-600 transition-all duration-200 ease-in-out hover:border-b-purple-600 hover:text-purple-600"
-            >
-              {" "}
-              Settings{" "}
-            </a>
-
-            <a
-              href="#"
-              class="inline-flex whitespace-nowrap border-b-2 border-transparent border-b-purple-600 py-2 px-3 text-sm font-semibold text-purple-600 transition-all duration-200 ease-in-out"
-            >
-              {" "}
-              Orders{" "}
-            </a>
-
-            <a
-              href="#"
-              class="inline-flex whitespace-nowrap border-b-2 border-transparent py-2 px-3 text-sm font-medium text-gray-600 transition-all duration-200 ease-in-out hover:border-b-purple-600 hover:text-purple-600"
-            >
-              {" "}
-              Sales{" "}
-            </a>
-
-            <a
-              href="#"
-              class="inline-flex whitespace-nowrap border-b-2 border-transparent py-2 px-3 text-sm font-medium text-gray-600 transition-all duration-200 ease-in-out hover:border-b-purple-600 hover:text-purple-600"
-            >
-              {" "}
-              Suppliers{" "}
-            </a>
-          </nav>
-        </div>
-      </div>
-      <div class="w-fit bg-gray-50">
-        <div class="mx-auto max-w-screen-xl px-2 py-10">
-          <div class="mt-4 w-full">
-            <div class="flex w-full flex-col items-center justify-between space-y-2 sm:flex-row sm:space-y-0">
-              <form class="relative flex w-full max-w-2xl items-center">
+          <div class="flex sm:flex-col lg:flex-row sm:items-center justify-between">
+            <ul class="flex max-sm:flex-col sm:items-center gap-x-14 gap-y-3">
+              <li class="font-medium text-lg leading-8 cursor-pointer text-indigo-600 transition-all duration-500 hover:text-indigo-600">
+                All Order
+              </li>
+              <li class="font-medium text-lg leading-8 cursor-pointer text-black transition-all duration-500 hover:text-indigo-600">
+                Summary
+              </li>
+              <li class="font-medium text-lg leading-8 cursor-pointer text-black transition-all duration-500 hover:text-indigo-600">
+                Completed
+              </li>
+              <li class="font-medium text-lg leading-8 cursor-pointer text-black transition-all duration-500 hover:text-indigo-600">
+                Cancelled
+              </li>
+            </ul>
+            <div class="flex max-sm:flex-col items-center justify-end gap-2 max-lg:mt-5">
+              <div class="flex rounded-full py-3 px-4 border border-gray-300 relative">
                 <svg
-                  class="absolute left-2 block h-5 w-5 text-gray-400"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
+                  class="relative "
+                  width="18"
+                  height="20"
+                  viewBox="0 0 18 20"
                   fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <circle cx="11" cy="11" r="8" class=""></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65" class=""></line>
-                </svg>
-                <input
-                  type="name"
-                  name="search"
-                  class="h-12 w-full border-b-gray-400 bg-transparent py-4 pl-12 text-sm outline-none focus:border-b-2"
-                  placeholder="Search by Order ID, Date, Customer"
-                  onChange={(e) => {
-                    searchFunction(e.target.value);
-                  }}
-                />
-              </form>
-
-              <button
-                type="button"
-                class="relative mr-auto inline-flex cursor-pointer items-center rounded-full border border-gray-200 bg-white px-5 py-2 text-center text-sm font-medium text-gray-800 hover:bg-gray-100 focus:shadow sm:mr-0"
-              >
-                <span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500"></span>
-                <svg
-                  class="mr-2 h-3 w-3"
                   xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
                 >
                   <path
+                    d="M1.5 7.75H16.5M11.9213 11.875H11.928M11.9212 14.125H11.9279M9.14676 11.875H9.1535M9.14676 14.125H9.1535M6.37088 11.875H6.37762M6.37088 14.125H6.37762M5.25 4.75V1.75M12.75 4.75V1.75M7.5 18.25H10.5C13.3284 18.25 14.7426 18.25 15.6213 17.3713C16.5 16.4926 16.5 15.0784 16.5 12.25V9.25C16.5 6.42157 16.5 5.00736 15.6213 4.12868C14.7426 3.25 13.3284 3.25 10.5 3.25H7.5C4.67157 3.25 3.25736 3.25 2.37868 4.12868C1.5 5.00736 1.5 6.42157 1.5 9.25V12.25C1.5 15.0784 1.5 16.4926 2.37868 17.3713C3.25736 18.25 4.67157 18.25 7.5 18.25Z"
+                    stroke="#111827"
+                    stroke-width="1.8"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
                   />
                 </svg>
-                Filter
-              </button>
+                <input
+                  type="text"
+                  name="from-dt"
+                  id="from-dt"
+                  class="font-semibold px-2 text-sm text-gray-900 outline-0 appearance-none flex flex-row-reverse cursor-pointer w-28 placeholder-gray-900"
+                  placeholder="11-01-2023"
+                />
+              </div>
+              <p class="font-medium text-lg leading-8 text-black">To</p>
+              <div class="flex rounded-full py-3 px-4 border border-gray-300 relative">
+                <svg
+                  class="relative "
+                  width="18"
+                  height="20"
+                  viewBox="0 0 18 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.5 7.75H16.5M11.9213 11.875H11.928M11.9212 14.125H11.9279M9.14676 11.875H9.1535M9.14676 14.125H9.1535M6.37088 11.875H6.37762M6.37088 14.125H6.37762M5.25 4.75V1.75M12.75 4.75V1.75M7.5 18.25H10.5C13.3284 18.25 14.7426 18.25 15.6213 17.3713C16.5 16.4926 16.5 15.0784 16.5 12.25V9.25C16.5 6.42157 16.5 5.00736 15.6213 4.12868C14.7426 3.25 13.3284 3.25 10.5 3.25H7.5C4.67157 3.25 3.25736 3.25 2.37868 4.12868C1.5 5.00736 1.5 6.42157 1.5 9.25V12.25C1.5 15.0784 1.5 16.4926 2.37868 17.3713C3.25736 18.25 4.67157 18.25 7.5 18.25Z"
+                    stroke="#111827"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <input
+                  type="text"
+                  name="to-dt"
+                  id="to-dt"
+                  class="font-semibold px-2 text-sm text-gray-900 outline-0 appearance-none flex flex-row-reverse cursor-pointer w-28 placeholder-gray-900"
+                  placeholder="11-01-2023"
+                />
+              </div>
             </div>
           </div>
+          <div class="mt-7 border border-gray-300 pt-9">
+            <div class="flex max-md:flex-col items-center justify-between px-3 md:px-11">
+              <div class="flex items-center gap-3 max-md:mt-5">
+                <button class="rounded-full px-7 py-3 bg-white text-gray-900 border border-gray-300 font-semibold text-sm shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-200 hover:bg-gray-50 hover:border-gray-400">
+                  Show Invoice
+                </button>
+                <button class="rounded-full px-7 py-3 bg-indigo-600 shadow-sm shadow-transparent text-white font-semibold text-sm transition-all duration-500 hover:shadow-indigo-400 hover:bg-indigo-700">
+                  Buy Now
+                </button>
+              </div>
+            </div>
+            <svg
+              class="my-9 w-full"
+              xmlns="http://www.w3.org/2000/svg"
+              width="1216"
+              height="2"
+              viewBox="0 0 1216 2"
+              fill="none"
+            >
+              <path d="M0 1H1216" stroke="#D1D5DB" />
+            </svg>
 
-          <div class="mt-6 overflow-hidden rounded-xl bg-white px-6 shadow lg:px-4">
-            <table class="min-w-full border-collapse border-spacing-y-2 border-spacing-x-2">
-              <thead class="hidden border-b lg:table-header-group">
-                <tr class="">
-                  <td class="whitespace-normal py-4 text-sm font-semibold text-gray-800 sm:px-3">
-                    Order Date
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="float-right mt-1 h-3 w-3"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="3"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                      />
-                    </svg>
-                  </td>
+            {orderList.map((element) => {
+              return (
+                <div>
+                  <svg
+                    class="my-9 w-full"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1216"
+                    height="2"
+                    viewBox="0 0 1216 2"
+                    fill="none"
+                  >
+                    <path d="M0 1H1216" stroke="#D1D5DB" />
+                  </svg>
+                  <div class="flex max-lg:flex-col items-center gap-8 lg:gap-24 px-3 md:px-11">
+                    <div class="grid grid-cols-4 w-full">
+                      <div className="col-span-4 sm:col-span-1">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-24 h-24 max-sm:mx-auto text-gray-700"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.5}
+                            d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4a2 2 0 001-1.73z"
+                          />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.5}
+                            d="M3.27 6.96L12 12.01l8.73-5.05"
+                          />
+                        </svg>
+                      </div>
 
-                  <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
-                    Order ID
-                  </td>
-                  <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
-                    Items
-                  </td>
-                  <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
-                    Shop
-                  </td>
-
-                  <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
-                    Customer
-                  </td>
-                  <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
-                    Dimensions
-                  </td>
-
-                  <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
-                    Total Price
-                  </td>
-
-                  <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
-                    Price
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="float-right mt-1 h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M8 9l4-4 4 4m0 6l-4 4-4-4"
-                      />
-                    </svg>
-                  </td>
-
-                  <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
-                    Status
-                  </td>
-                  <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-3">
-                    View
-                  </td>
-                </tr>
-              </thead>
-
-              <tbody class="bg-white lg:border-gray-300">
-                {orderList.map((element) => {
-                  return (
-                    <tr class="">
-                      <td class="whitespace-no-wrap py-4 text-left text-sm text-gray-600 sm:px-3 lg:text-left">
-                        {element.createdAt.split("T")[0]}
-                        <div class="mt-1 flex flex-col text-xs font-medium lg:hidden">
-                          <div class="flex items-center">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              class="mr-1 h-3 w-3"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                              stroke-width="2"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                              />
-                            </svg>
-                            Jane Doeson
-                          </div>
-                          <div class="flex items-center">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              class="mr-1 h-3 w-3"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                              stroke-width="2"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M4 6h16M4 10h16M4 14h16M4 18h16"
-                              />
-                            </svg>
-                            Desktop Computer
-                          </div>
-                          <div class="">24 x 10 x 5 cm</div>
-                          <div class="flex items-center">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              class="mr-1 h-3 w-3"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                              stroke-width="2"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
-                              />
-                            </svg>
-                            {element.totalPrice}
-                          </div>
+                      <div class="col-span-4 sm:col-span-3 max-sm:mt-4 sm:pl-8 flex flex-col justify-center max-sm:items-center">
+                        <h6 class="font-manrope font-semibold text-2xl leading-9 text-black mb-3 whitespace-nowrap">
+                          {element.items[0].name}
+                        </h6>
+                        <p class="font-normal text-lg leading-8 text-gray-500 mb-8 whitespace-nowrap">
+                          By: {element._id}
+                        </p>
+                        <div class="flex items-center max-sm:flex-col gap-x-10 gap-y-3">
+                          <span class="font-normal text-lg leading-8 text-gray-500 whitespace-nowrap">
+                            Qty: {element.items.length}
+                          </span>
+                          <p class="font-semibold text-xl leading-8 text-black whitespace-nowrap">
+                            Price Rs. {element.totalPrice}
+                          </p>
                         </div>
-                      </td>
-
-                      <td class="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-600 sm:px-3 lg:table-cell">
-                        62345231143
-                      </td>
-
-                      <td class="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-600 sm:px-3 lg:table-cell">
-                        {element.items[0].name}
-                      </td>
-
-                      <td class="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-600 sm:px-3 lg:table-cell">
-                        <img
-                          class="h-8 w-8 overflow-hidden rounded-full border p-1"
-                          src="data:image/png;base64,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"
-                          alt=""
-                        />
-                      </td>
-                      <td class="whitespace-no-wrap hidden py-4 text-left text-sm text-gray-600 sm:px-3 lg:table-cell lg:text-left">
-                        Jane Doeson
-                      </td>
-                      <td class="whitespace-no-wrap hidden py-4 text-left text-sm text-gray-600 sm:px-3 lg:table-cell lg:text-left">
-                        24 x 10 x 5 cm
-                      </td>
-                      <td class="whitespace-no-wrap hidden py-4 text-left text-sm text-gray-600 sm:px-3 lg:table-cell lg:text-left">
-                        Rs. {element.totalPrice}
-                      </td>
-
-                      <td class="whitespace-no-wrap py-4 text-right text-sm text-gray-600 sm:px-3 lg:text-left">
-                        Rs. {element.paymentAmount}
-                        <span class="mt-1 ml-auto block w-fit whitespace-nowrap rounded-full bg-purple-100 px-2 py-0.5 text-center text-xs text-purple-800 lg:hidden">
+                      </div>
+                    </div>
+                    <div class="flex items-center justify-around w-full  sm:pl-28 lg:pl-0">
+                      <div class="flex flex-col justify-center items-start max-sm:items-center">
+                        <p class="font-normal text-lg text-gray-500 leading-8 mb-2 text-left whitespace-nowrap">
+                          Status
+                        </p>
+                        <p class="font-semibold text-lg leading-8 text-green-500 text-left whitespace-nowrap">
                           {element.status}
-                        </span>
-                      </td>
+                        </p>
+                      </div>
+                      <div class="flex flex-col justify-center items-start max-sm:items-center">
+                        <p class="font-normal text-lg text-gray-500 leading-8 mb-2 text-left whitespace-nowrap">
+                          Placed date
+                        </p>
+                        <p class="font-semibold text-lg leading-8 text-black text-left whitespace-nowrap">
+                          {element.createdAt.split("T")[0]}
+                        </p>
+                      </div>
 
-                      <td class="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-3 lg:table-cell">
-                        <span class="ml-2 mr-3 whitespace-nowrap rounded-full bg-purple-100 px-2 py-0.5 text-purple-800">
-                          {element.status}
-                        </span>
-                      </td>
-
-                      <td class="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-3 lg:table-cell">
+                      <div class="flex flex-col justify-center items-start max-sm:items-center">
                         <Link
                           to={`/farmer/${uid}/order/${element._id}/update`}
-                          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                          class="rounded-full px-7 py-3 bg-indigo-600 shadow-sm shadow-transparent text-white font-semibold text-sm transition-all duration-500 hover:shadow-indigo-400 hover:bg-indigo-700"
                         >
                           View
                         </Link>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+
+            <svg
+              class="mt-9 w-full"
+              xmlns="http://www.w3.org/2000/svg"
+              width="1216"
+              height="2"
+              viewBox="0 0 1216 2"
+              fill="none"
+            >
+              <path d="M0 1H1216" stroke="#D1D5DB" />
+            </svg>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

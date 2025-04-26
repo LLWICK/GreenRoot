@@ -7,8 +7,6 @@ import { UserProvider } from "./farmer/utills/UserContext";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <UserProvider>
-      <App />
-    </UserProvider>
+    <App />
   </BrowserRouter>
 );
