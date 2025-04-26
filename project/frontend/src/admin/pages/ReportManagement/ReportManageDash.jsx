@@ -2,7 +2,7 @@ import React from 'react'
 
 const ReportManageDash = () => {
     return (
-        <div>ReportManageDash</div>
+        <div>Report Management</div>
     )
 }
 

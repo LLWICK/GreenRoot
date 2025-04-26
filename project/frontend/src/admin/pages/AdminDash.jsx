@@ -59,7 +59,7 @@ const AdminDash = () => {
                     {/* Report management Section */}
                     <div className="mt-8 mb-10">
                         <Link
-                            to={`/admin/question-dash`}
+                            to={`/admin/report-dash`}
                             className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-lg"
                         >
                             Manage Reports
