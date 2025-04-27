@@ -77,6 +77,7 @@ const statDataRoutes = require("./seller/routes/statDataRoutes.js");
 const FarmerToDoRoutes = require("./seller/routes/TodoListRoutes.js");
 const NormalOrderRoutes = require("./seller/routes/normalOrderRoutes.js");
 const DilveryGuyRoutes = require("./seller/routes/DiliveryGuyRoutes.js");
+const MapSellerFarmers = require("./seller/routes/fieldRoutes.js");
 
 
 const mongoURL = process.env.mongoURL;
@@ -134,6 +135,7 @@ app.use("/api/RetailSeller/stats", statDataRoutes);
 app.use("/api/RetailSeller/farmers", FarmerToDoRoutes);
 app.use("/api/RetailSeller/normalOrders", NormalOrderRoutes);
 app.use("/api/DiliveryGuy/orders", DilveryGuyRoutes);
+app.use("/api/RetailSeller/field", MapSellerFarmers);
 
 
 

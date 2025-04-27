@@ -3,6 +3,6 @@ const router = express.Router();
 const { getFieldByFarmerID } = require('../controller/sellerFarmersMap'); // Adjust path
 
 // GET one field by farmerID
-router.get('/api/fields/:farmerID', getFieldByFarmerID);
+router.get('/:farmerID', getFieldByFarmerID);
 
 module.exports = router;

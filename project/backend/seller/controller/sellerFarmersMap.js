@@ -7,13 +7,15 @@ const getFieldByFarmerID = async (req, res) => {
   try {
     const { farmerID } = req.params;
 
+    console.log(farmerID)
     let field;
 
     if (farmerID) {
       // Find ONE field belonging to the farmer
       field = await FieldModel.findOne({ farmerID: farmerID });
+      console.log(field)
     } else {
-      // If no farmerID, just find any one field
+      
       throw error('farmer id is needed')
     }
 

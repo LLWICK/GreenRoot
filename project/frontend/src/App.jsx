@@ -121,6 +121,7 @@ import AboutUsPage from "./Common/pages/AboutUsPage";
 import MapEdit from "./farmer/mapComponents/MapEdit";
 import AgroDetails from "./seller/pages/sellerAgroDetails";
 import TrackPage from "./farmer/mapComponents/components/TrackPage";
+import MapComponent from "./seller/pages/farmerFiledMap";
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -294,6 +295,7 @@ function App() {
       <Route path="/seller/:sid/farmers" element={<FarmerList />} />
       <Route path="/diliveryGuy/dash" element={<DiliveryDash />} />
       <Route path="/seller/:sid/news" element={< AgroDetails/>} />
+      <Route path="/seller/farmerFields" element={<MapComponent/>} />
 
       {/* Customer Routes */}
 
