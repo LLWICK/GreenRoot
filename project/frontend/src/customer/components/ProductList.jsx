@@ -1,40 +1,44 @@
 import React, { useState, useEffect } from "react";
 import ProductItem from "./ProductItem";
 
-const ProductList = ({custId}) => {
+const ProductList = ({ custId }) => {
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
-        try {
-            const response = await fetch("http://localhost:3000/api/customer/products");
+      try {
+        const response = await fetch("http://localhost:3000/api/customer/products");
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const json = await response.json();
-            setProducts(json.products);
-            console.log(json.products);
-        } catch (error) {
-            console.error("Error fetching products:", error);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
+
+        const json = await response.json();
+        setProducts(json.products);
+        console.log(json.products);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     };
 
     fetchProducts();
-}, []);
+  }, []);
 
   return (
-    <div className="mt-10 ">
-      <h2 className="text-green-600 font-bold text-2xl">
-        Our Popular products
-      </h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-6">
+    <div className="mt-10 bg-gray-300 py-10 px-4 rounded-xl shadow-lg">
+      <h2 className="text-green-800 font-bold text-3xl text-center mb-6">Our Popular Products</h2>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8">
         {products &&
           products.length > 0 &&
           products.map(
             (product, index) =>
-              index < 32 && <ProductItem custId={custId} key={product._id} product={product} />
+              index < 32 && (
+                <ProductItem
+                  custId={custId}
+                  key={product._id}
+                  product={product}
+                />
+              )
           )}
       </div>
     </div>
