@@ -120,6 +120,7 @@ import DiliveryDash from "./seller/pages/diliveryGuy/diliveryGuyDash";
 import AboutUsPage from "./Common/pages/AboutUsPage";
 import MapEdit from "./farmer/mapComponents/MapEdit";
 import TrackPage from "./farmer/mapComponents/components/TrackPage";
+import RestPasswordPage from "./Common/pages/RestPasswordPage";
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -158,6 +159,7 @@ function App() {
       <Route path="/track/location" element={<TrackPage />} />
       {/* <Route path="/aboutUs" element={<AboutUsPage />} /> */}
       <Route path="/payment/success/:id" element={<PaySuccess />} />
+      <Route path="/forgetPassword/:uid" element={<RestPasswordPage />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
