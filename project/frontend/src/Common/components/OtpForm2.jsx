@@ -1,8 +1,10 @@
 import axios from "axios";
+
 import React, { useState } from "react";
 
 function OtpForm2() {
   const [otp, setOtp] = useState(null);
+  const [userDets, setuserDet] = useState(null);
   const [userEmail, setUserEmail] = useState("");
   const [emailEntered, setEmailEntered] = useState(false);
 
@@ -10,6 +12,21 @@ function OtpForm2() {
     if (!userEmail) {
       alert("Please enter an email");
       return;
+    } else {
+      axios
+        .post("http://localhost:3000/api/v1/user/b/parameters", {
+          email: `${userEmail}`,
+        })
+        .then((res) => {
+          if (res.status === 404) {
+            alert("user Not Found");
+            return;
+          }
+        })
+        .catch((err) => {
+          alert("userNot!");
+          return;
+        });
     }
     let generateCode = Math.floor(1000 + Math.random() * 9000);
     setOtp(generateCode);
