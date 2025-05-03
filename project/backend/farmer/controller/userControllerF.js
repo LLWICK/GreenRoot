@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const USER = require("../../admin/model/userModel");
+const { hashPassword } = require("../../admin/utils/passwordUtils");
 
 //get users accoding to the parameters
 
@@ -19,11 +20,14 @@ const userByParams = async (req, res) => {
   }
 };
 
-//Update crop
+//Update password
 
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
+    const { password } = req.body;
+    const hashedPassword = await hashPassword(password);
+    req.body.password = hashedPassword;
     const user = await USER.findByIdAndUpdate(id, req.body, { new: true });
     if (!user) {
       res.status(404).json({ msg: "user not Updated!" });
