@@ -91,6 +91,8 @@ import {
   AccountIssue,
   TechnicalSupport,
   OtherQuestion,
+  // report management routes
+  ReportManagementDash,
 } from "./admin/pages";
 
 /* retail seller page imports  */
@@ -241,6 +243,9 @@ function App() {
         element={<QuestionDetails />}
       />
       <Route path="/admin/reply-question/:qid" element={<ReplyQuestion />} />
+
+      {/* Report Management */}
+      <Route path="/admin/report-dash" element={<ReportManagementDash />} />
 
       {/* Home page components */}
       <Route path="/contact" element={<ContactUsPage />} />
