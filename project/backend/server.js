@@ -44,6 +44,7 @@ const farmerScheduleManage = require("./farmer/routes/scheduleRoute.js");
 const categoryManage = require("./farmer/routes/categoryRoute");
 const fieldManage = require("./farmer/routes/fieldRoute");
 const orderManageFarmer = require("./farmer/routes/orderRoute.js");
+const userManage_B = require("./farmer/routes/userRoute_B.js");
 
 const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
 
@@ -55,11 +56,8 @@ const otpManage = require("./common/routes/otpRoute.js");
 //Customer route import
 const orderManage = require("./customer/routes/orderRoute.js");
 const addtocartManage = require("./customer/routes/AddtoCartRoute.js");
-const PaymentManage = require("./customer/routes/PaymentRoute.js");//change
-const ProductManage = require("./customer/routes/GetProducts.js")
-
-
-
+const PaymentManage = require("./customer/routes/PaymentRoute.js"); //change
+const ProductManage = require("./customer/routes/GetProducts.js");
 
 //Researcher routes import
 const postRoutes = require("./researcher/routes/postRoutes.js");
@@ -96,7 +94,6 @@ app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/user", userManagement);
 
-
 //Use farmer routes
 app.use("/api/v1/stock", stockManage);
 app.use("/api/v1/crops", cropManage);
@@ -106,6 +103,7 @@ app.use("/api/v1/ticket", ticketManage);
 app.use("/api/v1/payment", paymentManage);
 app.use("/api/v1/farmer/schedule", farmerScheduleManage);
 app.use("/api/v1/farmer/order", orderManageFarmer);
+app.use("/api/v1/user/b", userManage_B);
 
 //Use OTP route
 
@@ -114,9 +112,8 @@ app.use("/api/v1/otp", otpManage);
 //customer Routes
 app.use("/api/customer/orders", orderManage);
 app.use("/api/customer/addtocart", addtocartManage);
-app.use('/api/customer/payment',PaymentManage)//change
-app.use('/api/customer/products',ProductManage)
-
+app.use("/api/customer/payment", PaymentManage); //change
+app.use("/api/customer/products", ProductManage);
 
 //Researcher Routes
 app.use("/api/researcher/posts", postRoutes);
@@ -136,8 +133,6 @@ app.use("/api/RetailSeller/farmers", FarmerToDoRoutes);
 app.use("/api/RetailSeller/normalOrders", NormalOrderRoutes);
 app.use("/api/DiliveryGuy/orders", DilveryGuyRoutes);
 app.use("/api/RetailSeller/field", MapSellerFarmers);
-
-
 
 
 mongoose

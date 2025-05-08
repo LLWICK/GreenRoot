@@ -91,6 +91,8 @@ import {
   AccountIssue,
   TechnicalSupport,
   OtherQuestion,
+  // report management routes
+  ReportManagementDash,
 } from "./admin/pages";
 
 /* retail seller page imports  */
@@ -121,6 +123,7 @@ import AboutUsPage from "./Common/pages/AboutUsPage";
 import MapEdit from "./farmer/mapComponents/MapEdit";
 import AgroDetails from "./seller/pages/sellerAgroDetails";
 import TrackPage from "./farmer/mapComponents/components/TrackPage";
+import RestPasswordPage from "./Common/pages/RestPasswordPage";
 import MapComponent from "./seller/pages/farmerFiledMap";
 
 // import UserManagement from "./admin/pages/UserManagement";
@@ -160,6 +163,7 @@ function App() {
       <Route path="/track/location" element={<TrackPage />} />
       {/* <Route path="/aboutUs" element={<AboutUsPage />} /> */}
       <Route path="/payment/success/:id" element={<PaySuccess />} />
+      <Route path="/forgetPassword/:uid" element={<RestPasswordPage />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
@@ -241,6 +245,9 @@ function App() {
         element={<QuestionDetails />}
       />
       <Route path="/admin/reply-question/:qid" element={<ReplyQuestion />} />
+
+      {/* Report Management */}
+      <Route path="/admin/report-dash" element={<ReportManagementDash />} />
 
       {/* Home page components */}
       <Route path="/contact" element={<ContactUsPage />} />

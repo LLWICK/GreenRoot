@@ -1,8 +1,10 @@
 import axios from "axios";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from "react-toastify";
+import html2canvas from "html2canvas";
+import { Canvg } from "canvg";
 
 function NewOrderComp() {
   const [order, setOrder] = useState({});
@@ -14,6 +16,7 @@ function NewOrderComp() {
   const [orderStatus, setStatus] = useState("");
   const { oid, uid } = useParams();
   const navigate = useNavigate();
+  const invoiceRef = useRef();
 
   useEffect(() => {
     // Simulate fetching crop data from an API
@@ -89,12 +92,32 @@ function NewOrderComp() {
       });
   };
 
-  const handleDownload = () => {
-    const invoice = document.getElementById("invoice");
+  const handleDownload = async () => {
+    if (invoiceRef.current) {
+      const svgElement = invoiceRef.current.querySelector("svg");
+      if (svgElement) {
+        const canvas = document.createElement("canvas");
+        const svgSize = svgElement.getBoundingClientRect();
+        canvas.width = svgSize.width;
+        canvas.height = svgSize.height;
+        const ctx = canvas.getContext("2d");
+
+        const svgData = new XMLSerializer().serializeToString(svgElement);
+        const v = await Canvg.fromString(ctx, svgData);
+        await v.render();
+
+        const link = document.createElement("a");
+        link.download = "question-pie-chart.png";
+        link.href = canvas.toDataURL("image/png");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    }
   };
 
   return (
-    <div className="flex" id="invoice">
+    <div className="flex">
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -109,7 +132,10 @@ function NewOrderComp() {
         transition={Bounce}
       />
 
-      <div class="py-11 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+      <div
+        class="py-11 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto"
+        ref={invoiceRef}
+      >
         <div class="flex justify-start item-start space-y-2 flex-col">
           <h1 class="text-3xl dark:text-black lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
             Order #{order._id}
