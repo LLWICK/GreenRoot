@@ -35,6 +35,8 @@ const adminRoutes = require("./admin/routes/admin.routes.js"); // admin routes
 const userManagement = require("./admin/routes/user.routes.js");
 // Q&A management routes (Admin)
 const qnaManagement = require("./admin/routes/question.routes.js");
+// report management routes
+const reportManagement = require('./admin/routes/report.routes.js');
 
 //Farmer routes import
 const stockManage = require("./farmer/routes/stockRoute");
@@ -90,6 +92,7 @@ app.use("/api/qna", qnaManagement);
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/user", userManagement);
+app.use("/api/admin/report", reportManagement);
 
 //Use farmer routes
 app.use("/api/v1/stock", stockManage);

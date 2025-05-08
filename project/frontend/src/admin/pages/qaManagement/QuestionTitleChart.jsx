@@ -67,6 +67,10 @@ const QuestionTitleChart = () => {
         }
     };
 
+    const downloadExcel = () => {
+        window.open('http://localhost:3000/api/admin/report/questions/excel', '_blank');
+    };
+
     return (
         <div className='p-5'>
             <>
@@ -100,7 +104,15 @@ const QuestionTitleChart = () => {
                 >
                     Download Image
                 </button>
+
+                <button
+                    onClick={downloadExcel}
+                    className='bg-blue-500 text-white ml-1.5 px-4 py-2 rounded hover:bg-blue-600'
+                >
+                    Download Excel
+                </button>
             </div>
+
         </div>
     );
 };

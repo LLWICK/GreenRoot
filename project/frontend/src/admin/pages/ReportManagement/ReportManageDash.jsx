@@ -2,6 +2,7 @@ import React from 'react';
 import Sidebar from '../../components/Sidebar';
 import BackButton from '../../components/BackButton';
 import UserRoleChart from '@/admin/components/UserRoleChart';
+import QuestionTitleChart from '../qaManagement/QuestionTitleChart';
 
 const ReportManageDash = () => {
     return (
@@ -25,6 +26,10 @@ const ReportManageDash = () => {
                             <UserRoleChart />
                         </div>
 
+                        <div className="bg-white shadow-md rounded-lg p-6 mt-6">
+                            <h2 className="text-lg font-semibold text-gray-700 mb-3">User Questions</h2>
+                            <QuestionTitleChart />
+                        </div>
                     </div>
                 </div>
 
