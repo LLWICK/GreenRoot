@@ -295,7 +295,7 @@ function App() {
       <Route path="/seller/:sid/farmers" element={<FarmerList />} />
       <Route path="/diliveryGuy/dash" element={<DiliveryDash />} />
       <Route path="/seller/:sid/news" element={< AgroDetails/>} />
-      <Route path="/seller/farmerFields" element={<MapComponent/>} />
+      <Route path="/seller/farmerFields/:fid" element={<MapComponent/>} />
 
       {/* Customer Routes */}
 

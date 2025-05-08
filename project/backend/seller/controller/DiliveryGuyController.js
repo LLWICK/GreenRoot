@@ -33,6 +33,8 @@ const updateOrderStatus = async (req, res) => {
       if (!updatedOrder) {
         return res.status(404).json({ message: 'Order not found.' });
       }
+
+      const user = await User.findById(userId);
   
       res.status(200).json({
         message: 'Order status updated successfully.',

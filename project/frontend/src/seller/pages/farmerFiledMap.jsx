@@ -7,6 +7,7 @@ import L from 'leaflet';
 import markerIconPng from 'leaflet/dist/images/marker-icon.png';
 import markerIcon2xPng from 'leaflet/dist/images/marker-icon-2x.png';
 import markerShadowPng from 'leaflet/dist/images/marker-shadow.png';
+import { useParams } from 'react-router-dom';
 
 // Fix for leaflet marker icons
 delete L.Icon.Default.prototype._getIconUrl;
@@ -17,18 +18,20 @@ L.Icon.Default.mergeOptions({
 });
 
 const MapComponent = () => {
-  const farmerID = '67e5029f83e693d9e2965ada';
+
+  const {fid} = useParams();
+
   const [field, setField] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/RetailSeller/field/${farmerID}`)
+    axios.get(`http://localhost:3000/api/RetailSeller/field/${fid}`)
       .then(response => {
         setField(response.data);
       })
       .catch(error => {
         console.error('Error fetching field:', error);
       });
-  }, [farmerID]);
+  }, [fid]);
 
   if (!field) {
     return <div className="flex justify-center items-center h-screen">Loading field...</div>;
