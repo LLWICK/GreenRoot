@@ -1,8 +1,10 @@
 import axios from "axios";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from "react-toastify";
+import html2canvas from "html2canvas";
+import { Canvg } from "canvg";
 
 function NewOrderComp() {
   const [order, setOrder] = useState({});
@@ -14,6 +16,7 @@ function NewOrderComp() {
   const [orderStatus, setStatus] = useState("");
   const { oid, uid } = useParams();
   const navigate = useNavigate();
+  const invoiceRef = useRef();
 
   useEffect(() => {
     // Simulate fetching crop data from an API
@@ -23,6 +26,7 @@ function NewOrderComp() {
           .get(`http://localhost:3000/api/v1/farmer/order/${oid}`)
           .then((res) => {
             setOrder(res.data.data);
+            console.log(res.data.data);
             setItems(res.data.data.items);
             setStatus(res.data.data.status);
             setReciver(true);
@@ -90,11 +94,31 @@ function NewOrderComp() {
   };
 
   const handleDownload = () => {
-    const invoice = document.getElementById("invoice");
+    axios
+      .post(
+        `http://localhost:3000/api/v1/farmer/order/Invoice/${oid}`,
+        {
+          customerF: sellerDets.firstName,
+          customerL: sellerDets.lastName,
+          orderItems: Items,
+          TotalPrice: order.totalPrice,
+        },
+        {
+          responseType: "blob",
+        }
+      )
+      .then((res) => {
+        const file = new Blob([res.data], { type: "application/pdf" });
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      })
+      .catch((err) => {
+        console.error("Download failed:", err);
+      });
   };
 
   return (
-    <div className="flex" id="invoice">
+    <div className="flex">
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -109,7 +133,10 @@ function NewOrderComp() {
         transition={Bounce}
       />
 
-      <div class="py-11 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+      <div
+        class="py-11 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto"
+        ref={invoiceRef}
+      >
         <div class="flex justify-start item-start space-y-2 flex-col">
           <h1 class="text-3xl dark:text-black lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
             Order #{order._id}
