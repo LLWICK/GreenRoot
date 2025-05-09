@@ -37,6 +37,35 @@ const [ratings, setRatings] = useState({});
   const handleRatingChange = (itemId, value) => {
     setRatings((prev) => ({ ...prev, [itemId]: value }));
   };
+
+  const handleFeedback = async (order) => {
+  try {
+    const response = await fetch('http://localhost:3000/api/customer/feedback', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        orderId: order._id,
+        orderNumber: order.orderNumber,
+        feedback,
+        hasIssue,
+        complaintType: hasIssue === 'yes' ? complaintType : null,
+        ratings: hasIssue === 'no' ? ratings : null,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to submit feedback');
+    }
+
+    alert('Feedback submitted successfully!');
+  } catch (error) {
+    console.error('Error submitting feedback:', error);
+    alert('Failed to submit feedback');
+  }
+};
+
   
 
   if (loading) {
@@ -85,6 +114,17 @@ const [ratings, setRatings] = useState({});
                   <p className="text-lg font-semibold text-green-800 mt-2">Final Total: Rs.{order.finalTotal}</p>
                   <div className="mt-4 flex justify-end">
                     
+
+
+
+
+
+
+
+
+
+
+                    {/* //////////////////////////////////////////////// */}
 
                   <Dialog>
   <DialogTrigger asChild>
@@ -169,7 +209,7 @@ const [ratings, setRatings] = useState({});
 
           {/* Submit Button */}
           <div className="text-right">
-            <Button type="submit" className="bg-green-600 hover:bg-green-700 text-white">
+            <Button type="submit" className="bg-green-600 hover:bg-green-700 text-white" onClick={handleFeedback}>
               Submit Feedback
             </Button>
           </div>

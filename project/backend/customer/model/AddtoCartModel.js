@@ -43,7 +43,7 @@ const AddtoCartSchema = new mongoose.Schema(
     }
 );
 
-// Change the model name here
+
 const AddtoCart = mongoose.model("addtocarts", AddtoCartSchema); // Changed 
 
 module.exports = AddtoCart;
