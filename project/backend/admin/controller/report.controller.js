@@ -74,7 +74,7 @@ const getUserForExcel = async (req, res) => {
         }))
 
         // user infor
-        const userInfo = user.map(user => ({
+        const userInfo = users.map(user => ({
             First_Name: user.firstName,
             Last_Name: user.lastName,
             Email: user.email,
