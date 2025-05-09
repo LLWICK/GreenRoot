@@ -63,6 +63,11 @@ const UserRoleChart = () => {
         }
     };
 
+    // download excel
+    const downloadExcel = () => {
+        window.open('http://localhost:3000/api/admin/report/user-data/excel', '_blank');
+    };
+
     return (
         <div className='p-5'>
             <h2 className='text-center text-lg font-bold'>User Distribution by Role</h2>
@@ -85,6 +90,13 @@ const UserRoleChart = () => {
                     className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'
                 >
                     Download Image
+                </button>
+
+                <button
+                    onClick={downloadExcel}
+                    className='bg-blue-500 text-white px-4 py-2 ml-1.5 rounded hover:bg-blue-600'
+                >
+                    Download Excel
                 </button>
             </div>
         </div>
