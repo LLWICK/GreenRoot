@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+
 
 const OrderhistoryPage = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [hasIssue, setHasIssue] = useState('no');
+const [feedback, setFeedback] = useState('');
+const [complaintType, setComplaintType] = useState('');
+const [ratings, setRatings] = useState({});
+
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -26,6 +33,11 @@ const OrderhistoryPage = () => {
     };
     fetchOrders();
   }, []);
+
+  const handleRatingChange = (itemId, value) => {
+    setRatings((prev) => ({ ...prev, [itemId]: value }));
+  };
+  
 
   if (loading) {
     return <div className="flex justify-center items-center h-screen text-green-700 text-xl">Loading...</div>;
@@ -72,9 +84,109 @@ const OrderhistoryPage = () => {
                   <p className="text-lg font-semibold text-green-800">Buyer ID: {order.ordinary_buyer_id}</p>
                   <p className="text-lg font-semibold text-green-800 mt-2">Final Total: Rs.{order.finalTotal}</p>
                   <div className="mt-4 flex justify-end">
-                    <Button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-md">
-                      Cancel Order
-                    </Button>
+                    
+
+                  <Dialog>
+  <DialogTrigger asChild>
+    <Button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-md">
+      Feedback
+    </Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle className="text-green-800 font-bold">Feedback & Complaint</DialogTitle>
+      <DialogDescription asChild>
+        <form className="space-y-4 mt-4" onSubmit={(e) => {
+          e.preventDefault();
+          console.log({ feedback, hasIssue, complaintType });
+          // Submit logic here
+        }}>
+          {/* Feedback Textarea */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Your Feedback</label>
+            <textarea
+              rows="3"
+              className="w-full border rounded-md p-2 text-sm focus:outline-none focus:ring focus:border-green-500"
+              placeholder="Write your feedback here..."
+              value={feedback}
+              onChange={(e) => setFeedback(e.target.value)}
+            ></textarea>
+          </div>
+
+          {/* Is there any issue? */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Is there any issue?</label>
+            <select
+              className="w-full border rounded-md p-2 text-sm focus:outline-none focus:ring focus:border-green-500"
+              value={hasIssue}
+              onChange={(e) => setHasIssue(e.target.value)}
+            >
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+
+          {/* Complaint Dropdown - only shown if "yes" */}
+          {hasIssue === 'yes' ? (
+  <div>
+    <label className="block text-sm font-medium text-gray-700 mb-1">Complaint Type</label>
+    <select
+      className="w-full border rounded-md p-2 text-sm focus:outline-none focus:ring focus:border-green-500"
+      value={complaintType}
+      onChange={(e) => setComplaintType(e.target.value)}
+    >
+      <option value="" disabled>Select a reason</option>
+      <option value="delay">Product Delay</option>
+      <option value="quality">Quality Issue</option>
+      <option value="damaged">Damaged Item</option>
+      <option value="wrong">Wrong Product Delivered</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
+) : (
+  <div>
+    <label className="block text-sm font-medium text-gray-700 mb-2">Rate the Products</label>
+    {order.cartItems.map((item) => (
+      <div key={item.id} className="flex items-center justify-between mb-2 bg-gray-100 p-2 rounded">
+        <span className="text-green-800 font-semibold">{item.name}</span>
+        <select
+          className="border rounded-md p-1 text-sm focus:outline-none"
+          value={ratings[item.id] || ''}
+          onChange={(e) => handleRatingChange(item.id, e.target.value)}
+        >
+          <option value="" disabled>Rate</option>
+          <option value="1">⭐</option>
+          <option value="2">⭐⭐</option>
+          <option value="3">⭐⭐⭐</option>
+          <option value="4">⭐⭐⭐⭐</option>
+          <option value="5">⭐⭐⭐⭐⭐</option>
+        </select>
+      </div>
+    ))}
+  </div>
+)}
+
+
+          {/* Submit Button */}
+          <div className="text-right">
+            <Button type="submit" className="bg-green-600 hover:bg-green-700 text-white">
+              Submit Feedback
+            </Button>
+          </div>
+        </form>
+      </DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
+
+
+
+
+
+
+
+
+
                   </div>
                 </div>
               </div>
