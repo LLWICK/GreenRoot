@@ -35,6 +35,8 @@ const adminRoutes = require("./admin/routes/admin.routes.js"); // admin routes
 const userManagement = require("./admin/routes/user.routes.js");
 // Q&A management routes (Admin)
 const qnaManagement = require("./admin/routes/question.routes.js");
+// report management routes
+const reportManagement = require("./admin/routes/report.routes.js");
 
 //Farmer routes import
 const stockManage = require("./farmer/routes/stockRoute");
@@ -45,6 +47,7 @@ const categoryManage = require("./farmer/routes/categoryRoute");
 const fieldManage = require("./farmer/routes/fieldRoute");
 const orderManageFarmer = require("./farmer/routes/orderRoute.js");
 const userManage_B = require("./farmer/routes/userRoute_B.js");
+const chatManage = require("./farmer/routes/chatRouts.js");
 
 const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
 
@@ -58,6 +61,7 @@ const orderManage = require("./customer/routes/orderRoute.js");
 const addtocartManage = require("./customer/routes/AddtoCartRoute.js");
 const PaymentManage = require("./customer/routes/PaymentRoute.js"); //change
 const ProductManage = require("./customer/routes/GetProducts.js");
+const FeedbackManage = require("./customer/routes/FeedbackRoute.js");
 
 //Researcher routes import
 const postRoutes = require("./researcher/routes/postRoutes.js");
@@ -93,6 +97,7 @@ app.use("/api/qna", qnaManagement);
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/user", userManagement);
+app.use("/api/admin/report", reportManagement);
 
 //Use farmer routes
 app.use("/api/v1/stock", stockManage);
@@ -104,6 +109,7 @@ app.use("/api/v1/payment", paymentManage);
 app.use("/api/v1/farmer/schedule", farmerScheduleManage);
 app.use("/api/v1/farmer/order", orderManageFarmer);
 app.use("/api/v1/user/b", userManage_B);
+app.use("/api/v1/farmer/chat", chatManage);
 
 //Use OTP route
 
@@ -114,6 +120,7 @@ app.use("/api/customer/orders", orderManage);
 app.use("/api/customer/addtocart", addtocartManage);
 app.use("/api/customer/payment", PaymentManage); //change
 app.use("/api/customer/products", ProductManage);
+app.use("/api/customer/feedback", FeedbackManage);
 
 //Researcher Routes
 app.use("/api/researcher/posts", postRoutes);

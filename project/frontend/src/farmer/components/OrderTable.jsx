@@ -6,6 +6,8 @@ function OrderTable() {
   const { uid } = useParams();
   const [orderList, setList] = useState([]);
   const [OrOrderList, setOrList] = useState([]);
+  const [fromDate, setFromDate] = useState(null);
+  const [toDate, setToDate] = useState(null);
 
   useEffect(() => {
     const fetchOrderData = async () => {
@@ -42,6 +44,15 @@ function OrderTable() {
         return element.status == e;
       });
     }
+
+    setList(k);
+  };
+
+  const handleDateFilter = () => {
+    const k = OrOrderList.filter((element) => {
+      const orderDate = element.createdAt.split("T")[0];
+      return fromDate <= orderDate && orderDate <= toDate;
+    });
 
     setList(k);
   };
@@ -88,6 +99,9 @@ function OrderTable() {
             <div class="flex max-sm:flex-col items-center justify-end gap-2 max-lg:mt-5">
               <div class="flex rounded-full py-3 px-4 border border-gray-300 relative">
                 <input
+                  onChange={(e) => {
+                    setFromDate(e.target.value);
+                  }}
                   type="date"
                   name="from-dt"
                   id="from-dt"
@@ -98,6 +112,9 @@ function OrderTable() {
               <p class="font-medium text-lg leading-8 text-black">To</p>
               <div class="flex rounded-full py-3 px-4 border border-gray-300 relative w-fit">
                 <input
+                  onChange={(e) => {
+                    setToDate(e.target.value);
+                  }}
                   type="date"
                   name="to-dt"
                   id="to-dt"
@@ -105,6 +122,12 @@ function OrderTable() {
                   placeholder="11-01-2023"
                 />
               </div>
+              <button
+                onClick={handleDateFilter}
+                class="rounded-full px-7 py-3 bg-indigo-600 shadow-sm shadow-transparent text-white font-semibold text-sm transition-all duration-500 hover:shadow-indigo-400 hover:bg-indigo-700"
+              >
+                Filter
+              </button>
             </div>
           </div>
           <div class="mt-7 border border-gray-300 pt-9">

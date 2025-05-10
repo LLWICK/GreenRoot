@@ -24,6 +24,7 @@ import {
   BlogPage,
   OrderUpdate,
   AllLocations,
+  ChatBotPage,
 } from "./farmer/pages";
 
 //Farmer ecommerce store
@@ -112,6 +113,10 @@ import ChartPage from "./customer/pages/ChartPage";
 import ConfirmPage from "./customer/pages/ConfirmPage";
 import CategoryPage from "./customer/pages/CategoryPage";
 import ProductDetailsPage from "./customer/pages/ProductDetailsPage";
+import FeedbackPage from "./customer/pages/FeedbackPage";
+
+
+//
 
 import SellerNormalOrders from "./seller/pages/sellerNormalOrders";
 import FinalizeOrder from "./seller/pages/sellerfinalizeOrder";
@@ -153,6 +158,7 @@ function App() {
       <Route path="/farmer/:uid/addMap" element={<SearchLocation />} />
       <Route path="/farmer/:uid/order/:oid/update" element={<OrderUpdate />} />
       <Route path="/farmer/:uid/Location/:mid/update" element={<MapEdit />} />
+      <Route path="/farmer/:uid/chatBot" element={<ChatBotPage />} />
 
       {/* farmer e-commerce Pages */}
 
@@ -318,6 +324,7 @@ function App() {
         path="/Customer/Orderhistory/:cid"
         element={<OrderhistoryPage />}
       />
+      <Route path="/Customer/FeedbackPage/:cid" element={<FeedbackPage />} />
       <Route path="/Customer/ChartPage/:cid" element={<ChartPage />} />
 
       <Route path="/Customer/ConfirmPage" element={<ConfirmPage />} />
