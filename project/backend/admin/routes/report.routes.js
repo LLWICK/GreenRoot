@@ -12,6 +12,7 @@ router.get('/questions/excel', getAllQuestionsForExcel);
 // user info excel
 router.get('/user-data/excel', getUserForExcel);
 // get sales
-router.get('/sales', getSalse);
+router.get('/sales/over-time', getSalse);
+
 
 module.exports = router;

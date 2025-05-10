@@ -3,6 +3,7 @@ import Sidebar from '../../components/Sidebar';
 import BackButton from '../../components/BackButton';
 import UserRoleChart from '@/admin/components/UserRoleChart';
 import QuestionTitleChart from '../qaManagement/QuestionTitleChart';
+import SalesChart from './charts/SalesChart';
 
 const ReportManageDash = () => {
     return (
@@ -29,6 +30,12 @@ const ReportManageDash = () => {
                         <div className="bg-white shadow-md rounded-lg p-6 mt-6">
                             <h2 className="text-lg font-semibold text-gray-700 mb-3">User Questions</h2>
                             <QuestionTitleChart />
+                        </div>
+
+                        {/* Sales Cart */}
+                        <div className="bg-white shadow-md rounded-lg p-6 mt-6">
+                            <h2 className="text-lg font-semibold text-gray-700 mb-3">Sales Chart</h2>
+                            <SalesChart />
                         </div>
                     </div>
                 </div>

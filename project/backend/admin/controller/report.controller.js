@@ -1,6 +1,6 @@
 const Question = require('../model/QuestionModel');
 const User = require('../model/userModel');
-const Order = require('../../customer/model/AddtoCartModel');
+const Order = require('../../customer/model/orderModel');
 const XLSX = require('xlsx');
 
 const getAllQuestionsForExcel = async (req, res) => {
@@ -124,12 +124,11 @@ const getSalse = async (req, res) => {
         }));
 
         res.status(200).json({ data: salesData });
-
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({ message: "Failed to fetch sales data" });
     }
-}
+};
 
 module.exports = {
     getAllQuestionsForExcel,
