@@ -1,6 +1,8 @@
 import React from 'react';
 
 const Product = ({ product, updateProduct, deleteProduct,openEditModal }) => {
+  console.log(product)
+  console.log("soem")
   const { name, quantity, fertilizer, image, category, supplier, price, _id } = product;
 
   return (

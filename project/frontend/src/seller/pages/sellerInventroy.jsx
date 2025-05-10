@@ -35,19 +35,21 @@ const SellerInventroy = () => {
   };
 
   const [formeData, setFormeData] = useState(defaultFormData);
+  const [cid, setCategory] = useState("All");
 
   // Fetch all products when the component mounts
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/RetailSeller/products/products/${sid}`);
+        const response = await axios.get(`http://localhost:3000/api/RetailSeller/products/products/${sid}/${cid}`);
+        console.log(response)
         setProducts(response.data.products);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
     };
     fetchProducts();
-  }, []);
+  }, [cid]);
 
   // Function to create a new product
   const createProduct = async () => {
@@ -130,16 +132,16 @@ const SellerInventroy = () => {
           {/* Category Links */}
          {/* Category Links */}
             <div className="flex justify-end items-center gap-6 mb-10 mr-10">
-            <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
+            <a onClick={() => setCategory("All")}  href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
                All
               </a>
-              <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
+              <a onClick={() => setCategory("Fruits")} href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
                Fruits
               </a>
-              <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
+              <a onClick={() => setCategory("Vegetables")} href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
                 Vegetables
               </a>
-              <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
+              <a onClick={() => setCategory("Grains")} href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
                 Grains
               </a>
               

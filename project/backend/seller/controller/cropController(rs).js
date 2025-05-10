@@ -13,20 +13,31 @@ const getCropsByCategory = async (req, res) => {
     // Retrieve cropCatId from request parameters
     const { cid } = req.params;
 
-    // If cropCatId is provided, filter crops by that cropCatId
-    let filter = {};
-    if (cid) {
-      filter.categoryID = cid;
+    if(cid == "All"){
+      const Crops = await crops.find({}).sort({createdAt: -1})
+      if (!Crops.length) {
+        return res.status(404).json({ message: 'No crops found' });
+      }
+  
+      res.status(200).json(Crops);
+    }else{
+      // If cropCatId is provided, filter crops by that cropCatId
+        let filter = {};
+        if (cid) {
+          filter.categoryID = cid;
+        }
+        console.log(`fetching${cid}`)
+
+        // Find crops based on filter criteria
+        const Crops = await crops.find(filter).sort({createdAt: -1});
+        if (!Crops.length) {
+          return res.status(404).json({ message: 'No crops found' });
+        }
+    
+        res.status(200).json(Crops);
     }
 
-    // Find crops based on filter criteria
-    const Crops = await crops.find(filter);
-
-    if (!Crops.length) {
-      return res.status(404).json({ message: 'No crops found' });
-    }
-
-    res.status(200).json(Crops);
+   
   } catch (err) {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
