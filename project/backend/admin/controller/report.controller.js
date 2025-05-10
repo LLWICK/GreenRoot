@@ -1,5 +1,6 @@
 const Question = require('../model/QuestionModel');
 const User = require('../model/userModel');
+const Order = require('../../customer/model/AddtoCartModel');
 const XLSX = require('xlsx');
 
 const getAllQuestionsForExcel = async (req, res) => {
@@ -110,9 +111,28 @@ const getUserForExcel = async (req, res) => {
         console.log(error);
         res.status(500).json({ message: `Faild to generate a report` });
     }
+};
+
+// order report
+const getSalse = async (req, res) => {
+    try {
+        const orders = await Order.find().sort({ createdAt: 1 }).lean();
+
+        const salesData = orders.map(order => ({
+            date: new Date(order.createdAt).toISOString().split('T')[0],
+            finalTotal: order.finalTotal || 0,
+        }));
+
+        res.status(200).json({ data: salesData });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Failed to fetch sales data" });
+    }
 }
 
 module.exports = {
     getAllQuestionsForExcel,
     getUserForExcel,
+    getSalse,
 }
