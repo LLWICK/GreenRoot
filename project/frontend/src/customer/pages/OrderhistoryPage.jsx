@@ -52,6 +52,7 @@ const [ratings, setRatings] = useState({});
         hasIssue,
         complaintType: hasIssue === 'yes' ? complaintType : null,
         ratings: hasIssue === 'no' ? ratings : null,
+        role: 'customer',
       }),
     });
 
