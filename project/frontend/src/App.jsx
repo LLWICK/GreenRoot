@@ -112,6 +112,10 @@ import ChartPage from "./customer/pages/ChartPage";
 import ConfirmPage from "./customer/pages/ConfirmPage";
 import CategoryPage from "./customer/pages/CategoryPage";
 import ProductDetailsPage from "./customer/pages/ProductDetailsPage";
+import FeedbackPage from "./customer/pages/FeedbackPage";
+
+
+//
 
 import SellerNormalOrders from "./seller/pages/sellerNormalOrders";
 import FinalizeOrder from "./seller/pages/sellerfinalizeOrder";
@@ -314,6 +318,7 @@ function App() {
         path="/Customer/Orderhistory/:cid"
         element={<OrderhistoryPage />}
       />
+      <Route path="/Customer/FeedbackPage/:cid" element={<FeedbackPage />} />
       <Route path="/Customer/ChartPage/:cid" element={<ChartPage />} />
 
       <Route path="/Customer/ConfirmPage" element={<ConfirmPage />} />
