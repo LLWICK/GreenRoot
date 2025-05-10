@@ -47,7 +47,6 @@ const categoryManage = require("./farmer/routes/categoryRoute");
 const fieldManage = require("./farmer/routes/fieldRoute");
 const orderManageFarmer = require("./farmer/routes/orderRoute.js");
 const userManage_B = require("./farmer/routes/userRoute_B.js");
-const chatManage = require("./farmer/routes/chatRouts.js");
 
 const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
 
@@ -106,7 +105,6 @@ app.use("/api/v1/payment", paymentManage);
 app.use("/api/v1/farmer/schedule", farmerScheduleManage);
 app.use("/api/v1/farmer/order", orderManageFarmer);
 app.use("/api/v1/user/b", userManage_B);
-app.use("/api/v1/farmer/chat", chatManage);
 
 //Use OTP route
 
