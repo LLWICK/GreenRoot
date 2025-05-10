@@ -24,6 +24,7 @@ import {
   BlogPage,
   OrderUpdate,
   AllLocations,
+  ChatBotPage,
 } from "./farmer/pages";
 
 //Farmer ecommerce store
@@ -155,6 +156,7 @@ function App() {
       <Route path="/farmer/:uid/addMap" element={<SearchLocation />} />
       <Route path="/farmer/:uid/order/:oid/update" element={<OrderUpdate />} />
       <Route path="/farmer/:uid/Location/:mid/update" element={<MapEdit />} />
+      <Route path="/farmer/:uid/chatBot" element={<ChatBotPage />} />
 
       {/* farmer e-commerce Pages */}
 
