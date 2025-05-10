@@ -36,7 +36,7 @@ const userManagement = require("./admin/routes/user.routes.js");
 // Q&A management routes (Admin)
 const qnaManagement = require("./admin/routes/question.routes.js");
 // report management routes
-const reportManagement = require('./admin/routes/report.routes.js');
+const reportManagement = require("./admin/routes/report.routes.js");
 
 //Farmer routes import
 const stockManage = require("./farmer/routes/stockRoute");
@@ -47,6 +47,7 @@ const categoryManage = require("./farmer/routes/categoryRoute");
 const fieldManage = require("./farmer/routes/fieldRoute");
 const orderManageFarmer = require("./farmer/routes/orderRoute.js");
 const userManage_B = require("./farmer/routes/userRoute_B.js");
+const chatManage = require("./farmer/routes/chatRouts.js");
 
 const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
 
@@ -105,6 +106,7 @@ app.use("/api/v1/payment", paymentManage);
 app.use("/api/v1/farmer/schedule", farmerScheduleManage);
 app.use("/api/v1/farmer/order", orderManageFarmer);
 app.use("/api/v1/user/b", userManage_B);
+app.use("/api/v1/farmer/chat", chatManage);
 
 //Use OTP route
 
