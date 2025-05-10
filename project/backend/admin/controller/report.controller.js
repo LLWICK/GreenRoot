@@ -1,4 +1,5 @@
 const Question = require('../model/QuestionModel');
+const User = require('../model/userModel');
 const XLSX = require('xlsx');
 
 const getAllQuestionsForExcel = async (req, res) => {
@@ -56,6 +57,62 @@ const getAllQuestionsForExcel = async (req, res) => {
 };
 
 
+// get user details for the excel sheet
+const getUserForExcel = async (req, res) => {
+    try {
+        const users = await User.find().lean();
+
+        // role count
+        const roleCounts = {};
+        users.forEach(user => {
+            roleCounts[user.role] = (roleCounts[user.role] || 0) + 1;
+        });
+
+        const summaryCount = Object.entries(roleCounts).map(([role, count]) => ({
+            Role: role.charAt(0).toUpperCase() + role.slice(1),
+            Count: count
+        }))
+
+        // user infor
+        const userInfo = users.map(user => ({
+            First_Name: user.firstName,
+            Last_Name: user.lastName,
+            Email: user.email,
+            Phone: user.phone,
+            Address: user.address,
+            Role: user.role.charAt(0).toUpperCase() + user.role.slice(1),
+            Status: user.status,
+            Created_At: new Date(user.createdAt).toLocaleString()
+        }))
+
+        // workbook
+        const workbook = XLSX.utils.book_new();
+
+        // role summary
+        const roleSheet = XLSX.utils.json_to_sheet(summaryCount);
+        XLSX.utils.book_append_sheet(workbook, roleSheet, "RoleSummary");
+
+        // user info sheet
+        const userInfroSheet = XLSX.utils.json_to_sheet(userInfo);
+        XLSX.utils.book_append_sheet(workbook, userInfroSheet, "UserInfromation");
+
+        // generate excel file
+        const buffer = XLSX.write(workbook, {
+            type: 'buffer',
+            bookType: 'xlsx'
+        });
+
+        res.setHeader('Content-Disposition', 'attachment; filename="user_report.xlsx"');
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.send(buffer);
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: `Faild to generate a report` });
+    }
+}
+
 module.exports = {
     getAllQuestionsForExcel,
+    getUserForExcel,
 }
