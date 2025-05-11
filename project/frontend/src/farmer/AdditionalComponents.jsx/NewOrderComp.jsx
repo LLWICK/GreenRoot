@@ -265,6 +265,7 @@ function NewOrderComp() {
                       <option value="Pending">Pending</option>
                       <option value="Processing">Processing</option>
                       <option value="Cancelled">Cancelled</option>
+                      <option value="Accepted">Accepted</option>
                     </select>
                   </div>
                 </div>
