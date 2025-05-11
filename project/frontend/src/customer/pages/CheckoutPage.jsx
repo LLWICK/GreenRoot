@@ -60,60 +60,62 @@ const CheckoutPage = () => {
   //
 
   const handleOrder = async () => {
-    try {
-      const orderDetails = {
-        totalPrice: total,
-        cartItems: cartItems.map((item) => ({
-          name: item.name,
-          image: item.image,
-          
-          quantity: item.quantity,
-          sellerId: item.sellerId,
-          
-          totalPrice: item.totalPrice,
+  try {
+    const orderDetails = {
+      totalPrice: total,
+      cartItems: cartItems.map((item) => ({
+        name: item.name,
+        image: item.image,
+        quantity: item.quantity,
+        sellerId: item.sellerId,
+        totalPrice: item.totalPrice,
+      })),
+      delivery,
+      tax,
+      finalTotal: Subtotal,
+      ordinary_buyer_id: cid,
+    };
 
-        })),
-        delivery,
-        tax,
-        finalTotal: Subtotal,
-        ordinary_buyer_id:cid,
-      };
+    const response = await fetch('http://localhost:3000/api/customer/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(orderDetails),
+    });
 
-      const response = await fetch('http://localhost:3000/api/customer/orders', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(orderDetails),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to place order');
-      }
-
-      console.log('Order placed successfully');
-      alert('Order placed successfully!');
-
-      // Delete all items from the cart
-      for (const item of cartItems) {
-        await fetch(`http://localhost:3000/api/customer/addtocart/${item._id}`, {
-          method: 'DELETE',
-        });
-      }
-
-      // Refetch cart items to update the UI
-      const updatedCartResponse = await fetch('http://localhost:3000/api/customer/addtocart');
-      if (updatedCartResponse.ok) {
-        const updatedCartData = await updatedCartResponse.json();
-        setCartItems(updatedCartData);
-        setSubtotal(0); // Reset subtotal
-      }
-
-    } catch (error) {
-      console.error('Error placing order:', error);
-      alert('Error placing order. Please try again.');
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Error data from server:', errorData); // Log the error from server
+      throw new Error(errorData.message || 'Failed to place order');
     }
-  };
+
+    console.log('Order placed successfully');
+    alert('Order placed successfully!');
+
+    // Delete all items from the cart
+    for (const item of cartItems) {
+      await fetch(`http://localhost:3000/api/customer/addtocart/${item._id}`, {
+        method: 'DELETE',
+      });
+    }
+
+    // Refetch cart items to update the UI
+    const updatedCartResponse = await fetch('http://localhost:3000/api/customer/addtocart');
+    if (updatedCartResponse.ok) {
+      const updatedCartData = await updatedCartResponse.json();
+      setCartItems(updatedCartData);
+      setSubtotal(0); // Reset subtotal
+    }
+
+  } catch (error) {
+    console.error('Error placing order:', error);
+    alert(`Error placing order. Details: ${error.message}`);
+  }
+};
+
+
+
 
 
 

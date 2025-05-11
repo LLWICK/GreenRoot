@@ -37,10 +37,9 @@ const ChartPage = () => {
 
         setOrderQuantityData(data);
 
-        // Directly take the order number from the first order (or use the latest order as you need)
-        const latestOrder = orders[0];  // Assuming you want the first order in the list or the latest
+        // Get the latest order number
+        const latestOrder = orders[0];
         setOrderNumber(latestOrder ? latestOrder.orderNumber : 0);
-
       } catch (err) {
         setError(err.message);
       } finally {
@@ -51,8 +50,42 @@ const ChartPage = () => {
     fetchOrderQuantityData();
   }, []);
 
-  // Calculate progress percentage based on the orderNumber
-  const progressPercentage = (orderNumber / 15) * 100; // Assuming the upper limit is 15
+  // Post customer type based on orderNumber milestone
+  useEffect(() => {
+    const postCustomerType = async () => {
+      let cus_type = null;
+
+      if (orderNumber === 15) cus_type = "Bronze";
+      else if (orderNumber === 30) cus_type = "Silver";
+      else if (orderNumber === 45) cus_type = "Gold";
+      else if (orderNumber === 60) cus_type = "Platinum";
+
+      if (cus_type) {
+        try {
+          const response = await fetch('http://localhost:3000/api/customer/typeCustomer', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ cus_type }),
+          });
+
+          if (!response.ok) {
+            throw new Error('Failed to post customer type');
+          }
+
+          console.log(`${cus_type} customer type posted successfully`);
+        } catch (err) {
+          console.error(`Error posting ${cus_type} customer type:`, err.message);
+        }
+      }
+    };
+
+    postCustomerType();
+  }, [orderNumber]);
+
+  const progressPercentage = (orderNumber / 15) * 100; // Adjust for progress bar logic
+  const COLORS = ['#4caf50', '#e0e0e0']; // Green for progress, grey for remaining
 
   if (loading) {
     return <div className="flex justify-center items-center h-screen text-green-700 text-xl">Loading...</div>;
@@ -62,16 +95,12 @@ const ChartPage = () => {
     return <div className="flex justify-center items-center h-screen text-red-500 text-xl">Error: {error}</div>;
   }
 
-  const COLORS = ['#4caf50', '#e0e0e0']; // Green for progress, grey for remaining
-
   return (
     <div className="flex h-screen bg-green-50">
-      {/* Fixed Sidebar */}
       <div className="w-60 h-screen fixed">
         <Sidebar />
       </div>
 
-      {/* Scrollable Main Content */}
       <div className="flex-1 ml-60 h-screen overflow-y-auto p-6 md:p-10">
         <div className="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
           <h2 className="text-3xl font-semibold text-green-800 mb-8 text-center">
@@ -115,10 +144,8 @@ const ChartPage = () => {
                   endAngle={-270}
                   dataKey="value"
                 >
-                  {[
-                    ...Array(2),
-                  ].map((_, index) => (
-                    <Cell key={index} fill={COLORS[index]} />
+                  {COLORS.map((color, index) => (
+                    <Cell key={index} fill={color} />
                   ))}
                 </Pie>
               </PieChart>
