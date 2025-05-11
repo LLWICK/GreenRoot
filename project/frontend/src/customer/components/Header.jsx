@@ -20,13 +20,13 @@ import {
 import CartItemList from './CartItemList';
 import { useNavigate } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({custId}) => {
   const [products, setProducts] = useState(null);
   const [cartItemsCount, setCartItemsCount] = useState(0);
   const navigate = useNavigate();
 
   const handledashboard = () => {
-    navigate('/Customer/Dashboard');
+    navigate(`/Customer/Dashboard/${custId}`);
   };
 
   useEffect(() => {
@@ -106,7 +106,7 @@ const Header = () => {
             <SheetHeader>
               <SheetTitle className="bg-green-500 text-white font-bold text-lg p-2">My Cart</SheetTitle>
               <SheetDescription>
-                <CartItemList />
+                <CartItemList custId={custId}/>
               </SheetDescription>
             </SheetHeader>
           </SheetContent>

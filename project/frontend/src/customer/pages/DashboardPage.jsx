@@ -1,11 +1,15 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const DashboardPage = () => {
+
+  const { cid } = useParams();
+  console.log(cid)
+
   return (
     <div className="flex h-screen bg-green-100">
-      <Sidebar />
+      <Sidebar custId={cid}/>
       <div className="flex-1 p-6 space-y-6">
         <div className="flex items-center justify-between ">
           <div>
@@ -13,7 +17,7 @@ const DashboardPage = () => {
             <p className="text-lg text-gray-600">Explore fresh produce and manage your orders.</p>
           </div>
           <div className="flex space-x-4">
-            <Link to="/Customer">
+            <Link to={`/Customer/${cid}`}>
             <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-full shadow-md">
               Products
             </button>

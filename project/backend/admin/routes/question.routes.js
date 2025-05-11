@@ -6,10 +6,13 @@ const {
     updateQuestion,
     getQuestionByTitle,
     replyToQuestion,
-    deleteQuestion
+    deleteQuestion,
+    getAllQuestions
 } = require('../controller/question.controller');
 const router = express.Router();
 
+// get all questions for pie chart
+router.get("/questions/all", getAllQuestions);
 
 // create a question
 router.post("/create", createQuestion);

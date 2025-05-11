@@ -7,17 +7,32 @@ import { getUserIdFromToken } from "../utills/authUtils";
 function Sidebar() {
   const navigate = useNavigate();
   const [userID, setUserID] = useState(null);
-  const [userDet, setDet] = useState({});
+  const [userDetails, setUserDetails] = useState(
+    JSON.parse(localStorage.getItem("userDetails")) || null
+  );
 
   useEffect(() => {
     const userId = getUserIdFromToken();
+    console.log(userDetails);
 
     if (userId) {
       setUserID(userId);
     } else {
-      navigate(`/farmer`);
+      navigate(`/`);
     }
   }, []);
+
+  useEffect(() => {
+    if (userDetails) {
+      fetch(`http://localhost:3000/api/user/${userID}`) // Replace with your actual API endpoint
+        .then((res) => res.json())
+        .then((data) => {
+          setUserDetails(data.data);
+          localStorage.setItem("userDetails", JSON.stringify(data)); // Cache user details
+        })
+        .catch((error) => console.error("Error fetching user details:", error));
+    }
+  }, [userID, !userDetails]);
 
   return (
     <div>
@@ -63,7 +78,7 @@ function Sidebar() {
                   />
                   <div>
                     <h2 class="font-medium text-xs md:text-sm text-center text-teal-500">
-                      linal wickram
+                      {userDetails?.firstName || "Loading..."}
                     </h2>
                     <p class="text-xs text-gray-500 text-center">farmer</p>
                   </div>
