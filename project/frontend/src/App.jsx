@@ -51,6 +51,7 @@ import MyPnd from "./researcher/pages/MyPnd";
 import PnDUpdate from "./researcher/pages/PnDUpdate";
 import PnDBlog from "./researcher/pages/PnDBlog";
 import SinglePndPage from "./researcher/pages/SinglePndPage";
+import Publications from "./researcher/pages/Publications";
 
 /* Admin pages */
 import {
@@ -259,24 +260,17 @@ function App() {
       <Route path="/researcher/my-pnd/update" element={<PnDUpdate/>}/>
       <Route path="/blog/pest-and-disease" element={<PnDBlog/>}/>
       <Route path="/blog/pest-and-disease/:id" element={<SinglePndPage/>}/>
-
       <Route path="/blog/crop" element={<BlogCrop />} />
       <Route path="/blog/crop/:id" element={<BlogCropDetails />} />
-      <Route
-        path="/researcher/my-growing-guide/update"
-        element={<GrowingGuideUpdate />}
-      />
+      <Route path="/researcher/my-growing-guide/update"element={<GrowingGuideUpdate />}/>
       <Route path="/researcher/my-news/update" element={<NewsUpdate />} />
       <Route path="/blog/qna" element={<QnABlog />} />
       <Route path="/researcher/my-stats" element={<MyStats />} />
       <Route path="/researcher/my-pnd" element={<MyPnd />} />
-
-      <Route
-        path="/researcher/my-growing-guide/update"
-        element={<GrowingGuideUpdate />}
-      />
+      <Route path="/researcher/my-growing-guide/update"element={<GrowingGuideUpdate />}/>
       <Route path="/researcher/my-news/update" element={<NewsUpdate />} />
       <Route path="/blog/qna" element={<QnABlog />} />
+      <Route path="/researcher/publications" element={<Publications/>}/>
 
       {/* Retail seller Router */}
 
