@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell } from 'recharts';
 import Sidebar from '../components/Sidebar';
 
 const ChartPage = () => {
   const [orderQuantityData, setOrderQuantityData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [orderNumber, setOrderNumber] = useState(0);
 
   useEffect(() => {
     const fetchOrderQuantityData = async () => {
@@ -17,11 +19,11 @@ const ChartPage = () => {
           throw new Error('Failed to fetch orders');
         }
         const orders = await response.json();
-        const statusQuantity = {};
 
+        const statusQuantity = {};
         orders.forEach((order) => {
           if (order.cartItems && order.cartItems.length > 0) {
-            order.cartItems.forEach(item => {
+            order.cartItems.forEach((item) => {
               const name = item.name;
               statusQuantity[name] = (statusQuantity[name] || 0) + item.quantity;
             });
@@ -34,6 +36,11 @@ const ChartPage = () => {
         }));
 
         setOrderQuantityData(data);
+
+        // Directly take the order number from the first order (or use the latest order as you need)
+        const latestOrder = orders[0];  // Assuming you want the first order in the list or the latest
+        setOrderNumber(latestOrder ? latestOrder.orderNumber : 0);
+
       } catch (err) {
         setError(err.message);
       } finally {
@@ -44,6 +51,9 @@ const ChartPage = () => {
     fetchOrderQuantityData();
   }, []);
 
+  // Calculate progress percentage based on the orderNumber
+  const progressPercentage = (orderNumber / 15) * 100; // Assuming the upper limit is 15
+
   if (loading) {
     return <div className="flex justify-center items-center h-screen text-green-700 text-xl">Loading...</div>;
   }
@@ -51,6 +61,8 @@ const ChartPage = () => {
   if (error) {
     return <div className="flex justify-center items-center h-screen text-red-500 text-xl">Error: {error}</div>;
   }
+
+  const COLORS = ['#4caf50', '#e0e0e0']; // Green for progress, grey for remaining
 
   return (
     <div className="flex h-screen bg-green-50">
@@ -81,6 +93,35 @@ const ChartPage = () => {
                 <Tooltip contentStyle={{ background: '#f9f9f9', border: '1px solid #ddd', padding: '8px' }} />
                 <Bar dataKey="quantity" fill="#689f38" barSize={60} />
               </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+          <h2 className="text-3xl font-semibold text-green-800 mt-16 mb-8 text-center">
+            Order Progress: {orderNumber}/15
+          </h2>
+          <div className="h-[400px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={[
+                    { name: 'Progress', value: progressPercentage },
+                    { name: 'Remaining', value: 100 - progressPercentage },
+                  ]}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={80}
+                  outerRadius={100}
+                  startAngle={90}
+                  endAngle={-270}
+                  dataKey="value"
+                >
+                  {[
+                    ...Array(2),
+                  ].map((_, index) => (
+                    <Cell key={index} fill={COLORS[index]} />
+                  ))}
+                </Pie>
+              </PieChart>
             </ResponsiveContainer>
           </div>
         </div>
