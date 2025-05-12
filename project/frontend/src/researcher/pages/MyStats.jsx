@@ -11,8 +11,10 @@ export default function MyStats() {
       </div>
 
       {/* Main content area, respects remaining space */}
-      <div className="flex-1 p-6 overflow-auto">
+      <div className="flex-1 p-6 overflow-auto ">
+        <div className='mt-10'>
         <CropChartR />
+        </div>
       </div>
     </div>
   );

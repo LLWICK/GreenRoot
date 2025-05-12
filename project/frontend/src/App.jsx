@@ -62,6 +62,7 @@ import PnDUpdate from "./researcher/pages/PnDUpdate";
 import PnDBlog from "./researcher/pages/PnDBlog";
 import SinglePndPage from "./researcher/pages/SinglePndPage";
 import Publications from "./researcher/pages/Publications";
+import PublicationsBlog from "./researcher/pages/PublicationsBlog";
 
 /* Admin pages */
 import {
@@ -297,6 +298,7 @@ function App() {
       <Route path="/researcher/my-news/update" element={<NewsUpdate />} />
       <Route path="/blog/qna" element={<QnABlog />} />
       <Route path="/researcher/publications" element={<Publications/>}/>
+      <Route path="/blog/publications" element={<PublicationsBlog/>}/>
 
       {/* Retail seller Router */}
 

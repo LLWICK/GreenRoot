@@ -118,6 +118,7 @@ export default function Publications() {
             setFile(null);
             setSuccessMessage('Publication uploaded successfully!');
             fetchPublications(); // Refresh the publications list
+            navigate(0)
         } catch (error) {
             setError(error.message);
         } finally {
@@ -135,7 +136,7 @@ export default function Publications() {
             <SidebarResearcher />   
 
             {/* Main Content */}
-            <div className="flex-1 p-8 max-w-4xl mx-auto">
+            <div className="flex-1 p-8 max-w-4xl mx-auto ml-100">
                 <h1 className="text-2xl font-bold mb-6">Upload New Publication</h1>
                 
                 {/* Messages */}
@@ -231,7 +232,7 @@ export default function Publications() {
                                 onClick={() => handleDownload(pub.file)}
                                 className="mt-2 text-blue-600 hover:text-blue-800"
                             >
-                                Download PDF
+                                View
                             </button>
                         )}
                     </div>
