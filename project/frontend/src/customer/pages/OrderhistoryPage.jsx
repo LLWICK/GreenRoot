@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { toast, ToastContainer } from 'react-toastify'; // Import toast and ToastContainer
+import 'react-toastify/dist/ReactToastify.css'; // Import toast CSS
 
 const OrderhistoryPage = () => {
   const [orders, setOrders] = useState([]);
@@ -23,6 +25,7 @@ const OrderhistoryPage = () => {
         setOrders(data);
       } catch (err) {
         setError(err.message);
+        toast.error(`Error: ${err.message}`); // Display error as toast
       } finally {
         setLoading(false);
       }
@@ -51,10 +54,10 @@ const OrderhistoryPage = () => {
       });
 
       if (!response.ok) throw new Error('Failed to submit feedback');
-      alert('Feedback submitted successfully!');
+      toast.success('Feedback submitted successfully!'); // Show success toast
     } catch (error) {
       console.error('Error submitting feedback:', error);
-      alert('Failed to submit feedback');
+      toast.error('Failed to submit feedback'); // Show error toast
     }
   };
 
@@ -91,28 +94,27 @@ const OrderhistoryPage = () => {
 
               <div className="mt-4 space-y-3">
                 {order.cartItems &&
-  order.cartItems.map((item) => (
-    <div key={item.id} className="relative flex items-center gap-4 bg-gray-50 p-3 rounded-lg">
-      {/* Green circle with white tick, centered on the right side */}
-      <span className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center text-2xl shadow-lg">
-        ✓
-      </span>
+                  order.cartItems.map((item) => (
+                    <div key={item.id} className="relative flex items-center gap-4 bg-gray-50 p-3 rounded-lg">
+                      {/* Green circle with white tick, centered on the right side */}
+                      <span className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center text-2xl shadow-lg">
+                        ✓
+                      </span>
 
-      {item.image && (
-        <img
-          src={item.image}
-          alt={item.name}
-          className="w-16 h-16 rounded-md object-cover shadow-md border"
-        />
-      )}
-      <div>
-        <h4 className="font-semibold text-green-800">{item.name}</h4>
-        <p className="text-gray-600 text-sm">Seller Id: {item.sellerId}</p>
-        <p className="text-gray-600 text-sm">Quantity: {item.quantity}</p>
-      </div>
-    </div>
-))}
-
+                      {item.image && (
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="w-16 h-16 rounded-md object-cover shadow-md border"
+                        />
+                      )}
+                      <div>
+                        <h4 className="font-semibold text-green-800">{item.name}</h4>
+                        <p className="text-gray-600 text-sm">Seller Id: {item.sellerId}</p>
+                        <p className="text-gray-600 text-sm">Quantity: {item.quantity}</p>
+                      </div>
+                    </div>
+                  ))}
               </div>
 
               <div className="mt-6 border-t pt-4">
@@ -213,6 +215,9 @@ const OrderhistoryPage = () => {
           ))}
         </div>
       </div>
+
+      {/* Toast Container for displaying toasts */}
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={true} />
     </div>
   );
 };
