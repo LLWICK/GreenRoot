@@ -114,6 +114,40 @@ const CheckoutPage = () => {
   }
 };
 
+//send email
+const handleSendEmail = async () => {
+  try {
+    const response = await fetch("http://localhost:3000/api/customer/send-email/email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: "ggmatheesha@gmail.com", // ← dynamically use user's email
+        subject: "Order Confirmation",
+        message: "<h1>Thank you for your order!</h1><p>We will deliver it soon.</p>",
+      }),
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      console.log("Success:", data.message);
+    } else {
+      console.error("Email error:", data.error);
+    }
+  } catch (err) {
+    console.error("Request failed:", err);
+  }
+};
+
+
+//calling the email and handleorder function
+const handleOrderAndEmail = async () => {
+  await handleOrder();      // Place order
+  await handleSendEmail();  // Send confirmation email
+};
+
+
 
 
 
@@ -174,7 +208,7 @@ const CheckoutPage = () => {
             <hr />
             
             <Link to={`/Customer/Orderhistory/${cid}`}>
-            <Button  onClick={handleOrder} className={`bg-green-700 text-white cursor-pointer`}>
+            <Button  onClick={handleOrderAndEmail} className={`bg-green-700 text-white cursor-pointer`}>
               OK <ArrowBigRight />
             </Button>
             </Link>
