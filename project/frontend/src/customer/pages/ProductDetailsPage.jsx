@@ -1,6 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 
+// Image Slider Component
+const FadeImageSlider = () => {
+  const images = [
+    
+    '/customer_images/productdeatils_02.jpeg',
+    '/customer_images/product_details.webp',
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false); // start fade-out
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % images.length); // next image
+        setFade(true); // start fade-in
+      }, 500); // match with fade-out timing
+    }, 3000); // total duration before switching
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="flex justify-center mb-8">
+      <img
+        src={images[currentIndex]}
+        alt={`Slide ${currentIndex + 1}`}
+        className={`w-full max-w-4xl rounded-xl shadow-lg transition-opacity duration-1000 ${
+          fade ? 'opacity-100' : 'opacity-100'
+        }`}
+      />
+    </div>
+  );
+};
+
 const ProductDetailsPage = () => {
   const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -35,7 +71,10 @@ const ProductDetailsPage = () => {
   }
 
   return (
-    <div className="flex h-screen bg-green-50">
+    <div
+      className="flex h-screen bg-cover bg-center"
+      style={{ backgroundImage: `url('/customer_images/productdetails_05.jpg')` }}
+    >
       {/* Fixed Sidebar */}
       <div className="w-60 h-screen fixed">
         <Sidebar className="w-60 h-screen" />
@@ -44,6 +83,10 @@ const ProductDetailsPage = () => {
       {/* Main Content - Scrollable */}
       <div className="ml-60 p-6 md:p-10 w-full overflow-auto h-screen">
         <h2 className="text-3xl font-semibold text-green-900 mb-6 text-center">Product Details</h2>
+
+        {/* Fade Image Slider Here */}
+        <FadeImageSlider />
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {products &&
             products.length > 0 &&
