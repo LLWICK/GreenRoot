@@ -36,7 +36,7 @@ const userManagement = require("./admin/routes/user.routes.js");
 // Q&A management routes (Admin)
 const qnaManagement = require("./admin/routes/question.routes.js");
 // report management routes
-const reportManagement = require('./admin/routes/report.routes.js');
+const reportManagement = require("./admin/routes/report.routes.js");
 
 //Farmer routes import
 const stockManage = require("./farmer/routes/stockRoute");
@@ -60,6 +60,9 @@ const orderManage = require("./customer/routes/orderRoute.js");
 const addtocartManage = require("./customer/routes/AddtoCartRoute.js");
 const PaymentManage = require("./customer/routes/PaymentRoute.js"); //change
 const ProductManage = require("./customer/routes/GetProducts.js");
+const FeedbackManage = require("./customer/routes/FeedbackRoute.js");
+const TypeCustomerManage = require("./customer/routes/TypeCustomerRoute.js");
+const SendEmailManage = require("./customer/routes/EmailRoute.js");
 
 //Researcher routes import
 const postRoutes = require("./researcher/routes/postRoutes.js");
@@ -114,6 +117,9 @@ app.use("/api/customer/orders", orderManage);
 app.use("/api/customer/addtocart", addtocartManage);
 app.use("/api/customer/payment", PaymentManage); //change
 app.use("/api/customer/products", ProductManage);
+app.use("/api/customer/feedback", FeedbackManage);
+app.use("/api/customer/typeCustomer", TypeCustomerManage);
+app.use("/api/customer/send-email", SendEmailManage);
 
 //Researcher Routes
 app.use("/api/researcher/posts", postRoutes);

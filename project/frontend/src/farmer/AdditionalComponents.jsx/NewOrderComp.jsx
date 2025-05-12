@@ -26,6 +26,7 @@ function NewOrderComp() {
           .get(`http://localhost:3000/api/v1/farmer/order/${oid}`)
           .then((res) => {
             setOrder(res.data.data);
+            console.log(res.data.data);
             setItems(res.data.data.items);
             setStatus(res.data.data.status);
             setReciver(true);
@@ -92,28 +93,28 @@ function NewOrderComp() {
       });
   };
 
-  const handleDownload = async () => {
-    if (invoiceRef.current) {
-      const svgElement = invoiceRef.current.querySelector("svg");
-      if (svgElement) {
-        const canvas = document.createElement("canvas");
-        const svgSize = svgElement.getBoundingClientRect();
-        canvas.width = svgSize.width;
-        canvas.height = svgSize.height;
-        const ctx = canvas.getContext("2d");
-
-        const svgData = new XMLSerializer().serializeToString(svgElement);
-        const v = await Canvg.fromString(ctx, svgData);
-        await v.render();
-
-        const link = document.createElement("a");
-        link.download = "question-pie-chart.png";
-        link.href = canvas.toDataURL("image/png");
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }
-    }
+  const handleDownload = () => {
+    axios
+      .post(
+        `http://localhost:3000/api/v1/farmer/order/Invoice/${oid}`,
+        {
+          customerF: sellerDets.firstName,
+          customerL: sellerDets.lastName,
+          orderItems: Items,
+          TotalPrice: order.totalPrice,
+        },
+        {
+          responseType: "blob",
+        }
+      )
+      .then((res) => {
+        const file = new Blob([res.data], { type: "application/pdf" });
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      })
+      .catch((err) => {
+        console.error("Download failed:", err);
+      });
   };
 
   return (
@@ -264,6 +265,7 @@ function NewOrderComp() {
                       <option value="Pending">Pending</option>
                       <option value="Processing">Processing</option>
                       <option value="Cancelled">Cancelled</option>
+                      <option value="Accepted">Accepted</option>
                     </select>
                   </div>
                 </div>

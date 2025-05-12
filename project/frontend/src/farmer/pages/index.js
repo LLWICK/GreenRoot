@@ -14,3 +14,4 @@ export { default as ExpertsPage } from "./ExpertsPage";
 export { default as BlogPage } from "./BlogPage";
 export { default as OrderUpdate } from "./OrderUpdate";
 export { default as AllLocations } from "./AllLocations";
+export { default as ChatBotPage } from "./ChatBotPage";
