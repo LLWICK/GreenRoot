@@ -1,7 +1,10 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from "react-toastify";
+import html2canvas from "html2canvas";
+import { Canvg } from "canvg";
 
 function NewOrderComp() {
   const [order, setOrder] = useState({});
@@ -9,9 +12,11 @@ function NewOrderComp() {
   const [reciver, setReciver] = useState(false);
   const [sellerEmail, setEmail] = useState("Not valid");
   const [sellerDets, setSellerDets] = useState("Not valid");
+  const [validEmail, setValid] = useState(false);
   const [orderStatus, setStatus] = useState("");
   const { oid, uid } = useParams();
   const navigate = useNavigate();
+  const invoiceRef = useRef();
 
   useEffect(() => {
     // Simulate fetching crop data from an API
@@ -21,6 +26,7 @@ function NewOrderComp() {
           .get(`http://localhost:3000/api/v1/farmer/order/${oid}`)
           .then((res) => {
             setOrder(res.data.data);
+            console.log(res.data.data);
             setItems(res.data.data.items);
             setStatus(res.data.data.status);
             setReciver(true);
@@ -43,6 +49,7 @@ function NewOrderComp() {
             console.log(res.data.data.email);
             setSellerDets(res.data.data);
             setEmail(res.data.data.email);
+            setValid(true);
           });
       } catch (error) {
         console.error("Error fetching Seller Details:", error);
@@ -86,6 +93,30 @@ function NewOrderComp() {
       });
   };
 
+  const handleDownload = () => {
+    axios
+      .post(
+        `http://localhost:3000/api/v1/farmer/order/Invoice/${oid}`,
+        {
+          customerF: sellerDets.firstName,
+          customerL: sellerDets.lastName,
+          orderItems: Items,
+          TotalPrice: order.totalPrice,
+        },
+        {
+          responseType: "blob",
+        }
+      )
+      .then((res) => {
+        const file = new Blob([res.data], { type: "application/pdf" });
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      })
+      .catch((err) => {
+        console.error("Download failed:", err);
+      });
+  };
+
   return (
     <div className="flex">
       <ToastContainer
@@ -102,7 +133,10 @@ function NewOrderComp() {
         transition={Bounce}
       />
 
-      <div class="py-11 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+      <div
+        class="py-11 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto"
+        ref={invoiceRef}
+      >
         <div class="flex justify-start item-start space-y-2 flex-col">
           <h1 class="text-3xl dark:text-black lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
             Order #{order._id}
@@ -231,26 +265,38 @@ function NewOrderComp() {
                       <option value="Pending">Pending</option>
                       <option value="Processing">Processing</option>
                       <option value="Cancelled">Cancelled</option>
+                      <option value="Accepted">Accepted</option>
                     </select>
                   </div>
                 </div>
-                <div className="mt-6">
-                  <button
-                    onClick={handleSubmit}
-                    type="submit"
-                    class="float-left text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                  >
-                    Save Changes
-                  </button>
 
+                {validEmail ? (
+                  <div className="mt-6">
+                    <button
+                      onClick={handleSubmit}
+                      type="submit"
+                      class="float-left text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                    >
+                      Save Changes
+                    </button>
+
+                    <Link
+                      to={`/farmer/${uid}/orders`}
+                      class="float-right focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                    >
+                      Cancel
+                    </Link>
+                  </div>
+                ) : (
                   <Link
                     to={`/farmer/${uid}/orders`}
                     class="float-right focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                   >
-                    Cancel
+                    Back
                   </Link>
-                </div>
+                )}
               </div>
+
               <div class="flex flex-col justify-center px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 dark:bg-gray-800 space-y-6">
                 <h3 class="text-xl dark:text-white font-semibold leading-5 text-gray-800">
                   Shipping
@@ -351,8 +397,11 @@ function NewOrderComp() {
                   </div>
                 </div>
                 <div class="flex w-full justify-center items-center md:justify-start md:items-start">
-                  <button class="mt-6 md:mt-0 dark:border-white dark:hover:bg-gray-900 dark:bg-transparent dark:text-white py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 font-medium w-96 2xl:w-full text-base font-medium leading-4 text-gray-800">
-                    Edit Details
+                  <button
+                    onClick={handleDownload}
+                    class="mt-6 md:mt-0 dark:border-white dark:hover:bg-gray-900 dark:bg-transparent dark:text-white py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 font-medium w-96 2xl:w-full text-base font-medium leading-4 text-gray-800"
+                  >
+                    Download Invoice
                   </button>
                 </div>
               </div>

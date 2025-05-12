@@ -1,0 +1,137 @@
+const Question = require('../model/QuestionModel');
+const User = require('../model/userModel');
+const Order = require('../../customer/model/orderModel');
+const XLSX = require('xlsx');
+
+const getAllQuestionsForExcel = async (req, res) => {
+    try {
+        const questions = await Question.find()
+            .populate('createdBy', 'firstName lastName email')
+            .populate('replies.adminId', 'email') // Populate admin emails
+            .lean();
+
+        const formatted = [];
+
+        questions.forEach(q => {
+            if (q.replies.length === 0) {
+                formatted.push({
+                    Title: q.title,
+                    Custom_Title: q.customTitle || '',
+                    Message: q.message,
+                    Created_By: `${q.createdBy?.firstName || ''} ${q.createdBy?.lastName || ''}`,
+                    Email: q.createdBy?.email || '',
+                    Created_At: new Date(q.createdAt).toLocaleString(),
+                    Is_Closed: q.isClosed ? 'Yes' : 'No',
+                    Admin_Reply: 'No replies',
+                    Admin_Email: ''
+                });
+            } else {
+                q.replies.forEach(reply => {
+                    formatted.push({
+                        Title: q.title,
+                        Custom_Title: q.customTitle || '',
+                        Message: q.message,
+                        Created_By: `${q.createdBy?.firstName || ''} ${q.createdBy?.lastName || ''}`,
+                        Email: q.createdBy?.email || '',
+                        Created_At: new Date(q.createdAt).toLocaleString(),
+                        Is_Closed: q.isClosed ? 'Yes' : 'No',
+                        Admin_Reply: reply.message,
+                        Admin_Email: reply.adminId?.email || ''
+                    });
+                });
+            }
+        });
+
+        const worksheet = XLSX.utils.json_to_sheet(formatted);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'QuestionsWithReplies');
+
+        const buffer = XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' });
+
+        res.setHeader('Content-Disposition', 'attachment; filename="questions_with_replies.xlsx"');
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.send(buffer);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Failed' });
+    }
+};
+
+
+// get user details for the excel sheet
+const getUserForExcel = async (req, res) => {
+    try {
+        const users = await User.find().lean();
+
+        // role count
+        const roleCounts = {};
+        users.forEach(user => {
+            roleCounts[user.role] = (roleCounts[user.role] || 0) + 1;
+        });
+
+        const summaryCount = Object.entries(roleCounts).map(([role, count]) => ({
+            Role: role.charAt(0).toUpperCase() + role.slice(1),
+            Count: count
+        }))
+
+        // user infor
+        const userInfo = users.map(user => ({
+            First_Name: user.firstName,
+            Last_Name: user.lastName,
+            Email: user.email,
+            Phone: user.phone,
+            Address: user.address,
+            Role: user.role.charAt(0).toUpperCase() + user.role.slice(1),
+            Status: user.status,
+            Created_At: new Date(user.createdAt).toLocaleString()
+        }))
+
+        // workbook
+        const workbook = XLSX.utils.book_new();
+
+        // role summary
+        const roleSheet = XLSX.utils.json_to_sheet(summaryCount);
+        XLSX.utils.book_append_sheet(workbook, roleSheet, "RoleSummary");
+
+        // user info sheet
+        const userInfroSheet = XLSX.utils.json_to_sheet(userInfo);
+        XLSX.utils.book_append_sheet(workbook, userInfroSheet, "UserInfromation");
+
+        // generate excel file
+        const buffer = XLSX.write(workbook, {
+            type: 'buffer',
+            bookType: 'xlsx'
+        });
+
+        res.setHeader('Content-Disposition', 'attachment; filename="user_report.xlsx"');
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.send(buffer);
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: `Faild to generate a report` });
+    }
+};
+
+// order report
+const getSalse = async (req, res) => {
+    try {
+        const orders = await Order.find().sort({ createdAt: 1 }).lean();
+
+        const salesData = orders.map(order => ({
+            date: new Date(order.createdAt).toISOString().split('T')[0],
+            finalTotal: order.finalTotal || 0,
+        }));
+
+        res.status(200).json({ data: salesData });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Failed to fetch sales data" });
+    }
+};
+
+module.exports = {
+    getAllQuestionsForExcel,
+    getUserForExcel,
+    getSalse,
+}

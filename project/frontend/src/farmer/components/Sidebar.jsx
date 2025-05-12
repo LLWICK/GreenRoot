@@ -32,7 +32,7 @@ function Sidebar() {
         })
         .catch((error) => console.error("Error fetching user details:", error));
     }
-  }, [userID, !userDetails]);
+  }, [userID]);
 
   return (
     <div>
@@ -124,12 +124,18 @@ function Sidebar() {
                     class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
                   >
                     <svg
-                      class="w-6 h-6 fill-current inline-block"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      class="w-6 h-6 inline-block"
                     >
-                      <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"></path>
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 20V10M6 12s0-6 6-6 6 6 6 6M4 20h16"
+                      />
                     </svg>
                     <span class="">Crops</span>
                   </Link>
@@ -170,7 +176,27 @@ function Sidebar() {
                         clip-rule="evenodd"
                       ></path>
                     </svg>
-                    <span class="">Calendar</span>
+                    <span class="">Schedule</span>
+                  </Link>
+                  <Link
+                    to={`/farmer/${userID}/experts`}
+                    class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      class="w-6 h-6 inline-block"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 14l9-5-9-5-9 5 9 5zm0 0v6m-4-2h8"
+                      />
+                    </svg>
+                    <span class="">Tickets</span>
                   </Link>
                   <Link
                     to={"/farmer/Blogs"}
@@ -189,22 +215,6 @@ function Sidebar() {
                       ></path>
                     </svg>
                     <span class="">Blogs</span>
-                  </Link>
-
-                  <Link
-                    to={`/farmer/${userID}/experts`}
-                    class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
-                  >
-                    <svg
-                      class="w-6 h-6 fill-current inline-block"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
-                      <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path>
-                    </svg>
-                    <span class="">Chat</span>
                   </Link>
 
                   <Link

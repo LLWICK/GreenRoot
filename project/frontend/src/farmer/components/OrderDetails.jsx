@@ -8,6 +8,7 @@ function OrderDetails() {
   const [Items, setItems] = useState([]);
   const [reciver, setReciver] = useState(false);
   const [sellerEmail, setEmail] = useState("Not valid");
+  const [validEmail, setValid] = useState(false);
   const [orderStatus, setStatus] = useState("");
   const { oid, uid } = useParams();
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ function OrderDetails() {
           .then((res) => {
             console.log(res.data.data.email);
             setEmail(res.data.data.email);
+            setValid(true);
           });
       } catch (error) {
         console.error("Error fetching Seller Details:", error);
@@ -85,7 +87,7 @@ function OrderDetails() {
   };
 
   return (
-    <div style={{ float: "left" }}>
+    <div style={{ float: "left" }} id="summaryDoc">
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -156,22 +158,32 @@ function OrderDetails() {
                     <option value="Cancelled">Cancelled</option>
                   </select>
                 </div>
-                <div className="mt-6">
-                  <button
-                    onClick={handleSubmit}
-                    type="submit"
-                    class="float-left text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                  >
-                    Save Changes
-                  </button>
 
+                {validEmail ? (
+                  <div className="mt-6">
+                    <button
+                      onClick={handleSubmit}
+                      type="submit"
+                      class="float-left text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                    >
+                      Save Changes
+                    </button>
+
+                    <Link
+                      to={`/farmer/${uid}/orders`}
+                      class="float-right focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                    >
+                      Cancel
+                    </Link>
+                  </div>
+                ) : (
                   <Link
                     to={`/farmer/${uid}/orders`}
                     class="float-right focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                   >
                     Cancel
                   </Link>
-                </div>
+                )}
               </div>
             </div>
             <div class="w-full max-w-sm md:max-w-3xl max-xl:mx-auto">

@@ -35,6 +35,8 @@ const adminRoutes = require("./admin/routes/admin.routes.js"); // admin routes
 const userManagement = require("./admin/routes/user.routes.js");
 // Q&A management routes (Admin)
 const qnaManagement = require("./admin/routes/question.routes.js");
+// report management routes
+const reportManagement = require("./admin/routes/report.routes.js");
 
 //Farmer routes import
 const stockManage = require("./farmer/routes/stockRoute");
@@ -44,6 +46,7 @@ const farmerScheduleManage = require("./farmer/routes/scheduleRoute.js");
 const categoryManage = require("./farmer/routes/categoryRoute");
 const fieldManage = require("./farmer/routes/fieldRoute");
 const orderManageFarmer = require("./farmer/routes/orderRoute.js");
+const userManage_B = require("./farmer/routes/userRoute_B.js");
 
 const { authenticateUser } = require("./admin/middleware/auth.middleware.js");
 
@@ -55,11 +58,11 @@ const otpManage = require("./common/routes/otpRoute.js");
 //Customer route import
 const orderManage = require("./customer/routes/orderRoute.js");
 const addtocartManage = require("./customer/routes/AddtoCartRoute.js");
-const PaymentManage = require("./customer/routes/PaymentRoute.js");//change
-const ProductManage = require("./customer/routes/GetProducts.js")
-
-
-
+const PaymentManage = require("./customer/routes/PaymentRoute.js"); //change
+const ProductManage = require("./customer/routes/GetProducts.js");
+const FeedbackManage = require("./customer/routes/FeedbackRoute.js");
+const TypeCustomerManage = require("./customer/routes/TypeCustomerRoute.js");
+const SendEmailManage = require("./customer/routes/EmailRoute.js");
 
 //Researcher routes import
 const postRoutes = require("./researcher/routes/postRoutes.js");
@@ -92,7 +95,7 @@ app.use("/api/qna", qnaManagement);
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/user", userManagement);
-
+app.use("/api/admin/report", reportManagement);
 
 //Use farmer routes
 app.use("/api/v1/stock", stockManage);
@@ -103,6 +106,7 @@ app.use("/api/v1/ticket", ticketManage);
 app.use("/api/v1/payment", paymentManage);
 app.use("/api/v1/farmer/schedule", farmerScheduleManage);
 app.use("/api/v1/farmer/order", orderManageFarmer);
+app.use("/api/v1/user/b", userManage_B);
 
 //Use OTP route
 
@@ -111,9 +115,11 @@ app.use("/api/v1/otp", otpManage);
 //customer Routes
 app.use("/api/customer/orders", orderManage);
 app.use("/api/customer/addtocart", addtocartManage);
-app.use('/api/customer/payment',PaymentManage)//change
-app.use('/api/customer/products',ProductManage)
-
+app.use("/api/customer/payment", PaymentManage); //change
+app.use("/api/customer/products", ProductManage);
+app.use("/api/customer/feedback", FeedbackManage);
+app.use("/api/customer/typeCustomer", TypeCustomerManage);
+app.use("/api/customer/send-email", SendEmailManage);
 
 //Researcher Routes
 app.use("/api/researcher/posts", postRoutes);
@@ -131,8 +137,6 @@ app.use("/api/RetailSeller/bulkOrder", bulkOrderRoutes);
 app.use("/api/RetailSeller/stats", statDataRoutes);
 app.use("/api/RetailSeller/farmers", FarmerToDoRoutes);
 app.use("/api/RetailSeller/normalOrders", NormalOrderRoutes);
-
-
 
 mongoose
   .connect(mongoURL)
