@@ -35,3 +35,5 @@ export { default as HomePage } from "./home/HomePage";
 export { default as ServicesPage } from "./home/Services";
 export { default as BlogsPage } from "./home/Blogs";
 
+// report management
+export { default as ReportManagementDash } from "./ReportManagement/ReportManageDash"

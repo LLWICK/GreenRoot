@@ -24,7 +24,17 @@ import {
   BlogPage,
   OrderUpdate,
   AllLocations,
+  ChatBotPage,
 } from "./farmer/pages";
+
+//Farmer ecommerce store
+
+import {
+  HomePagefEcom,
+  ProductsPagefEcom,
+  CartPagefEcom,
+  OverviewPagefEcom,
+} from "./farmer_ecommerce/pages";
 
 import SearchLocation from "./farmer/unregistered/SearchLocation";
 
@@ -86,6 +96,8 @@ import {
   AccountIssue,
   TechnicalSupport,
   OtherQuestion,
+  // report management routes
+  ReportManagementDash,
 } from "./admin/pages";
 
 /* retail seller page imports  */
@@ -105,6 +117,10 @@ import ChartPage from "./customer/pages/ChartPage";
 import ConfirmPage from "./customer/pages/ConfirmPage";
 import CategoryPage from "./customer/pages/CategoryPage";
 import ProductDetailsPage from "./customer/pages/ProductDetailsPage";
+import FeedbackPage from "./customer/pages/FeedbackPage";
+
+
+//
 
 import SellerNormalOrders from "./seller/pages/sellerNormalOrders";
 import FinalizeOrder from "./seller/pages/sellerfinalizeOrder";
@@ -115,6 +131,7 @@ import DiliveryDash from "./seller/pages/diliveryGuy/diliveryGuyDash";
 import AboutUsPage from "./Common/pages/AboutUsPage";
 import MapEdit from "./farmer/mapComponents/MapEdit";
 import TrackPage from "./farmer/mapComponents/components/TrackPage";
+import RestPasswordPage from "./Common/pages/RestPasswordPage";
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -143,12 +160,18 @@ function App() {
       <Route path="/farmer/:uid/addMap" element={<SearchLocation />} />
       <Route path="/farmer/:uid/order/:oid/update" element={<OrderUpdate />} />
       <Route path="/farmer/:uid/Location/:mid/update" element={<MapEdit />} />
+      <Route path="/farmer/:uid/chatBot" element={<ChatBotPage />} />
+
+      {/* farmer e-commerce Pages */}
+
+      <Route path="/farmer/shop/products" element={<ProductsPagefEcom />} />
 
       {/* Common Pages */}
       <Route path="/otp/send" element={<OtpPage />} />
       <Route path="/track/location" element={<TrackPage />} />
       {/* <Route path="/aboutUs" element={<AboutUsPage />} /> */}
       <Route path="/payment/success/:id" element={<PaySuccess />} />
+      <Route path="/forgetPassword/:uid" element={<RestPasswordPage />} />
 
       {/* Auth Router */}
       <Route path="/auth/login" element={<LoginPage />} />
@@ -231,6 +254,9 @@ function App() {
       />
       <Route path="/admin/reply-question/:qid" element={<ReplyQuestion />} />
 
+      {/* Report Management */}
+      <Route path="/admin/report-dash" element={<ReportManagementDash />} />
+
       {/* Home page components */}
       <Route path="/contact" element={<ContactUsPage />} />
       <Route path="/services" element={<ServicesPage />} />
@@ -302,6 +328,7 @@ function App() {
         path="/Customer/Orderhistory/:cid"
         element={<OrderhistoryPage />}
       />
+      <Route path="/Customer/FeedbackPage/:cid" element={<FeedbackPage />} />
       <Route path="/Customer/ChartPage/:cid" element={<ChartPage />} />
 
       <Route path="/Customer/ConfirmPage" element={<ConfirmPage />} />

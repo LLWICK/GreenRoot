@@ -10,7 +10,7 @@ const Sidebar = () => {
     { name: "Users", icon: <Users className="w-6 h-6" />, link: "/admin/user-management" },
     { name: "Questions", icon: <Folder className="w-6 h-6" />, link: "/admin/question-dash" },
     { name: "Calendar", icon: <Calendar className="w-6 h-6" />, link: "/admin/calendar" },
-    { name: "Reports", icon: <BarChart className="w-6 h-6" />, link: "/admin/reports" },
+    { name: "Reports", icon: <BarChart className="w-6 h-6" />, link: "/admin/report-dash" },
     { name: "Settings", icon: <Settings className="w-6 h-6" />, link: "/admin/settings" },
   ];
 
