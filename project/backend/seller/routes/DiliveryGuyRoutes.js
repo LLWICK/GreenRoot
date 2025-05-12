@@ -4,6 +4,6 @@ const { getAcceptedOrders,updateOrderStatus,getAcceptedNormalOrders } = require(
 
 router.get('/acceptedBlk', getAcceptedOrders);
 router.get('/acceptedNor', getAcceptedNormalOrders);
-router.put('/update-status', updateOrderStatus);
+router.patch('/update-status', updateOrderStatus);
 
 module.exports = router;

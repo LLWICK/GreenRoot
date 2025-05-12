@@ -1,5 +1,5 @@
 import React from 'react';
-//import { format } from 'timeago.js';
+// import { format } from 'timeago.js'; // Optional, for formatting createdAt
 
 const Product = ({ product, updateProduct, deleteProduct, openEditModal }) => {
   const {
@@ -20,7 +20,7 @@ const Product = ({ product, updateProduct, deleteProduct, openEditModal }) => {
       <div className="relative">
         <a href="#">
           <img
-            className="w-full"
+            className="w-full h-48 object-cover"
             src={
               image ||
               'https://www.seedway.com/app/uploads/2021/09/Yaya-mat-1-1550x1029.jpg'

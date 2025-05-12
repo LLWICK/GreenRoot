@@ -1,10 +1,84 @@
 import NavBar2 from "@/Common/NavBar2";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 const DiliveryDash = () => {
+
+
+  const [OrdersBLK, setordersBLK] = useState([]);
+   const [OrdersNOR, setordersNOR] = useState([]);
+  const [loading, setLoading] = useState(true); 
+  const [loadingN, setLoadingN] = useState(true);
+  const [error, setError] = useState(null);    
+  
+  
+  const [statusUpdates, setStatusUpdates] = useState({});
+
+
+  useEffect(() => {
+    const fetchbulkOrders = async () => {
+      try {
+        const res = await axios.get('http://localhost:3000/api/DiliveryGuy/orders/acceptedBlk');
+        setordersBLK(res.data);
+        setLoading(false);
+        
+      } catch (err) {
+        setError('Failed to fetch products.');
+        setLoading(false);
+      }
+    };
+
+    fetchbulkOrders();
+  }, []);
+
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const res = await axios.get('http://localhost:3000/api/DiliveryGuy/orders/acceptedNor/');
+        setordersNOR(res.data);
+        setLoadingN(false);
+      } catch (err) {
+        setError('Failed to fetch products.');
+        setLoadingN(false);
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
+
+  const handleSave = async (orderId) => {
+      const newStatus = statusUpdates[orderId];
+      if (!newStatus) return;
+
+      try {
+        await axios.patch(`http://localhost:3000/api/DiliveryGuy/orders/update-status`, {
+          orderId:orderId,
+          status: newStatus,
+        });
+
+        setordersBLK((prevOrders) =>
+          prevOrders.map((order) =>
+            order._id === orderId ? { ...order, status: newStatus } : order
+          )
+        );
+
+          toast.success("Status updated successfully.");
+      } catch (error) {
+        alert("Failed to update status.");
+        console.error(error);
+      }
+};
+
+
+
+
   return (
     <div className="bg-gray-100 min-h-screen">
+      <ToastContainer position="top-center" ></ToastContainer> 
       <nav className=" p-4 text-center font-semibold text-lg">
         <NavBar2/>
       </nav>
@@ -70,49 +144,45 @@ const DiliveryDash = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-300">
-                <tr className="hover:bg-gray-100">
-                  <td className="p-4 border-b">ORD12345</td>
-                  <td className="p-4 border-b">Seller A</td>
-                  <td className="p-4 border-b">Farmer X</td>
-                  <td className="p-4 border-b">$500</td>
-                  <td className="p-4 border-b">
-                    <select className="border p-2 rounded bg-white shadow-sm">
-                      <option value="Accepted" selected>Accepted</option>
-                      <option value="Processing">Processing</option>
-                      <option value="Out for Delivery">Out for Delivery</option>
-                      <option value="Delivered">Delivered</option>
-                    </select>
-                  </td>
-                  <td className="p-4 border-b">Pending</td>
-                  <td className="p-4 border-b">2025-03-31</td>
-                  <td className="p-4 border-b">
-                    <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-                      Save
-                    </button>
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-100">
-                  <td className="p-4 border-b">ORD12346</td>
-                  <td className="p-4 border-b">Seller B</td>
-                  <td className="p-4 border-b">Farmer Y</td>
-                  <td className="p-4 border-b">$750</td>
-                  <td className="p-4 border-b">
-                    <select className="border p-2 rounded bg-white shadow-sm">
-                      <option value="Accepted" selected>Accepted</option>
-                      <option value="Processing">Processing</option>
-                      <option value="Out for Delivery">Out for Delivery</option>
-                      <option value="Delivered">Delivered</option>
-                    </select>
-                  </td>
-                  <td className="p-4 border-b">Completed</td>
-                  <td className="p-4 border-b">2025-03-30</td>
-                  <td className="p-4 border-b">
-                    <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-                      Save
-                    </button>
-                  </td>
-                </tr>
+                {OrdersBLK.map((order, index) => (
+                  <tr key={index} className="hover:bg-gray-100">
+                    <td className="p-4 border-b">{order.orderID}</td>
+                    <td className="p-4 border-b">{order.retailerName || "N/A"}</td>
+                    <td className="p-4 border-b">{order.farmerName || "N/A"}</td>
+                    <td className="p-4 border-b">${order.totalPrice}</td>
+                    <td className="p-4 border-b">
+                      <select
+                        className="border p-2 rounded bg-white shadow-sm"
+                        value={statusUpdates[order._id] || order.status}
+                        onChange={(e) =>
+                          setStatusUpdates({
+                            ...statusUpdates,
+                            [order._id]: e.target.value,
+                          })
+                        }
+                      >
+                        <option value="Accepted">Accepted</option>
+                        <option value="Processing">Processing</option>
+                        <option value="Out for Delivery">Out for Delivery</option>
+                        <option value="Delivered">Delivered</option>
+                      </select>
+
+                    </td>
+                    <td className="p-4 border-b">{order.paymentStatus || "Pending"}</td>
+                    <td className="p-4 border-b">{new Date(order.createdAt).toLocaleDateString()}</td>
+                    <td className="p-4 border-b">
+                     <button
+                        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                        onClick={() => handleSave(order._id)}
+                      >
+                        Save
+                      </button>
+
+                    </td>
+                  </tr>
+                ))}
               </tbody>
+
             </table>
           </div>
 
@@ -131,46 +201,43 @@ const DiliveryDash = () => {
                   <th className="border-y p-4 text-gray-700">Created At</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-300">
-                <tr className="hover:bg-gray-100">
-                  <td className="p-4 border-b">ORD12345</td>
-                  <td className="p-4 border-b">Seller A</td>
-                  <td className="p-4 border-b">Farmer X</td>
-                  <td className="p-4 border-b">$500</td>
-                  <td className="p-4 border-b">
-                    <select className="border p-2 rounded bg-white shadow-sm">
-                      <option value="Accepted" selected>
-                        Accepted
-                      </option>
-                      <option value="Processing">Processing</option>
-                      <option value="Out for Delivery">Out for Delivery</option>
-                      <option value="Delivered">Delivered</option>
-                    </select>
-                  </td>
-                  <td className="p-4 border-b">$500</td>
-                  <td className="p-4 border-b">Pending</td>
-                  <td className="p-4 border-b">2025-03-31</td>
-                </tr>
-                <tr className="hover:bg-gray-100">
-                  <td className="p-4 border-b">ORD12346</td>
-                  <td className="p-4 border-b">Seller B</td>
-                  <td className="p-4 border-b">Farmer Y</td>
-                  <td className="p-4 border-b">$750</td>
-                  <td className="p-4 border-b">
-                    <select className="border p-2 rounded bg-white shadow-sm">
-                      <option value="Accepted" selected>
-                        Accepted
-                      </option>
-                      <option value="Processing">Processing</option>
-                      <option value="Out for Delivery">Out for Delivery</option>
-                      <option value="Delivered">Delivered</option>
-                    </select>
-                  </td>
-                  <td className="p-4 border-b">$750</td>
-                  <td className="p-4 border-b">Completed</td>
-                  <td className="p-4 border-b">2025-03-30</td>
-                </tr>
+             <tbody className="divide-y divide-gray-300">
+                {OrdersNOR.map((order, index) => (
+                  <tr key={index} className="hover:bg-gray-100">
+                    <td className="p-4 border-b">{order.orderID}</td>
+                    <td className="p-4 border-b">{order.retailerName || "N/A"}</td>
+                    <td className="p-4 border-b">{order.farmerName || "N/A"}</td>
+                    <td className="p-4 border-b">${order.totalPrice}</td>
+                    <td className="p-4 border-b">
+                      <select
+                        className="border p-2 rounded bg-white shadow-sm"
+                        value={statusUpdates[order._id] || order.status}
+                        onChange={(e) =>
+                          setStatusUpdates({
+                            ...statusUpdates,
+                            [order._id]: e.target.value,
+                          })
+                        }
+                      >
+                        <option value="Accepted">Accepted</option>
+                        <option value="Processing">Processing</option>
+                        <option value="Out for Delivery">Out for Delivery</option>
+                        <option value="Delivered">Delivered</option>
+                      </select>
+
+                    </td>
+          
+                    <td className="p-4 border-b">{order.paymentStatus || "Pending"}</td>
+                    <td className="p-4 border-b">{new Date(order.createdAt).toLocaleDateString()}</td>
+                    <td>
+                       <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                        Save
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
+
             </table>
           </div>
 
