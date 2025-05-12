@@ -5,6 +5,7 @@ import axios from 'axios';
 import NavBar from '@/admin/pages/home/home_components/NavBar';
 import NavBar2 from '@/Common/NavBar2';
 import { useParams } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 const SellerInventroy = () => {
   const { sid } = useParams();
@@ -41,7 +42,7 @@ const SellerInventroy = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/RetailSeller/products/products/${sid}/${cid}`);
+        const response = await axios.get(`http://localhost:3000/api/RetailSeller/products/products/${sid}`);
         console.log(response)
         setProducts(response.data.products);
       } catch (error) {
@@ -49,7 +50,7 @@ const SellerInventroy = () => {
       }
     };
     fetchProducts();
-  }, [cid]);
+  }, [cid,sid]);
 
   // Function to create a new product
   const createProduct = async () => {
@@ -90,7 +91,8 @@ const SellerInventroy = () => {
       const response = await axios.delete(`http://localhost:3000/api/RetailSeller/products/product/${productId}`);
       console.log('Product deleted successfully:', response.data);
       setProducts((prevProducts) => prevProducts.filter((product) => product._id !== productId));
-      window.alert('Product deleted successfully');
+      toast.error("Product deleted")
+      
     } catch (error) {
       console.error('Error deleting product:', error.response ? error.response.data : error.message);
     }
@@ -109,18 +111,22 @@ const SellerInventroy = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createProduct(); // Submit the form to create a new product
+    toast.success("Product added")
   };
 
   // Handle form submit for updating product
   const handleSubmitEdit = (e) => {
     e.preventDefault();
     updateProduct(formeData._id, formeData); // Submit the updated product data
-    window.alert('product updated successfully')
+     toast.success("product updated successfully")
   };
 
   return (
+    <>
     <div className="bg-gray-100">
       <nav className="p-4"><NavBar2 /></nav>
+      <ToastContainer position="top-center" />
+
       <div className="grid grid-cols-12 min-h-screen">
         {/* Sidebar */}
         <SideBar sellerid={sid} />
@@ -419,6 +425,7 @@ const SellerInventroy = () => {
 )}
 
     </div>
+    </>
   );
 };
 

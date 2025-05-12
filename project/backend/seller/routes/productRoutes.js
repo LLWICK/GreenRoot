@@ -11,6 +11,7 @@ const { createProduct,
 router.post('/product', createProduct);
 
 // Get all products
+router.get('/products/:sid', getAllProducts);
 router.get('/products/:sid/:cid', getProductByCategory);
 
 // Get a product by ID

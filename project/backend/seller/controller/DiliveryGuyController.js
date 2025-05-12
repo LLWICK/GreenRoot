@@ -1,9 +1,24 @@
-const BulkOrder = require('../model/bulkOrderModel'); // Adjust the path as necessary
+const BulkOrder = require('../model/bulkOrderModel'); // Adjust the path as necessar
+const NormalOrder = require('../../customer/model/orderModel'); // Adjust the path as necessary
 
 // Controller to get orders filtered by status 'accepted'
 const getAcceptedOrders = async (req, res) => {
   try {
-    const acceptedOrders = await BulkOrder.find({ status: 'accepted' })
+    const acceptedOrders = await BulkOrder.find({ status: 'Accepted' })
+      //.populate('sellerId', 'name email')   // optional: populate seller details
+      //.populate('farmerId', 'name email');  // optional: populate farmer details
+
+    res.status(200).json(acceptedOrders);
+  } catch (error) {
+    console.error('Error fetching accepted orders:', error);
+    res.status(500).json({ message: 'Server error while fetching accepted orders' });
+  }
+};
+
+
+const getAcceptedNormalOrders = async (req, res) => {
+  try {
+    const acceptedOrders = await NormalOrder.find({ status: 'accepted' })
       //.populate('sellerId', 'name email')   // optional: populate seller details
       //.populate('farmerId', 'name email');  // optional: populate farmer details
 
@@ -46,4 +61,4 @@ const updateOrderStatus = async (req, res) => {
     }
   };
 
-module.exports = { getAcceptedOrders ,updateOrderStatus};
+module.exports = { getAcceptedOrders ,updateOrderStatus,getAcceptedNormalOrders};
