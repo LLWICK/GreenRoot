@@ -7,6 +7,7 @@ const {
     getSalesForExcel,
     getBulkOrdersOverTime,
     getBulkOrdersForExcel,
+    getBulkOrdersForFilter,
 
 } = require('../controller/report.controller');
 
@@ -23,5 +24,5 @@ router.get('/bulk-orders/over-time', getBulkOrdersOverTime);
 // get bulk orders for excel
 router.get('/bulk-orders-excel', getBulkOrdersForExcel);
 // get bulk order filter
-router.get('/bulk-orders-filter', getBulkOrdersForExcel);
+router.get('/bulk-orders-filter', getBulkOrdersForFilter);
 module.exports = router;
