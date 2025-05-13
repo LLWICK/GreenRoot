@@ -63,6 +63,7 @@ const ProductManage = require("./customer/routes/GetProducts.js");
 const FeedbackManage = require("./customer/routes/FeedbackRoute.js");
 const TypeCustomerManage = require("./customer/routes/TypeCustomerRoute.js");
 const SendEmailManage = require("./customer/routes/EmailRoute.js");
+const SearchManage = require("./customer/routes/SearchRoute.js");
 
 //Researcher routes import
 const postRoutes = require("./researcher/routes/postRoutes.js");
@@ -120,6 +121,7 @@ app.use("/api/customer/products", ProductManage);
 app.use("/api/customer/feedback", FeedbackManage);
 app.use("/api/customer/typeCustomer", TypeCustomerManage);
 app.use("/api/customer/send-email", SendEmailManage);
+app.use("/api/customer/search", SearchManage);
 
 //Researcher Routes
 app.use("/api/researcher/posts", postRoutes);
