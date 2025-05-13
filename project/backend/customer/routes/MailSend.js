@@ -1,3 +1,5 @@
+// this is false one
+
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport(
@@ -6,8 +8,8 @@ const transporter = nodemailer.createTransport(
         host: "smtp.gmail.com",
         port: 465,
         auth: {
-            user: "ggmatheesha2@gmail.com",
-            pass: "hfvfckbopiugqxml",
+            user: "greenrootp@gmail.com",
+            pass: "weifglbjhwgzofym",
         },
     }
 );

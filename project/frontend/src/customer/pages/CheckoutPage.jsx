@@ -5,6 +5,8 @@ import { useLocation, useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify'; // Import ToastContainer and toast
+import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toast notifications
 
 const CheckoutPage = () => {
 
@@ -91,7 +93,7 @@ const CheckoutPage = () => {
     }
 
     console.log('Order placed successfully');
-    alert('Order placed successfully!');
+    toast.success('Order placed successfully!');
 
     // Delete all items from the cart
     for (const item of cartItems) {
@@ -110,7 +112,7 @@ const CheckoutPage = () => {
 
   } catch (error) {
     console.error('Error placing order:', error);
-    alert(`Error placing order. Details: ${error.message}`);
+    toast.error(`Error placing order. Details: ${error.message}`);
   }
 };
 
@@ -172,7 +174,7 @@ const handleOrderAndEmail = async () => {
           <h2 className="font-bold text-3xl">Billing Details</h2>
           <div className="mx-10 border p-4">
             <h2 className="text-lg font-bold flex justify-between">
-              Subtotal <span>${Subtotal}</span>
+              Subtotal <span>Rs.{Subtotal}</span>
             </h2>
             {cartItems.map((item) => (
               <div key={item._id} className="flex gap-6 items-center mb-4">
@@ -190,7 +192,7 @@ const handleOrderAndEmail = async () => {
                   <h2 className="font-bold">{item.name}</h2>
                   <h2>Quantity {item.quantity}</h2>
                   <h2>Seller ID:{item.sellerId}</h2>{/*sellerid*/}
-                  <h2 className="text-lg font-bold">$ {item.totalPrice}</h2>
+                  <h2 className="text-lg font-bold">Rs. {item.totalPrice}</h2>
                 </div>
               </div>
             ))}
@@ -203,11 +205,11 @@ const handleOrderAndEmail = async () => {
           <h2 className="p-3 bg-gray-200 font-bold text-center">Total Cart {cartItems.length}</h2>
           <div className="p-4 flex flex-col gap-4">
             <h2 className="font-bold flex justify-between">
-              Subtotal : <span>${Subtotal.toFixed(2)}</span>
+              Subtotal : <span>Rs.{Subtotal.toFixed(2)}</span>
             </h2>
             <hr />
             
-            <Link to={`/Customer/Orderhistory/${cid}`}>
+            <Link to={`/Customer/Dashboard/${cid}`}>
             <Button  onClick={handleOrderAndEmail} className={`bg-green-700 text-white cursor-pointer`}>
               OK <ArrowBigRight />
             </Button>
@@ -220,6 +222,8 @@ const handleOrderAndEmail = async () => {
 
         </div>
       </div>
+      {/* Toast container to render the toast notifications */}
+                            <ToastContainer />
       <Footer />
     </div>
   );

@@ -112,7 +112,7 @@ const Header = ({custId}) => {
           </SheetContent>
         </Sheet>
 
-        <Button onClick={handledashboard}>Profile</Button>
+        <Button onClick={handledashboard}>Explore</Button>
       </div>
     </div>
   );
