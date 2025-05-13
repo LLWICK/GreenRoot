@@ -115,7 +115,6 @@ import CategoryPage from "./customer/pages/CategoryPage";
 import ProductDetailsPage from "./customer/pages/ProductDetailsPage";
 import FeedbackPage from "./customer/pages/FeedbackPage";
 
-
 //
 
 import SellerNormalOrders from "./seller/pages/sellerNormalOrders";
@@ -141,9 +140,9 @@ function App() {
       <Route path="/farmer/:uid/dashboard" element={<FarmerHome />} />
       <Route path="/farmer/:uid/cropProducts" element={<CropsHome />} />
       <Route path="/farmer" element={<LandingPage />} />
-      <Route path="/farmer/viewCrop/:cid" element={<ViewCrop />} />
+      <Route path="/farmer/:uid/viewCrop/:cid" element={<ViewCrop />} />
       <Route path="/error" element={<ErrorPage />} />
-      <Route path="/farmer/crop/edit/:cid" element={<CropEdit />} />
+      <Route path="/farmer/:uid/crop/edit/:cid" element={<CropEdit />} />
       <Route path="/farmer/crop/addCrop" element={<AddCropPage />} />
       <Route path="/farmer/:uid/orders" element={<OrdersPage />} />
       <Route path="/farmer/:uid/schedule" element={<Schedule />} />
