@@ -178,32 +178,40 @@ const getSalesForExcel = async (req, res) => {
     }
 }
 
-// get bulck orders
+// get bulck orders over time
 const getBulkOrdersOverTime = async (req, res) => {
     try {
-        const data = await BulkOrder.aggregate([
+        const orders = await BulkOrder.aggregate([
             {
-                $match: { paymentStatus: 'Completed' } // Optional filter
+                $match: {
+                    paymentStatus: 'Completed' // Only completed orders
+                }
             },
             {
                 $group: {
                     _id: {
-                        year: { $year: "$createdAt" },
-                        month: { $month: "$createdAt" }
+                        year: { $year: '$createdAt' },
+                        month: { $month: '$createdAt' }
                     },
-                    totalPayment: { $sum: "$paymentAmount" },
+                    totalPayment: { $sum: '$paymentAmount' },
                     totalOrders: { $sum: 1 }
                 }
             },
             {
-                $sort: { "_id.year": 1, "_id.month": 1 }
+                $sort: { '_id.year': 1, '_id.month': 1 }
             }
         ]);
 
-        res.status(200).json({ data });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Failed to generate bulk order report' });
+        const formatted = orders.map(item => ({
+            month: `${item._id.year}-${String(item._id.month).padStart(2, '0')}`,
+            totalOrders: item.totalOrders,
+            totalPayment: item.totalPayment
+        }));
+
+        res.status(200).json({ data: formatted });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Failed to fetch bulk order report.' });
     }
 };
 
