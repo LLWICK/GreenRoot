@@ -38,6 +38,8 @@ function BulkOrderSummary() {
     return <div>No order data available</div>;
   }
 
+  const steps = ['Accepted', 'Processing', 'Out for Delivery', 'Delivered'];
+
   return (
     <section className="py-24 bg-green-50">
       <div className="w-full max-w-7xl px-6 md:px-8 mx-auto">
@@ -47,26 +49,35 @@ function BulkOrderSummary() {
 
         <div className="container mx-auto flex flex-col px-5 pt-12 pb-8">
           <div className="bg-white shadow-md mx-auto mt-4 mb-16 w-full flex-wrap items-center justify-center px-8 py-4 rounded-lg border border-green-300">
-            <div className="flex items-center space-x-4">
-              <span className="hidden h-8 w-8 items-center justify-center rounded-full bg-green-500 text-white shadow md:inline-flex">
-                1
-              </span>
-              <span className="hidden text-green-500 md:inline">Accepted</span>
-              <span className="hidden h-0.5 w-10 bg-green-400 md:inline"></span>
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-green-600 text-white shadow">
-                2
-              </span>
-              <span className="font-semibold text-green-600">Processing</span>
-              <span className="hidden h-0 w-10 border-t-2 border-dashed border-gray-400 md:inline"></span>
-              <span className="hidden h-8 w-8 items-center justify-center rounded-full bg-white text-green-700 shadow md:inline-flex">
-                3
-              </span>
-              <span className="hidden text-gray-600 md:inline">Out for Delivery</span>
-              <span className="hidden h-0 w-10 border-t-2 border-dashed border-gray-400 md:inline"></span>
-              <span className="hidden h-8 w-8 items-center justify-center rounded-full bg-white text-green-700 shadow md:inline-flex">
-                4
-              </span>
-              <span className="hidden text-gray-600 md:inline">Delivered</span>
+            <div className="flex items-center space-x-4 overflow-x-auto">
+              {steps.map((step, index) => {
+                const isCompleted = steps.indexOf(orderData.status) > index;
+                const isCurrent = orderData.status === step;
+
+                return (
+                  <React.Fragment key={index}>
+                    <span
+                      className={`hidden md:inline-flex h-8 w-8 items-center justify-center rounded-full shadow
+                        ${isCurrent || isCompleted ? 'bg-green-600 text-white' : 'bg-white text-green-700 border border-gray-300'}`}
+                    >
+                      {index + 1}
+                    </span>
+                    <span
+                      className={`hidden md:inline font-medium
+                        ${isCurrent ? 'text-green-600' : isCompleted ? 'text-green-500' : 'text-gray-600'}`}
+                    >
+                      {step}
+                    </span>
+
+                    {index < steps.length - 1 && (
+                      <span
+                        className={`hidden md:inline h-0.5 w-10 
+                          ${isCompleted ? 'bg-green-400' : 'border-t-2 border-dashed border-gray-400'}`}
+                      />
+                    )}
+                  </React.Fragment>
+                );
+              })}
             </div>
           </div>
         </div>

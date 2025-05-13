@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import NavBar2 from "@/Common/NavBar2";
 import SideBar from "../components/sideBar(seller)";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const FarmerList = () => {
   const { sid } = useParams();
@@ -71,6 +71,7 @@ const FarmerList = () => {
                         <th className="px-4 py-3">Email</th>
                         <th className="px-4 py-3">Address</th>
                         <th className="px-4 py-3">To-do List</th>
+                        <th className="px-4 py-3">Field</th>
                       </tr>
                     </thead>
                     <tbody className="bg-white font-sans text-sm">
@@ -107,6 +108,14 @@ const FarmerList = () => {
                               Show
                             </button>
                           </td>
+                          <td className="px-4 py-3 text-xs border">
+                            <button className="bg-green-500 hover:bg-green-400 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-200">
+                              <a href={`/seller/farmerFields/${farmer._id}`} className="block text-center">
+                                Show
+                              </a>
+                            </button>
+                          </td>
+
                         </tr>
                       ))}
                     </tbody>

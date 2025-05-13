@@ -46,7 +46,7 @@ const placeOrder = async (req, res) => {
       totalPrice: totalPrice,
       paymentAmount: totalPrice, // Assuming the payment amount equals the total price
       paymentStatus: "Completed", // Assuming the payment is successful
-      status: "Processing", // Initial status
+      status: "pending", // Initial status
       createdAt: new Date(),
     });
 

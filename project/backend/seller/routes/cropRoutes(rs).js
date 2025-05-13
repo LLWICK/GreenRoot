@@ -3,12 +3,13 @@ const router = express.Router();
 
 const {
     getCropsByCategory,
-    getAllcrops
+    getAllcrops,
+    
   }  = require( "../controller/cropController(rs)");
 
 
 // Route to get all crops filtered by category
 router.get('/', getAllcrops);
-router.get('/category/:cid',getCropsByCategory)
+router.get('/:cid',getCropsByCategory)
 
 module.exports = router;
