@@ -247,6 +247,54 @@ const getBulkOrdersForExcel = async (req, res) => {
     }
 };
 
+const getBulkOrdersForFilter = async (req, res) => {
+    try {
+        const now = new Date();
+        const year = parseInt(req.query.year) || now.getFullYear();
+        const month = parseInt(req.query.month) || now.getMonth() + 1;
+
+        if (month < 1 || month > 12) {
+            return res.status(400).json({ message: 'Invalid month. Must be between 1 and 12.' });
+        }
+
+        const startDate = new Date(year, month - 1, 1);
+        const endDate = new Date(year, month, 0, 23, 59, 59, 999);
+
+        const bulkOrders = await BulkOrder.find({
+            paymentStatus: 'Completed',
+            createdAt: {
+                $gte: startDate,
+                $lte: endDate
+            }
+        }).lean();
+
+        const formatted = bulkOrders.map(order => ({
+            Order_ID: order._id.toString(),
+            Seller_ID: order.sellerId?.toString() || 'N/A',
+            Buyer_ID: order.buyerId?.toString() || 'N/A',
+            Payment_Amount: order.paymentAmount || 0,
+            Payment_Status: order.paymentStatus,
+            Created_At: new Date(order.createdAt).toLocaleString(),
+        }));
+
+        const workbook = XLSX.utils.book_new();
+        const sheet = XLSX.utils.json_to_sheet(formatted);
+        XLSX.utils.book_append_sheet(workbook, sheet, `BulkOrders_${year}_${month}`);
+
+        const buffer = XLSX.write(workbook, {
+            type: 'buffer',
+            bookType: 'xlsx',
+        });
+
+        res.setHeader('Content-Disposition', `attachment; filename="bulk_orders_${year}_${month}.xlsx"`);
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.send(buffer);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Failed to generate bulk orders Excel report' });
+    }
+};
+
 
 module.exports = {
     getAllQuestionsForExcel,
@@ -255,5 +303,6 @@ module.exports = {
     getSalesForExcel,
     getBulkOrdersOverTime,
     getBulkOrdersForExcel,
+    getBulkOrdersForFilter,
 
 }
