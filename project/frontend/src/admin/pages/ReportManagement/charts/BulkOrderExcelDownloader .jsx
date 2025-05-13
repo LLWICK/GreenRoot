@@ -11,7 +11,7 @@ const BulkOrderExcelDownloader = () => {
     };
 
     return (
-        <div className="p-4 border rounded bg-white shadow max-w-md">
+        <div className="mt-2 p-6 pr-10 pl-10 border rounded bg-white shadow max-w-md">
             <h2 className="text-lg font-semibold mb-2">Download Bulk Orders Report</h2>
 
             <div className="flex gap-2 mb-4">
