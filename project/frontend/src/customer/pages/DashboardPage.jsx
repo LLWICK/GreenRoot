@@ -42,9 +42,9 @@ const DashboardPage = () => {
             </div>
           </div>
 
-          {/* Calendar Section (Light Yellow) */}
+          {/* Feedback Section (Light Yellow) */}
           <div className="bg-yellow-50 rounded-2xl shadow-lg p-6 hover:scale-105 transition-transform duration-300 cursor-pointer">
-            <h2 className="text-xl font-semibold text-green-800 mb-4">Delivery Schedule</h2>
+            <h2 className="text-xl font-semibold text-green-800 mb-4">Feed backs </h2>
             <div className="rounded-xl overflow-hidden shadow-md">
               <img
                 src="/customer_images/banner.jpg"
@@ -60,7 +60,7 @@ const DashboardPage = () => {
               <h2 className="text-xl font-semibold text-green-800 mb-4">Sales Analytics</h2>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-2xl font-bold text-gray-800">Analyze Trends</span>
-                <span className="text-sm text-orange-500">+1.31% This Month</span>
+                <span className="text-sm text-orange-500">+10% This Month</span>
               </div>
               <div className="rounded-xl overflow-hidden shadow-md">
                 <img
@@ -74,11 +74,11 @@ const DashboardPage = () => {
 
           {/* Orders Section (Light Blue) */}
           <div className="bg-blue-50 rounded-2xl shadow-lg p-6">
-            <h2 className="text-xl font-semibold text-green-800 mb-4">Recent Orders</h2>
+            <h2 className="text-xl font-semibold text-green-800 mb-4">Tracking Orders</h2>
             <div className="flex justify-around">
               <div className="text-center">
-                <span className="text-4xl font-bold text-orange-500">20%</span>
-                <p className="text-sm text-gray-600">Delivered</p>
+                <span className="text-4xl font-bold text-orange-500">With count</span>
+                <p className="text-sm text-gray-600">Home Delivery</p>
               </div>
             </div>
           </div>

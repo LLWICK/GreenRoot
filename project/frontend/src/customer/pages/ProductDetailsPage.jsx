@@ -85,7 +85,7 @@ const ProductDetailsPage = () => {
         <Sidebar className="w-60 h-screen" custId={cid}/>
       </div>
 
-      {/* Main Content */}
+      {/* here I am using product details ,with image slider.Main content. */}
       <div className="ml-60 p-6 md:p-10 w-full overflow-auto h-screen relative z-20">
         <div className="bg-gray-600 rounded-2xl p-10 shadow-xl mx-4 mt-0 mb-5">
           <div className="flex items-center justify-center gap-4">
@@ -148,7 +148,7 @@ const ProductDetailsPage = () => {
           </div>
         </div>
 
-        {/* Product Grid */}
+        {/*in here i am displaying Products */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {products &&
             products.length > 0 &&

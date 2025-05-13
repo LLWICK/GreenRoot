@@ -23,11 +23,11 @@ const FeedbackSchema = new mongoose.Schema(
       default: {}
     },
     orderId: {
-      type: String, // optional, to link to the order
+      type: String, 
     },
     role: {
     type: String,
-    default: ''  //  This ensures 'customer' is stored by default
+    default: ''  //  'customer' is stored by default
   },
     createdAt: {
       type: Date,

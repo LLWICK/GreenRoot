@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { toast, ToastContainer } from 'react-toastify'; // Import toast and ToastContainer
-import 'react-toastify/dist/ReactToastify.css'; // Import toast CSS
+import { toast, ToastContainer } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css'; 
 import { useParams } from 'react-router-dom';
 
 const OrderhistoryPage = () => {
@@ -31,7 +31,7 @@ const OrderhistoryPage = () => {
         setOrders(data);
       } catch (err) {
         setError(err.message);
-        toast.error(`Error: ${err.message}`); // Display error as toast
+        toast.error(`Error: ${err.message}`); // THIS OnE here Display error as toast message
       } finally {
         setLoading(false);
       }
@@ -85,7 +85,7 @@ const OrderhistoryPage = () => {
         <Sidebar custId={cid}/>
       </div>
 
-      {/* Content */}
+      {/* displaying order hsitory Content */}
       <div className="flex-1 ml-60 p-6 md:p-10 overflow-y-auto h-screen">
       <div className="bg-gray-600 rounded-2xl p-10 shadow-xl mx-4 mt-10 mb-5">
         <div className="flex items-center justify-center gap-4">
@@ -112,20 +112,20 @@ const OrderhistoryPage = () => {
 
 
 
-        {/* Changed from grid to vertical list */}
+        
         <div className="flex flex-col gap-6">
           {orders.map((order) => (
             <div key={order._id} className="bg-gray-300 rounded-xl shadow-md border-l-4 border-green-500 p-6 transition-all duration-300 hover:shadow-xl">
               <h3 className="text-xl font-bold text-green-800">Order #{order.orderNumber}</h3>
-              <p className={`text-lg font-semibold mt-2 ${order.status === 'Cancelled' ? 'text-red-600' : 'text-green-700'}`}>
+              {/* <p className={`text-lg font-semibold mt-2 ${order.status === 'Cancelled' ? 'text-red-600' : 'text-green-700'}`}>
                 Status: {order.status}
-              </p>
+              </p> */}
 
               <div className="mt-4 space-y-3">
                 {order.cartItems &&
                   order.cartItems.map((item) => (
                     <div key={item.id} className="relative flex items-center gap-4 bg-gray-50 p-3 rounded-lg">
-                      {/* Green circle with white tick, centered on the right side */}
+                      
                       <span className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center text-2xl shadow-lg">
                         ✓
                       </span>
@@ -151,7 +151,7 @@ const OrderhistoryPage = () => {
                 <p className="text-lg font-semibold text-green-800 mt-2">Final Total: Rs.{order.finalTotal}</p>
 
                 <div className="mt-4 flex justify-end">
-                  {/* Feedback Dialog */}
+                  {/* updated ,showiNG Feedback Dialog */}
                   <Dialog>
                     <DialogTrigger asChild>
                       <Button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-md">
@@ -245,7 +245,7 @@ const OrderhistoryPage = () => {
         </div>
       </div>
 
-      {/* Toast Container for displaying toasts */}
+      {/*UPDATED this instead of alerts, Toast Container for displaying toasts */}
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={true} />
     </div>
   );

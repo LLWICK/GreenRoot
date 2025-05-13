@@ -51,22 +51,22 @@ const Header = ({custId}) => {
   }, []);
 
   useEffect(() => {
-    const fetchCartCount = async () => { // Changed the function name
+    const fetchCartCount = async () => { // fetching cart count
       try {
         const response = await fetch('http://localhost:3000/api/customer/addtocart/cart/count'); // Changed the API endpoint
         if (response.ok) {
           const data = await response.json();
-          setCartItemsCount(data.count); // Changed how the count is extracted
+          setCartItemsCount(data.count); // set the cart count
         }
       } catch (error) {
-        console.error('Error fetching cart count:', error); // Changed the error message
+        console.error('Error fetching cart count:', error); //  error message
       }
     };
 
-    fetchCartCount(); // Changed the function call
+    fetchCartCount(); //  function call
 
-    // Refetch cart count every 5 seconds (adjust as needed)
-    const intervalId = setInterval(fetchCartCount, 5000); // Changed the interval and function call
+    // Refetching cart count every 5 seconds 
+    const intervalId = setInterval(fetchCartCount, 5000); // matheesha updated, interval and function call
 
     return () => clearInterval(intervalId);
   }, []);

@@ -44,6 +44,6 @@ const AddtoCartSchema = new mongoose.Schema(
 );
 
 
-const AddtoCart = mongoose.model("addtocarts", AddtoCartSchema); // Changed 
+const AddtoCart = mongoose.model("addtocarts", AddtoCartSchema); // matheesha updated
 
 module.exports = AddtoCart;

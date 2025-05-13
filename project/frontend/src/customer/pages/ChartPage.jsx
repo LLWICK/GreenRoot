@@ -179,7 +179,7 @@ const ChartPage = () => {
             </p>
           </div>
 
-          {/* Customer Progress */}
+          {/* SHowing Customer Progress,just chaned pie charts,without taking their inner circle */}
           <div className='bg-black'>
           <h2 className="text-3xl font-semibold text-white mt-16 mb-8 text-center">
             Customer Progress

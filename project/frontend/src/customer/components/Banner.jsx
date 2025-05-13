@@ -3,7 +3,7 @@ import React from 'react'
 const Banner = () => {
   return (
     <div>
-             {/* Two Side-by-Side Images with Overlaid Text */}
+             {/* matheesha updated-in here i ahve placed Two Side-by-Side Images with Overlaid Text */}
 <div className="flex w-full relative">
   {/* First Image with Text */}
   <div className="relative w-1/2 h-[400px]">
@@ -14,9 +14,9 @@ const Banner = () => {
     />
     <div className="absolute top-1/4 left-6 md:left-12 z-10 text-white">
       <h2 className="text-2xl md:text-4xl font-extrabold drop-shadow-md">
-        Shop all your <br />
-        Veggies, Fruits & Grains <br />
-        in One Place
+        Experience customer service <br />
+        honest and reliable <br />
+        crafted just for you
       </h2>
     </div>
   </div>
@@ -30,9 +30,9 @@ const Banner = () => {
     />
     <div className="absolute top-1/4 left-6 md:left-12 z-10 text-white">
       <h2 className="text-2xl md:text-4xl font-extrabold drop-shadow-md">
-        Every Product <br />
-        Comes from <br />
-        Fresh Farms
+        Easy shopping <br />
+        Anytime <br />
+        Anywhere
       </h2>
     </div>
   </div>
