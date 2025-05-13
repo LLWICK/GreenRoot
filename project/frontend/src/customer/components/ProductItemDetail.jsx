@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ShoppingBasket } from 'lucide-react';
-import { ToastContainer, toast } from 'react-toastify'; // Import ToastContainer and toast
-import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toast notifications
+import { ToastContainer, toast } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css'; 
 
 const ProductItemDetail = ({ product }) => {
   if (!product) {
@@ -16,7 +16,7 @@ const ProductItemDetail = ({ product }) => {
   const [loadingType, setLoadingType] = useState(true);
   const [errorType, setErrorType] = useState(null);
 
-  // Recompute total price whenever quantity changes
+  // matheesha UPDAted,Recompute total price whenever quantity changes
   useEffect(() => {
     let calculatedTotal = quantity * productPrice;
 

@@ -35,7 +35,7 @@ const Slider = () => {
     <div className="font-sans">
       {/* Slider Section */}
       <div className="relative w-full h-[600px] overflow-hidden">
-        {/* Images */}
+        {/* matheesha updated,plcing Images */}
         {imageUrls.map((src, index) => (
           <img
             key={index}

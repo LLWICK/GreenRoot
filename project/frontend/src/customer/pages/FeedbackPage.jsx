@@ -42,7 +42,7 @@ const FeedbackPage = () => {
         <Sidebar custId={cid}/>
       </div>
 
-      {/* Scrollable Main Content */}
+      {/* UPDated ,Scrollable Main Content */}
       <div className="flex-1 ml-60 h-screen overflow-y-auto p-6 md:p-10 bg-cover bg-center"
       style={{ backgroundImage: `url('/customer_images/feedback.jpg')` }}>
         <div >
@@ -78,7 +78,7 @@ const FeedbackPage = () => {
           {!loading && !error && feedbacks.map((fb) => (
   <div key={fb._id} className="mb-10">
 
-    {/* Feedback from Customer - Always on Right */}
+    {/* Feedback from Customer placed to Always on Right */}
     <div className="relative max-w-xl bg-green-300 p-4 rounded-2xl shadow-md text-left ml-auto mr-2 before:absolute before:top-4 before:-right-3 before:w-4 before:h-4 before:bg-green-100 before:rounded-full before:content-[''] before:shadow-md">
       <p className="text-green-800 text-sm font-semibold">👤 Role: Customer</p>
       <p><strong>📝 Feedback:</strong> {fb.feedback}</p>
@@ -100,7 +100,7 @@ const FeedbackPage = () => {
       <p className="text-sm text-gray-500">🕒 {new Date(fb.createdAt).toLocaleString()}</p>
     </div>
 
-    {/* Conditional Message - Always on Left */}
+    {/* Conditional Message plced to Always on Left */}
     <div className={`relative max-w-xl bg-gray-300 font-bold p-4 rounded-2xl shadow-md text-left ml-2 mt-2 before:absolute before:top-4 before:-left-3 before:w-4 before:h-4 before:bg-gray-100 before:rounded-full before:content-[''] before:shadow-md ${fb.hasIssue === 'yes' ? 'text-red-600' : 'text-green-900'}`}>
 
       {fb.hasIssue === 'yes' ? (
