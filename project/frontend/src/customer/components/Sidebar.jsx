@@ -30,7 +30,7 @@ function Sidebar({custId}) {
                 <div id="profile" className="space-y-3">
                     <div>
                         <h2 className="font-semibold text-lg text-center text-white">
-                            Eduard Pantazi
+                            Green Roots
                         </h2>
                         <p className="text-sm text-gray-300 text-center">Customer</p>
                     </div>
