@@ -12,7 +12,7 @@ const Card = () => {
                             CardTitle="Manage Farmers"
                             titleHref="/admin/user-management/farmer"
                             btnHref="/admin/user-management/farmer"
-                            CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
+                            CardDescription="Empower the backbone of agriculture! Oversee farmer profiles, monitor activities, and support sustainable farming practices to ensure quality produce and fair trade."
                             Button="View Details"
                         />
                         <SingleCard
@@ -20,7 +20,7 @@ const Card = () => {
                             CardTitle="Manage Admins"
                             titleHref="/admin/user-management/admins"
                             btnHref="/admin/user-management/admins"
-                            CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
+                            CardDescription="Keep your platform running smoothly! Handle administrator roles, assign permissions, and maintain efficient workflow for seamless management and security."
                             Button="View Details"
                         />
                         <SingleCard
@@ -28,7 +28,7 @@ const Card = () => {
                             CardTitle="Manage Customers"
                             titleHref="/admin/user-management/customers"
                             btnHref="/admin/user-management/customers"
-                            CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
+                            CardDescription="Enhance customer experience! View and manage user profiles, track orders, and ensure seamless interactions, delivering top-notch service with ease."
                             Button="View Details"
                         />
                         <SingleCard
@@ -36,7 +36,7 @@ const Card = () => {
                             CardTitle="Manage Sellers"
                             titleHref="/admin/user-management/sellers"
                             btnHref="/admin/user-management/sellers"
-                            CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
+                            CardDescription="Support your marketplace vendors! Monitor seller activities, verify products, and facilitate smooth transactions, ensuring high-quality goods reach customers efficiently."
                             Button="View Details"
                         />
                         <SingleCard
@@ -44,7 +44,15 @@ const Card = () => {
                             CardTitle="Manage Researchers"
                             titleHref="/admin/user-management/researchers"
                             btnHref="/admin/user-management/researchers"
-                            CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
+                            CardDescription="Foster innovation and discovery! Organize research profiles, track ongoing studies, and ensure collaboration among experts to advance scientific and agricultural knowledge."
+                            Button="View Details"
+                        />
+                        <SingleCard
+                            image="https://img.freepik.com/free-photo/close-up-delivery-person-with-parcel_23-2149095905.jpg"
+                            CardTitle="Manage delivery Person"
+                            titleHref="/admin/user-management/deliveryPerson"
+                            btnHref="/admin/user-management/deliveryPerson"
+                            CardDescription="Optimize your logistics! Oversee delivery personnel, track shipments, and ensure timely and efficient deliveries for smooth end-to-end service."
                             Button="View Details"
                         />
                     </div>

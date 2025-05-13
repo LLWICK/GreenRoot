@@ -99,6 +99,9 @@ import {
   OtherQuestion,
   // report management routes
   ReportManagementDash,
+  // deliveryPerson management route
+  DeliveryPersonManagement,
+
 } from "./admin/pages";
 
 /* retail seller page imports  */
@@ -222,6 +225,10 @@ function App() {
         path="/admin/user-management/researchers"
         element={<ResearchersManagement />}
       />
+      <Route
+        path="/admin/user-management/deliveryPerson"
+        element={<DeliveryPersonManagement />}
+      />
 
       {/* Question routes new */}
       <Route path="/admin/question-dash" element={<QuestionDash />} />
@@ -278,28 +285,28 @@ function App() {
       <Route path="/blog/growing-guide" element={<GrowingGuideBlog />} />
       <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide />} />
 
-      <Route path="/blog/crop" element={<BlogCrop/>}/>
-      <Route path="/blog/crop/:id" element={<BlogCropDetails/>}/>
-      <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate/>}/>
-      <Route path="/researcher/my-news/update" element={<NewsUpdate/>}/>
-      <Route path="/blog/qna" element={<QnABlog/>}/>
-      <Route path="/researcher/my-stats" element={<MyStats/>}/>
-      <Route path="/researcher/my-pnd" element={<MyPnd/>}/>
-      <Route path="/researcher/my-pnd/update" element={<PnDUpdate/>}/>
-      <Route path="/blog/pest-and-disease" element={<PnDBlog/>}/>
-      <Route path="/blog/pest-and-disease/:id" element={<SinglePndPage/>}/>
       <Route path="/blog/crop" element={<BlogCrop />} />
       <Route path="/blog/crop/:id" element={<BlogCropDetails />} />
-      <Route path="/researcher/my-growing-guide/update"element={<GrowingGuideUpdate />}/>
+      <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate />} />
       <Route path="/researcher/my-news/update" element={<NewsUpdate />} />
       <Route path="/blog/qna" element={<QnABlog />} />
       <Route path="/researcher/my-stats" element={<MyStats />} />
       <Route path="/researcher/my-pnd" element={<MyPnd />} />
-      <Route path="/researcher/my-growing-guide/update"element={<GrowingGuideUpdate />}/>
+      <Route path="/researcher/my-pnd/update" element={<PnDUpdate />} />
+      <Route path="/blog/pest-and-disease" element={<PnDBlog />} />
+      <Route path="/blog/pest-and-disease/:id" element={<SinglePndPage />} />
+      <Route path="/blog/crop" element={<BlogCrop />} />
+      <Route path="/blog/crop/:id" element={<BlogCropDetails />} />
+      <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate />} />
       <Route path="/researcher/my-news/update" element={<NewsUpdate />} />
       <Route path="/blog/qna" element={<QnABlog />} />
-      <Route path="/researcher/publications" element={<Publications/>}/>
-      <Route path="/blog/publications" element={<PublicationsBlog/>}/>
+      <Route path="/researcher/my-stats" element={<MyStats />} />
+      <Route path="/researcher/my-pnd" element={<MyPnd />} />
+      <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate />} />
+      <Route path="/researcher/my-news/update" element={<NewsUpdate />} />
+      <Route path="/blog/qna" element={<QnABlog />} />
+      <Route path="/researcher/publications" element={<Publications />} />
+      <Route path="/blog/publications" element={<PublicationsBlog />} />
 
       {/* Retail seller Router */}
 
@@ -316,8 +323,8 @@ function App() {
       <Route path="/seller/BulkOrder/:orderId" element={<BulkOrderSummary />} />
       <Route path="/seller/:sid/farmers" element={<FarmerList />} />
       <Route path="/diliveryGuy/dash" element={<DiliveryDash />} />
-      <Route path="/seller/:sid/news" element={< AgroDetails/>} />
-      <Route path="/seller/farmerFields/:fid" element={<MapComponent/>} />
+      <Route path="/seller/:sid/news" element={< AgroDetails />} />
+      <Route path="/seller/farmerFields/:fid" element={<MapComponent />} />
 
       {/* Customer Routes */}
 
