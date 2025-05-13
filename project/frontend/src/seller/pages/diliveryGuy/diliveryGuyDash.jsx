@@ -73,6 +73,29 @@ const DiliveryDash = () => {
       }
 };
 
+ const handleSaveN = async (orderId) => {
+      const newStatus = statusUpdates[orderId];
+      if (!newStatus) return;
+
+      try {
+        await axios.patch(`http://localhost:3000/api/DiliveryGuy/orders/update-status-N`, {
+          orderId:orderId,
+          status: newStatus,
+        });
+
+        setordersNOR((prevOrders) =>
+          prevOrders.map((order) =>
+            order._id === orderId ? { ...order, status: newStatus } : order
+          )
+        );
+
+          toast.success("Status updated successfully.");
+      } catch (error) {
+        alert("Failed to update status.");
+        console.error(error);
+      }
+};
+
 
 
 
@@ -230,7 +253,7 @@ const DiliveryDash = () => {
                     <td className="p-4 border-b">{order.paymentStatus || "Pending"}</td>
                     <td className="p-4 border-b">{new Date(order.createdAt).toLocaleDateString()}</td>
                     <td>
-                       <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                       <button  onClick={() => handleSaveN(order._id)} className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
                         Save
                       </button>
                     </td>
