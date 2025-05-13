@@ -1,6 +1,9 @@
 const Question = require('../model/QuestionModel');
 const User = require('../model/userModel');
 const Order = require('../../customer/model/orderModel');
+// bulkOrder
+const BulkOrder = require('../../seller/model/bulkOrderModel');
+
 const XLSX = require('xlsx');
 
 const getAllQuestionsForExcel = async (req, res) => {
@@ -175,9 +178,82 @@ const getSalesForExcel = async (req, res) => {
     }
 }
 
+// get bulck orders over time
+const getBulkOrdersOverTime = async (req, res) => {
+    try {
+        const orders = await BulkOrder.aggregate([
+            {
+                $match: {
+                    paymentStatus: 'Completed' // Only completed orders
+                }
+            },
+            {
+                $group: {
+                    _id: {
+                        year: { $year: '$createdAt' },
+                        month: { $month: '$createdAt' }
+                    },
+                    totalPayment: { $sum: '$paymentAmount' },
+                    totalOrders: { $sum: 1 }
+                }
+            },
+            {
+                $sort: { '_id.year': 1, '_id.month': 1 }
+            }
+        ]);
+
+        const formatted = orders.map(item => ({
+            month: `${item._id.year}-${String(item._id.month).padStart(2, '0')}`,
+            totalOrders: item.totalOrders,
+            totalPayment: item.totalPayment
+        }));
+
+        res.status(200).json({ data: formatted });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Failed to fetch bulk order report.' });
+    }
+};
+
+// bulk orders for excel
+const getBulkOrdersForExcel = async (req, res) => {
+    try {
+        const bulkOrders = await BulkOrder.find({ paymentStatus: 'Completed' }).lean();
+
+        const formatted = bulkOrders.map(order => ({
+            Order_ID: order._id.toString(),
+            Seller_ID: order.sellerId?.toString() || 'N/A',
+            Buyer_ID: order.buyerId?.toString() || 'N/A',
+            Payment_Amount: order.paymentAmount || 0,
+            Payment_Status: order.paymentStatus,
+            Created_At: new Date(order.createdAt).toLocaleString(),
+        }));
+
+        const workbook = XLSX.utils.book_new();
+        const sheet = XLSX.utils.json_to_sheet(formatted);
+        XLSX.utils.book_append_sheet(workbook, sheet, 'BulkOrders');
+
+        const buffer = XLSX.write(workbook, {
+            type: 'buffer',
+            bookType: 'xlsx',
+        });
+
+        res.setHeader('Content-Disposition', 'attachment; filename="bulk_orders.xlsx"');
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.send(buffer);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Failed to generate bulk orders Excel report' });
+    }
+};
+
+
 module.exports = {
     getAllQuestionsForExcel,
     getUserForExcel,
     getSalse,
     getSalesForExcel,
+    getBulkOrdersOverTime,
+    getBulkOrdersForExcel,
+
 }
