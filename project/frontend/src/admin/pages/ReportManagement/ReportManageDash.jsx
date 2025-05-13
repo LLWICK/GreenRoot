@@ -5,6 +5,7 @@ import UserRoleChart from '@/admin/components/UserRoleChart';
 import QuestionTitleChart from '../qaManagement/QuestionTitleChart';
 import SalesChart from './charts/SalesChart';
 import BulkOrderChart from './charts/BulkOrderChart';
+import BulkOrderExcelDownloader from './charts/BulkOrderExcelDownloader ';
 
 const ReportManageDash = () => {
     return (
@@ -43,6 +44,10 @@ const ReportManageDash = () => {
                         <div className="bg-white shadow-md rounded-lg p-6 mt-6">
                             <h2 className="text-lg font-semibold text-gray-700 mb-3">Bulk Order</h2>
                             <BulkOrderChart />
+
+                            <div className='flex justify-center'>
+                                <BulkOrderExcelDownloader />
+                            </div>
                         </div>
                     </div>
                 </div>

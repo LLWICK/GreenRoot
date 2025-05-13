@@ -6,7 +6,7 @@ const BulkOrderExcelDownloader = () => {
     const [month, setMonth] = useState(now.getMonth() + 1);
 
     const handleDownload = () => {
-        const url = `http://localhost:3000/api/report/bulk-orders-filter?year=${year}&month=${month}`;
+        const url = `http://localhost:3000/api/admin/report/bulk-orders-filter?year=${year}&month=${month}`;
         window.open(url, '_blank');
     };
 
