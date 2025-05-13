@@ -24,7 +24,7 @@ const Card = () => {
                             Button="View Details"
                         />
                         <SingleCard
-                            image="https://www.foodcircus.com/wp-content/uploads/2017/07/FreshFruit-768x508.jpg"
+                            image="https://images.pexels.com/photos/95425/pexels-photo-95425.jpeg?cs=srgb&dl=pexels-erikscheel-95425.jpg&fm=jpg"
                             CardTitle="Manage Customers"
                             titleHref="/admin/user-management/customers"
                             btnHref="/admin/user-management/customers"
