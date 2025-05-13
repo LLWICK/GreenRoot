@@ -215,6 +215,37 @@ const getBulkOrdersOverTime = async (req, res) => {
     }
 };
 
+// bulk orders for excel
+const getBulkOrdersForExcel = async (req, res) => {
+    try {
+        const bulkOrders = await BulkOrder.find({ paymentStatus: 'Completed' }).lean();
+
+        const formatted = bulkOrders.map(order => ({
+            Order_ID: order._id.toString(),
+            Seller_ID: order.sellerId?.toString() || 'N/A',
+            Buyer_ID: order.buyerId?.toString() || 'N/A',
+            Payment_Amount: order.paymentAmount || 0,
+            Payment_Status: order.paymentStatus,
+            Created_At: new Date(order.createdAt).toLocaleString(),
+        }));
+
+        const workbook = XLSX.utils.book_new();
+        const sheet = XLSX.utils.json_to_sheet(formatted);
+        XLSX.utils.book_append_sheet(workbook, sheet, 'BulkOrders');
+
+        const buffer = XLSX.write(workbook, {
+            type: 'buffer',
+            bookType: 'xlsx',
+        });
+
+        res.setHeader('Content-Disposition', 'attachment; filename="bulk_orders.xlsx"');
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.send(buffer);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Failed to generate bulk orders Excel report' });
+    }
+};
 
 
 module.exports = {
@@ -223,5 +254,6 @@ module.exports = {
     getSalse,
     getSalesForExcel,
     getBulkOrdersOverTime,
+    getBulkOrdersForExcel,
 
 }
