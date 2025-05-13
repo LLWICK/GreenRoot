@@ -13,7 +13,7 @@ const DashboardPage = () => {
       <div className="flex-1 p-6 space-y-6">
         <div className="flex items-center justify-between ">
           <div>
-            <h1 className="text-3xl font-semibold text-green-800">Welcome Back, Eduard!</h1>
+            <h1 className="text-3xl font-semibold text-green-800">Welcome Back!</h1>
             <p className="text-lg text-gray-600">Explore fresh produce and manage your orders.</p>
           </div>
           <div className="flex space-x-4">
