@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
+import { useParams } from 'react-router-dom';
 
 const FeedbackPage = () => {
+
+  const { cid } = useParams();
+    console.log(cid)
+
   const [feedbacks, setFeedbacks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -34,7 +39,7 @@ const FeedbackPage = () => {
     >
       {/* Fixed Sidebar */}
       <div className="w-60 h-screen fixed">
-        <Sidebar />
+        <Sidebar custId={cid}/>
       </div>
 
       {/* Scrollable Main Content */}
