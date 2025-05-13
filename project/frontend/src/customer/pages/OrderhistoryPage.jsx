@@ -81,7 +81,30 @@ const OrderhistoryPage = () => {
 
       {/* Content */}
       <div className="flex-1 ml-60 p-6 md:p-10 overflow-y-auto h-screen">
-        <h2 className="text-3xl font-semibold text-green-900 mb-6 text-center">Order History</h2>
+      <div className="bg-gray-600 rounded-2xl p-10 shadow-xl mx-4 mt-10 mb-5">
+        <div className="flex items-center justify-center gap-4">
+          <img
+            src="/customer_images/Our_logo.png"
+            alt="Logo"
+            width={90}
+            height={90}
+            className="rounded-full"
+          />
+          <h2 className="text-5xl font-bold text-white order-heading">
+            Order History
+          </h2>
+          <img
+            src="/customer_images/Our_logo.png"
+            alt="Logo"
+            width={90}
+            height={90}
+            className="rounded-full"
+          />
+        </div>
+      </div>
+
+
+
 
         {/* Changed from grid to vertical list */}
         <div className="flex flex-col gap-6">

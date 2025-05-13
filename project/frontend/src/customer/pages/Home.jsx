@@ -18,7 +18,7 @@ const Home = () => {
     <div >
       <NavBar/>
       <Header custId={cid}/>
-    <div className='p-5 md:p-10 px-16'>
+    <div >
       
        <Slider/>
        <CategoryList custId={cid}/>

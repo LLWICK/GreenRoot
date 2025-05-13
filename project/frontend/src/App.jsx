@@ -58,6 +58,11 @@ import NewsUpdate from "./researcher/pages/NewsUpdate";
 import QnABlog from "./researcher/pages/QnABlog";
 import MyStats from "./researcher/pages/MyStats";
 import MyPnd from "./researcher/pages/MyPnd";
+import PnDUpdate from "./researcher/pages/PnDUpdate";
+import PnDBlog from "./researcher/pages/PnDBlog";
+import SinglePndPage from "./researcher/pages/SinglePndPage";
+import Publications from "./researcher/pages/Publications";
+import PublicationsBlog from "./researcher/pages/PublicationsBlog";
 
 /* Admin pages */
 import {
@@ -115,7 +120,6 @@ import CategoryPage from "./customer/pages/CategoryPage";
 import ProductDetailsPage from "./customer/pages/ProductDetailsPage";
 import FeedbackPage from "./customer/pages/FeedbackPage";
 
-
 //
 
 import SellerNormalOrders from "./seller/pages/sellerNormalOrders";
@@ -126,8 +130,10 @@ import FarmerList from "./seller/pages/farmers";
 import DiliveryDash from "./seller/pages/diliveryGuy/diliveryGuyDash";
 import AboutUsPage from "./Common/pages/AboutUsPage";
 import MapEdit from "./farmer/mapComponents/MapEdit";
+import AgroDetails from "./seller/pages/sellerAgroDetails";
 import TrackPage from "./farmer/mapComponents/components/TrackPage";
 import RestPasswordPage from "./Common/pages/RestPasswordPage";
+import MapComponent from "./seller/pages/farmerFiledMap";
 
 // import UserManagement from "./admin/pages/UserManagement";
 
@@ -141,9 +147,9 @@ function App() {
       <Route path="/farmer/:uid/dashboard" element={<FarmerHome />} />
       <Route path="/farmer/:uid/cropProducts" element={<CropsHome />} />
       <Route path="/farmer" element={<LandingPage />} />
-      <Route path="/farmer/viewCrop/:cid" element={<ViewCrop />} />
+      <Route path="/farmer/:uid/viewCrop/:cid" element={<ViewCrop />} />
       <Route path="/error" element={<ErrorPage />} />
-      <Route path="/farmer/crop/edit/:cid" element={<CropEdit />} />
+      <Route path="/farmer/:uid/crop/edit/:cid" element={<CropEdit />} />
       <Route path="/farmer/crop/addCrop" element={<AddCropPage />} />
       <Route path="/farmer/:uid/orders" element={<OrdersPage />} />
       <Route path="/farmer/:uid/schedule" element={<Schedule />} />
@@ -272,23 +278,28 @@ function App() {
       <Route path="/blog/growing-guide" element={<GrowingGuideBlog />} />
       <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide />} />
 
+      <Route path="/blog/crop" element={<BlogCrop/>}/>
+      <Route path="/blog/crop/:id" element={<BlogCropDetails/>}/>
+      <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate/>}/>
+      <Route path="/researcher/my-news/update" element={<NewsUpdate/>}/>
+      <Route path="/blog/qna" element={<QnABlog/>}/>
+      <Route path="/researcher/my-stats" element={<MyStats/>}/>
+      <Route path="/researcher/my-pnd" element={<MyPnd/>}/>
+      <Route path="/researcher/my-pnd/update" element={<PnDUpdate/>}/>
+      <Route path="/blog/pest-and-disease" element={<PnDBlog/>}/>
+      <Route path="/blog/pest-and-disease/:id" element={<SinglePndPage/>}/>
       <Route path="/blog/crop" element={<BlogCrop />} />
       <Route path="/blog/crop/:id" element={<BlogCropDetails />} />
-      <Route
-        path="/researcher/my-growing-guide/update"
-        element={<GrowingGuideUpdate />}
-      />
+      <Route path="/researcher/my-growing-guide/update"element={<GrowingGuideUpdate />}/>
       <Route path="/researcher/my-news/update" element={<NewsUpdate />} />
       <Route path="/blog/qna" element={<QnABlog />} />
       <Route path="/researcher/my-stats" element={<MyStats />} />
       <Route path="/researcher/my-pnd" element={<MyPnd />} />
-
-      <Route
-        path="/researcher/my-growing-guide/update"
-        element={<GrowingGuideUpdate />}
-      />
+      <Route path="/researcher/my-growing-guide/update"element={<GrowingGuideUpdate />}/>
       <Route path="/researcher/my-news/update" element={<NewsUpdate />} />
       <Route path="/blog/qna" element={<QnABlog />} />
+      <Route path="/researcher/publications" element={<Publications/>}/>
+      <Route path="/blog/publications" element={<PublicationsBlog/>}/>
 
       {/* Retail seller Router */}
 
@@ -305,6 +316,8 @@ function App() {
       <Route path="/seller/BulkOrder/:orderId" element={<BulkOrderSummary />} />
       <Route path="/seller/:sid/farmers" element={<FarmerList />} />
       <Route path="/diliveryGuy/dash" element={<DiliveryDash />} />
+      <Route path="/seller/:sid/news" element={< AgroDetails/>} />
+      <Route path="/seller/farmerFields/:fid" element={<MapComponent/>} />
 
       {/* Customer Routes */}
 

@@ -13,7 +13,10 @@ function CropEdit(prop) {
   const [image, setImage] = useState("");
   const [overview, setOver] = useState("");
 
-  const { cid } = useParams();
+  const [disWarning, setWarning] = useState(false);
+  const [trigAx, setTrig] = useState(false);
+
+  const { cid, uid } = useParams();
 
   useEffect(() => {
     // Simulate fetching crop data from an API
@@ -41,31 +44,55 @@ function CropEdit(prop) {
   const handleForm = (e) => {
     e.preventDefault();
 
-    const data = { name, status, price, fertilizer, quantity, image, overview };
     //console.log(data);
 
     axios
-      .patch(`http://localhost:3000/api/v1/crops/${cid}`, data)
-      .then(() => {
-        toast.success("Crop updated successfully!", {
-          position: "top-center",
-          autoClose: 2000, // Show toast for 2 seconds
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "light",
-          transition: Bounce,
-        });
-
-        // Delay navigation to ensure the toast message is visible
-        setTimeout(() => {
-          navigate(`/farmer/${prop.fid}/cropProducts`);
-        }, 2000);
+      .post("http://localhost:3000/api/v1/farmer/order/parameters", {
+        farmerId: uid,
       })
-      .catch((e) => {
-        alert("Error!");
-        console.log(e);
+      .then((res) => {
+        const cropIds = res.data.data.flatMap((order) =>
+          order.items.map((item) => item.cropId)
+        );
+
+        let isOrdered = cropIds.includes(cid);
+        if (isOrdered && status == "off-field") {
+          setWarning(true);
+        } else {
+          const data = {
+            name,
+            status,
+            price,
+            fertilizer,
+            quantity,
+            image,
+            overview,
+          };
+
+          axios
+            .patch(`http://localhost:3000/api/v1/crops/${cid}`, data)
+            .then(() => {
+              toast.success("Crop updated successfully!", {
+                position: "top-center",
+                autoClose: 2000, // Show toast for 2 seconds
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "light",
+                transition: Bounce,
+              });
+
+              // Delay navigation to ensure the toast message is visible
+              setTimeout(() => {
+                navigate(`/farmer/${prop.fid}/cropProducts`);
+              }, 2000);
+            })
+            .catch((e) => {
+              alert("Error!");
+              console.log(e);
+            });
+        }
       });
   };
 
@@ -84,6 +111,51 @@ function CropEdit(prop) {
         theme="light"
         transition={Bounce}
       />
+
+      {/* Warning modal */}
+      {disWarning ? (
+        <div>
+          <div class="fixed inset-0 flex items-center justify-center z-50 backdrop-blur confirm-dialog ">
+            <div class="relative px-4 min-h-screen md:flex md:items-center md:justify-center">
+              <div class=" opacity-25 w-full h-full absolute z-10 inset-0"></div>
+              <div class="bg-white rounded-lg md:max-w-md md:mx-auto p-4 fixed inset-x-0 bottom-0 z-50 mb-4 mx-4 md:relative shadow-lg">
+                <div class="md:flex items-center">
+                  <div class="rounded-full border border-gray-300 flex items-center justify-center w-16 h-16 flex-shrink-0 mx-auto">
+                    <i class="bx bx-error text-3xl">&#9888;</i>
+                  </div>
+                  <div class="mt-4 md:mt-0 md:ml-6 text-center md:text-left">
+                    <p class="font-bold">Warning!</p>
+                    <p class="text-sm text-gray-700 mt-1">
+                      You will lose all of your data by deleting this. This
+                      action cannot be undone.
+                    </p>
+                  </div>
+                </div>
+                <div class="text-center md:text-right mt-4 md:flex md:justify-end">
+                  <button
+                    id="confirm-delete-btn"
+                    class="block w-full md:inline-block md:w-auto px-4 py-3 md:py-2 bg-red-200 text-red-700 rounded-lg font-semibold text-sm md:ml-2 md:order-2"
+                  >
+                    Delete
+                  </button>
+                  <button
+                    onClick={() => {
+                      setWarning(false);
+                    }}
+                    id="confirm-cancel-btn"
+                    class="block w-full md:inline-block md:w-auto px-4 py-3 md:py-2 bg-gray-200 rounded-lg font-semibold text-sm mt-4 md:mt-0 md:order-1"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {/* Warning modal end */}
+
       <div>
         <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
           <form onSubmit={handleForm}>

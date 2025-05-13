@@ -5,6 +5,7 @@ import axios from 'axios';
 import NavBar from '@/admin/pages/home/home_components/NavBar';
 import NavBar2 from '@/Common/NavBar2';
 import { useParams } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 const SellerInventroy = () => {
   const { sid } = useParams();
@@ -35,19 +36,21 @@ const SellerInventroy = () => {
   };
 
   const [formeData, setFormeData] = useState(defaultFormData);
+  const [cid, setCategory] = useState("All");
 
   // Fetch all products when the component mounts
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/api/RetailSeller/products/products/${sid}`);
+        console.log(response)
         setProducts(response.data.products);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
     };
     fetchProducts();
-  }, []);
+  }, [cid,sid]);
 
   // Function to create a new product
   const createProduct = async () => {
@@ -88,7 +91,8 @@ const SellerInventroy = () => {
       const response = await axios.delete(`http://localhost:3000/api/RetailSeller/products/product/${productId}`);
       console.log('Product deleted successfully:', response.data);
       setProducts((prevProducts) => prevProducts.filter((product) => product._id !== productId));
-      window.alert('Product deleted successfully');
+      toast.error("Product deleted")
+      
     } catch (error) {
       console.error('Error deleting product:', error.response ? error.response.data : error.message);
     }
@@ -107,18 +111,22 @@ const SellerInventroy = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createProduct(); // Submit the form to create a new product
+    toast.success("Product added")
   };
 
   // Handle form submit for updating product
   const handleSubmitEdit = (e) => {
     e.preventDefault();
     updateProduct(formeData._id, formeData); // Submit the updated product data
-    window.alert('product updated successfully')
+     toast.success("product updated successfully")
   };
 
   return (
+    <>
     <div className="bg-gray-100">
       <nav className="p-4"><NavBar2 /></nav>
+      <ToastContainer position="top-center" />
+
       <div className="grid grid-cols-12 min-h-screen">
         {/* Sidebar */}
         <SideBar sellerid={sid} />
@@ -130,13 +138,16 @@ const SellerInventroy = () => {
           {/* Category Links */}
          {/* Category Links */}
             <div className="flex justify-end items-center gap-6 mb-10 mr-10">
-              <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
+            <a onClick={() => setCategory("All")}  href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
+               All
+              </a>
+              <a onClick={() => setCategory("Fruits")} href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
                Fruits
               </a>
-              <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
+              <a onClick={() => setCategory("Vegetables")} href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
                 Vegetables
               </a>
-              <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
+              <a onClick={() => setCategory("Grains")} href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
                 Grains
               </a>
               
@@ -414,6 +425,7 @@ const SellerInventroy = () => {
 )}
 
     </div>
+    </>
   );
 };
 

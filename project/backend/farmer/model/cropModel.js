@@ -58,6 +58,7 @@ const cropSchema = new mongoose.Schema(
     status: {
       type: String,
       default: "onfield",
+      //enum: ["onfield", "offField"],
       required: false,
     },
   },
