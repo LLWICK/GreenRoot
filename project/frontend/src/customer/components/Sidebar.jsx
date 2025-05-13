@@ -64,13 +64,7 @@ function Sidebar({custId}) {
                         <MessageSquare className="w-4 h-4 mr-2 text-green-300" />
                         <span>Chart</span>
                     </Link>
-                    <Link
-                        to="/user/Calendar"
-                        className="text-sm font-medium text-white py-2 px-3 rounded-md transition duration-200 ease-in-out flex items-center hover:bg-green-700"
-                    >
-                        <Calendar className="w-4 h-4 mr-2 text-green-300" />
-                        <span>Schedule</span>
-                    </Link>
+                    
                     <Link
                         to={`/Customer/FeedbackPage/${custId}`}
                         className="text-sm font-medium text-white py-2 px-3 rounded-md transition duration-200 ease-in-out flex items-center hover:bg-green-700"
@@ -79,13 +73,7 @@ function Sidebar({custId}) {
                         <span>Feedback</span>
                     </Link>
                     
-                    <Link
-                        to="/user/Users"
-                        className="text-sm font-medium text-white py-2 px-3 rounded-md transition duration-200 ease-in-out flex items-center hover:bg-green-700"
-                    >
-                        <Users className="w-4 h-4 mr-2 text-green-300" />
-                        <span>Logout</span>
-                    </Link>
+                    
                 </div>
             </div>
         </div>

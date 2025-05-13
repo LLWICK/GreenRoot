@@ -6,6 +6,8 @@ function CropInfo() {
   const [crops, setCrop] = useState([]);
   const { cid } = useParams();
 
+  const { uid } = useParams();
+
   useEffect(() => {
     // Simulate fetching crop data from an API
     const fetchCropData = async () => {
@@ -36,7 +38,8 @@ function CropInfo() {
           {/* Details Section */}
           <div className="md:w-2/3 space-y-4">
             <h2 className="text-2xl font-semibold">
-              {crops.name} <Link to={`/farmer/crop/edit/${cid}`}>✏️</Link>
+              {crops.name}{" "}
+              <Link to={`/farmer/${uid}/crop/edit/${cid}`}>✏️</Link>
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

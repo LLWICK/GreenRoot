@@ -69,10 +69,10 @@ const AdminDash = () => {
                 </div>
 
                 {/* To-Do List Section */}
-                <div className="w-72 bg-white shadow-md p-6 border-l border-gray-300">
+                {/* <div className="w-72 bg-white shadow-md p-6 border-l border-gray-300">
                     <h2 className="text-xl font-semibold mb-3">To-Do List</h2>
 
-                </div>
+                </div> */}
             </div>
         </div>
     )

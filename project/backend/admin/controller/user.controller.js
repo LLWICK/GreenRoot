@@ -116,7 +116,7 @@ const updateUser = async (req, res) => {
             <ul>
                 <li><strong>First Name:</strong> ${firstName}</li>
                 <li><strong>Last Name:</strong> ${lastName}</li>
-                <li><strong>password:</strong> ${lastName}</li>
+                <li><strong>password:</strong>1234567</li>
                 <li><strong>Email:</strong> ${email}</li>
                 <li><strong>Status:</strong> ${status}</li>
                 <li><strong>Address:</strong> ${address}</li>

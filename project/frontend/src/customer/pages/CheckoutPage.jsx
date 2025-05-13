@@ -209,7 +209,7 @@ const handleOrderAndEmail = async () => {
             </h2>
             <hr />
             
-            <Link to={`/Customer/Orderhistory/${cid}`}>
+            <Link to={`/Customer/Dashboard/${cid}`}>
             <Button  onClick={handleOrderAndEmail} className={`bg-green-700 text-white cursor-pointer`}>
               OK <ArrowBigRight />
             </Button>
