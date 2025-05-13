@@ -52,7 +52,7 @@ export default function NewsUpdate() {
                 throw new Error(data.message || 'Failed to update news');
             }
 
-            setSuccessMsg('Growing guide updated successfully!');
+            setSuccessMsg('News updated successfully!');
             setTimeout(() => navigate('/researcher/my-news'), 1500);
             
             } catch (error) {
@@ -98,7 +98,7 @@ export default function NewsUpdate() {
 
          <div className="min-h-screen bg-gray-200 p-8 ">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
-        <h1 className="text-2xl font-bold text-gray-800 mb-6">Edit Growing Guide</h1>
+        <h1 className="text-2xl font-bold text-gray-800 mb-6">Edit New</h1>
         
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Title */}

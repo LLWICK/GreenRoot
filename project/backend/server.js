@@ -70,6 +70,7 @@ const postRoutes = require("./researcher/routes/postRoutes.js");
 const newsRoutes = require("./researcher/routes/newsRoutes.js");
 const pndRoutes = require("./researcher/routes/pndRoutes.js");
 const solutionRoutes = require("./researcher/routes/solutionRoutes.js");
+const publicationRoutes = require('./researcher/routes/publicationRoutes.js')
 
 //retail seller route imports
 const getCropRoutesRS = require("./seller/routes/cropRoutes(rs)");
@@ -80,6 +81,9 @@ const bulkOrderRoutes = require("./seller/routes/bulkOrderRoutes.js");
 const statDataRoutes = require("./seller/routes/statDataRoutes.js");
 const FarmerToDoRoutes = require("./seller/routes/TodoListRoutes.js");
 const NormalOrderRoutes = require("./seller/routes/normalOrderRoutes.js");
+const DilveryGuyRoutes = require("./seller/routes/DiliveryGuyRoutes.js");
+const MapSellerFarmers = require("./seller/routes/fieldRoutes.js");
+
 
 const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
@@ -128,6 +132,7 @@ app.use("/api/researcher/posts", postRoutes);
 app.use("/api/researcher/news", newsRoutes);
 app.use("/api/researcher/pnd", pndRoutes);
 app.use("/api/researcher/solutions", solutionRoutes);
+app.use("/api/researcher/publications", publicationRoutes)
 
 //retail seller
 
@@ -139,6 +144,9 @@ app.use("/api/RetailSeller/bulkOrder", bulkOrderRoutes);
 app.use("/api/RetailSeller/stats", statDataRoutes);
 app.use("/api/RetailSeller/farmers", FarmerToDoRoutes);
 app.use("/api/RetailSeller/normalOrders", NormalOrderRoutes);
+app.use("/api/DiliveryGuy/orders", DilveryGuyRoutes);
+app.use("/api/RetailSeller/field", MapSellerFarmers);
+
 
 mongoose
   .connect(mongoURL)

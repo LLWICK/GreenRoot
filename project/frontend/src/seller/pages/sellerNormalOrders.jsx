@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import SideBar from '../components/sideBar(seller)';
 import NavBar2 from '@/Common/NavBar2';
+import { toast, ToastContainer } from 'react-toastify';
 
 function SellerNormalOrders() {
   const { sid } = useParams();
@@ -33,11 +34,11 @@ function SellerNormalOrders() {
         });
 
         console.log(response.data);
-        alert("status updated")
+        toast.success("status updated")
         return response.data;
     } catch (error) {
         console.error("Error updating order status:", error.response?.data || error.message);
-        alert("cannot update status")
+        toast.error("cannot update status")
         throw error;
     }
 };
@@ -47,6 +48,7 @@ function SellerNormalOrders() {
       <nav className="p-4">
         <NavBar2 />
       </nav>
+      <ToastContainer position="top-center" />
 
       <div className="grid grid-cols-12 min-h-screen">
         <SideBar sellerid={sid} />

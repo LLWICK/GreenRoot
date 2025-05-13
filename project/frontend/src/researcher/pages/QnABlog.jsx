@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import BlogHeader from '../components/BlogHeader';
 import BlogFooter from '../components/BlogFooter';
 import MyQnACard from '../components/MyQnACard';
@@ -64,7 +64,7 @@ export default function QnABlog() {
   };
 
   const handleCreateNew = () => {
-    navigate('/researcher/my-qna/create');
+    navigate('/farmer/:uid/experts');
   };
 
   if (loading) {

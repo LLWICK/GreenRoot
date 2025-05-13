@@ -39,6 +39,44 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+
+const getProductByCategory = async (req, res) => {
+  try {
+    const { sid, cid } = req.params;
+
+    // Case: Fetch all products for a given seller
+    if (cid === "All") {
+      const products = await Product.find({ sellerId: sid }).populate('sellerId', 'name');
+      console.log(products)
+      if (!products.length) {
+        return res.status(404).json({ message: 'No products found for this seller' });
+      }
+      return res.status(200).json(products);
+    }
+
+    // Case: Fetch products by both sellerId and category
+    const filter = {
+      sellerId: sid,
+      category: cid
+    };
+
+    console.log(`Fetching products for seller ${sid} in category ${cid}`);
+
+    const products = await Product.find(filter).sort({ createdAt: -1 }).populate('sellerId', 'name');
+    console.log(products)
+    if (!products.length) {
+      return res.status(404).json({ message: 'No products found for this seller in this category' });
+    }
+
+    return res.status(200).json(products);
+
+  } catch (err) {
+    console.error("Error fetching products by category:", err);
+    return res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};
+
+
 // Get a single product by ID
 const getProductById = async (req, res) => {
   try {
@@ -97,4 +135,5 @@ module.exports = {
   getProductById,
   updateProduct,
   deleteProduct,
+  getProductByCategory,
 };

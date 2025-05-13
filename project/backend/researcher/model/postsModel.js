@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema //This creates a shortcut to use the Schema class from Mongoose
+const Schema = mongoose.Schema 
 
 const postsSchema = new Schema ({
 

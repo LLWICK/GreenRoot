@@ -130,8 +130,54 @@ const getSalse = async (req, res) => {
     }
 };
 
+// get sales for excel 
+const getSalesForExcel = async (req, res) => {
+    try {
+        const orders = await Order.find().lean();
+
+        const sellerSales = {};
+
+        orders.forEach(order => {
+            if (Array.isArray(order.cartItems)) {
+                order.cartItems.forEach(item => {
+                    const sellerId = item.sellerId || 'Unknown';
+                    const total = item.totalPrice || 0;
+
+                    if (!sellerSales[sellerId]) {
+                        sellerSales[sellerId] = 0;
+                    }
+                    sellerSales[sellerId] += total;
+                });
+            }
+        })
+
+        const excelData = Object.entries(sellerSales).map(([sellerId, totalSales]) => ({
+            Seller_ID: sellerId,
+            Total_Sales: parseFloat(totalSales.toFixed(2))
+        }));
+
+        const workbook = XLSX.utils.book_new();
+        const sheet = XLSX.utils.json_to_sheet(excelData);
+        XLSX.utils.book_append_sheet(workbook, sheet, 'SalesBySeller');
+
+        const buffer = XLSX.write(workbook, {
+            type: 'buffer',
+            bookType: 'xlsx'
+        });
+
+        res.setHeader('Content-Disposition', 'attachment; filename="sales_by_seller.xlsx"');
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.send(buffer);
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Failed to generate Excel file' });
+    }
+}
+
 module.exports = {
     getAllQuestionsForExcel,
     getUserForExcel,
     getSalse,
+    getSalesForExcel,
 }

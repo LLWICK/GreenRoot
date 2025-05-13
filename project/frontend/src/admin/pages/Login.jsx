@@ -57,6 +57,9 @@ const Login = () => {
             case "researcher":
               navigate(`/researcher`);
               break;
+            case "deliveryPerson":
+              navigate(`/diliveryGuy/dash`);
+              break;
             default:
               navigate("/");
           }
@@ -140,9 +143,12 @@ const Login = () => {
                       required
                     />
 
-                    <span className="text-blue-600 underline hover:text-blue-700 float-right">
-                      <Link to={`/otp/send`}>Forgot password</Link>
-                    </span>
+                    <div className="flex justify-center">
+                      <span className="text-red-600 underline hover:text-blue-700 float-right">
+                        <Link to={`/otp/send`}>Forgot password</Link>
+                      </span>
+                    </div>
+
                     <button
                       className="mt-5 tracking-wide font-semibold bg-green-400 text-white w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                       type="submit"
