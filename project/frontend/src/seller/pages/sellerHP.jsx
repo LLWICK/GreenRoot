@@ -6,6 +6,7 @@ import SideBar from "../components/sideBar(seller)";
 import NavBar from '@/admin/pages/home/home_components/NavBar';
 import NavBar2 from "@/Common/NavBar2";
 import { useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 const SellerHome = () => {
     const { sid } = useParams();
@@ -15,13 +16,15 @@ const SellerHome = () => {
     // Crop fetching state
     const [crops, setCrops] = useState(null);
     const [isCropsPending, setIsCropsPending] = useState(true);
+    const [category, setCategory] = useState("All");
+
 
     // Fetch crops
     useEffect(() => {
         const fetchCrops = async () => {
             setIsCropsPending(true);
             try {
-                const res = await axios.get("http://localhost:3000/api/retailSeller/crops");
+                const res = await axios.get(`http://localhost:3000/api/retailSeller/crops/${category}`);
                 setCrops(res.data);
             } catch (err) {
                 console.error("Error fetching crops:", err);
@@ -30,7 +33,7 @@ const SellerHome = () => {
             }
         };
         fetchCrops();
-    }, []);
+    }, [category]);
 
     // Cart fetching state
     const [cart, setCart] = useState(null);
@@ -64,7 +67,7 @@ const SellerHome = () => {
             });
 
             console.log("Cart updated:", response.data);
-            alert("Item added to cart!");
+            toast.success("Item added to cart")
 
             // Refresh cart after adding an item
             fetchCart();
@@ -93,12 +96,17 @@ const SellerHome = () => {
 
     return (
         <>
+        
+        <ToastContainer position="top-center" />
+       
+        
             {/* Navbar */}
             <nav className="p-4"><NavBar2/></nav>
 
             <div className="grid grid-cols-12 min-h-screen">
                 {/* Sidebar */}
                 <SideBar sellerid={sid} />
+                
 
                 {/* Main Content */}
                 <div className="col-span-10 flex flex-col p-6">
@@ -106,13 +114,17 @@ const SellerHome = () => {
 
                     {/* Categories & Cart Icon */}
                                     <div className="flex justify-end items-center gap-6 mb-10 mr-10">
-                            <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
+                            
+                            <a onClick={() => setCategory("All")}  href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
+                               All
+                            </a>
+                            <a  onClick={() => setCategory("Fruits")} href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
                                 Fruits
                             </a>
-                            <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
+                            <a onClick={() => setCategory("Vegetables")} href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
                                 Vegetables
                             </a>
-                            <a href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
+                            <a onClick={() => setCategory("Grains")} href="#" className="text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:shadow-lg transition-all duration-300 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105">
                                Grains
                             </a>
                            

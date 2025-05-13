@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
+import { toast, ToastContainer } from 'react-toastify';
+
 const FinalizeOrder = () => {
   const { sid } = useParams();
   const navigate = useNavigate();
@@ -34,10 +36,10 @@ const FinalizeOrder = () => {
       });
 
       if (response.data.success) {
-        alert("Order placed successfully!");
+        toast.success("🟢 Order placed Order placed successfully!!");
         navigate(`/seller/${sid}/bulkOrders`);
       } else {
-        alert("Failed to place the order");
+        toast.error('error placing order')
       }
     } catch (error) {
       console.error("Error placing order", error);
@@ -51,6 +53,7 @@ const FinalizeOrder = () => {
     <section className="py-24 bg-green-50">
       <div className="w-full max-w-7xl px-4 md:px-5 lg:px-6 mx-auto">
         <h2 className="font-manrope font-bold text-4xl text-green-700 text-center">
+        <ToastContainer position="top-center" />
           Payment Successful
         </h2>
         <p className="mt-4 text-lg text-gray-600 mb-11 text-center">

@@ -3,7 +3,40 @@ import React from 'react'
 const Banner = () => {
   return (
     <div>
-        <img src="/customer_images/banner.jpg" width={1000} height={300} alt="banner" className="w-full h-[400px] md:h-[400px] mt-15 mb-15   rounded-lg" />
+             {/* Two Side-by-Side Images with Overlaid Text */}
+<div className="flex w-full relative">
+  {/* First Image with Text */}
+  <div className="relative w-1/2 h-[400px]">
+    <img
+      src="/customer_images/delivery_01.jpg"
+      alt="Shop All"
+      className="w-full h-full object-cover"
+    />
+    <div className="absolute top-1/4 left-6 md:left-12 z-10 text-white">
+      <h2 className="text-2xl md:text-4xl font-extrabold drop-shadow-md">
+        Shop all your <br />
+        Veggies, Fruits & Grains <br />
+        in One Place
+      </h2>
+    </div>
+  </div>
+
+  {/* Second Image with Text */}
+  <div className="relative w-1/2 h-[400px]">
+    <img
+      src="/customer_images/delivery_02.jpg"
+      alt="Fresh Farms"
+      className="w-full h-full object-cover"
+    />
+    <div className="absolute top-1/4 left-6 md:left-12 z-10 text-white">
+      <h2 className="text-2xl md:text-4xl font-extrabold drop-shadow-md">
+        Every Product <br />
+        Comes from <br />
+        Fresh Farms
+      </h2>
+    </div>
+  </div>
+</div>
     </div>
   )
 }

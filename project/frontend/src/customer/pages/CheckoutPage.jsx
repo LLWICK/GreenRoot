@@ -5,6 +5,8 @@ import { useLocation, useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify'; // Import ToastContainer and toast
+import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toast notifications
 
 const CheckoutPage = () => {
 
@@ -60,60 +62,96 @@ const CheckoutPage = () => {
   //
 
   const handleOrder = async () => {
-    try {
-      const orderDetails = {
-        totalPrice: total,
-        cartItems: cartItems.map((item) => ({
-          name: item.name,
-          image: item.image,
-          
-          quantity: item.quantity,
-          sellerId: item.sellerId,
-          
-          totalPrice: item.totalPrice,
+  try {
+    const orderDetails = {
+      totalPrice: total,
+      cartItems: cartItems.map((item) => ({
+        name: item.name,
+        image: item.image,
+        quantity: item.quantity,
+        sellerId: item.sellerId,
+        totalPrice: item.totalPrice,
+      })),
+      delivery,
+      tax,
+      finalTotal: Subtotal,
+      ordinary_buyer_id: cid,
+    };
 
-        })),
-        delivery,
-        tax,
-        finalTotal: Subtotal,
-        ordinary_buyer_id:cid,
-      };
+    const response = await fetch('http://localhost:3000/api/customer/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(orderDetails),
+    });
 
-      const response = await fetch('http://localhost:3000/api/customer/orders', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(orderDetails),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to place order');
-      }
-
-      console.log('Order placed successfully');
-      alert('Order placed successfully!');
-
-      // Delete all items from the cart
-      for (const item of cartItems) {
-        await fetch(`http://localhost:3000/api/customer/addtocart/${item._id}`, {
-          method: 'DELETE',
-        });
-      }
-
-      // Refetch cart items to update the UI
-      const updatedCartResponse = await fetch('http://localhost:3000/api/customer/addtocart');
-      if (updatedCartResponse.ok) {
-        const updatedCartData = await updatedCartResponse.json();
-        setCartItems(updatedCartData);
-        setSubtotal(0); // Reset subtotal
-      }
-
-    } catch (error) {
-      console.error('Error placing order:', error);
-      alert('Error placing order. Please try again.');
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Error data from server:', errorData); // Log the error from server
+      throw new Error(errorData.message || 'Failed to place order');
     }
-  };
+
+    console.log('Order placed successfully');
+    toast.success('Order placed successfully!');
+
+    // Delete all items from the cart
+    for (const item of cartItems) {
+      await fetch(`http://localhost:3000/api/customer/addtocart/${item._id}`, {
+        method: 'DELETE',
+      });
+    }
+
+    // Refetch cart items to update the UI
+    const updatedCartResponse = await fetch('http://localhost:3000/api/customer/addtocart');
+    if (updatedCartResponse.ok) {
+      const updatedCartData = await updatedCartResponse.json();
+      setCartItems(updatedCartData);
+      setSubtotal(0); // Reset subtotal
+    }
+
+  } catch (error) {
+    console.error('Error placing order:', error);
+    toast.error(`Error placing order. Details: ${error.message}`);
+  }
+};
+
+//send email
+const handleSendEmail = async () => {
+  try {
+    const response = await fetch("http://localhost:3000/api/customer/send-email/email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: "ggmatheesha@gmail.com", // ← dynamically use user's email
+        subject: "Order Confirmation",
+        message: "<h1>Thank you for your order!</h1><p>We will deliver it soon.</p>",
+      }),
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      console.log("Success:", data.message);
+    } else {
+      console.error("Email error:", data.error);
+    }
+  } catch (err) {
+    console.error("Request failed:", err);
+  }
+};
+
+
+//calling the email and handleorder function
+const handleOrderAndEmail = async () => {
+  await handleOrder();      // Place order
+  await handleSendEmail();  // Send confirmation email
+};
+
+
+
+
 
 
 
@@ -136,7 +174,7 @@ const CheckoutPage = () => {
           <h2 className="font-bold text-3xl">Billing Details</h2>
           <div className="mx-10 border p-4">
             <h2 className="text-lg font-bold flex justify-between">
-              Subtotal <span>${Subtotal}</span>
+              Subtotal <span>Rs.{Subtotal}</span>
             </h2>
             {cartItems.map((item) => (
               <div key={item._id} className="flex gap-6 items-center mb-4">
@@ -154,7 +192,7 @@ const CheckoutPage = () => {
                   <h2 className="font-bold">{item.name}</h2>
                   <h2>Quantity {item.quantity}</h2>
                   <h2>Seller ID:{item.sellerId}</h2>{/*sellerid*/}
-                  <h2 className="text-lg font-bold">$ {item.totalPrice}</h2>
+                  <h2 className="text-lg font-bold">Rs. {item.totalPrice}</h2>
                 </div>
               </div>
             ))}
@@ -167,12 +205,12 @@ const CheckoutPage = () => {
           <h2 className="p-3 bg-gray-200 font-bold text-center">Total Cart {cartItems.length}</h2>
           <div className="p-4 flex flex-col gap-4">
             <h2 className="font-bold flex justify-between">
-              Subtotal : <span>${Subtotal.toFixed(2)}</span>
+              Subtotal : <span>Rs.{Subtotal.toFixed(2)}</span>
             </h2>
             <hr />
             
-            <Link to={`/Customer/Orderhistory/${cid}`}>
-            <Button  onClick={handleOrder} className={`bg-green-700 text-white cursor-pointer`}>
+            <Link to={`/Customer/Dashboard/${cid}`}>
+            <Button  onClick={handleOrderAndEmail} className={`bg-green-700 text-white cursor-pointer`}>
               OK <ArrowBigRight />
             </Button>
             </Link>
@@ -184,6 +222,8 @@ const CheckoutPage = () => {
 
         </div>
       </div>
+      {/* Toast container to render the toast notifications */}
+                            <ToastContainer />
       <Footer />
     </div>
   );
