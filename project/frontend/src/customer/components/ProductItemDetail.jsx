@@ -142,7 +142,7 @@ const ProductItemDetail = ({ product }) => {
             )}
           </>
         ) : (
-          <p className="text-sm text-gray-500">No customer type set</p>
+          <p className="text-sm text-gray-500">Ordinary Level</p>
         )}
       </div>
 
