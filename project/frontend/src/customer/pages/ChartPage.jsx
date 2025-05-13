@@ -4,8 +4,14 @@ import {
   LineChart, Line, PieChart, Pie, Cell
 } from 'recharts';
 import Sidebar from '../components/Sidebar';
+import { useParams } from 'react-router-dom';
 
 const ChartPage = () => {
+
+  const { cid } = useParams();
+  console.log(cid)
+
+
   const [orderQuantityData, setOrderQuantityData] = useState([]);
   const [orderTotalData, setOrderTotalData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -96,7 +102,7 @@ const ChartPage = () => {
   return (
     <div className="flex h-screen bg-green-50">
       <div className="w-60 h-screen fixed">
-        <Sidebar />
+        <Sidebar custId={cid}/>
       </div>
 
       <div className="flex-1 ml-60 h-screen overflow-y-auto p-6 md:p-10 bg-cover bg-center"

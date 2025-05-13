@@ -4,8 +4,14 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { toast, ToastContainer } from 'react-toastify'; // Import toast and ToastContainer
 import 'react-toastify/dist/ReactToastify.css'; // Import toast CSS
+import { useParams } from 'react-router-dom';
 
 const OrderhistoryPage = () => {
+
+   const { cid } = useParams();
+  console.log(cid)
+
+
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -76,7 +82,7 @@ const OrderhistoryPage = () => {
     >
       {/* Sidebar */}
       <div className="w-60 h-screen fixed">
-        <Sidebar />
+        <Sidebar custId={cid}/>
       </div>
 
       {/* Content */}

@@ -1,7 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Sidebar from '../components/Sidebar';
+import { useParams } from 'react-router-dom';
 
 const ProductDetailsPage = () => {
+
+  const { cid } = useParams();
+  console.log(cid)
+
+
   const images = [
     '/customer_images/melon.jpg',
     '/customer_images/product_details.webp',
@@ -76,7 +82,7 @@ const ProductDetailsPage = () => {
 
       {/* Sidebar */}
       <div className="w-60 h-screen fixed z-20">
-        <Sidebar className="w-60 h-screen" />
+        <Sidebar className="w-60 h-screen" custId={cid}/>
       </div>
 
       {/* Main Content */}
