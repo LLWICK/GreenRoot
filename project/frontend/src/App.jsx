@@ -58,6 +58,11 @@ import NewsUpdate from "./researcher/pages/NewsUpdate";
 import QnABlog from "./researcher/pages/QnABlog";
 import MyStats from "./researcher/pages/MyStats";
 import MyPnd from "./researcher/pages/MyPnd";
+import PnDUpdate from "./researcher/pages/PnDUpdate";
+import PnDBlog from "./researcher/pages/PnDBlog";
+import SinglePndPage from "./researcher/pages/SinglePndPage";
+import Publications from "./researcher/pages/Publications";
+import PublicationsBlog from "./researcher/pages/PublicationsBlog";
 
 /* Admin pages */
 import {
@@ -271,23 +276,28 @@ function App() {
       <Route path="/blog/growing-guide" element={<GrowingGuideBlog />} />
       <Route path="/blog/growing-guide/:id" element={<SingleGrowingGuide />} />
 
+      <Route path="/blog/crop" element={<BlogCrop/>}/>
+      <Route path="/blog/crop/:id" element={<BlogCropDetails/>}/>
+      <Route path="/researcher/my-growing-guide/update" element={<GrowingGuideUpdate/>}/>
+      <Route path="/researcher/my-news/update" element={<NewsUpdate/>}/>
+      <Route path="/blog/qna" element={<QnABlog/>}/>
+      <Route path="/researcher/my-stats" element={<MyStats/>}/>
+      <Route path="/researcher/my-pnd" element={<MyPnd/>}/>
+      <Route path="/researcher/my-pnd/update" element={<PnDUpdate/>}/>
+      <Route path="/blog/pest-and-disease" element={<PnDBlog/>}/>
+      <Route path="/blog/pest-and-disease/:id" element={<SinglePndPage/>}/>
       <Route path="/blog/crop" element={<BlogCrop />} />
       <Route path="/blog/crop/:id" element={<BlogCropDetails />} />
-      <Route
-        path="/researcher/my-growing-guide/update"
-        element={<GrowingGuideUpdate />}
-      />
+      <Route path="/researcher/my-growing-guide/update"element={<GrowingGuideUpdate />}/>
       <Route path="/researcher/my-news/update" element={<NewsUpdate />} />
       <Route path="/blog/qna" element={<QnABlog />} />
       <Route path="/researcher/my-stats" element={<MyStats />} />
       <Route path="/researcher/my-pnd" element={<MyPnd />} />
-
-      <Route
-        path="/researcher/my-growing-guide/update"
-        element={<GrowingGuideUpdate />}
-      />
+      <Route path="/researcher/my-growing-guide/update"element={<GrowingGuideUpdate />}/>
       <Route path="/researcher/my-news/update" element={<NewsUpdate />} />
       <Route path="/blog/qna" element={<QnABlog />} />
+      <Route path="/researcher/publications" element={<Publications/>}/>
+      <Route path="/blog/publications" element={<PublicationsBlog/>}/>
 
       {/* Retail seller Router */}
 

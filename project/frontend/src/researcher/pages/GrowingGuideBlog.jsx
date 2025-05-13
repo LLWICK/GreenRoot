@@ -39,7 +39,6 @@ export default function GrowingGuideBlog() {
     return (
         <div className="min-h-screen flex flex-col bg-gray-200">
             <BlogHeader />
-            
             <main className="flex-grow">
                 {/* Heading Section */}
                 <div className="text-center my-8 md:my-12">
