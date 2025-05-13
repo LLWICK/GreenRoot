@@ -49,6 +49,7 @@ function CropEdit(prop) {
     axios
       .post("http://localhost:3000/api/v1/farmer/order/parameters", {
         farmerId: uid,
+        status: "Processing",
       })
       .then((res) => {
         const cropIds = res.data.data.flatMap((order) =>
@@ -126,26 +127,20 @@ function CropEdit(prop) {
                   <div class="mt-4 md:mt-0 md:ml-6 text-center md:text-left">
                     <p class="font-bold">Warning!</p>
                     <p class="text-sm text-gray-700 mt-1">
-                      You will lose all of your data by deleting this. This
-                      action cannot be undone.
+                      You have orders that are currently processing in this crop
+                      Item. You can't set it off-field !
                     </p>
                   </div>
                 </div>
                 <div class="text-center md:text-right mt-4 md:flex md:justify-end">
                   <button
-                    id="confirm-delete-btn"
-                    class="block w-full md:inline-block md:w-auto px-4 py-3 md:py-2 bg-red-200 text-red-700 rounded-lg font-semibold text-sm md:ml-2 md:order-2"
-                  >
-                    Delete
-                  </button>
-                  <button
                     onClick={() => {
                       setWarning(false);
                     }}
-                    id="confirm-cancel-btn"
-                    class="block w-full md:inline-block md:w-auto px-4 py-3 md:py-2 bg-gray-200 rounded-lg font-semibold text-sm mt-4 md:mt-0 md:order-1"
+                    id="confirm-delete-btn"
+                    class="block w-full md:inline-block md:w-auto px-4 py-3 md:py-2 bg-red-200 text-red-700 rounded-lg font-semibold text-sm md:ml-2 md:order-2"
                   >
-                    Cancel
+                    Dismiss
                   </button>
                 </div>
               </div>
