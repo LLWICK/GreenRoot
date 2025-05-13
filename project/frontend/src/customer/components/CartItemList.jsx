@@ -3,6 +3,8 @@
 import { Button } from '@/components/ui/button';
  import { useNavigate } from 'react-router-dom';
  import axios from 'axios';
+ import { ToastContainer, toast } from 'react-toastify'; // Import ToastContainer and toast
+import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toast notifications
 
  const CartItemList = ({custId}) => {
 
@@ -78,10 +80,10 @@ import { Button } from '@/components/ui/button';
                  .then((response) => response.json())
                  .then((data) => setCartItems(data));
 
-                 alert('Item was deleted!');
+                 toast.success('Item was deleted!');
 
          } catch (err) {
-             console.error('Error deleting item:', err);
+             toast.error('Error deleting item:', err);
          }
      };
 
@@ -102,7 +104,7 @@ import { Button } from '@/components/ui/button';
         }
     } catch (error) {
         console.error("Error processing payment:", error);
-        alert("Error processing payment. Please try again.");
+        toast.error("Error processing payment. Please try again.");
     }
 };
 
@@ -198,6 +200,8 @@ import { Button } from '@/components/ui/button';
 
                     
                 </div>
+                 {/* Toast container to render the toast notifications */}
+                      <ToastContainer />
                 
             </div>
         
