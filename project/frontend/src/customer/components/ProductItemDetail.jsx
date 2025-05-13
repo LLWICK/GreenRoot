@@ -88,21 +88,32 @@ const ProductItemDetail = ({ product }) => {
 
       <div className="flex flex-col gap-3">
         <h2 className="text-2xl font-bold">{product.name}</h2>
-        <h2 className="text-sm text-gray-500">{product.supplier}</h2>
-        <h2>Seller ID: {product.sellerId ? product.sellerId._id : 'N/A'}</h2>
-        <h2 className="font-bold text-3xl">Rs.{product.price}</h2>
+        <h2 className="text-sm text-green-700">* Seller : {product.supplier}</h2>
+        <h2 className="text-green-700">* Seller ID: {product.sellerId ? product.sellerId._id : 'N/A'}</h2>
+        <h2 className="font-bold text-2xl">* Rs.{product.price} per item</h2>
         <h2 className="font-medium text-lg">Quantity ({quantity})</h2>
 
+        <h2 className="font-bold text-3xl text-blue-800">Total :</h2>
         <div className="flex flex-col items-baseline gap-3">
           <div className="flex gap-3 items-center">
             <div className="p-2 border flex gap-10 items-center px-5">
-              <button disabled={quantity === 1} onClick={() => handleQuantityChange(quantity - 1)}>
-                -
-              </button>
-              <h2>{quantity}</h2>
-              <button onClick={() => handleQuantityChange(quantity + 1)}>+</button>
-            </div>
-            <h2 className="text-2xl font-bold">= Rs.{totalPrice}</h2>
+  <button
+    disabled={quantity === 1}
+    onClick={() => handleQuantityChange(quantity - 1)}
+    className="w-8 h-8 bg-green-600 text-white font-bold border border-green-600 rounded-full flex items-center justify-center disabled:bg-green-300 disabled:cursor-not-allowed"
+  >
+    -
+  </button>
+  <h2>{quantity}</h2>
+  <button
+    onClick={() => handleQuantityChange(quantity + 1)}
+    className="w-8 h-8 bg-green-600 text-white font-bold border border-green-600 rounded-full flex items-center justify-center"
+  >
+    +
+  </button>
+</div>
+
+            <h2 className="text-2xl font-bold text-blue-800">= Rs.{totalPrice}</h2>
           </div>
 
           <Button className="flex gap-3 w-37 bg-green-500" onClick={handleAddToCart}>
@@ -125,7 +136,7 @@ const ProductItemDetail = ({ product }) => {
               <span className="font-bold">Customer Type:</span> {typeCustomer[0].cus_type || '—'}
             </h2>
             {typeCustomer[0].cus_type === 'Bronze' && (
-              <p className="text-sm text-green-600 font-semibold">
+              <p className="text-2xl text-green-700 font-semibold">
                 You're a Bronze customer – 10% discount applied
               </p>
             )}
