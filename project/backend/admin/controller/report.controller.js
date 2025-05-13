@@ -1,6 +1,9 @@
 const Question = require('../model/QuestionModel');
 const User = require('../model/userModel');
 const Order = require('../../customer/model/orderModel');
+// bulkOrder
+const BulkOrder = require('../../seller/model/bulkOrderModel');
+
 const XLSX = require('xlsx');
 
 const getAllQuestionsForExcel = async (req, res) => {
@@ -175,9 +178,42 @@ const getSalesForExcel = async (req, res) => {
     }
 }
 
+// get bulck orders
+const getBulkOrdersOverTime = async (req, res) => {
+    try {
+        const data = await BulkOrder.aggregate([
+            {
+                $match: { paymentStatus: 'Completed' } // Optional filter
+            },
+            {
+                $group: {
+                    _id: {
+                        year: { $year: "$createdAt" },
+                        month: { $month: "$createdAt" }
+                    },
+                    totalPayment: { $sum: "$paymentAmount" },
+                    totalOrders: { $sum: 1 }
+                }
+            },
+            {
+                $sort: { "_id.year": 1, "_id.month": 1 }
+            }
+        ]);
+
+        res.status(200).json({ data });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Failed to generate bulk order report' });
+    }
+};
+
+
+
 module.exports = {
     getAllQuestionsForExcel,
     getUserForExcel,
     getSalse,
     getSalesForExcel,
+    getBulkOrdersOverTime,
+
 }
