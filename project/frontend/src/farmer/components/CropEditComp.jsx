@@ -94,6 +94,41 @@ function CropEdit(prop) {
               console.log(e);
             });
         }
+      })
+      .catch((e) => {
+        const data = {
+          name,
+          status,
+          price,
+          fertilizer,
+          quantity,
+          image,
+          overview,
+        };
+
+        axios
+          .patch(`http://localhost:3000/api/v1/crops/${cid}`, data)
+          .then(() => {
+            toast.success("Crop updated successfully!", {
+              position: "top-center",
+              autoClose: 2000, // Show toast for 2 seconds
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              theme: "light",
+              transition: Bounce,
+            });
+
+            // Delay navigation to ensure the toast message is visible
+            setTimeout(() => {
+              navigate(`/farmer/${prop.fid}/cropProducts`);
+            }, 2000);
+          })
+          .catch((e) => {
+            alert("Error!");
+            console.log(e);
+          });
       });
   };
 
