@@ -206,9 +206,6 @@ function CropTable(prop) {
                             <p class="text-sm font-semibold text-slate-700">
                               {element.name}
                             </p>
-                            <p class="text-sm text-slate-500">
-                              john@creative-tim.com
-                            </p>
                           </div>
                         </div>
                       </td>
