@@ -294,7 +294,7 @@ const TicketDashboard = () => {
               <div className="bg-white p-4 shadow rounded">
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-semibold text-gray-800">
-                    {selectedTicket.updatedAt}
+                    {selectedTicket.updatedAt.split("T")[0]}
                   </span>
                   <span className="text-xs text-gray-500">
                     {selectedTicket.createdAt}
@@ -309,7 +309,7 @@ const TicketDashboard = () => {
                     <div className="bg-white p-4 shadow rounded">
                       <div className="flex justify-between items-center mb-2">
                         <span className="font-semibold text-gray-800">
-                          {sol.createdAt}
+                          {sol.createdAt.split("T")[0]}
                         </span>
                         <span className="text-xs text-gray-500">
                           <h2 className=" bg-green-500 text-xs px-2 py-0.5 rounded-full font-medium text-white">

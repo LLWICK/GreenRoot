@@ -131,16 +131,7 @@ function OrderTable() {
             </div>
           </div>
           <div class="mt-7 border border-gray-300 pt-9">
-            <div class="flex max-md:flex-col items-center justify-between px-3 md:px-11">
-              <div class="flex items-center gap-3 max-md:mt-5">
-                <button class="rounded-full px-7 py-3 bg-white text-gray-900 border border-gray-300 font-semibold text-sm shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-200 hover:bg-gray-50 hover:border-gray-400">
-                  Show Invoice
-                </button>
-                <button class="rounded-full px-7 py-3 bg-indigo-600 shadow-sm shadow-transparent text-white font-semibold text-sm transition-all duration-500 hover:shadow-indigo-400 hover:bg-indigo-700">
-                  Buy Now
-                </button>
-              </div>
-            </div>
+            <div class="flex max-md:flex-col items-center justify-between px-3 md:px-11"></div>
             <svg
               class="my-9 w-full"
               xmlns="http://www.w3.org/2000/svg"
