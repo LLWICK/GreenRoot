@@ -22,9 +22,8 @@ const getAcceptedOrders = async (req, res) => {
 const getAcceptedNormalOrders = async (req, res) => {
   try {
     const acceptedOrders = await NormalOrder.find({ status: 'accepted' }).sort({ createdAt: -1 })
-      
-
-      console.log(acceptedOrders)
+    
+    console.log(acceptedOrders)
     res.status(200).json(acceptedOrders);
   } catch (error) {
     console.error('Error fetching accepted orders:', error);
