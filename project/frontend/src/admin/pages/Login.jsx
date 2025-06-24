@@ -57,6 +57,9 @@ const Login = () => {
             case "researcher":
               navigate(`/researcher`);
               break;
+            case "deliveryPerson":
+              navigate(`/diliveryGuy/dash`);
+              break;
             default:
               navigate("/");
           }

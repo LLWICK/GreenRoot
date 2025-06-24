@@ -108,6 +108,8 @@ const CreateUser = () => {
                                         <option value="farmer">farmer</option>
                                         <option value="customer">customer</option>
                                         <option value="seller">seller</option>
+                                        <option value="researcher">Researcher</option>
+                                        <option value="deliveryPerson">Delivery Person</option>
                                     </select>
 
                                     <select name="status" onChange={handleChange} className="w-full border px-4 py-2">

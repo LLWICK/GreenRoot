@@ -62,18 +62,24 @@ const CategoryPage = () => {
         <div>
             <NavBar />
             <Header custId={cid}/>
-            
-            <h2 className="p-4 bg-green-700 text-white font-bold text-3xl text-center">
-                {categoryName}
-            </h2>
 
-            <TopCategoryList custId={cid} selectedCategory={categoryName} />
+            <div>
+  <h2 className="p-4 bg-green-700 text-white font-bold text-3xl text-center">
+    {categoryName}
+  </h2>
 
-            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-6'>
-                {products.map((product) => (
-                    <ProductItem key={product._id} product={product} />
-                ))}
-            </div>
+  <div className="px-4 sm:px-6 md:px-10 mb-6">
+    <TopCategoryList custId={cid} selectedCategory={categoryName} />
+  </div>
+
+  <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-6 px-4 sm:px-6 md:px-10 mb-10'>
+  {products.map((product) => (
+    <ProductItem key={product._id} product={product} />
+  ))}
+</div>
+
+</div>
+
             <Footer/>
         </div>
     );

@@ -7,6 +7,7 @@ export { default as CustomerManagement } from "./CustomerManagement";
 export { default as AdminManagament } from "./AdminManagement";
 export { default as SellerManagement } from "./SellerManagement";
 export { default as ResearchersManagement } from "./ResearchersManagement";
+export { default as DeliveryPersonManagement } from "./DeliveryPersonManagement";
 
 // user management
 export { default as DeleteUser } from "./userManagement/DeleteUser";

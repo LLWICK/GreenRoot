@@ -37,7 +37,7 @@
     "react-select": "^5.10.1",
     "react-select-async-paginate": "^0.7.9",
     "react-toastify": "^11.0.5",
-    "recharts": "^2.15.1",
+    "recharts": "^2.15.3",
     "sweetalert2": "^11.6.13",
     "tailwind-merge": "^3.0.2",
     "tailwindcss": "^4.0.12",

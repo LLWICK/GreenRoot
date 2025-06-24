@@ -11,6 +11,8 @@ const {
     deletePnd
 } = require('../controller/pndController')
 
+const authenticateResearcher = require('../middleware/requireAuth');
+
 // Import middleware
 //const { authenticateUser} = require('../../admin/middleware/auth.middleware')
 
@@ -22,7 +24,7 @@ const uploadMiddleware = multer({ dest: 'researcher/uploads/' });
 router.get('/', getPnd)
 
 //Get user pnd posts
-router.get('/my-pnd', getUserPnd)
+router.get('/my-pnd', authenticateResearcher, getUserPnd)
 
 //Get a single pnd post
 router.get('/:id', getAPnd)

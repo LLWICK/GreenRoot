@@ -114,7 +114,15 @@ const emailSender = (req, res) => {
 
 const docInvoice = async (req, res) => {
   const { orderId } = req.params;
-  const { customerF, customerL, orderItems, TotalPrice } = req.body;
+  const {
+    customerF,
+    customerL,
+    orderItems,
+    TotalPrice,
+    sellerPhone,
+    sellerEmail,
+    sellerAddress,
+  } = req.body;
 
   // Replace with real DB query
   const invoiceData = {
@@ -123,6 +131,9 @@ const docInvoice = async (req, res) => {
     date: new Date().toLocaleDateString(),
     items: orderItems,
     totalPr: TotalPrice,
+    email: sellerEmail,
+    phone: sellerPhone,
+    address: sellerAddress,
   };
 
   res.setHeader("Content-Type", "application/pdf");
@@ -152,7 +163,11 @@ const docInvoice = async (req, res) => {
   // === Customer Info ===
   doc
     .fontSize(12)
-    .text(`Customer Name: ${invoiceData.customer}`, { align: "left" });
+    .fillColor("#000")
+    .text(`Customer Name: ${invoiceData.customer || "N/A"}`)
+    .text(`Email: ${invoiceData.email || "N/A"}`)
+    .text(`Phone: ${invoiceData.phone || "N/A"}`)
+    .text(`Address: ${invoiceData.address || "N/A"}`);
 
   doc.moveDown();
 
@@ -161,11 +176,11 @@ const docInvoice = async (req, res) => {
     .fontSize(12)
     .fillColor("#000")
     .text("Item", 50, doc.y, { width: 200 })
-    .text("Qty", 250, doc.y, { width: 100, align: "right" })
-    .text("Price", 350, doc.y, { width: 100, align: "right" })
-    .text("Total", 450, doc.y, { width: 100, align: "right" })
-    .moveDown();
+    .text("Qty", 250, doc.y, { width: 100, align: "center" })
+    .text("Price", 350, doc.y, { width: 100, align: "center" })
+    .text("Total", 450, doc.y, { width: 100, align: "center" });
 
+  doc.moveDown();
   doc.moveTo(50, doc.y).lineTo(550, doc.y).stroke();
 
   // === Table Rows ===
@@ -174,15 +189,18 @@ const docInvoice = async (req, res) => {
 
     doc
       .fontSize(12)
-      .text(item.name, 50, doc.y + 10)
-      .text(item.quantity, 250, doc.y, { width: 100, align: "right" })
+      .text(item.name, 50, doc.y + 10, { width: 200 })
+      .text(item.quantity, 250, doc.y, {
+        width: 100,
+        align: "center",
+      })
       .text(`Rs. ${item.price.toFixed(2)}`, 350, doc.y, {
         width: 100,
-        align: "right",
+        align: "center",
       })
       .text(`Rs. ${total.toFixed(2)}`, 450, doc.y, {
         width: 100,
-        align: "right",
+        align: "center",
       });
   });
 

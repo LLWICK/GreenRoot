@@ -56,11 +56,11 @@ const createPnd = async (req, res) => {
         
     }
 
-    const {title, content, author, location } = req.body
+    const {title, description, causes, solution, author, user_id } = req.body
 
     try {
-        //const user_id = req.user.userId  add user_id down there(next to file)
-        const createPnd = await pnd.create({title, content, author, location, file: newPath})
+        
+        const createPnd = await pnd.create({title, description, causes, author, solution, user_id, file: newPath})
         res.status(200).json(createPnd)
     } catch (error) {
         res.status(400).json({error: error.message})

@@ -45,4 +45,14 @@ router.post('/', async (req, res) => {
   }
 });
 
+// DELETE all searches
+router.delete('/', async (req, res) => {
+  try {
+    await TypeCustomer.deleteMany({});
+    res.status(200).json({ message: "All types deleted" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;

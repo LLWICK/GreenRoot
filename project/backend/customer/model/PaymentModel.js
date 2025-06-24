@@ -14,7 +14,7 @@ const checkout = async (req, res) => {
       return res.status(400).json({ error: "Invalid total price" });
     }
 
-    // Convert total price to cents (Stripe requires amounts in cents)
+    // Convert total price to cents (As Stripe requires amounts in cents)
     const totalAmount = Math.round(parseFloat(Subtotal) * 100);
 
     const session = await stripe.checkout.sessions.create({
@@ -33,8 +33,8 @@ const checkout = async (req, res) => {
       shipping_address_collection: {
         allowed_countries: ["LK", "US"],
       },
-      success_url: `http://localhost:5173/Home/Checkout/${customerId}`,//change
-      cancel_url: "http://localhost:5173/Customer",//change
+      success_url: `http://localhost:5173/Home/Checkout/${customerId}`,//changed to checkoutpage
+      cancel_url: "http://localhost:5173/Customer",//changed to customerpage
     });
 
     res.status(200).json({ data: session });

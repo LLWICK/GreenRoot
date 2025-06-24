@@ -102,6 +102,9 @@ function NewOrderComp() {
           customerL: sellerDets.lastName,
           orderItems: Items,
           TotalPrice: order.totalPrice,
+          sellerEmail: sellerDets.email,
+          sellerPhone: sellerDets.phone,
+          sellerAddress: sellerDets.address,
         },
         {
           responseType: "blob",
@@ -171,31 +174,10 @@ function NewOrderComp() {
                         <h3 class="text-xl dark:text-white xl:text-2xl font-semibold leading-6 text-gray-800">
                           {element.name}
                         </h3>
-                        <div class="flex justify-start items-start flex-col space-y-2">
-                          <p class="text-sm dark:text-white leading-none text-gray-800">
-                            <span class="dark:text-gray-400 text-gray-300">
-                              Style:{" "}
-                            </span>{" "}
-                            Italic Minimal Design
-                          </p>
-                          <p class="text-sm dark:text-white leading-none text-gray-800">
-                            <span class="dark:text-gray-400 text-gray-300">
-                              Size:{" "}
-                            </span>{" "}
-                            Small
-                          </p>
-                          <p class="text-sm dark:text-white leading-none text-gray-800">
-                            <span class="dark:text-gray-400 text-gray-300">
-                              Color:{" "}
-                            </span>{" "}
-                            Light Blue
-                          </p>
-                        </div>
                       </div>
                       <div class="flex justify-between space-x-8 items-start w-full">
                         <p class="text-base dark:text-white xl:text-lg leading-6">
-                          $36.00{" "}
-                          <span class="text-red-300 line-through"> $45.00</span>
+                          Rs. {element.price}{" "}
                         </p>
                         <p class="text-base dark:text-white xl:text-lg leading-6 text-gray-800">
                           01
@@ -223,23 +205,13 @@ function NewOrderComp() {
                       Rs. {order.totalPrice}
                     </p>
                   </div>
-                  <div class="flex justify-between items-center w-full">
-                    <p class="text-base dark:text-white leading-4 text-gray-800">
-                      Discount{" "}
-                      <span class="bg-gray-200 p-1 text-xs font-medium dark:bg-white dark:text-gray-800 leading-3 text-gray-800">
-                        STUDENT
-                      </span>
-                    </p>
-                    <p class="text-base dark:text-gray-300 leading-4 text-gray-600">
-                      -$28.00 (50%)
-                    </p>
-                  </div>
+
                   <div class="flex justify-between items-center w-full">
                     <p class="text-base dark:text-white leading-4 text-gray-800">
                       Shipping
                     </p>
                     <p class="text-base dark:text-gray-300 leading-4 text-gray-600">
-                      $8.00
+                      Rs. 0.00
                     </p>
                   </div>
                 </div>
@@ -248,7 +220,7 @@ function NewOrderComp() {
                     Total
                   </p>
                   <p class="text-base dark:text-gray-300 font-semibold leading-4 text-gray-600">
-                    $36.00
+                    Rs. {order.totalPrice}
                   </p>
                 </div>
 
@@ -348,7 +320,7 @@ function NewOrderComp() {
                       {sellerDets.lastName}
                     </p>
                     <p class="text-sm dark:text-gray-300 leading-5 text-gray-600">
-                      10 Previous Orders
+                      {sellerDets.role}
                     </p>
                   </div>
                 </div>

@@ -176,10 +176,22 @@ import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toast notifica
                             <div>
                             <h2 className='font-bold'>{item.name}</h2>
                             <div className='p-2 border flex gap-10 items-center px-5'>
-                                    <button disabled={item.quantity === 1} onClick={() => handleQuantityChange(item._id, item.quantity - 1, item.price)}>-</button>
-                                    <h2>{item.quantity}</h2>
-                                    <button onClick={() => handleQuantityChange(item._id, item.quantity + 1, item.price)}>+</button>
-                                </div>
+  <button
+    disabled={item.quantity === 1}
+    onClick={() => handleQuantityChange(item._id, item.quantity - 1, item.price)}
+    className="w-8 h-8 bg-green-600 text-white font-bold border border-green-600 rounded-full flex items-center justify-center disabled:bg-green-300 disabled:cursor-not-allowed"
+  >
+    -
+  </button>
+  <h2>{item.quantity}</h2>
+  <button
+    onClick={() => handleQuantityChange(item._id, item.quantity + 1, item.price)}
+    className="w-8 h-8 bg-green-600 text-white font-bold border border-green-600 rounded-full flex items-center justify-center"
+  >
+    +
+  </button>
+</div>
+
                             <h2 className='text-lg font-bold'>Rs. {item.totalPrice}</h2>
                             </div>
                            

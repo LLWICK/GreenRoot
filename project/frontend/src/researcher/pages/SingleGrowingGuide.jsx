@@ -31,7 +31,7 @@ export default function SingleGrowingGuide() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col bg-gray-50">
+      <div className="min-h-screen flex flex-col bg-gray-200">
         <BlogHeader />
         <div className="flex-grow flex justify-center items-center">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-600"></div>

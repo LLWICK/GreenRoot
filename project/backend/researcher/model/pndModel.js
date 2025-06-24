@@ -8,7 +8,15 @@ const pndSchema = new Schema({
         type: String,
         required: true
     },
-    content: {
+    description: {
+        type: String,
+        required: true
+    },
+    causes: {
+        type: String,
+        required: true
+    },
+    solution: {
         type: String,
         required: true
     },
@@ -16,18 +24,13 @@ const pndSchema = new Schema({
         type: String,
         required: true
     },
-    location: {
-       type: String,
-       required: true
-    },
     file: {
         type: String
+    },
+    user_id: {
+        type: String,
+        required: true
     }
-    // },
-    // user_id: {
-    //     type: String,
-    //     required: true
-    // }
 }, {timestamps: true})
 
 module.exports = mongoose.model('Pest_and_Disease', pndSchema)
