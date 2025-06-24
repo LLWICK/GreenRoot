@@ -12,6 +12,8 @@ const DiliveryDash = () => {
   const [loading, setLoading] = useState(true); 
   const [loadingN, setLoadingN] = useState(true);
   const [error, setError] = useState(null);    
+
+  
   
   
   const [statusUpdates, setStatusUpdates] = useState({});
@@ -23,6 +25,7 @@ const DiliveryDash = () => {
         const res = await axios.get('http://localhost:3000/api/DiliveryGuy/orders/acceptedBlk');
         setordersBLK(res.data);
         setLoading(false);
+        console.log(res.data)
         
       } catch (err) {
         setError('Failed to fetch products.');
@@ -169,9 +172,9 @@ const DiliveryDash = () => {
               <tbody className="divide-y divide-gray-300">
                 {OrdersBLK.map((order, index) => (
                   <tr key={index} className="hover:bg-gray-100">
-                    <td className="p-4 border-b">{order.orderID}</td>
-                    <td className="p-4 border-b">{order.retailerName || "N/A"}</td>
-                    <td className="p-4 border-b">{order.farmerName || "N/A"}</td>
+                    <td className="p-4 border-b">{order._id}</td>
+                    <td className="p-4 border-b">{ order.sellerId?.firstName|| "N/A"}</td>
+                    <td className="p-4 border-b">{ order.farmerId?.firstName || "N/A"}</td>
                     <td className="p-4 border-b">${order.totalPrice}</td>
                     <td className="p-4 border-b">
                       <select

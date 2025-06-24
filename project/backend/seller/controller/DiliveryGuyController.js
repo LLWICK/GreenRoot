@@ -6,11 +6,11 @@ const { sendOrderUpdateEmail } = require('./emailSender');
 // Controller to get orders filtered by status 'accepted'
 const getAcceptedOrders = async (req, res) => {
   try {
-    const acceptedOrders = await BulkOrder.find({ status: { $ne: 'Declined' } });
+    const acceptedOrders = await BulkOrder.find({ status: { $ne: 'Declined' } })
+      .populate('sellerId', 'firstName')   // include only name and email from Seller
+      .populate('farmerId', 'firstName').sort({ createdAt: -1 }); // include only name and email from Farmer
 
-      //.populate('sellerId', 'name email')   // optional: populate seller details
-      //.populate('farmerId', 'name email');  // optional: populate farmer details
-
+      console.log(acceptedOrders[0])
     res.status(200).json(acceptedOrders);
   } catch (error) {
     console.error('Error fetching accepted orders:', error);
@@ -21,10 +21,9 @@ const getAcceptedOrders = async (req, res) => {
 
 const getAcceptedNormalOrders = async (req, res) => {
   try {
-    const acceptedOrders = await NormalOrder.find({ status: 'accepted' })
-      //.populate('sellerId', 'name email')   // optional: populate seller details
-      //.populate('farmerId', 'name email');  // optional: populate farmer details
-
+    const acceptedOrders = await NormalOrder.find({ status: 'accepted' }).sort({ createdAt: -1 })
+    
+    console.log(acceptedOrders)
     res.status(200).json(acceptedOrders);
   } catch (error) {
     console.error('Error fetching accepted orders:', error);
@@ -82,7 +81,7 @@ const updateOrderStatus = async (req, res) => {
 
    const order = await NormalOrder.findOne({ _id: orderId});
    console.log(order)
-    const userId = order.ordinary_buyer_id;
+    const userId = order.cartItems._id
 
     const user = await User.findById(userId);
     console.log(user.email)
